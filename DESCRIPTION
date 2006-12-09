@@ -1,0 +1,15 @@
+Package: agricolae
+Type: Package
+Title: Statistical Procedures for Agricultural Research
+Version: 1.0
+Date: 2006-12-9
+Author: Felipe de Mendiburu
+Maintainer: RIU <f.mendiburu@cgiar.org>
+Suggests: cluster, akima, e1071, SuppDists, klaR
+Depends: R 
+Description: These functions were developed specially for the International
+        Potato Center. The experimental data corresponding to CIP-Lima Peru.
+License: This software may be re-distributed freely and used for any
+        non-commercial purpose under the GPL license.
+URL: http://www.r-project.org
+Packaged: Sat Dec  9 12:10:22 2006; FDEMENDIBURU
