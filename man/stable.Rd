@@ -3,8 +3,9 @@
 \docType{data}
 \title{ Data for stability analysis}
 \description{
-  Matrix of averages, by rows the genotypes and columns the environmet.
-}
+  An average data matrix with rows (genotypes) and columns (environment) 
+  (localities).
+  }
 \usage{data(stable)}
 \format{
   A data frame with 17 observations on the following 12 variables.

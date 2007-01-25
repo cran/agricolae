@@ -1,15 +1,23 @@
 Package: agricolae
 Type: Package
 Title: Statistical Procedures for Agricultural Research
-Version: 1.0
-Date: 2006-12-9
+Version: 1.0-1
+Date: 2007-01-25
 Author: Felipe de Mendiburu
-Maintainer: RIU <f.mendiburu@cgiar.org>
-Suggests: cluster, akima, e1071, SuppDists, klaR
+Maintainer: Felipe de Mendiburu <f.mendiburu@cgiar.org>
+Suggests: cluster, akima, SuppDists, klaR
 Depends: R 
-Description: These functions were developed specially for the International
-        Potato Center. The experimental data corresponding to CIP-Lima Peru.
-License: This software may be re-distributed freely and used for any
-        non-commercial purpose under the GPL license.
-URL: http://www.r-project.org
-Packaged: Sat Dec  9 12:10:22 2006; FDEMENDIBURU
+Description: These functions are currently utilized by the International Potato Center
+ Research (CIP), the Statistics and Informatics Instructors and the Students of the
+ Universidad Nacional Agraria La Molina Peru, and the Specialized Master in
+ "Bosques y Gestión de Recursos Forestales" (Forest Resource Management). This package
+ contains functionality for the statistical analysis of experimental designs applied
+ specially for field experiments in  agriculture and plant breeding. Planning of field
+ experiments: Lattice, factorial, RCBD, CRD, Latin Square, Greaco, BIB, Alpha design.
+ Comparison of multi-location trials: AMMI (biplot and triplot), Stability. Comparison
+ between treatments: LSD, HSD, Waller, Kruskal, Friedman, Durbin, Van Der Waerden.
+ Resampling and simulation: resampling.model, simulation.model, Ecology: Indices
+ Biodiversity, path analysis, Uniformity Soil: Index Smith's.
+License: This software may be re-distributed freely and used for any non-commercial purpose under the GPL license.
+URL: http://tarwi.lamolina.edu.pe/~fmendiburu; http://research.cip.cgiar.org/cipstat/
+Packaged: Thu Jan 25 14:10:12 2007; FDEMENDIBURU

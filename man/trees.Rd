@@ -1,9 +1,9 @@
 \name{trees}
 \alias{trees}
 \docType{data}
-\title{ Data species trees. Pucallpa}
+\title{ Data of species trees. Pucallpa}
 \description{
-  species: Guaba, Laurel, Roble and  Terminalia.
+  Guaba, laurel, oak and terminalia species.
 }
 \usage{data(trees)}
 \format{

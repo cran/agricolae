@@ -1,10 +1,10 @@
 \name{cv.model}
 \alias{cv.model}
 %- cv.model.
-\title{ Coefficient of variation of the experiment }
+\title{ Coefficient of the experiment variation }
 \description{
-  Obtains the coefficient of variation of the experiment,
-  obtained by the models lm() or aov()
+  It obtains the coefficient of variation of the experiment obtained by 
+  models lm() or aov()
 
 }
 \usage{
@@ -24,8 +24,8 @@ $\frac{sqrt(MSerror)}{mean(x)}\*100$
 }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{LSD}}, \code{\link{HSD}}, \code{\link{waller}}, 
-\code{\link{LSD.group}}, \code{\link{HSD.group}}, \code{\link{waller.group} } }
+\seealso{\code{\link{LSD.test}}, \code{\link{HSD.test}}, 
+\code{\link{waller.test}}}
 
 \examples{
 # see examples from LSD , Waller-Duncan or HSD and complete with it:

@@ -3,17 +3,17 @@
 %- grid3p.
 \title{ Interpolation for nonequidistant points in matrix}
 \description{
-  Z=f(x,y) generates a information matrix by a process of interpolacion for
-  nonequidistant points. Use function interpp of library akima.
+  Z=f(x,y) generates an information matrix by a process of interpolation for
+  nonequidistant points. It uses function interpp of library akima.
 }
 \usage{
-grid3p(xx, yy, zz, m, n)
+grid3p(x, y, z, m, n)
 }
 
 \arguments{
-  \item{xx}{ Vector independent}
-  \item{yy}{ Vector independent }
-  \item{zz}{ Vector dependent }
+  \item{x}{ Vector independent}
+  \item{y}{ Vector independent }
+  \item{z}{ Vector dependent }
   \item{m}{ number of rows of the new matrix }
   \item{n}{ number of columns of the new matrix }
 }
@@ -24,16 +24,16 @@ grid3p(xx, yy, zz, m, n)
 }
 \value{
 
-  \item{xx }{Numeric}
-  \item{yy }{Numeric}
-  \item{zz }{Numeric}
+  \item{x }{Numeric}
+  \item{y }{Numeric}
+  \item{z }{Numeric}
   \item{m }{Numeric}
   \item{n }{Numeric}
 }
 
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{wxyz}}, \code{\link{gxyz}}, \code{\link{grid3d} } }
+\seealso{\code{\link{wxyz}}, \code{\link{gxyz}} }
 
 \examples{
 library(akima)

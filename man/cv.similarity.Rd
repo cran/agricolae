@@ -1,12 +1,11 @@
 \name{cv.similarity}
 \alias{cv.similarity}
 %- cv.similarity.
-\title{ Coefficient of variation of the similarity matrix }
+\title{ Coefficient of the similarity matrix variation }
 \description{
-  The process consists of finding the coefficient of the distances
-  of similarity of binary tables (1 and 0) as used for scoring 
-  molecular marker data for presence and absence of PCR amplification
-  products.
+  This process consists of finding the coefficient of the distances of 
+  similarity of binary tables (1 and 0) as used for scoring molecular
+  marker data for presence and absence of PCR amplification products.
 }
 \usage{
 cv.similarity(A)

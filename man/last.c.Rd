@@ -1,10 +1,10 @@
 \name{last.c}
 \alias{last.c}
 %- last.c.
-\title{ Last for group }
+\title{ Setting the last character of a chain  }
 \description{
-  Special function for the group of treatments in the tests of multiple
-  comparison, use order.group.
+  A special function for the group of treatments in the multiple comparison tests. 
+  Use order.group.
 }
 \usage{
 last.c(x)

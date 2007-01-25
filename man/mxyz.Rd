@@ -1,11 +1,10 @@
 \name{mxyz}
 \alias{mxyz}
 %- mxyz.
-\title{ Mean data frame in matrix}
+\title{ Mean on data frame in matrix}
 \description{
-  Forms a matrix of a table of data, finds the average. 
-  Tool for the stability analysis.
-}
+  It constructs a matrix from a data table. It is a tool for the stability analysis.
+ }
 \usage{
 mxyz(x, y, z)
 }

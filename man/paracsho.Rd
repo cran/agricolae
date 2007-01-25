@@ -3,7 +3,7 @@
 \docType{data}
 \title{ Paracsho data biodiversity }
 \description{
-Locality in Peru. Biodiversity  
+A locality in Peru. A biodiversity.
 }
 \usage{data(paracsho)}
 \format{

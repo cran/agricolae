@@ -3,8 +3,8 @@
 %- index.bio.
 \title{ Biodiversity Indices }
 \description{
-Scientists use a formula called the biodiversity index to describe
-the amount of species diversity in a given area.
+Scientists use a formula called the biodiversity index to describe the amount of
+species diversity in a given area.
 
 }
 \usage{

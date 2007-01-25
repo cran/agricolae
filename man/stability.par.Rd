@@ -3,14 +3,14 @@
 %- stability.par.
 \title{ Stability analysis. SHUKLA'S STABILITY VARIANCE AND KANG'S }
 \description{
-  This procedure calculates the variations of stability as well as
-  the statistics of selection for the yield and the stability.
-  The averages of the genotype through the environment repetitions different
-  are required for the calculations. The mean square error must calculate
-  of the joint analysis of variancia.
+  This procedure calculates the stability variations as well as the statistics 
+  of selection for the yield and the stability.
+  The averages of the genotype through the different environment repetitions 
+  are required for the calculations. The mean square error must be calculated
+  from the joint variance analysis.
 }
 \usage{
-stability.par(data, rep, MSerror, alpha = 0.1, main = NULL, cova = FALSE, name.cov = NULL, file.cov = 0)
+stability.par(data,rep,MSerror,alpha=0.1,main=NULL,cova = FALSE,name.cov=NULL,file.cov=0)
 }
 
 \arguments{
@@ -49,7 +49,8 @@ stability.par(data=stable, rep=4, MSerror=1.8, alpha=0.1, main="Nativa")
 #example 2 covariable. precipitation
 data(stable)
 data(precipitation)
-stability.par(data=stable, rep=4, MSerror=1.8, alpha=0.1, main="Nativa", cova=TRUE, name.cov="Precipitación", file.cov=precipitation)
+stability.par(data=stable, rep=4, MSerror=1.8, alpha=0.1, main="Nativa",
+ cova=TRUE, name.cov="Precipitación", file.cov=precipitation)
 
 }
 \keyword{ models }% at least one, from doc/KEYWORDS

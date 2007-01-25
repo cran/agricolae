@@ -3,11 +3,11 @@
 %- path.analysis.
 \title{ Path Analysis }
 \description{
-  If the cause and effect relationship is well defined it is possible
-  to represent the whole system of variables in the form a diagram known
-  as path-analysis. The function calculates the direct and indirect effects
-  and uses the correlation or covariancie of the variables.
-}
+  If the cause and effect relationship is well defined, it is possible
+  to represent the whole system of variables in a diagram form known as 
+  path-analysis. The function calculates the direct and indirect effects
+  and uses the variables correlation or covariance.
+     }
 \usage{
 path.analysis(corr.x, corr.y)
 }
@@ -28,23 +28,24 @@ path.analysis(corr.x, corr.y)
 \references{ Biometrical Methods in Quantitative Genetic Analysis, Singh, Chaudhary. 1979 }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{cor.matrix}}, \code{\link{cor.mv}}, \code{\link{cor.vector} } }
+\seealso{\code{\link{correlation}} }
 
 \examples{
 # Path analysis. Multivarial Analysis. Anderson. Prentice Hall, pag 616
 library(agricolae)
+# Example 1
 corr.x<- matrix(c(1,0.5,0.5,1),c(2,2))
 corr.y<- rbind(0.6,0.7)
 names<-c("X1","X2")
 dimnames(corr.x)<-list(names,names)
 dimnames(corr.y)<-list(names,"Y")
 path.analysis(corr.x,corr.y)
-
+# Example 2
 # data of the progress of the disease related bacterial wild to the ground
 # for the component EC Ca K2 Cu
 data(wild)
-cor.y<-cor.mv(wild[,1],wild[,-1])$correlation
-cor.x<-cor.matrix(wild[,-1])$correlation
+cor.y<-correlation(wild[,1],wild[,-1])$correlation
+cor.x<-correlation(wild[,-1])$correlation
 path.analysis(cor.x,cor.y)
 
 }

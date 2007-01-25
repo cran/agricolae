@@ -1,7 +1,7 @@
 \name{haynes}
 \alias{haynes}
 \docType{data}
-\title{ Data of yield for analysis of nonparametrica stability}
+\title{ Data of yield for nonparametrical stability analysis }
 \description{
   Published data. Haynes.
 }

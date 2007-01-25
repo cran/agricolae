@@ -1,9 +1,9 @@
 \name{huasahuasi}
 \alias{huasahuasi}
 \docType{data}
-\title{ data Yield in Huasahuasi }
+\title{ Data of yield in Huasahuasi }
 \description{
-  Potato growing in huasahuasi. Peru
+  Potato growing in Huasahuasi, Peru.
 }
 \usage{data(huasahuasi)}
 \format{

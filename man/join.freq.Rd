@@ -3,10 +3,10 @@
 %- join.freq.
 \title{ Join class for histogram }
 \description{
-  In many situations it is required to join classes by the low frequency
-  in the intervals. For this process the vector is required single of
-  limit of class and the sequence of classes to join.
-}
+  In many situations it is required to join classes because of the low frequency
+  in the intervals. In this process, it is required to join the intervals and
+  ad the frequencies of them.
+ }
 \usage{
 join.freq(breaks, join)
 }

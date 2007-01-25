@@ -1,11 +1,11 @@
 \name{nonadditivity}
 \alias{nonadditivity}
 %- nonadditivity.
-\title{ Test nonadditivity model }
+\title{ Nonadditivity model test }
 \description{
-  The resistance for the transformable nonaditividad, due to J. W. Tukey, 
+  The resistance for the transformable nonadditivity, due to J. W. Tukey, 
   is based on the detection of a curvilinear relation between y-est(y)
-  and est(y). A degree of freedom for the transformable non-additivity.
+  and est(y). A freedom degree for the transformable nonadditivity.
 }
 \usage{
 nonadditivity(y, factor1, factor2, df, MSerror)

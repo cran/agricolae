@@ -3,9 +3,9 @@
 %- design.rcbd.
 \title{ Randomized Complete Block Design }
 \description{
-  Generates Randomized Complete Block Design.
-  "Random" uses the methods of generation of numbers of "base" of R,
-  the seed by set.seed(seed, kinds).
+  It generates Randomized Complete Block Design.
+  "Random" uses the methods of number generation in R.
+  The seed is by set.seed(seed, kinds).
 }
 \usage{
 design.rcbd(trt, r, number = 1, seed = 0, kinds = "Super-Duper")

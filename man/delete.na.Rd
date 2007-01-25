@@ -1,10 +1,10 @@
 \name{delete.na}
 \alias{delete.na}
 %- delete.na.
-\title{ Omits the rows or columns lesser or greater with NA of the matrix }
+\title{ Omitting the rows or columns with missing observations of a matrix (NA)  }
 \description{
-  In many situations it is required omits the rows or columns lesser
-  or greater with NA of the matrix.
+  In many situations it is required to omit the rows or columns less or greater
+  with NA of the matrix.
 }
 \usage{
 delete.na(x, alternative=c("less", "greater") )

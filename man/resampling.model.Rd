@@ -3,8 +3,8 @@
 %- resampling.model.
 \title{ Resampling for linear models }
 \description{
-  The process consists of finding the values of P-value by means of
-  a re-sampling process, next to the values obtained by analysis of variance.
+  This process consists of finding the values of P-value by means of a 
+  re-sampling process along with the values obtained by variance analysis.
 }
 \usage{
 resampling.model(k, data, model)

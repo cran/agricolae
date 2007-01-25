@@ -1,12 +1,13 @@
 \name{order.group}
 \alias{order.group}
 %- order.group.
-\title{ Orders groups of treatments in a multiple comparison }
+\title{ Ordering the treatments according to the multiple comparison }
 \description{
-  When one has treatments and their averages 
-  these can be compared with a value that is the minimal significant difference,
-  this difference can change from one comparison to another one.
-  Function used by HSD, LSD, Kruskal-Wallis, Friedman, Durbin.
+  This function allows us to compare the treatments averages or the adding of 
+  their ranges with the minimal significant difference which can vary from one
+  comparison to another one.
+  This function is used by the HSD, LSD, Kruskal-Wallis, Friedman or Durbin 
+  procedures.
 }
 \usage{
 order.group(trt, means, N, MSerror, Tprob, std.err, parameter=1)

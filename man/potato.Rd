@@ -3,8 +3,8 @@
 \docType{data}
 \title{ Data of cutting}
 \description{
-  Study of yield of two varieties of potato in the experimental station
-  of the CIP.
+  A study on the yield of two potato varieties performed at the CIP
+  experimental station.
 }
 \usage{data(potato)}
 \format{

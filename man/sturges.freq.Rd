@@ -1,9 +1,9 @@
 \name{sturges.freq}
 \alias{sturges.freq}
 %- sturges.freq.
-\title{ Intervals of class for a histogram, the rule of Sturges }
+\title{ Class intervals for a histogram, the rule of Sturges }
 \description{
-  Number classes: k = 1 + 3.32 log10 (N)
+  Number classes: k = 1 + 3.32 log10 (N).
 }
 \usage{
 sturges.freq(x)

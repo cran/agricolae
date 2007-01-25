@@ -1,12 +1,12 @@
 \name{graph.freq}
 \alias{graph.freq}
 %- graph.freq.
-\title{ Histogram of a frequency table }
+\title{ Frequency table histogram }
 \description{
-  In many situations it is had intervals of class defined with its
-  respective frequencies. By means of this function, the picture of
-  frequency is obtained and is possible to superpose the normal distribution,
-  poligono of frequency, Ojiva and to construct the table of complete frequency
+  In many situations it has intervals of class defined with its respective
+  frequencies. By means of this function, the picture of frequency is obtained 
+  and it is possible to superpose the normal distribution, polygon of frequency, 
+  Ojiva and to construct the table of complete frequency.
 }
 \usage{
 graph.freq(breaks, counts, ...)

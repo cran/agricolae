@@ -3,9 +3,10 @@
 %- resampling.cv.
 \title{ Resampling to find the optimal number of markers }
 \description{
-  This process finds the curve of CV for different number of markers,
-  the one that allows to determine it number of optimal markers for a
-  given relative variability.  Method of the curvature.
+  This process finds the curve of CV for a different number of markers which
+  allows us to determine the number of optimal markers for a given relative 
+  variability.
+  A method of the curvature.
 }
 \usage{
 resampling.cv(A, size, npoints)

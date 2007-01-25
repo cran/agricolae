@@ -3,8 +3,8 @@
 \docType{data}
 \title{ Data for AMMI Analysis}
 \description{
-Study of the disease in the plant of potato in the localities of Comas
-and oxapampa in Peru.
+A study of the disease in the potato plant in the localities of Comas and
+Oxapampa in Peru.
 }
 \usage{data(CIC)}
 \format{

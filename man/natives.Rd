@@ -1,9 +1,9 @@
 \name{natives}
 \alias{natives}
 \docType{data}
-\title{ Data of Native potato}
+\title{ Data of native potato }
 \description{
-  Evaluation of the number, weight and size of 24 varieties of native potato.
+  An evaluation of the number, weight and size of 24 native potatoes varieties.
 }
 \usage{data(natives)}
 \format{

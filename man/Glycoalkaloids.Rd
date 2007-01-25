@@ -3,7 +3,7 @@
 \docType{data}
 \title{ Data Glycoalkaloids}
 \description{
-  Measurement of the Glycoalkaloids by two methods: HPLC and spectrophotometer.
+  A measurement of the Glycoalkaloids by two methods: HPLC and spectrophotometer.
 }
 \usage{data(Glycoalkaloids)}
 \format{

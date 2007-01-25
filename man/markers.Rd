@@ -3,7 +3,7 @@
 \docType{data}
 \title{ Data of molecular markers}
 \description{
-  Partial study on 27 molecular markers.
+  A partial study on 27 molecular markers.
 }
 \usage{data(markers)}
 \format{

@@ -1,9 +1,9 @@
 \name{genxenv}
 \alias{genxenv}
 \docType{data}
-\title{ Data of yield of potato in environment different}
+\title{ Data of potato yield in a different environment }
 \description{
-  50 genotype and 5 environment.
+  50 genotypes and 5 environments.
 }
 \usage{data(genxenv)}
 \format{

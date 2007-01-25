@@ -3,10 +3,9 @@
 %- design.lsd.
 \title{ Latin Square Design }
 \description{
-  Generates Latin Square Design.
-  "Random" uses the methods of generation of numbers of "base" of R,
-  the seed by set.seed(seed, kinds).
-
+  It generates Latin Square Design.
+  "Random" uses the methods of number generation in R.
+  The seed is by set.seed(seed, kinds).
 }
 \usage{
 design.lsd(trt, number = 1, seed = 0, kinds = "Super-Duper")

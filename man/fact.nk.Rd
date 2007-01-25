@@ -3,9 +3,9 @@
 %- fact.nk.
 \title{ Factorial design k-factors with n-levels in blocks }
 \description{
-  Generates a table randomized for the design of blocks in factorial \eqn{n^k}.
-  "Random" uses the methods of generation of numbers of "base" of R,
-  the seed by set.seed(seed, kinds).
+  It generates a table randomized for the design of blocks in factorial \eqn{n^k}.
+  "Random" uses the methods of number generation in R.
+  The seed is by set.seed(seed, kinds).
 }
 \usage{
 fact.nk(level, factors, blocks, seed = 0, kinds = "Super-Duper")

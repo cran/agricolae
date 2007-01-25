@@ -3,10 +3,10 @@
 %- AMMI.
 \title{ AMMI Analysis}
 \description{
-Additive main effects and multiplicative interaction (AMMI) models are 
-widely used to analyze main effects and genotype by environment (GEN, ENV)
-interactions in multilocation variety trials. This function generates in addition
-biplot, triplot graphs and analysis.
+Additive Main Effects and Multiplicative Interaction Models (AMMI) are widely used 
+to analyze main effects and genotype by environment (GEN, ENV) interactions in 
+multilocation variety trials. Furthermore, this function generates biplot, triplot 
+graphs and analysis.
 }
 \usage{
 AMMI(ENV, GEN, REP, Y, MSE = 0, number=TRUE,graph="biplot",...)
@@ -54,8 +54,10 @@ library(klaR)
 data(ltrv)
 #startgraph
 # biplot
-model<- AMMI(ltrv[,2], ltrv[,1], ltrv[,3], ltrv[,5],xlim=c(-3,3),ylim=c(-4,4),graph="biplot")
-model<- AMMI(ltrv[,2], ltrv[,1], ltrv[,3], ltrv[,5],xlim=c(-3,3),ylim=c(-4,4),graph="biplot",number=FALSE)
+model<- AMMI(ltrv[,2], ltrv[,1], ltrv[,3], ltrv[,5],xlim=c(-3,3),ylim=c(-4,4),
+graph="biplot")
+model<- AMMI(ltrv[,2], ltrv[,1], ltrv[,3], ltrv[,5],xlim=c(-3,3),ylim=c(-4,4),
+graph="biplot",number=FALSE)
 # triplot
 model<- AMMI(ltrv[,2], ltrv[,1], ltrv[,3], ltrv[,5],graph="triplot")
 model<- AMMI(ltrv[,2], ltrv[,1], ltrv[,3], ltrv[,5],graph="triplot",number=FALSE)
@@ -85,7 +87,7 @@ pc<- princomp(model$genXenv, cor = FALSE)
 pc$loadings
 summary(pc)
 model$biplot
-# Biplot with the one restored observed. TODO
+# Biplot with the one restored observed.
 rm(REP)
 bplot<-model$biplot[,1:4]
 attach(bplot)
@@ -116,6 +118,6 @@ total<-sum(values$values)
 round(values$values*100/total,2)
 # [1] 64.81 18.58 13.50  3.11  0.00
 }
-\keyword{  }% at least one, from doc/KEYWORDS
+\keyword{ models }% at least one, from doc/KEYWORDS
 
 

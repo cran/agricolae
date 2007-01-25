@@ -1,10 +1,10 @@
 \name{correl}
 \alias{correl}
 %- correl.
-\title{ Correlation two vectors }
+\title{ Correlation Coefficient }
 \description{
-   Exact correlation for ties or without ties; methods of Kendall,
-   Spearman and Pearson.
+   An exact correlation for ties or without ties.
+   Methods of Kendall, Spearman and Pearson.
 }
 \usage{
 correl(x, y, method = "pearson",alternative="two.sided")
@@ -25,13 +25,12 @@ correl(x, y, method = "pearson",alternative="two.sided")
 \references{Numerical Recipes in C. Second Edition. }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{cor.matrix}}, \code{\link{cor.vector}}, \code{\link{cor.mv} } }
+\seealso{\code{\link{correlation}} }
 
 \examples{
 library(agricolae)
 data(soil)
 attach(soil)
-pH<-soil[,2] ; clay <- soil[,11]
 correl(pH,clay,method="kendall")
 correl(pH,clay,method="spearman")
 correl(pH,clay,method="pearson")

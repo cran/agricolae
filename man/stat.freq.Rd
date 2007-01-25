@@ -1,9 +1,9 @@
 \name{stat.freq}
 \alias{stat.freq}
-%- stat.freq.
 \title{ Descriptive measures of grouped data }
 \description{
-  It finds the variance and central measures: average, medium and mode of grouped data.
+  By this process the variance and central measures ar found: average, medium 
+  and mode of grouped data.
 }
 \usage{
 stat.freq(histogram)

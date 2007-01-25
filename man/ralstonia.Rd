@@ -3,8 +3,8 @@
 \docType{data}
 \title{ Data of population bacterial wild: AUDPC}
 \description{
-  Data of population of the bacterial wild evaluated to 2, 15, 29, 43, 58
-  and 73 days.
+  The data correspond to the wild-type bacterial tests of the population during 
+  days 2,15,29,43,58 and 73 after being initiated the disease.
 }
 \usage{data(ralstonia)}
 \format{

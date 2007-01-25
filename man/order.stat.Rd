@@ -1,11 +1,10 @@
 \name{order.stat}
 \alias{order.stat}
 %- order.stat.
-\title{ Orders groups of treatments in a multiple comparison
- for a minimum value of difference }
+\title{ Grouping the treatments averages in a comparison with a minimum value  }
 \description{
-  When one has treatments and values that represent it,
-  these can be compared with a difference minimal of meaning.
+  When there are treatments and their respective values, these can be 
+  compared with a minimal difference of meaning.
 }
 \usage{
 order.stat(treatment, means, minimum)

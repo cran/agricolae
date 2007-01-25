@@ -20,7 +20,7 @@ kendall(data1, data2)
 \references{ Numerical Recipes in C. Second Edition. Pag 634}
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{cor.matrix}}, \code{\link{cor.vector}}, \code{\link{cor.mv} } }
+\seealso{\code{\link{correlation}} }
 
 \examples{
 library(agricolae)

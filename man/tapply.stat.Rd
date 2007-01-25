@@ -3,9 +3,9 @@
 %- tapply.stat.
 \title{ Statistics of data grouped by factors }
 \description{
-  The process consists of finding statistics of but of a variable,
-  grouped or crossed by factors. The table must be organized
-  by columns between variables and factors.
+  This process lies in finding statistics which consist of more than one variable,
+  grouped or crossed by factors. The table must be organized by columns between 
+  variables and factors.
 }
 \usage{
 tapply.stat(x, y, stat = "mean")

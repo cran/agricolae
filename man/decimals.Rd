@@ -1,10 +1,10 @@
 \name{decimals}
 \alias{decimals}
 %- decimals.
-\title{ Finds the number of decimal of a vector or matrix }
+\title{ Finding the largest decimal number from the elements of a vector or matrix  }
 \description{
-  In many situations it is required to have the number of decimal greater
-  than a set of values expressed in climbing, vector or matrix.
+  In many situations it is required to have a larger decimal number than a set 
+  of values expressed in climbing, vector or matrix.
 }
 \usage{
 decimals(x)

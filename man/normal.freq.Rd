@@ -3,7 +3,7 @@
 %- normal.freq.
 \title{ Normal curve on the histogram }
 \description{
-  A graph of normal distribution elaborates on the histogram previously
+  A normal distribution graph elaborated from the histogram previously
   constructed. The average and variance are obtained from the data grouped
   in the histogram.
 }

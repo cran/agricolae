@@ -3,8 +3,8 @@
 %- polygon.freq.
 \title{ The polygon of frequency on the histogram }
 \description{
-  The polygon is constructed single or on histogram,
-  is necessary to execute the function previously hist.
+  The polygon is constructed single or on a histogram.
+  It is necessary to execute the function previously hist.
 }
 \usage{
 polygon.freq(histogram, ...)

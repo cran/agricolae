@@ -1,10 +1,10 @@
 \name{stability.nonpar}
 \alias{stability.nonpar}
 %- stability.nonpar.
-\title{ Analysis of nonparametric stability }
+\title{ Nonparametric stability analysis }
 \description{
-  Method based on the statistical ranks of the variable of study by environment
-  for the stability analysis.
+  A method based on the statistical ranges of the study variable per 
+  environment for the stability analysis.
 }
 \usage{
 stability.nonpar(data, variable = NULL, ranking = FALSE)

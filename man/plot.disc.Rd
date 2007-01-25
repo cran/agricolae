@@ -6,7 +6,7 @@
   This plot processes a discontinuous function.
 }
 \usage{
-plot.disc(x, y, disc, limx = c(min(x), max(x)), limy = c(min(y), max(y)), ...)
+plot.disc(x,y,disc,limx=c(min(x), max(x)),limy=c(min(y),max(y)), ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -14,7 +14,7 @@ plot.disc(x, y, disc, limx = c(min(x), max(x)), limy = c(min(y), max(y)), ...)
   \item{y}{ values of the dependent variable  }
   \item{disc}{ points of change of the function in x }
   \item{limx}{limit of x }
-  \item{limy}{ limit of }
+  \item{limy}{ limit of y}
   \item{\dots}{ parameters of the function plot }
 }
 

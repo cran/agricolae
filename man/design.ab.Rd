@@ -3,9 +3,9 @@
 %- design.ab.
 \title{ Design in blocks for factorial pxq }
 \description{
-  Generates design of blocks for combined pxq.
-  "Random" uses the methods of generation of numbers of "base" R,
-  the seed is by set.seed(seed, kinds).
+  It generates a design of blocks for combined pxq.
+  "Random" uses the methods of number generation in R.
+  The seed is by set.seed(seed, kinds).
 
 }
 \usage{

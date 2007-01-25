@@ -1,9 +1,9 @@
 \name{vark}
 \alias{vark}
 %- vark.
-\title{ Variance K, ties, kendall}
+\title{ Variance K, ties, Kendall}
 \description{
-  Method of Kendall to find variance K.
+  The Kendall method in order to find the K variance.
 }
 \usage{
 vark(x, y)

@@ -3,8 +3,7 @@
 %- carolina.
 \title{ North Carolina Designs I, II y III }
 \description{
-  Statistic analysis of the genetic designs Carolina I,
-  II and III
+  Statistic analysis of the Carolina I, II and III genetic designs.
 }
 \usage{
 carolina(model,data)
@@ -51,5 +50,5 @@ data(carolina3)
 output<-carolina(model=3,carolina3)
 output[][-1]
 }
-\keyword{ design }% at least one, from doc/KEYWORDS
+\keyword{ models }% at least one, from doc/KEYWORDS
 

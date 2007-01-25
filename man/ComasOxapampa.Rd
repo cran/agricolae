@@ -3,8 +3,8 @@
 \docType{data}
 \title{ Data AUDPC Comas - Oxapampa}
 \description{
-  Measurement of AUDPC in the field of Comas and Oxapampa for
-  resistance to Late Blight.
+  A measurement of AUDPC in the fields of Comas and Oxapampa for resistance to 
+  Late Blight.
 }
 \usage{data(ComasOxapampa)}
 \format{

@@ -1,10 +1,10 @@
 \name{melon}
 \alias{melon}
 \docType{data}
-\title{ Data Yield of melon in a Latin square experiment}
+\title{ Yield data of melon in a Latin square experiment }
 \description{
-  Evaluation of the system of irrigation by exudation using four varieties
-  of melon, under modality of sowing, SIMPLE ROW.
+  An irrigation system evaluation by exudation using four varieties of 
+  melon, under modality of sowing, SIMPLE ROW.
   The goal is to analyze the behavior of three hybrid melon varieties 
   and one standard.
 }

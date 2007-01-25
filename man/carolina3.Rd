@@ -3,7 +3,7 @@
 \docType{data}
 \title{ Data Carolina III}
 \description{
-  Data for the analysis of genetic design carolina III.
+  Data for the analysis of Carolina III genetic design.
 }
 \usage{data(carolina3)}
 \format{

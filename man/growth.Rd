@@ -3,7 +3,7 @@
 \docType{data}
 \title{ Data growth of trees}
 \description{
-  Data growth of trees of pijuayo in several localities.
+  Data growth of pijuayo trees in several localities.
 }
 \usage{data(growth)}
 \format{

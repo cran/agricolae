@@ -3,9 +3,9 @@
 %- Strip.plot.
 \title{ Strip-Plot analysis }
 \description{
-  The analysis of variance of a strip-plot design is divided into 
-  three parts: the horizontal-factor analysis, the vertical-factor
-  analysis, and the interaction analysis.
+  The variance analysis of a strip-plot design is divided into three parts: 
+  the horizontal-factor analysis, the vertical-factor analysis, and the 
+  interaction analysis.
 }
 \usage{
 strip.plot(BLOCKS, COL, ROW, Y)
@@ -39,8 +39,8 @@ library(agricolae)
 data(huasahuasi)
 attach(huasahuasi)
 modelo<-strip.plot(Block, Clon, Treat, yield)
-comparison<-LSD.group(yield,Clon,modelo$gl.a,modelo$Ea)
-comparison<-LSD.group(yield,Treat,modelo$gl.b,modelo$Eb)
+comparison<-LSD.test(yield,Clon,modelo$gl.a,modelo$Ea)
+comparison<-LSD.test(yield,Treat,modelo$gl.b,modelo$Eb)
 }
 \keyword{ models }% at least one, from doc/KEYWORDS
 

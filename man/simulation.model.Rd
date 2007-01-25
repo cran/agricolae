@@ -3,14 +3,14 @@
 %- simulation.model.
 \title{ Simulation of the linear model under normality }
 \description{
-  The process consists of validating the results of the analysis
-  of variance by means of a process of simulation of the experiment.
+  This process consists of validating the variance analysis results 
+  using a simulation process of the experiment.
   The validation consists of comparing the calculated values of each source
-  of variation of the data simulated with respect to the calculated values
-  of the original data. If in but of 50 percent of the cases they are superior
-  to the real one, then it is considered favorable and the probability
+  of variation of the simulated data with respect to the calculated values
+  of the original data. If in more than 50 percent of the cases they are higher
+  than the real one, then it is considered favorable and the probability
   reported by the ANOVA is accepted, since the P-Value is the probability of
-  (F > F.value)
+  (F > F.value).
 }
 \usage{
 simulation.model(k, file, model, categorical = NULL)

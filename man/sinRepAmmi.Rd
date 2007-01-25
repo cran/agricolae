@@ -3,7 +3,7 @@
 \docType{data}
 \title{ Data for AMMI without repetition}
 \description{
-  Data frame for analysis AMMI with 50 genotypes in 5 environment.
+  Data frame for AMMI analysis with 50 genotypes in 5 environments.
 }
 \usage{data(sinRepAmmi)}
 \format{

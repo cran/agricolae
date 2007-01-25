@@ -3,7 +3,7 @@
 %- Waller.
 \title{ Computations of Bayesian t-values for multiple comparisons }
 \description{
-A Bayes rule for the Symmetric multiple comparisons problem.  
+A Bayes rule for the symmetric multiple comparisons problem.  
 }
 \usage{
 waller(K, q, f, Fc)
@@ -42,7 +42,7 @@ Steel & Torry & Dickey. Third Edition 1997.
 }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{waller.comp}}, \code{\link{waller.group} } }
+\seealso{\code{\link{waller.test}}}
 
 \examples{
 # Table Duncan-Waller K=100, F=1.2 pag 649 Steel & Torry
@@ -64,4 +64,4 @@ dimnames(W.D)<-list(q,f)
 print(W.D)
 
 }
-\keyword{ htest }% at least one, from doc/KEYWORDS
+\keyword{ distribution }% at least one, from doc/KEYWORDS

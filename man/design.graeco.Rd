@@ -3,11 +3,11 @@
 %- design.graeco.
 \title{ Graeco - latin square design}
 \description{
-  A graeco - latin square is a KxK pattern that permits the study
-  of k treatments simultaneously whit three different blocking variables
-  each at k levels.
+  A graeco - latin square is a KxK pattern that permits the study of k 
+  treatments simultaneously with three different blocking variables, each 
+  at k levels.
   
-  The function is only squares of  sizes. 3x3, 4x4, 5x5, 7x7, 9x9,...
+  The function is only squares of sizes 3x3, 4x4, 5x5, 7x7, 9x9,...
   
 }
 \usage{

@@ -3,10 +3,9 @@
 %- lineXtester.
 \title{ Line x Tester Analysis }
 \description{
-  It makes the Line by Tester Analysis, estimation of the effects general
-  ability specifies and combining, its genetics components and the
-  contribution of line and testers
-}
+ It makes the Line x Tester Genetic Analysis. It also estimates the general and 
+ specific combinatory ability effects and the line and tester genetic contribution.
+ }
 
 \usage{
 lineXtester(replications, lines, testers, y)

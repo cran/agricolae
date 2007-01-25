@@ -1,9 +1,9 @@
 \name{similarity}
 \alias{similarity}
 %- similarity.
-\title{ matrix of similarity in binary data }
+\title{ Matrix of similarity in binary data }
 \description{
- Finds the matrix of similarity of binary tables (1 and 0).
+ It finds the similarity matrix of binary tables (1 and 0).
 }
 \usage{
 similarity(A)

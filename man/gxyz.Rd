@@ -3,8 +3,8 @@
 %- gxyz.
 \title{ The matrix zz of information is disturbed in three vectors x, y, z }
 \description{
-  From a information matrix, the function gxyz generates an object data.frame
-  that contains in columns the information matrix z=f(x, y)."x" constitutes
+  From an information matrix, the function gxyz generates an object data.frame
+  that contains the information matrix z=f(x, y) in columns."x" constitutes
   the name of the rows, "y" the name of the columns, and "z" the third column.
 }
 \usage{
@@ -19,7 +19,7 @@ gxyz(zz)
 }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{wxyz}}, \code{\link{grid3d}}, \code{\link{grid3p} } }
+\seealso{\code{\link{wxyz}}, \code{\link{grid3p} } }
 \examples{
 library(agricolae)
 x<-c(1,3,5,2,3,1)

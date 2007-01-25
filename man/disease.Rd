@@ -1,10 +1,10 @@
 \name{disease}
 \alias{disease}
 \docType{data}
-\title{ Data evaluation of the disease over time}
+\title{ Data evaluation of the disease overtime}
 \description{
-  Three evaluations over time and the potato yield when applying
-  several treatments.
+  Three evaluations over time and the potato yield when applying several 
+  treatments.
 }
 \usage{data(disease)}
 \format{

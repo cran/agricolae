@@ -3,7 +3,7 @@
 %- lattice.simple.
 \title{ Lattice design }
 \description{
-  It randomizes treatments in a simple adjustment of lattice of k x k.
+  It randomizes treatments in a simple adjustment of a k x k lattice.
 }
 \usage{
 lattice.simple(k, number = 1, seed = 0, kinds = "Super-Duper")

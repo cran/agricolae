@@ -1,10 +1,10 @@
 \name{rice}
 \alias{rice}
 \docType{data}
-\title{ Data Grain Yield of Rice Variety IR8}
+\title{ Grain yield data of rice variety IR8}
 \description{
-  Grain Yield (g/m2) of Rice Variety IR8 from a Rice Uniformity Test
-  Covering an area 18x36 m
+  The data correspond to the yield of rice variety IR8 (g/m2) for land uniformity 
+  studies. The growing area is 18x36 meters.
 }
 \usage{data(rice)}
 \format{

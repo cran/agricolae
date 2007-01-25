@@ -3,7 +3,8 @@
 \docType{data}
 \title{ Data of Bacterial wild (AUDPC) and soil}
 \description{
-  Relation of the disease and some components of the ground.
+  The data correspond to the progress of the disease of the wild-type bacteria 
+  in CIP lands. 
 }
 \usage{data(wild)}
 \format{

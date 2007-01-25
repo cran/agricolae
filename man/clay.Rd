@@ -3,7 +3,7 @@
 \docType{data}
 \title{ Data of Ralstonia population in clay soil}
 \description{
-  Evaluation over a time period.
+  An evaluation over a time period.
 }
 \usage{data(clay)}
 \format{

@@ -1,11 +1,12 @@
 \name{coeff.diana}
 \alias{coeff.diana}
 %- coeff.diana.
-\title{ Selection of the best method for the calculation of the distance of dissimilarity }
+\title{ Selection of the best method for the dissimilarity distance calculation }
 \description{
-  Method based on the  divisive coefficient by the method DIANA.
-  Uses the methods of distance provided by function DIST of library CLUSTER.
-  Also it reports the first selected distance based on highest value of the coefficient.
+  A method based on the Divisive Coefficient by the DIANA method.
+  It uses the methods of distance provided by function DIST of library CLUSTER.
+  Also, it reports the first selected distance based on highest value of the 
+  coefficient.
 }
 \usage{
 coeff.diana(data)

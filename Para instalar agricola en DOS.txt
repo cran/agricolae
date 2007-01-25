@@ -20,18 +20,18 @@ TMPDIR c:\windows\temp
 Reset the system.
 
 En DOS
-cd\progra~1\r\R-2.4.0\bin
+cd\progra~1\r\R-2.4.1\bin
 RCMD build agricolae
 RCMD build --binary agricolae
 RCMD check agricolae
 RCMD INSTALL agricolae
-
+RCMD Rd2dvi --pdf agricolae
 
 Para hacer el manual en pdf
 crear un nuevo folder.
 md \localtexmf\tex
 
-Paso 2 copiar de R-2.4.0\share\textmf
+Paso 2 copiar de R-2.4.1\share\textmf
 
 copy *.* \localtexmf\tex
 
@@ -43,6 +43,3 @@ para la construccion del manual.
 probar: findtexmf Rd.sty
 
 RCMD Rd2dvi --pdf agricolae
-
-Programas necesarios para el manual
-

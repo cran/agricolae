@@ -1,11 +1,10 @@
 \name{wxyz}
 \alias{wxyz}
 %- wxyz.
-\title{ It completes the matrix of information for cells with NA
- by means of a model }
+\title{ Completing missing data of a matrix according to a model }
 \description{
- It generates a information matrix z=f(x, y). It uses a linear model
- to complete the cells without information
+ It generates an information matrix z=f(x, y). It uses a linear model
+ to complete the cells without information.
 }
 \usage{
 wxyz(model, x, y, z)
@@ -29,7 +28,7 @@ wxyz(model, x, y, z)
 
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{gxyz}}, \code{\link{grid3d}}, \code{\link{grid3p} } }
+\seealso{\code{\link{gxyz}}, \code{\link{grid3p} } }
 
 \examples{
 library(agricolae)

@@ -3,9 +3,9 @@
 %- design.crd.
 \title{ Completely Randomized Design }
 \description{
-  Generates Completely Randomized Design with equal or different repetition.
-  "Random" uses the methods of generation of numbers of "base" of R,
-  the seed by set.seed(seed, kinds).
+  It generates completely a randomized design with equal or different repetition.
+  "Random" uses the methods of number generation in R.
+  The seed is by set.seed(seed, kinds).
 
 }
 \usage{

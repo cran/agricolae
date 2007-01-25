@@ -6,7 +6,7 @@
   Smith's index of soil heterogeneity is used primarily to derive optimum
   plot size. The index gives a single value as a quantitative measure of 
   soil heterogeneity in an area.
-  Graph CV for plot size and shape
+  Graph CV for plot size and shape.
 }
 \usage{
 index.smith(data, ...)
@@ -38,7 +38,8 @@ Kwanchai A. Gomez and Arturo A. Gomez. 1976. USA
 library(agricolae)
 data(rice)
 #startgraph
-table<-index.smith(rice,main="Relationship between CV per unit area and plot size",col="red")
+table<-index.smith(rice,
+ main="Relationship between CV per unit area and plot size",col="red")
 #endgraph
 uniformity <- data.frame(table$uniformity)
 uniformity
@@ -48,7 +49,8 @@ coeff <- coef(model)
 x<-1:max(uniformity$Size)
 Vx<- coeff[1]+coeff[2]*log(x)
 #startgraph
-plot(x,Vx, type="l", col="blue", main="Relationship between variance per unit area and plot size")
+plot(x,Vx, type="l", col="blue",
+ main="Relationship between variance per unit area and plot size")
 points(uniformity$Size,uniformity$Vx)
 #endgraph
 }

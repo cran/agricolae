@@ -1,11 +1,11 @@
 \name{table.freq}
 \alias{table.freq}
 %- table.freq.
-\title{ It displays the table of frequencies }
+\title{ Frequency Table of a Histogram  }
 \description{
-  It finds absolute, relative and accumulated the frequency with
-  the intervals of class defined of a histogram previously calculated
-  by the function "hist" of R.
+  It finds the absolute, relative and accumulated frequencies with the class 
+  intervals defined from a previously calculated histogram by the "hist" of R
+  function.
 }
 \usage{
 table.freq(histogram)

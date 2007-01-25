@@ -3,8 +3,8 @@
 \docType{data}
 \title{ Data clones from the LTVR population }
 \description{
-  Six environment: Ayacucho, La Molina 02, San Ramon 02, Huancayo,
-  La Molina 03, San Ramon 03.
+  Six environments: Ayacucho, La Molina 02, San Ramón 02, Huancayo,
+  La Molina 03, San Ramón 03.
 }
 \usage{data(ltrv)}
 \format{

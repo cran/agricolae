@@ -3,8 +3,8 @@
 \docType{data}
 \title{ Data of soil analysis for 13 localities}
 \description{
-  Soil analysis of 13 localities where the CIP makes experiments.
-}
+  A ground analysis of 13 localities where the CIP carries out its experiments.
+  }
 \usage{data(soil)}
 \format{
   A data frame with 13 observations on the following 23 variables.

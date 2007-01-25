@@ -1,9 +1,9 @@
 \name{cotton}
 \alias{cotton}
 \docType{data}
-\title{ Data of Cotton }
+\title{ Data of cotton }
 \description{
-  Data of Cotton collected in experiments of two localities in Lima and Pisco, Peru.
+  Data of cotton collected in experiments of two localities in Lima and Pisco, Peru.
 }
 \usage{data(cotton)}
 \format{

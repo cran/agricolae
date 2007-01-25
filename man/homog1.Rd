@@ -3,8 +3,8 @@
 \docType{data}
 \title{ Data of fríjol }
 \description{
-  Data of fríjol under 4 technologies for study of homogenidad of regression.
-  Yield of Frijol in kg/ha. In clean and dry grain
+  Data of fríjol under 4 technologies for the homogeneity of regression study.
+  Yield of Frijol in kg/ha in clean and dry grain.
 
   Tecnnologies:
   20-40-20 kg/ha.  N. P2O5 and K2O + 2 t/ha of gallinaza.

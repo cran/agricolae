@@ -1,9 +1,9 @@
 \name{ojiva.freq}
 \alias{ojiva.freq}
 %- ojiva.freq.
-\title{ Plot the ojiva of the frequency relative of a histogram }
+\title{ Plotting the ojiva from a histogram }
 \description{
-  Plots the cumulative frequencies relative with the intervals of classes
+  It plots the cumulative relative frequencies with the intervals of classes
   defined in the histogram.
 }
 \usage{

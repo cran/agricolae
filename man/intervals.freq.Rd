@@ -3,7 +3,7 @@
 %- intervals.freq.
 \title{ Class intervals }
 \description{
-  List class intervals
+  List class intervals.
 }
 \usage{
 intervals.freq(breaks)

@@ -1,7 +1,6 @@
 \name{random.ab}
 \alias{random.ab}
-%- random.ab.
-\title{ It randomizes a factorial one within a block }
+\title{ Randomizing a factorial in a block }
 \description{
   It generates a randomization in a block.
 }
