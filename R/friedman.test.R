@@ -55,7 +55,7 @@ cat("\npFriedman :",p.fried)
 cat("\nAlpha     :",alpha)
 cat("\nt-Student :",Tprob)
 #...............
-#cat("\nRepetición:\t",nr)
+#cat("\nReplication:\t",nr)
 if (group) {
 cat("\nLSD       :",LSD)
 cat("\n\nMeans with the same letter are not significantly different.")

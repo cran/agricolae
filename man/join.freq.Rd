@@ -43,7 +43,7 @@ table.freq(h1)
 # Join classes 9,10,11 and 12 with little frequency.
 inter<-join.freq(intervals,9:12) # with c(9,10,11,12) or 9:12
 # new table
-h2<-hist(size,breaks=inter,freq=TRUE,xlim=c(0,0.12),col="bisque")
+h2<-hist(size,breaks=inter,xlim=c(0,0.12),col="bisque")
 table.freq(h2)
 
 }

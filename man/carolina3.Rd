@@ -7,7 +7,7 @@
 }
 \usage{data(carolina3)}
 \format{
-  A data frame with 72 observations on the following 5 variables.
+  A data frame with 64 observations on the following 5 variables.
   \describe{
     \item{\code{set}}{a numeric vector}
     \item{\code{male}}{a numeric vector}
@@ -19,6 +19,7 @@
 
 \source{
   Biometrical Methods in Quantitative Genetic Analysis, Singh, Chaudhary. 1979.
+  table 3. Raw data for B.C. Design-III. pag 207
 }
 \references{
  Biometrical Methods in Quantitative Genetic Analysis, Singh, Chaudhary. 1979.

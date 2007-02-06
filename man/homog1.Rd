@@ -1,9 +1,9 @@
 \name{homog1}
 \alias{homog1}
 \docType{data}
-\title{ Data of fríjol }
+\title{ Data of frijol }
 \description{
-  Data of fríjol under 4 technologies for the homogeneity of regression study.
+  Data of frijol under 4 technologies for the homogeneity of regression study.
   Yield of Frijol in kg/ha in clean and dry grain.
 
   Tecnnologies:
@@ -23,7 +23,7 @@
 }
 
 \references{
-Oriente antioqueño (1972) (ICA.- Orlando Martinez W.)
+Oriente antioqueno (1972) (ICA.- Orlando Martinez W.)
 Colombia.
 }
 \examples{

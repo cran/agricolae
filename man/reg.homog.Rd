@@ -23,7 +23,7 @@ reg.homog(trt, y, x)
   \item{y}{ numeric }
   \item{x}{ numeric }
 }
-\references{ Book in Spanish: Métodos estadísticos para la investigación.
+\references{ Book in Spanish: Metodos estadisticos para la investigacion.
              Calzada Benza 1960 }
 \author{ Felipe de Mendiburu }
 

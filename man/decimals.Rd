@@ -3,7 +3,7 @@
 %- decimals.
 \title{ Finding the largest decimal number from the elements of a vector or matrix  }
 \description{
-  In many situations it is required to have a larger decimal number than a set 
+  In many situations it is required to have a larger decimal number than a set
   of values expressed in climbing, vector or matrix.
 }
 \usage{

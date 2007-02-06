@@ -62,7 +62,7 @@ alpha[i,4]<-alpha[i-2,4]+1
 serie <- "IV"
 }
 if (serie == "" ) {
-cat("\nhelp(design.a01): to see the series of alpha generators\n")
+cat("\nhelp(design.alpha): to see the series of alpha generators\n")
 }
 else {
 # arreglos intermedios alpha *
@@ -120,6 +120,7 @@ plots <- number + 1:(s*k*r) - 1
 cols <-as.numeric(rep(gl(k,1),s*r))
 book<-data.frame(plots=plots,cols=cols,book)
 book<-data.frame(row.names=NULL,book)
+book$block <- gl(s*r, k)
 names(book)[4] <- name.trt
 return(book)
 }

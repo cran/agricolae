@@ -13,20 +13,19 @@ A <- nrow(y) # Number of genotypes
 M <- ncol(y) # Number of environments
 N <- rep  # Number of replications
 MKE <- MSerror # Pooled error mean square
-RR <- main # "Estabilidad de cultivares" Title of the experiments
+RR <- main # "Stability" Title of the experiments
 #
 FM0 <- qf(1-alpha,M-1,M * (A - 1) * (N - 1))
-# Datos para el estudio
-# Generacion de los arreglos
-#dimensionar para Genotipos (A)
+# Data
+#dimension for genotype (A)
 dimA <- rep(0,A); dim(dimA)<-A
 SHV<-dimA; MV<-dimA; SU<-dimA; MV1<-dimA; FF<-dimA; GY<-dimA; U1<-dimA; G<-dimA
 SI<-dimA; B<-dimA; SA<-dimA; S<-dimA; FS<-dimA; FSS<-dimA; R<-dimA; GYS<-dimA
 F1<-dimA; GY<-dimA; NN<-dimA; X1<-dimA; X1M<-dimA; W<-dimA;GYY<-dimA; MMM<-dimA
-#dimensionar para Ambientes (M)
+#dimension for environment (M)
 dimA <- rep(0,M); dim(dimA)<-M
 SHM<-dimA; MM<-dimA; II<-dimA; X2<-dimA; X2M<-dimA
-# Dimension (A,M)
+#dimension (A,M)
 dimA <- rep(0,A*M); dim(dimA)<-c(A,M)
 U<-dimA;  G1<-dimA
 SV <- 0  ; SM <- 0 ; GG1 <-0  ; L <- 0;  SMES <- 0
@@ -134,7 +133,7 @@ FS[i] <- SI[i] / MKE
 FSS[i] <- S[i] / MKE
 }
 SHF1 <-(A - 1) * (M - 1); SHF2 = (A - 1)
-# Busca los valores de F y t-student Tabulares
+# value F and t-student
 F05 <- qf(0.95,SHF1, SHF2)
 F01 <- qf(0.99,SHF1, SHF2)
 if( FV >= F01 ) DD <- "**"
@@ -183,7 +182,7 @@ SHF1 <- M * (A - 1) * (N - 1)
 SHF2 <- M - 2
 F05 <- qf(0.95,SHF1, SHF2)
 F01 <- qf(0.99,SHF1, SHF2)
-#F05<- 1.76  # verdadero valor es:   2.546791447
+#F05<- 1.76  # True is:   2.546791447
 #F01<- 2.2   # 3.927394672
 for ( i in 1: A) {
 if( FSS[i] >= F01 ) MMM[i] <- "**"
@@ -245,7 +244,7 @@ for ( j in 1: M) {
 W[i] <- W[i] + (y[i, j] - X1M[i] - X2M[j] + MM1) ^ 2 * N
 }
 }
-cat("\n","Stability statistics\n")
+cat("\n\n","Stability statistics")
 cat("\n",rep("-",35))
 cat("\nGenotype    MEANS       Sigma-square      s-square      Ecovalence")
 cat("\n",rep("-",35))
@@ -255,11 +254,11 @@ Z<-as.matrix(Z)
 for ( i in 1: A) {
 cat("\n",i, "\t", Z[i,1],"\t", Z[i,2], Z[i,3], "\t",Z[i,4], Z[i,5],"\t", Z[i,6])
 }
-FF <- SI / MKE # para cada genotipo
+FF <- SI / MKE # each genotype
 SHF1 <- M * (A - 1) * (N - 1); SHF2 <- M - 1
 F05 <- qf(0.95,SHF1, SHF2)
 F01 <- qf(0.99,SHF1, SHF2)
-#F05<- 1.76  # verdadero valor es:   2.546791447
+#F05<- 1.76  # True value:   2.546791447
 #F01<- 2.2   # 3.927394672
 
 for ( i in 1: A) {
@@ -286,22 +285,18 @@ for ( i in 1: A) {
 GYY[i]<-""
 if( GYS[i] > MGYS ) GYY[i] <- "+"
 }
-cat("\n")
-cat("\n","Simultaneous selection for yield and stability  (++)")
-cat("\n")
-cat("\n",rep("-",43))
-cat("\n","Genotype           Yield       Yield Adjustment Adjusted  Stability  Stability    YS(i)")
-cat("\n","                               Rank   to Rank             Variance    Rating"           )
-cat("\n",rep("-",43))
+
+cat("\n\nSignif. codes:  0 '**' 0.01 '*' 0.05 'ns' 1\n\n")
+
+cat("Simultaneous selection for yield and stability  (++)\n\n")
+names<-c("Genotype","Yield","Rank","Adj.rank","Adjusted","Stab.var","Stab.rating","YSi","..." )
 Z<-data.frame(Genotype=rownames(y),MV, R, MV1,GY,SI,F1,GYS,GYY)
-Z<-as.matrix(Z)
-for ( i in 1: A) {
-cat("\n",Z[i,1],"\t", Z[i,2],"\t", Z[i,3], "\t",Z[i,4],"\t",Z[i,5],"\t", Z[i,6],"\t", Z[i,7],"\t", Z[i,8], Z[i,9])
-}
-cat("\n",rep("-",43))
-cat("\n","Mean         = ", MES, "\t\t\t\t",MGYS                            )
-cat("\n","LSD (p=0.05) = ", DMV05                                           )
-cat("\n",rep("-",43))
+names(Z)<-names
+print(data.frame( row.names=NULL,Z))
+cat("\n","Yield Mean:", MES)
+cat("\n","YS    Mean:", MGYS)
+cat("\n","LSD (0.05):", DMV05)
+cat("\n",rep("-",11))
 cat("\n","+   selected genotype"                                            )
 cat("\n","++  Reference: Kang, M. S. 1993. Simultaneous selection for yield")
 cat("\n","and stability: Consequences for growers. Agron. J. 85:754-757."   )

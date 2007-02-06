@@ -1,7 +1,7 @@
 \name{rice}
 \alias{rice}
 \docType{data}
-\title{ Grain yield data of rice variety IR8}
+\title{ Data of Grain yield of rice variety IR8}
 \description{
   The data correspond to the yield of rice variety IR8 (g/m2) for land uniformity 
   studies. The growing area is 18x36 meters.

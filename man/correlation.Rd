@@ -41,7 +41,7 @@ analysis<-correlation(pH,soil[,3:8],method="pearson",alternative="less")
 analysis
 detach(soil)
 
-# Example 3: correlation between pH and % clay method kendall.
+# Example 3: correlation between pH and clay method kendall.
 data(soil)
 attach(soil)
 correlation(pH,clay,method="kendall", alternative="two.sided")

@@ -1,7 +1,7 @@
 \name{melon}
 \alias{melon}
 \docType{data}
-\title{ Yield data of melon in a Latin square experiment }
+\title{ Data of yield of melon in a Latin square experiment }
 \description{
   An irrigation system evaluation by exudation using four varieties of 
   melon, under modality of sowing, SIMPLE ROW.
@@ -20,7 +20,7 @@
 }
 
 \source{
-  Tesis). Author: Alberto Ángeles L. Universidad Agraria la Molina - Lima Peru
+  Tesis). Author: Alberto Angeles L. Universidad Agraria la Molina - Lima Peru
 }
 \references{
 Universidad Agraria la Molina - Lima Peru

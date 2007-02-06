@@ -1,7 +1,7 @@
 \name{paracsho}
 \alias{paracsho}
 \docType{data}
-\title{ Paracsho data biodiversity }
+\title{ Data of Paracsho biodiversity }
 \description{
 A locality in Peru. A biodiversity.
 }

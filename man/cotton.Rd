@@ -18,12 +18,12 @@
 }
 
 \source{
-  Book spanish: Métodos estadísticos para la investigación.
+  Book spanish: Metodos estadisticos para la investigacion.
   Autor: Calzada Benza
   Universidad Nacional Agraria - La Molina - Peru..
 }
 \references{
-  Book spanish: Métodos estadísticos para la investigación.
+  Book spanish: Metodos estadisticos para la investigacion.
   Autor: Calzada Benza
   Universidad Nacional Agraria - La Molina - Peru.
 }
