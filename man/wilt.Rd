@@ -1,12 +1,12 @@
-\name{wild}
-\alias{wild}
+\name{wilt}
+\alias{wilt}
 \docType{data}
-\title{ Data of Bacterial wild (AUDPC) and soil}
+\title{ Data of Bacterial Wilt (AUDPC) and soil}
 \description{
-  The data correspond to the progress of the disease of the wild-type bacteria 
+  The data correspond to the progress of the disease of the Bacterial Wilt 
   in CIP lands. 
 }
-\usage{data(wild)}
+\usage{data(wilt)}
 \format{
   A data frame with 13 observations on the following 5 variables.
   \describe{
@@ -26,7 +26,7 @@
 }
 \examples{
 library(agricolae)
-data(wild)
-str(wild) 
+data(wilt)
+str(wilt) 
 }
 \keyword{datasets}

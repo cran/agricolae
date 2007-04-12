@@ -21,6 +21,7 @@ Reset the system.
 
 En DOS
 cd\progra~1\r\R-2.4.1\bin
+#cd\progra~1\r\R-2.6.0dev\bin
 RCMD build agricolae
 RCMD build --binary agricolae
 RCMD check agricolae

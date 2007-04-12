@@ -3,7 +3,7 @@
 %- design.alpha.
 \title{ Alpha design type (0,1) }
 \description{
-  It makes the alpha designs starting from the alpha design fixing under
+  Creates alpha designs starting from the alpha design fixing under
   the 4 series formulated by Patterson and Williams.
   }
 \usage{
@@ -40,8 +40,9 @@ Number of treatment is equal to k*s
   \item{kinds}{ character }
 }
 \references{ 
- H.D. Patterson and E.R. Williams. Biometricka (1976) 
+ H.D. Patterson and E.R. Williams. Biometrika (1976) 
  A new class of resolvable incomplete block designs. printed in Great Britain. 
+ Online: http://biomet.oxfordjournals.org/cgi/content/abstract/63/1/83 
  }
 \author{ Felipe de Mendiburu }
 

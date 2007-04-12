@@ -130,14 +130,15 @@
     MSAMMI <- round(MSAMMI, 6)
     SSAMMI <- data.frame(percent, acum, Df = DFAMMI, "Sum Sq" = SS,
         "Mean Sq" = MSAMMI, "F value" = F.AMMI, Pr.F = PROBF)
-    row.names(SSAMMI) <- paste("CP", 1:nenv, sep = "")
+    nssammi<-nrow(SSAMMI)
+    row.names(SSAMMI) <- paste("CP", 1:nssammi, sep = "")
     cat("\nAnalysis\n")
     print(SSAMMI)
     LL <- sqrt(diag(L))
     SCOREG <- U %*% LL
     SCOREE <- V %*% LL
     SCORES <- rbind(SCOREG, SCOREE)
-    colnames(SCORES) <- paste("CP", 1:nenv, sep = "")
+    colnames(SCORES) <- paste("CP", 1:nssammi, sep = "")
     MSCORES <- SCORES[1:ngen, ]
     NSCORES <- SCORES[(ngen + 1):(ngen + nenv), ]
     MGEN <- data.frame(type = "GEN", Y = apply(OUTMED, 1, mean),

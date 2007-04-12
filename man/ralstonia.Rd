@@ -1,9 +1,9 @@
 \name{ralstonia}
 \alias{ralstonia}
 \docType{data}
-\title{ Data of population bacterial wild: AUDPC}
+\title{ Data of population bacterial Wilt: AUDPC}
 \description{
-  The data correspond to the wild-type bacterial tests of the population during 
+  The data correspond to the Bacterial Wilt tests of the population during 
   days 2,15,29,43,58 and 73 after being initiated the disease.
 }
 \usage{data(ralstonia)}

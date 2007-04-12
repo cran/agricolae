@@ -32,13 +32,13 @@ graph.freq(breaks, counts, ...)
 \examples{
 
 library(agricolae)
-x<-seq(10,40,5)
-y<-c(2,6,8,7,3,4)
+limits <-seq(10,40,5)
+frequencies <-c(2,6,8,7,3,4)
 #startgraph
-h<-graph.freq(x,y,col="bisque")
+h<-graph.freq(limits,frequencies,col="bisque")
 polygon.freq(h,col="red")
 title( main="Histogram and polygon of frequency",
-xlab="Variable X", ylab="Frequency")
+xlab="Classes", ylab="Frequency")
 #endgraph
 # Statistics
 measures<-stat.freq(h)
@@ -47,11 +47,11 @@ print(measures)
 table.freq(h)
 #startgraph
 # Ojiva
-ojiva.freq(h,col="red",type="b")
+ojiva.freq(h,col="red",type="b",xlab="Variable",ylab="Accumulated relative frequency")
 # only frequency polygon
-h<-graph.freq(x,y,border=FALSE,col=NULL)
+h<-graph.freq(limits,frequencies,border=FALSE,col=NULL)
 title( main="Polygon of frequency",
-xlab="Variable X", ylab="Frecuency")
+xlab="Variable", ylab="Frecuency")
 polygon.freq(h,col="blue")
 grid(col="brown")
 #endgraph

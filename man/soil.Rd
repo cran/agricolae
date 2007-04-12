@@ -36,7 +36,7 @@
 }
 
 \source{
-  Ground samples of Peru where was bacterial wild.
+  Ground samples of Peru where was Bacterial Wilt.
 }
 \references{
   International Potato Center.

@@ -1,8 +1,8 @@
 Package: agricolae
 Type: Package
 Title: Statistical Procedures for Agricultural Research
-Version: 1.0-2
-Date: 2007-02-06
+Version: 1.0-3
+Date: 2007-04-12
 Author: Felipe de Mendiburu
 Maintainer: Felipe de Mendiburu <f.mendiburu@cgiar.org>
 Suggests: cluster, akima, SuppDists, klaR
@@ -15,9 +15,9 @@ Description: These functions are currently utilized by the International Potato 
  specially for field experiments in  agriculture and plant breeding. Planning of field
  experiments: Lattice, factorial, RCBD, CRD, Latin Square, Greaco, BIB, Alpha design.
  Comparison of multi-location trials: AMMI (biplot and triplot), Stability. Comparison
- between treatments: LSD, HSD, Waller, Kruskal, Friedman, Durbin, Van Der Waerden.
- Resampling and simulation: resampling.model, simulation.model, Ecology: Indices
- Biodiversity, path analysis, Uniformity Soil: Index Smith's.
+ between treatments: LSD, Bonferroni, HSD, Waller, Kruskal, Friedman, Durbin, Van Der Waerden.
+ Resampling and simulation: resampling.model, simulation.model, analysis Mother and baby trials,
+ Ecology: Indices Biodiversity, path analysis, consensus cluster, Uniformity Soil: Index Smith's.
 License: This software may be re-distributed freely and used for any non-commercial purpose under the GPL license.
-URL: http://tarwi.lamolina.edu.pe/~fmendiburu 
-Packaged: Tue Feb  6 11:39:18 2007; FDEMENDIBURU
+URL: http://tarwi.lamolina.edu.pe/~fmendiburu
+Packaged: Thu Apr 12 11:37:15 2007; fdemendiburu

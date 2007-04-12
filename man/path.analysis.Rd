@@ -41,11 +41,11 @@ dimnames(corr.x)<-list(names,names)
 dimnames(corr.y)<-list(names,"Y")
 path.analysis(corr.x,corr.y)
 # Example 2
-# data of the progress of the disease related bacterial wild to the ground
+# data of the progress of the disease related bacterial wilt to the ground
 # for the component EC Ca K2 Cu
-data(wild)
-cor.y<-correlation(wild[,1],wild[,-1])$correlation
-cor.x<-correlation(wild[,-1])$correlation
+data(wilt)
+cor.y<-correlation(wilt[,1],wilt[,-1])$correlation
+cor.x<-correlation(wilt[,-1])$correlation
 path.analysis(cor.x,cor.y)
 
 }

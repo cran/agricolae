@@ -4,6 +4,10 @@
 \title{ Data Carolina II}
 \description{
   Data for the analysis of Carolina II Genetic design.
+  Both paternal and maternal half-sibs are produced in this design.
+  From an F2 population, n1 males and n2 females are randomly selected
+  and each male is crossed to each of the females. Thus n1 x n2 progenies
+  are produced whitch are analysed in a suitably laid experiment.
 }
 \usage{data(carolina2)}
 \format{

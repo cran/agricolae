@@ -3,7 +3,7 @@
 %- design.bib.
 \title{ Randomized Balanced Incomplete Block Designs. BIB}
 \description{
-  It generates Randomized Balanced Incomplete Block Design.
+  Creates Randomized Balanced Incomplete Block Design.
   "Random" uses the methods of number generation in R.
   The seed is by set.seed(seed, kinds).
 }

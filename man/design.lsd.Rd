@@ -45,7 +45,7 @@ dim(plots)<-c(4,4)
 dim(trt) <-c(4,4)
 print(t(plots))
 print(t(trt))
-# Write in hard disk.
+# Write on hard disk.
 # write.table(lsd,"lsd.txt", row.names=FALSE, sep="\t")
 # file.show("lsd.txt")
 

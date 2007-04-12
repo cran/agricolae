@@ -1,6 +1,7 @@
 "LSD.test" <-
-function (y, trt, DFerror, MSerror, alpha=0.05, group=TRUE,main = NULL)
+function (y, trt, DFerror, MSerror, alpha=0.05, p.adj=c("none","holm","hochberg","bonferroni","BH","BY","fdr"),group=TRUE,main = NULL)
 {
+    p.adj <- match.arg(p.adj)
     name.y <- paste(deparse(substitute(y)))
     name.t <- paste(deparse(substitute(trt)))
     junto <- subset(data.frame(y, trt), is.na(y) == FALSE)
@@ -11,13 +12,27 @@ function (y, trt, DFerror, MSerror, alpha=0.05, group=TRUE,main = NULL)
     names(means)[1:2]<-c(name.t,name.y)
     row.names(means)<-means[,1]
     ntr<-nrow(means)
-    Tprob<-qt(1-alpha/2,DFerror)
+    nk<-choose(ntr,2)
+    if(p.adj=="none") Tprob<-qt(1-alpha/2,DFerror)
+    else {
+    a<-1E-06
+    b<-1
+    for(i in 1:50){
+    x<-(b+a)/2
+    d<-p.adjust(x,n=nk,p.adj) - alpha
+    fa<- p.adjust(a,n=nk,p.adj) - alpha
+    if(d*fa<0) b<-x
+    if(d*fa>0) a<-x
+    }
+    Tprob<-qt(1-x/2,DFerror)
+    }
     nr <- unique(nn[,2])
 nfila<-c("Alpha", "Error Degrees of Freedom", "Error Mean Square",
 "Critical Value of t")
 nvalor<-c( alpha,  DFerror, MSerror, Tprob)
     cat("\nStudy:", main)
-    cat("\n\nLSD t Test for",name.y,"\n")
+cat("\n\nLSD t Test for",name.y,"\n")
+if(p.adj!="none") cat("P value adjustment method:",p.adj,"\n")
 xtabla<-data.frame("......"=nvalor)
 row.names(xtabla)<-nfila
 print(xtabla)
@@ -50,6 +65,7 @@ j<-comb[2,k]
 dif[k]<-abs(means[i,2]-means[j,2])
 sdtdif<-sqrt(MSerror * (1/means[i,4] + 1/means[j,4]))
 pvalue[k]<- 2*round(1-pt(dif[k]/sdtdif,DFerror),4)
+if(p.adj!="none") pvalue[k]<-p.adjust(pvalue[k],n=nk,p.adj)
 }
 
 tr.i<-comb[1,]

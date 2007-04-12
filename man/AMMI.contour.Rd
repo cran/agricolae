@@ -3,7 +3,7 @@
 %- AMMI.contour.
 \title{ AMMI contour }
 \description{
-  It makes a polygon or a circumference around the center part of the Biplot with a 
+  Draws a polygon or a circumference around the center of the Biplot with a 
   proportional radio at the longest distance of the genotype.
 }
 \usage{
@@ -11,13 +11,13 @@ AMMI.contour(model, distance, shape, ...)
 }
 \arguments{
   \item{model}{ Object }
-  \item{distance}{ Radio de la circunferencia >0 and <=1 }
-  \item{shape}{ Numerico, relacionado con la forma del contorno del poligono. }
-  \item{\dots}{ Parametros correspondiente a la fiuncion lines de R }
+  \item{distance}{ Circumference radius >0 and <=1 }
+  \item{shape}{ Numerical, relating to the shape of the polygon outline. }
+  \item{\dots}{ Parameters corresponding to the R lines function }
 }
 \details{
-Es necesario primero ejecutar la funcion AMMI.
-Solo es valido para la funcion BIPLOT no para TRIPLOT 
+First, it is necessary to execute the AMMI function.
+It is only valid for the BIPLOT function but not for the TRIPLOT one.
 }
 \value{
   \item{model}{ output AMMI }
