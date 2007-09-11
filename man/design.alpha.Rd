@@ -46,7 +46,7 @@ Number of treatment is equal to k*s
  }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{design.bib}}, \code{\link{lattice.simple}}}}
+\seealso{\code{\link{design.bib}}, \code{\link{lattice.simple}}}
 
 \examples{
 library(agricolae)

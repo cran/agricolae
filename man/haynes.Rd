@@ -22,7 +22,10 @@
 }
 
 \references{
-  International Potato Center. CIP - Lima Peru.
+  Haynes K G, Lambert D H, Christ B J, Weingartner D P, Douches D S,
+Backlund J E, Fry W and Stevenson W. 1998. Phenotypic stability of resistance
+to late blight in potato clones evaluated at eight sites in the United States
+American Journal Potato Research 75, pag 211-217.
 }
 \examples{
 library(agricolae)

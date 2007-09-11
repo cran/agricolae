@@ -18,9 +18,13 @@
     \item{\code{yield}}{a numeric vector}
   }
 }
-
+\details{Varieties:	
+Hibrido Mission (V1); Hibrido Mark (V2); Hibrido Topfligth (V3); Hibrido Hales Best Jumbo (V4).
+}
 \source{
-  Tesis). Author: Alberto Angeles L. Universidad Agraria la Molina - Lima Peru
+  Tesis. "Evaluacion del sistema de riego por exudacion utilizando cuatro variedades
+  de melon, bajo modalidad de siembra, SIMPLE HILERA". Alberto Angeles L. 
+  Universidad Agraria la Molina - Lima Peru.
 }
 \references{
 Universidad Agraria la Molina - Lima Peru

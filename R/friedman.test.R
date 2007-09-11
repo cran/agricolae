@@ -14,9 +14,9 @@ v[i,]<-rank(matriz[i,])
 }
 vv<-as.numeric(v)
 junto <- data.frame(evaluation, trt)
-means <- tapply.stat(junto[,2],junto[,1],mean)
-sds <-   tapply.stat(junto[,2],junto[,1],sd)
-nn <-   tapply.stat(junto[,2],junto[,1],length)
+means <- tapply.stat(junto[,2],junto[,1],stat="mean")
+sds <-   tapply.stat(junto[,2],junto[,1],stat="sd")
+nn <-   tapply.stat(junto[,2],junto[,1],stat="length")
 
 nr<-unique(nn[,2])
 s<-array(0,m[2])
@@ -27,7 +27,7 @@ s[j]<-sum(v[,j])
 means<-data.frame(means,replication=nn[,2])
 means[,2]<-s
 names(means)[1:2]<-c(name.t,name.y)
-row.names(means)<-means[,1]
+# row.names(means)<-means[,1]
 rs<-array(0,m[2])
 rs<-s-m[1]*(m[2]+1)/2
 T1<-12*t(rs)%*%rs/(m[1]*m[2]*(m[2]+1))

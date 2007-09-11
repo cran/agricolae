@@ -13,21 +13,17 @@ designs applied specially for field experiments in agriculture and plant breedin
 \tabular{ll}{
 Package: \tab agricolae\cr
 Type: \tab Package\cr
-Version: \tab 1.0-3\cr
-Date: \tab 2007-04-12\cr
-License: \tab This software may be re-distributed freely and used under the GPL license 2.0 or higher\cr
+Version: \tab 1.0-4\cr
+Date: \tab 2007-09-11\cr
+License: \tab GPL\cr
 }
 Planning of field experiments: lattice, factorial, RCBD, CRD, Latin Square, Graeco, BIB, Alpha design. 
 Comparison of multi-location trials: AMMI Stability (biplot and triplot),
 Comparison between treatments: LSD, Bonferroni and other p-adjust, HSD, Waller;
-Non parametric tests: Kruskal, Friedman, Durbin, Van Der Waerden.
-Analysis of genetic experiments: North Carolina designs, LinexTester, Balanced Incomplete Block, Strip plot,
-analysis Mother and baby trials (see data RioChillon).
+Non parametric tests: Kruskal, Friedman, Durbin, Van Der Waerden. Analysis of genetic experiments: North Carolina designs, LinexTester, Balanced Incomplete Block, Strip plot,
+Partially Balanced Incomplete Block, analysis Mother and baby trials (see data RioChillon).
 Resampling and simulation: resampling.model, simulation.model,
-Ecology: Biodiversity indices , path analysis
-Soil Uniformity: Smith's Index
-Cluster analysis: Consensus cluster.
-Descriptive statistics utilities: *.freq
+Ecology: Biodiversity Indices, Path Analysis. Soil Uniformity: Smith's Index. Cluster Analysis: Consensus Cluster. Descriptive statistics utilities: *.freq
 }
 \author{
 Felipe de Mendiburu

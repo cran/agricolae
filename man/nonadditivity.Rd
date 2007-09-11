@@ -29,8 +29,14 @@ Only two factor: Block and treatment or factor 1 and factor 2.
   \item{MSerror }{Numeric}
 
 }
-\references{ Statistics for experimenters. George E.P. Box, J. Stuart Hunter
- and William G. Hunter. Wile Series in probability and statistics }
+\references{ 
+1. Steel, R.; Torri,J; Dickey, D.(1997)
+   Principles and Procedures of Statistics
+   A Biometrical Approach
+
+2. George E.P. Box; J. Stuart Hunter and William G. Hunter. 
+   Statistics for experimenters. 
+   Wile Series in probability and statistics }
 \author{ Felipe de Mendiburu }
 
 \examples{

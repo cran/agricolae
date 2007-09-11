@@ -6,11 +6,11 @@ junto <- subset(data.frame(y, trt), is.na(y) == FALSE)
 N<- nrow(junto)
 junto[, 1] <- qnorm(round(rank(junto[, 1]) /(N+1),3))
 S <- sum(junto[,1]^2)/(N-1)
-means <- tapply.stat(junto[,2],junto[,1],mean)
-nn <-   tapply.stat(junto[,2],junto[,1],length)
+means <- tapply.stat(junto[,2],junto[,1],stat="mean")
+nn <-   tapply.stat(junto[,2],junto[,1],stat="length")
 means<-data.frame(means,replication=nn[,2])
 names(means)[1:2]<-c(name.t,name.y)
-row.names(means)<-means[,1]
+#row.names(means)<-means[,1]
 ntr<-nrow(means)
 DFerror<-N - ntr
 T1 <- 0
@@ -40,8 +40,11 @@ cat("\nAlpha    :",alpha)
 cat("\nLSD      :", LSD,"\n")
     }
     else {
-        cat("\nMinimum difference changes for each comparison\n")
-    }
+         nr1 <- 1/mean(1/nn[, 2])
+         LSD1 <- Tprob * sqrt(2 * MSerror/nr1)
+         cat("\nLSD      :", LSD1,"\n")
+         cat("\nHarmonic Mean of Cell Sizes ", nr1)
+         }   
 cat("\nMeans with the same letter are not significantly different\n")
 cat("\nGroups, Treatments and means of the normal score\n")
 output <- order.group(means[,1], means[,2], means[,3], MSerror, Tprob,std.err=sqrt(MSerror/ means[,3]))

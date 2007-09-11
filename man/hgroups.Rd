@@ -19,7 +19,7 @@ hgroups(hmerge)
 }
 \author{ F. de Mendiburu }
 
-\seealso{\code{\link{hclust}}, \code{\link{consensus}} }
+\seealso{\code{\link{hclust}}, \code{\link{hcut}}, \code{\link{consensus}} }
 
 \examples{
 library(agricolae)

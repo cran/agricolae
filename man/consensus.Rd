@@ -25,7 +25,7 @@ col.text="red", ...)
 \details{
   distance: "euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski".
   Method: "ward", "single", "complete", "average", "mcquitty", "median", "centroid".
-  see functions: dist, hclust.
+  see functions: dist(), hclust().
 }
 \value{
   \item{data }{numerical, the rownames is necesary'}
@@ -38,7 +38,7 @@ col.text="red", ...)
 and Robert J. Tibshirani. 1993. Chapman and Hall/CRC }
 \author{ F. de Mendiburu }
 
-\seealso{ \code{\link{hclust}}, \code{\link{cutree}}, \code{\link{hcut}} }
+\seealso{ \code{\link{hclust}}, \code{\link{hgroups}}, \code{\link{hcut}} }
 \examples{
 library(agricolae)
 data(pamCIP)
@@ -50,12 +50,14 @@ output<-consensus( pamCIP,distance="binary", method="complete",nboot=500)
 Groups<-output$table.dend[,c(6,5)]
 Groups<-Groups[order(Groups[,2],decreasing=TRUE),]
 print(Groups)
-
-# to reproduce dendrogram
+# Identification of the codes with the numbers.
+cbind(output$dendrogram$labels)
+# To reproduce dendrogram
 dend<-output$dendrogram
 data<-output$table.dend
 plot(dend)
 text(data[,3],data[,4],data[,5])
+
 # Other examples
 # classical dendrogram
 dend<-as.dendrogram(output$dendrogram)

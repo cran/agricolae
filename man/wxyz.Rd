@@ -16,10 +16,7 @@ wxyz(model, x, y, z)
   \item{y}{ vector 'y' }
   \item{z}{ vector 'z' relation of 'x' e 'y' }
 }
-
-}
 \value{
-
   \item{model}{ obtained by 'lm' }
   \item{x}{ Numeric }
   \item{y}{ Numeric }

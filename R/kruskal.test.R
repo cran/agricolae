@@ -5,12 +5,12 @@ name.t <- paste(deparse(substitute(trt)))
 junto <- subset(data.frame(y, trt), is.na(y) == FALSE)
 N<- nrow(junto)
 junto[, 1] <- rank(junto[, 1])
-means <- tapply.stat(junto[,2],junto[,1],sum)
-sds <-   tapply.stat(junto[,2],junto[,1], sd)
-nn <-   tapply.stat(junto[,2],junto[,1],length)
+means <- tapply.stat(junto[,2],junto[,1],stat="sum")
+sds <-   tapply.stat(junto[,2],junto[,1], stat="sd")
+nn <-   tapply.stat(junto[,2],junto[,1],stat="length")
 means<-data.frame(means,replication=nn[,2])
 names(means)[1:2]<-c(name.t,name.y)
-row.names(means)<-means[,1]
+# row.names(means)<-means[,1]
 ntr<-nrow(means)
 DFerror<-N - ntr
     rs<- 0
@@ -44,11 +44,14 @@ cat("\nt-Student:", Tprob)
 cat("\nAlpha    :",alpha)
     if (length(nr) == 1) {
         LSD <- Tprob * sqrt(2 * MSerror/nr)
-cat("\nLSD      :", LSD,"\n")
+        cat("\nLSD      :", LSD,"\n")
     }
     else {
-        cat("\nMinimum difference changes for each comparison\n")
-    }
+         nr1 <- 1/mean(1/nn[, 2])
+         LSD1 <- Tprob * sqrt(2 * MSerror/nr1)
+         cat("\nLSD      :", LSD1,"\n")
+         cat("\nHarmonic Mean of Cell Sizes ", nr1)
+         }
 cat("\nMeans with the same letter are not significantly different\n")
 cat("\nGroups, Treatments and mean of the ranks\n")
 output <- order.group(means[,1], means[,2], means[,3], MSerror, Tprob,std.err=sqrt(MSerror/ means[,3]))

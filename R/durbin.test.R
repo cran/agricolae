@@ -23,8 +23,8 @@ rango[kk]<-y[i,j]
 }
 }
 x<-data.frame(x,rango)
-means <- tapply.stat(x[,2],x[,4],sum)
-#sds <-   tapply.stat(x[,2],x[,4],sd)
+means <- tapply.stat(x[,2],x[,4],stat="sum")
+#sds <-   tapply.stat(x[,2],x[,4],stat="sd")
 #means<-data.frame(means,std.sum=sds[,2]*sqrt(r))
 names(means)[1:2]<-c(name.t,name.y)
 z <-by(x,x$trt,function(x) sum(x$rango))

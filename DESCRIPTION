@@ -1,23 +1,12 @@
 Package: agricolae
 Type: Package
 Title: Statistical Procedures for Agricultural Research
-Version: 1.0-3
-Date: 2007-04-12
+Version: 1.0-4
+Date: 2007-09-11
 Author: Felipe de Mendiburu
 Maintainer: Felipe de Mendiburu <f.mendiburu@cgiar.org>
-Suggests: cluster, akima, SuppDists, klaR
-Depends: R 
-Description: These functions are currently utilized by the International Potato Center
- Research (CIP), the Statistics and Informatics Instructors and the Students of the
- Universidad Nacional Agraria La Molina Peru, and the Specialized Master in
- "Bosques y Gestión de Recursos Forestales" (Forest Resource Management). This package
- contains functionality for the statistical analysis of experimental designs applied
- specially for field experiments in  agriculture and plant breeding. Planning of field
- experiments: Lattice, factorial, RCBD, CRD, Latin Square, Greaco, BIB, Alpha design.
- Comparison of multi-location trials: AMMI (biplot and triplot), Stability. Comparison
- between treatments: LSD, Bonferroni, HSD, Waller, Kruskal, Friedman, Durbin, Van Der Waerden.
- Resampling and simulation: resampling.model, simulation.model, analysis Mother and baby trials,
- Ecology: Indices Biodiversity, path analysis, consensus cluster, Uniformity Soil: Index Smith's.
-License: This software may be re-distributed freely and used for any non-commercial purpose under the GPL license.
+Suggests: akima, klaR, SuppDists, corpcor
+Description: These functions are currently utilized by the International Potato Center Research (CIP), the Statistics and Informatics Instructors and the Students of the Universidad Nacional Agraria La Molina Peru, and the Specialized Master in "Bosques y Gestion de Recursos Forestales" (Forest Resource Management). This package contains functionality for the statistical analysis of experimental designs applied specially for field experiments in  agriculture and plant breeding. Planning of field  experiments: Lattice, factorial, RCBD, CRD, Latin Square, Greaco, BIB, PBIB, Alpha design. Comparison of multi-location trials: AMMI (biplot and triplot), Stability. Comparison  between treatments: LSD, Bonferroni, HSD, Waller, Kruskal, Friedman, Durbin, Van Der Waerden. Resampling and simulation: resampling.model, simulation.model, analysis Mother and baby trials, Ecology: Indices Biodiversity, path analysis, consensus cluster, Uniformity Soil: Index Smith's. 
+License: GPL
 URL: http://tarwi.lamolina.edu.pe/~fmendiburu
-Packaged: Thu Apr 12 11:37:15 2007; fdemendiburu
+Packaged: Tue Sep 11 20:55:49 2007; hornik

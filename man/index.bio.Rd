@@ -8,14 +8,16 @@ species diversity in a given area.
 
 }
 \usage{
-index.bio(data, method = "Margalef", level = 95, Boot = 100)
+index.bio(data, method = c("Margalef", "Simpson.Dom", "Simpson.Div", 
+"Berger.Parker", "McIntosh", "Shannon"),level = 95, nboot = 500, noprint=FALSE)
 }
 
 \arguments{
   \item{data}{ number of specimens  }
   \item{method}{ Describe method bio-diversity }
   \item{level}{ Significant level }
-  \item{Boot}{ size bootstrap }
+  \item{nboot}{ size bootstrap }
+  \item{noprint} {output no console}
 }
 \details{
 method bio-diversity
@@ -32,7 +34,7 @@ method bio-diversity
   \item{data}{ vector }
   \item{method}{ method bio-diversity }
   \item{level}{ value 0-100 percentage }
-  \item{Boot}{ size 50, 100,... }
+  \item{nboot}{ size 100, 500,... }
 }
 \author{ Felipe de Mendiburu }
 
@@ -41,7 +43,8 @@ library(agricolae)
 data(paracsho)
 # date 22-06-05 and treatment CON = application with insecticide
 specimens <- paracsho[1:10,6]
-index.bio(specimens,method="Simpson.Div",level=95,Boot=200)
-index.bio(specimens,method="Shannon",level=95,Boot=200)
+output1 <- index.bio(specimens,method="Simpson.Div",level=95,nboot=200)
+output2 <- index.bio(specimens,method="Shannon",level=95,nboot=200)
+rbind(output1, output2)
 }
 \keyword{ univar }% __ONLY ONE__ keyword per line

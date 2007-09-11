@@ -1,20 +1,20 @@
 `BIB.test` <-
 function(block,trt,y, method="lsd", alpha=0.05,group=TRUE)
 {
-block.noadj<-as.factor(block)
+block.unadj<-as.factor(block)
 trt.adj  <-as.factor(trt)
 name.y <- paste(deparse(substitute(y)))
-model<-lm(y ~ block.noadj+trt.adj)
+model<-lm(y ~ block.unadj+trt.adj)
 DFerror<-df.residual(model)
 MSerror<-deviance(model)/DFerror
-k <-unique(table(block.noadj))
+k <-unique(table(block.unadj))
 r <-unique(table(trt.adj))
-b <-nlevels(block.noadj)
+b <-nlevels(block.unadj)
 ntr <-nlevels(trt.adj)
 lambda<-r*(k-1)/(ntr-1)
 tabla<-suppressWarnings(mxyz(block,trt,y ))
 AA<-!is.na(tabla)
-BB<-tapply(y,block.noadj,sum)
+BB<-tapply(y,block.unadj,sum)
 B<-BB%*%AA
 Y<-tapply(y,trt.adj,sum)
 Q<-Y-as.numeric(B)/k

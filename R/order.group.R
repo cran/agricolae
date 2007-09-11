@@ -1,5 +1,6 @@
 "order.group" <-
 function(trt,means,N,MSerror,Tprob,std.err,parameter=1) {
+N<-rep(1/mean(1/N),length(N))
 n<-length(means)
 z<-data.frame(trt,means,N,std.err)
 # ordena tratamientos
@@ -19,7 +20,7 @@ for(i in j:n) {
 minimo<-Tprob*sqrt(parameter*MSerror*(1/N[i]+1/N[j]))
 s<-abs(w[i,2]-w[j,2])<=minimo
 if(s) {
-if(last.c(M[i]) != letters[k])M[i]<-paste(M[i],letters[k],sep="")
+if(lastC(M[i]) != letters[k])M[i]<-paste(M[i],letters[k],sep="")
 }
 else {
 k<-k+1

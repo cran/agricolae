@@ -1,13 +1,13 @@
-\name{last.c}
-\alias{last.c}
-%- last.c.
+\name{lastC}
+\alias{lastC}
+%- lastC.
 \title{ Setting the last character of a chain  }
 \description{
   A special function for the group of treatments in the multiple comparison tests. 
   Use order.group.
 }
 \usage{
-last.c(x)
+lastC(x)
 }
 
 \arguments{
@@ -23,7 +23,7 @@ last.c(x)
 \examples{
 library(agricolae)
 x<-c("a","ab","b","c","cd")
-last.c(x)
+lastC(x)
 # "a" "b" "b" "c" "d"
 
 }

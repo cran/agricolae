@@ -74,6 +74,7 @@ pc<- princomp(model$genXenv, cor = FALSE)
 pc$loadings
 summary(pc)
 model$biplot
+detach(CIC)
 # Example 3
 # Only means. Mean square error is well-known.
 data(sinRepAmmi)
@@ -87,6 +88,7 @@ pc<- princomp(model$genXenv, cor = FALSE)
 pc$loadings
 summary(pc)
 model$biplot
+detach(sinRepAmmi)
 # Biplot with the one restored observed.
 rm(REP)
 bplot<-model$biplot[,1:4]
@@ -98,25 +100,20 @@ plot(YLD,CP1,cex=0.0,text(YLD,CP1,labels=row.names(bplot),col="blue"),
 media<-mean(YLD)
 abline(h=0,v= media,lty=2,col="red")
 amb<-subset(bplot,type=="ENV")
+detach(bplot)
 attach(amb)
 s <- seq(length(YLD))
 arrows(media, 0, 0.9*(YLD[s]-media)+media, 0.9*CP1[s], col= "brown",
 lwd=1.8,length=0.1)
 #endgraph
-
+detach(amb)
 # Principal components by means of the covariance 
 # It is to compare results with AMMI
-#startgraph
-par(cex=0.8)
-pc<- princomp(model$genXenv, cor = FALSE)
-biplot(pc,main="Interaction ENV x GEN")
-abline(h=0,v= 0,lty=2,col="brown")
-#endgraph
 cova<-cov(model$genXenv)
 values<-eigen(cova)
 total<-sum(values$values)
 round(values$values*100/total,2)
-# [1] 64.81 18.58 13.50  3.11  0.00
+# AMMI: 64.81 18.58 13.50  3.11  0.00
 }
 \keyword{ models }% at least one, from doc/KEYWORDS
 

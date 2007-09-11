@@ -9,14 +9,14 @@ y <- rep(TR[1], r[1])
 tr <- length(TR)
 if(seed != 0) set.seed(seed,kinds)
 for (i in 2:tr) y <- c(y, rep(TR[i], r[i]))
-trat <- sample(y, length(y), replace = FALSE)
-plots <- number+1:length(trat)-1
-dca<-data.frame(plots, trat)
-dca[,1]<-as.numeric(dca[,1])
-xx<-dca[order(dca[,2],dca[,1]),]
-r1<-seq(1,r[1])
+	trat <- sample(y, length(y), replace = FALSE)
+	plots <- number+1:length(trat)-1
+	dca<-data.frame(plots, trat)
+	dca[,1]<-as.numeric(dca[,1])
+	xx<-dca[order(dca[,2],dca[,1]),]
+	r1<-seq(1,r[1])
 for (i in 2:length(r)) {
-r1<-c(r1,seq(1,r[i]))
+	r1<-c(r1,seq(1,r[i]))
 }
 yy<-data.frame(xx,r=r1)
 book<-yy[order(yy[,1]),]

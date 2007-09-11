@@ -18,7 +18,6 @@ bar.group(x, horiz = FALSE, ...)
 }
 \details{
 x: data frame formed by 5 columns: name of the bars, height and level of the bar.
-
 }
 \value{
 
@@ -29,8 +28,10 @@ x: data frame formed by 5 columns: name of the bars, height and level of the bar
 
 \author{ Felipe de Meniburu }
 
-\seealso{\code{\link{LSD.test}}, \code{\link{HSD.test}}, \code{\link{kruskal}}, 
-\code{\link{friedman}}, \code{\link{durbin.test}}, \link{waller.test} } }
+\seealso{
+\code{\link{LSD.test}}, \code{\link{HSD.test}}, \code{\link{kruskal}}
+, \code{\link{friedman}}, \code{\link{durbin.test}}, \code{\link{waller.test}} 
+}
 
 \examples{
 # Example 1
@@ -44,8 +45,7 @@ comparison<- LSD.test(yield, virus,df,MSerror,alpha=0.01,group=TRUE)
 #startgraph
 par(cex=1.5)
 bar.group(comparison,horiz=TRUE,density=8,col="blue",border="red",xlim=c(0,50))
- title(cex.main=0.8,main="Comparison between\ntreatment means",xlab="Yield",
- ylab="Virus")
+title(cex.main=0.8,main="Comparison between\ntreatment means",xlab="Yield", ylab="Virus")
 #endgraph
 # Example 2
 library(agricolae)

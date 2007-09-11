@@ -7,8 +7,7 @@
   treatments simultaneously with three different blocking variables, each 
   at k levels.
   
-  The function is only squares of sizes 3x3, 4x4, 5x5, 7x7, 9x9,...
-  
+  The function is only for squares of the odd numbers and even numbers (4, 8 and 12)
 }
 \usage{
 design.graeco(trt1, trt2, number = 1, seed = 0, kinds = "Super-Duper")
@@ -32,8 +31,12 @@ design.graeco(trt1, trt2, number = 1, seed = 0, kinds = "Super-Duper")
   \item{number }{Numeric}
   \item{seed }{Numeric}
 }
-\references{ Statistics for Exoperimenters Design, Innovation, and Discovery
+\references{ 
+1. Statistics for Experimenters Design, Innovation, and Discovery
 Second Edition. George E. P. Box. Wiley-Interscience. 2005.
+
+2. Experimental design. Cochran and Cox. Second edition. 
+Wiley Classics Library Edition published 1992.
 }
 \author{ Felipe de Mendiburu }
 

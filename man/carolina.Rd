@@ -22,7 +22,7 @@ model = 1,2 and 3 is I, II and III see carolina1,2 and 3.
   \item{carolina 2 :}{ set, male, female, replication, response ... }
   \item{carolina 3 :}{ set, male, female, replication, response ... }
   }
-}
+
 \references{ Biometrical Methods in Quantitative Genetic Analysis,
              Singh, Chaudhary. 1979 }
 \author{ Felipe de Mendiburu }

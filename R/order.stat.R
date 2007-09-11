@@ -19,7 +19,7 @@ if (chequeo > n) break
 for(i in j:n) {
 s<-abs(w[i,2]-w[j,2])<=minimum
 if(s) {
-if(last.c(M[i]) != letters[k])M[i]<-paste(M[i],letters[k],sep="")
+if(lastC(M[i]) != letters[k])M[i]<-paste(M[i],letters[k],sep="")
 }
 else {
 k<-k+1

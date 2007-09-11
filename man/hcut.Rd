@@ -24,7 +24,7 @@ hcut(consensus,h,group,col.text="blue",cex.text=1,...)
 }
 \author{ F. de Mendiburu }
 
-\seealso{\code{\link{hclust}}, \code{\link{consensus}}, \code{\link{cutree}} }
+\seealso{\code{\link{hclust}}, \code{\link{consensus}}, \code{\link{hgroups}} }
 
 \examples{
 library(agricolae)

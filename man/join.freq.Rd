@@ -15,7 +15,6 @@ join.freq(breaks, join)
   \item{breaks}{ Class intervals }
   \item{join}{ vector }
 }
-}
 \value{
   \item{breaks }{vector numeric}
   \item{join }{numeric}

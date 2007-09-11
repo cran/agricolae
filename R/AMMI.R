@@ -15,9 +15,10 @@
         REP <- as.factor(REP)
         nrep <- length(unique(REP))
         cat("\nREP: ", unique(REP))
-        cat("\n\nNumber of observations: ", length(Y), "\n\n")
+        cat("\n\nNumber of observations: ", length(na.omit(Y)), "\n\n")
         modelo <- aov(Y ~ ENV + REP %in% ENV + GEN + ENV:GEN)
-        cat("model Y:", name.y, " ~ ENV + REP%in%ENV + GEN + ENV:GEN\n\n")
+        cat("model Y:", name.y, " ~ ENV + REP%in%ENV + GEN + ENV:GEN\n")
+        cat("Random effect REP%in%ENV\n\n")
         mm <- anova(modelo)
         nn <- mm[2, ]
         mm[2, ] <- mm[3, ]
@@ -29,7 +30,7 @@
         print(mm)
         DFE <- df.residual(modelo)
         MSE <- deviance(modelo)/DFE
-        medy <- mean(Y)
+        medy <- mean(Y,na.rm=TRUE)
         cat("\nCoeff var", "\tMean", name.y, "\n")
         cat(sqrt(MSE) * 100/medy, "\t", medy, "\n")
     }
@@ -56,10 +57,10 @@
         row.names(xx)[1] <- "ENV     "
         row.names(xx)[2] <- "REP(ENV)"
         cat("\nREP: ", REP)
-        cat("\n\nNumber of observations: ", length(Y), "\n")
+        cat("\n\nNumber of means: ", length(na.omit(Y)), "\n")
         cat("\nDependent Variable:", name.y, "\n\nAnalysis of variance\n")
         print(xx, na.print = "")
-        medy <- mean(Y)
+        medy <- mean(Y,na.rm=TRUE)
         cat("\nCoeff var", "\tMean", name.y, "\n")
         cat(sqrt(MSE) * 100/medy, "\t", medy, "\n")
     }
@@ -118,21 +119,24 @@
     acumula <- 0
     for (i in 1:minimo) {
         DF <- (ngen - 1) + (nenv - 1) - (2 * i - 1)
+        if (DF <= 0) break
         DFAMMI[i] <- DF
         acumula <- acumula + percent[i]
         acum[i] <- acum[i] + acumula
         MSAMMI[i] <- SS[i]/DFAMMI[i]
         F.AMMI[i] <- round(MSAMMI[i]/MSE, 2)
-        PROBF[i] <- round(1 - pf(F.AMMI[i], DFAMMI[i], DFE),
-            4)
+        PROBF[i] <- round(1 - pf(F.AMMI[i], DFAMMI[i], DFE), 4)
     }
     SS <- round(SS, 6)
     MSAMMI <- round(MSAMMI, 6)
     SSAMMI <- data.frame(percent, acum, Df = DFAMMI, "Sum Sq" = SS,
         "Mean Sq" = MSAMMI, "F value" = F.AMMI, Pr.F = PROBF)
-    nssammi<-nrow(SSAMMI)
-    row.names(SSAMMI) <- paste("CP", 1:nssammi, sep = "")
+        nssammi<-nrow(SSAMMI)
+    SSAMMI<-SSAMMI[SSAMMI$Df>0,]
+    nss<-nrow(SSAMMI)
+    row.names(SSAMMI) <- paste("CP", 1:nss, sep = "")
     cat("\nAnalysis\n")
+    
     print(SSAMMI)
     LL <- sqrt(diag(L))
     SCOREG <- U %*% LL
@@ -146,6 +150,7 @@
     MENV <- data.frame(type = "ENV", Y = apply(OUTMED, 2, mean),
         NSCORES)
     bplot <- rbind(MGEN, MENV)
+    bplot<- bplot[,1:(nss+2)]
     mlabel <- names(bplot)
     names(bplot) <- c(mlabel[1], name.y, mlabel[c(-1, -2)])
     maxy <- max(bplot[, 4])
@@ -212,11 +217,7 @@
                 col = "red", lty = 1)))
         }
     }
-    if (length(REP) > 1)
-        return(list(model = modelo, genXenv = OUTRES2, analysis = SSAMMI,
-            means = MEDIAS, biplot = bplot))
-    else return(list(genXenv = OUTRES2, analysis = SSAMMI, means = MEDIAS,
-        biplot = bplot))
+    return(list(genXenv=OUTRES2, analysis=SSAMMI, means=MEDIAS, biplot=bplot))
 }
 
 
