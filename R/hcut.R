@@ -1,4 +1,4 @@
-"hcut"<-
+`hcut` <-
 function(consensus,h,group,col.text="blue",cex.text=1,...) {
 dend <- consensus$dendrogram
 if(class(dend)=="hclust") dend <- as.dendrogram(dend)
@@ -21,3 +21,4 @@ plot(cut2[[k]],...)
 text(frame[,3]-p,frame[,4],labels=frame[,5],col=col.text,cex=cex.text)
 return(data.frame(numbers=pclus))
 }
+

@@ -1,4 +1,4 @@
-"intervals.freq" <-
+`intervals.freq` <-
 function(breaks){
 n<-length(breaks)-1
 y<-rep(0,2*n)
@@ -7,7 +7,7 @@ for (i in 1:n) {
 y[i,1]<-breaks[i]
 y[i,2]<-breaks[i+1]
 }
-colnames(y)<-c("inf","sup")
+colnames(y)<-c("lower","upper")
 return(y)
 }
 

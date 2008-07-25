@@ -38,11 +38,11 @@ library(agricolae)
 #example 1
 data(clay)
 model<-"ralstonia ~ days"
-simulation.model(200,clay,model)
+simulation.model(100,clay,model)
 #example 2
 data(sweetpotato)
 model<-"yield~virus"
-simulation.model(300,sweetpotato,model,categorical=1)
+simulation.model(100,sweetpotato,model,categorical=1)
 #example 3
 data(Glycoalkaloids)
 model<-"HPLC ~ spectrophotometer"
@@ -50,7 +50,7 @@ simulation.model(100,Glycoalkaloids,model)
 #example 4
 data(potato)
 model<-"cutting~date+variety"
-simulation.model(200,potato,model,categorical=c(1,2,3))
+simulation.model(100,potato,model,categorical=c(1,2,3))
 
 }
 \keyword{ models }% at least one, from doc/KEYWORDS

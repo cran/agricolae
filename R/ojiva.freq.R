@@ -1,20 +1,19 @@
-"ojiva.freq" <-
+`ojiva.freq` <-
 function(histogram,...)
 {
     xx <- histogram$mids
     yy <- histogram$counts
     zz <- histogram$breaks
     y1 <- sum(yy)
-    x <- length(xx)
-    zz<-c(zz,2*zz[x+1]-zz[x])
-    z <- rep(0, x+1)
-    for (i in 1:x) {
-        z[i+1] <- z[i] + yy[i]/y1
+    nx <- length(xx)
+    x <-c(zz,2*zz[nx+1]-zz[nx])
+    y <- rep(0, nx+1)
+    for (i in 1:nx) {
+        y[i+1] <- y[i] + yy[i]/y1
     }
-    z<-c(z,1)
-    plot(zz,z,...)
-    grid(col="black")
-    table<-data.frame(class.sup=zz,F.rel=z)
+    probability<-c(y,1)
+    plot(x,probability,...)
+    table<-data.frame(x=zz,probability=y)
     return(table)
 }
 

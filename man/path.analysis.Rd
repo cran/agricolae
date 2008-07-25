@@ -42,10 +42,13 @@ dimnames(corr.y)<-list(names,"Y")
 path.analysis(corr.x,corr.y)
 # Example 2
 # data of the progress of the disease related bacterial wilt to the ground
-# for the component EC Ca K2 Cu
+# for the component CE Ca K2 Cu
 data(wilt)
-cor.y<-correlation(wilt[,1],wilt[,-1])$correlation
-cor.x<-correlation(wilt[,-1])$correlation
+data(soil)
+x<-soil[,c(3,12,14,20)]
+y<-wilt[,14]
+cor.y<-correlation(y,x)$correlation
+cor.x<-correlation(x)$correlation
 path.analysis(cor.x,cor.y)
 
 }

@@ -1,4 +1,4 @@
-"random.ab" <-
+`random.ab` <-
 function(p,q){ 
 t<-rep(0,3*p*q)
 dim(t)<-c(p*q,3)

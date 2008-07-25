@@ -1,4 +1,4 @@
-"hgroups" <-
+`hgroups` <-
 function(hmerge) {
 cc<-hmerge
 n1<-nrow(cc)
@@ -41,3 +41,4 @@ clases[i,1]<- s
 }
 return(clases)
 }
+

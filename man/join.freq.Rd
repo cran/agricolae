@@ -33,14 +33,14 @@ attach(natives)
 class<-sturges.freq(size)
 # information of the classes
 class
-intervals <- class$classes
+breaks <- class$breaks
 # list classes
-intervals.freq(intervals)
+intervals.freq(breaks)
 # Table frecuency
-h1<-hist(size,breaks=intervals,plot=FALSE)
+h1<-hist(size,breaks,plot=FALSE)
 table.freq(h1)
-# Join classes 9,10,11 and 12 with little frequency.
-inter<-join.freq(intervals,9:12) # with c(9,10,11,12) or 9:12
+# Join classes 9 and 10 with little frequency.
+inter<-join.freq(breaks,9:10)
 # new table
 h2<-hist(size,breaks=inter,xlim=c(0,0.12),col="bisque")
 table.freq(h2)

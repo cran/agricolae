@@ -1,4 +1,4 @@
-"durbin.test" <-
+`durbin.test` <-
 function(judge,trt,evaluation,alpha=0.05, group=TRUE,main=NULL) {
 name.y <- paste(deparse(substitute(evaluation)))
 name.t <- paste(deparse(substitute(trt)))
@@ -23,7 +23,7 @@ rango[kk]<-y[i,j]
 }
 }
 x<-data.frame(x,rango)
-means <- tapply.stat(x[,2],x[,4],stat="sum")
+means <- tapply.stat(x[,4],x[,2],stat="sum")  # change
 #sds <-   tapply.stat(x[,2],x[,4],stat="sd")
 #means<-data.frame(means,std.sum=sds[,2]*sqrt(r))
 names(means)[1:2]<-c(name.t,name.y)

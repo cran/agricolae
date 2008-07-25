@@ -1,4 +1,4 @@
-"order.group" <-
+`order.group` <-
 function(trt,means,N,MSerror,Tprob,std.err,parameter=1) {
 N<-rep(1/mean(1/N),length(N))
 n<-length(means)

@@ -1,7 +1,7 @@
 \name{index.bio}
 \alias{index.bio}
 %- index.bio.
-\title{ Biodiversity Indices }
+\title{ Biodiversity Index }
 \description{
 Scientists use a formula called the biodiversity index to describe the amount of
 species diversity in a given area.

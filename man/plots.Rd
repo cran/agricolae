@@ -25,5 +25,9 @@
 library(agricolae)
 data(plots)
 str(plots)
+plots[,1] <-as.factor(plots[,1])
+# split-plot analysis
+model <- aov(yield ~ block + A + Error(plot)+ B + A:B, data=plots)
+summary(model)
 }
 \keyword{datasets}

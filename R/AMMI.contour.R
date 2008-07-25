@@ -2,8 +2,8 @@
 function(model,distance,shape,...)
 {
 G<- subset(model$biplot,model$biplot$type=="GEN")
-x<-G$CP1
-y<-G$CP2
+x<-G$PC1
+y<-G$PC2
 d<-sqrt(x^2+y^2)
 r <-distance*max(d)
 x<-seq(-r,r,length=shape)
@@ -21,3 +21,4 @@ cat("\nGenotype out:",length(GEN.out),"\n\n")
 distance<-data.frame(row.names=row.names(G),distance=d)
 return(list("GENOTYPE IN"=GEN.in, "GENOTYPE OUT"=GEN.out,Distance=distance))
 }
+

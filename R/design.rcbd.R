@@ -1,4 +1,4 @@
-"design.rcbd" <-
+`design.rcbd` <-
 function (trt, r,number=1,seed=0,kinds="Super-Duper")
 {
 ntr <- length(trt)

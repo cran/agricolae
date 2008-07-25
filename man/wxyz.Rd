@@ -25,7 +25,7 @@ wxyz(model, x, y, z)
 
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{gxyz}}, \code{\link{grid3p} } }
+\seealso{ \code{\link{grid3p} } }
 
 \examples{
 library(agricolae)

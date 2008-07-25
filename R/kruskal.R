@@ -1,13 +1,13 @@
-"kruskal" <-
+`kruskal` <-
 function(y, trt,alpha=0.05,group=TRUE,main=NULL) {
 name.y <- paste(deparse(substitute(y)))
 name.t <- paste(deparse(substitute(trt)))
 junto <- subset(data.frame(y, trt), is.na(y) == FALSE)
 N<- nrow(junto)
 junto[, 1] <- rank(junto[, 1])
-means <- tapply.stat(junto[,2],junto[,1],stat="sum")
-sds <-   tapply.stat(junto[,2],junto[,1], stat="sd")
-nn <-   tapply.stat(junto[,2],junto[,1],stat="length")
+means <- tapply.stat(junto[,1],junto[,2],stat="sum")  #change
+sds <-   tapply.stat(junto[,1],junto[,2], stat="sd")  #change
+nn <-   tapply.stat(junto[,1],junto[,2],stat="length") #change
 means<-data.frame(means,replication=nn[,2])
 names(means)[1:2]<-c(name.t,name.y)
 # row.names(means)<-means[,1]
@@ -80,3 +80,4 @@ output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,3])
 }
     return(output)
 }
+

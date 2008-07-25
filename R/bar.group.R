@@ -1,4 +1,4 @@
-"bar.group" <-
+`bar.group` <-
 function(x,horiz=FALSE, ...) {
 y<-x[,2]
 names(y)<-x[,1]

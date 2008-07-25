@@ -1,4 +1,4 @@
-"consensus" <-
+`consensus` <-
 function(data,distance=c("binary","euclidean","maximum","manhattan","canberra",
 "minkowski"),method=c("complete","ward","single","average","mcquitty","median",
 "centroid"),nboot=500,duplicate=TRUE,cex.text=1,col.text="red", ...)
@@ -129,3 +129,4 @@ plot(dend,...)
 text(p,cc[,3],ceiling(cc[,4]),cex=cex.text,col=col.text)
 return(list(table.dend=table.dend,dendrogram=dend,duplicates=duplicate) )
 }
+

@@ -8,18 +8,18 @@
   variables and factors.
 }
 \usage{
-tapply.stat(x, y, stat = "mean")
+tapply.stat(y, x, stat = "mean")
 }
 
 \arguments{
-  \item{x}{data.frame factors  }
-  \item{y}{data.frame variables  }
+  \item{y}{data.frame variables }
+  \item{x}{data.frame factors  }  
   \item{stat}{ Method }
 }
 
 \value{
-  \item{x}{ Numeric  }
-  \item{y}{ Numeric }
+  \item{y}{ Numeric  }
+  \item{x}{ Numeric }
   \item{stat}{method = "mean", ...  }
 }
 \author{ Felipe de Mendiburu }
@@ -28,28 +28,23 @@ tapply.stat(x, y, stat = "mean")
 library(agricolae)
 # case of 1 single factor
 data(sweetpotato)
-tapply.stat(sweetpotato[,1],sweetpotato[,2],mean)
+tapply.stat(sweetpotato[,2],sweetpotato[,1],mean)
 attach(sweetpotato)
-tapply.stat(virus,yield,sd)
-tapply.stat(virus,yield,function(x) max(x)-min(x))
-tapply.stat(virus,yield,function(x) quantile(x,0.75,6)-quantile(x,0.25,6))
+tapply.stat(yield,virus,sd)
+tapply.stat(yield,virus,function(x) max(x)-min(x))
+tapply.stat(yield,virus,function(x) quantile(x,0.75,6)-quantile(x,0.25,6))
+detach(sweetpotato)
 # other case
 data(cotton)
 attach(cotton)
-tapply.stat(cotton[,c(1,3,4)],yield,mean)
-tapply.stat(cotton[,c(1,4)],yield,max)
+tapply.stat(yield,cotton[,c(1,3,4)],mean)
+tapply.stat(yield,cotton[,c(1,4)],max)
+detach(cotton)
 # Height of pijuayo
 data(growth)
 attach(growth)
-tapply.stat(growth[,2:1], height,function(x) mean(x,na.rm=TRUE))
-# trees
-data(trees)
-attach(trees)
-w<-tapply(trees[,3],trees[,2],function(x) mean(x,na.rm=TRUE))
-#startgraph
-barplot(w,density=c(4,8,12,16),col=c(2,4,6,8),angle=c(0,45,90,145),las=2)
-#endgraph
-tapply.stat(species,diameter,function(x) mean(x,na.rm=TRUE))
+tapply.stat(height, growth[,2:1], function(x) mean(x,na.rm=TRUE))
+detach(growth)
 }
 \keyword{ univar }% at least one, from doc/KEYWORDS
 

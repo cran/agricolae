@@ -1,4 +1,4 @@
-"wxyz" <-
+`wxyz` <-
 function(model,x,y,z) {
 datos<-data.frame(x,y,z)
 lista<-by(datos,list(x=x,y=y),mean)

@@ -1,4 +1,4 @@
-"bar.err" <-
+`bar.err` <-
 function(x,std=TRUE,horiz=FALSE, ...) {
 y<-x[,2]
 names(y)<-x[,1]

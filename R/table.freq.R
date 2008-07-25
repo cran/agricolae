@@ -1,4 +1,4 @@
-"table.freq" <-
+`table.freq` <-
 function(histogram){
 xx<-histogram$mids
 yy<-histogram$counts

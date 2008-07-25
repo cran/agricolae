@@ -1,16 +1,11 @@
-"resampling.model" <-
+`resampling.model` <-
 function(k,data,model) {
 modelo<-model
 parte<-strsplit(model,"~")[[1]]
-name.y<-strsplit(parte[1]," ")[[1]]
-nm<-names(data)
-nc<-length(nm)
-for(i in 1:nc){
-if (name.y==nm[i]) pos.dep=i
-}
 model<-as.formula(model)
 ecuacion<-lm(model,data=data)
 xx<-data.frame(anova(ecuacion),NA)
+yy<-ecuacion$model[[1]]
 fc<-xx[,4]
 names(xx)<-c("Df","Sum Sq","Mean Sq","F value","Pr(>F)","Resampling")
 m<-nrow(data)
@@ -18,9 +13,10 @@ gk<-nrow(xx)-1
 f<-rep(0,gk)
 cuenta <- rep(0,gk)
 # Start Resampling
+model <- paste("y","~",parte[2])
+model<-as.formula(model)
 for(i in 1:k){
-muestra<-sample(data[,pos.dep],m)
-data[,pos.dep]<-muestra
+y<-sample(yy,m)
 resample<-lm(model,data=data)
 for (j in 1:gk){
 f[j]<-anova(resample)[j,4]

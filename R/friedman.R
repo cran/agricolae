@@ -1,9 +1,11 @@
-"friedman" <-
+`friedman` <-
 function(judge,trt,evaluation,alpha=0.05,group=TRUE,main=NULL){
 name.x <- paste(deparse(substitute(judge)))
 name.y <- paste(deparse(substitute(evaluation)))
 name.t <- paste(deparse(substitute(trt)))
-matriz<-suppressWarnings(mxyz(judge,trt,evaluation))
+datos <- data.frame(judge, trt, evaluation)
+matriz <- by(datos[,3], datos[,1:2], function(x) mean(x,na.rm=TRUE))
+matriz <-as.data.frame(matriz[,])
 #matriz <-as.matrix(evaluation)
 name<-as.character(colnames(matriz))
 ntr <-length(name)
@@ -14,9 +16,9 @@ v[i,]<-rank(matriz[i,])
 }
 vv<-as.numeric(v)
 junto <- data.frame(evaluation, trt)
-means <- tapply.stat(junto[,2],junto[,1],stat="mean")
-sds <-   tapply.stat(junto[,2],junto[,1],stat="sd")
-nn <-   tapply.stat(junto[,2],junto[,1],stat="length")
+means <- tapply.stat(junto[,1],junto[,2],stat="mean")  # change
+sds <-   tapply.stat(junto[,1],junto[,2],stat="sd")    # change
+nn <-   tapply.stat(junto[,1],junto[,2],stat="length") # change
 
 nr<-unique(nn[,2])
 s<-array(0,m[2])
@@ -89,3 +91,4 @@ output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,3])
 }
 return(output)
 }
+

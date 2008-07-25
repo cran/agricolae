@@ -1,4 +1,4 @@
-"resampling.cv" <-
+`resampling.cv` <-
 function(A,size,npoints) {
 nc.A<-ncol(A)
 orden<-1:nc.A

@@ -1,4 +1,4 @@
-"skewness" <-
+`skewness` <-
 function(x) {
 x <- na.omit(x)
 n<-length(x)

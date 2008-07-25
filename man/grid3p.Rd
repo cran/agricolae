@@ -33,7 +33,7 @@ grid3p(x, y, z, m, n)
 
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{wxyz}}, \code{\link{gxyz}} }
+\seealso{\code{\link{wxyz}}}
 
 \examples{
 library(akima)
@@ -45,15 +45,17 @@ z<-clay$ralstonia
 model<- lm(z ~ x + y)
 zo<-wxyz(model,x,y,z)
 # it completes and it finds the average of points with equal coordinate.
-fzz<-gxyz(zo)
-x<-fzz[[1]]
-y<-fzz[[2]]
-z<-fzz[[3]]
+b<-colnames(zo)
+a<-rownames(zo)
+x<-as.numeric(rep(a,length(b)))
+y<-NULL
+for(i in 1:length(b)) y<-c(y,rep(b[i],length(a)))
+y<-as.numeric(y)
+z<-as.numeric(zo)
 m<-40
 n<-20
 # It generates a new matrix mxn with but points by interpolation.
 z2<-grid3p(x,y,z,m,n)
-
 # plot
 x2<-as.numeric(dimnames(z2)[[1]])
 y2<-as.numeric(dimnames(z2)[[2]])

@@ -1,16 +1,17 @@
-\name{lattice.simple}
-\alias{lattice.simple}
-%- lattice.simple.
-\title{ Lattice design }
+\name{design.lattice}
+\alias{design.lattice}
+%- design.lattice.
+\title{ Lattice designs }
 \description{
-  It randomizes treatments in a simple adjustment of a k x k lattice.
+  SIMPLE and TRIPLE lattice designs. It randomizes treatments in k x k lattice.
 }
 \usage{
-lattice.simple(k, number = 1, seed = 0, kinds = "Super-Duper")
+design.lattice(k, type="triple", number = 1, seed = 0, kinds = "Super-Duper")
 }
 
 \arguments{
   \item{k}{ order lattice }
+  \item{type}{simple or triple lattice}
   \item{number}{ number of first plot }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
@@ -25,15 +26,18 @@ lattice.simple(k, number = 1, seed = 0, kinds = "Super-Duper")
   \item{number }{Numeric}
   \item{seed }{Numeric}
 }
+\references{ FIELD PLOT TECHNIQUE. Erwin L. LeCLERG. 2nd ed., 1962, 
+ Burgess Publishing Company, Minnesota }
+
 \author{ Felipe de Mendiburu }
 
 \seealso{\code{\link{design.crd}}, \code{\link{design.rcbd}}, \code{\link{design.lsd}},
 \code{\link{random.ab}}, \code{\link{fact.nk} } }
 
 \examples{
-# latice 10x10 for 100 treatments
 library(agricolae)
-lattice.simple(10)
+design.lattice(10,type="simple") # simple lattice desing, 10x10 (100 varieties)
+design.lattice(3,type="triple") # triple lattice design,  3x3 ( 9 varieties)
 }
 \keyword{ design }% at least one, from doc/KEYWORDS
 

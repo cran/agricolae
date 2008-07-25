@@ -17,8 +17,6 @@ hcut(consensus,h,group,col.text="blue",cex.text=1,...)
   \item{cex.text}{ size of number consensus }
   \item{\dots}{ Other parameters of the function plot() in cut() } 
 }
-\details{
-}
 \value{
   hcut returns a data.frame with group memberships and consensus tree.
 }

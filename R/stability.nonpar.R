@@ -1,4 +1,4 @@
-"stability.nonpar" <-
+`stability.nonpar` <-
 function(data, variable= NULL, ranking = FALSE)
 {
 row.names(data)<-data[,1]

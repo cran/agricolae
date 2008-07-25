@@ -1,4 +1,4 @@
-"design.ab" <-
+`design.ab` <-
 function(A,B,r,number=1,seed=0,kinds="Super-Duper"){
 p<-length(A)
 q<-length(B)

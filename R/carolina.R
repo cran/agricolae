@@ -1,4 +1,4 @@
-"carolina" <-
+`carolina` <-
 function(model,data) {
 if(model==1) {
 # Observe la estructura de los datos carolina1

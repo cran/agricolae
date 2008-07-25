@@ -58,6 +58,7 @@ df<-df.residual(model)
 MSerror<-deviance(model)/df
 comparison <- LSD.test(yield,virus,df,MSerror, p.adj="bonferroni", group=FALSE,
 main="Yield of sweetpotato\ndealt with different virus")
+detach(sweetpotato)
 #stargraph
 bar.err(comparison,std=TRUE,ylim=c(0,45),density=4,border="blue")
 #endgraph

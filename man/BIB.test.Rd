@@ -3,7 +3,7 @@
 
 \title{ Finding the Variance Analysis of the Balanced Incomplete Block Design  }
 \description{
-  Analysis of variancia BIB and comparison mean adjusted. 
+  Analysis of variance BIB and comparison mean adjusted. 
 }
 \usage{
 BIB.test(block, trt, y, method = "lsd", alpha = 0.05, group = TRUE)
@@ -33,7 +33,8 @@ waller: test Waller-Duncan.
 }
 \references{ Design of Experiments. Robert O. Kuehl. 2nd ed., Duxbury, 2000 
  Linear Estimation and Design of Experiments. D.D. Joshi. WILEY EASTERN LIMITED
- 1987, New Delhi, India}
+ 1987, New Delhi, India. Introduction to experimental statistics. Ching Chun Li
+ McGraw - Hill Book Company, Inc. New York. 1964 }
 
 \author{ F. de Mendiburu }
 \seealso{\code{\link{durbin.test}} }
@@ -58,7 +59,13 @@ y <-c(69,77,72,63,70,54,65,65,57,59,50,45,68,75,59,38,60,60,62,
 varieties<-gl(6,5)
 block <- c(1,2,3,4,5,1,2,6,7,8,1,3,6,9,10,2,4,7,9,10,3,5,7,8,9,4,5,6,8,10)
 model<-BIB.test(block, varieties, y)
-
+# Example Introduction to experimental statistics. Ching Chun Li. 1964
+# pag. 395 table. 27.2
+# 7 trt, k=3 and b=7.
+y <-c(10,15,11,4,12,15,5,14,10,14,19,19,8,10,17,6,11,12,5,14,21)
+block<-gl(7,3)
+trt <- c(1,2,4,2,3,5,3,4,6,4,5,7,1,5,6,2,6,7,1,3,7)
+model<-BIB.test(block, trt, y)
 }
 \keyword{ models }
 

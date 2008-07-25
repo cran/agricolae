@@ -1,4 +1,4 @@
-"correl" <-
+`correl` <-
 function(x,y,method = "pearson", alternative = "two.sided"){
 n<-length(x)
 if(method=="kendall"){

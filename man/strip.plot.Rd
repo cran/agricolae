@@ -38,9 +38,14 @@ strip.plot(BLOCKS, COL, ROW, Y)
 library(agricolae)
 data(huasahuasi)
 attach(huasahuasi)
-modelo<-strip.plot(Block, Clon, Treat, yield)
-comparison<-LSD.test(yield,Clon,modelo$gl.a,modelo$Ea)
-comparison<-LSD.test(yield,Treat,modelo$gl.b,modelo$Eb)
+YIELD<-huasahuasi$YIELD
+attach(YIELD)
+market <- y1da + y2da
+non_market <- y3da
+yield <- market + non_market
+model<-strip.plot(block, clon, trt, yield)
+comparison<-LSD.test(yield,clon,model$gl.a,model$Ea)
+comparison<-LSD.test(yield,trt,model$gl.b,model$Eb)
 }
 \keyword{ models }% at least one, from doc/KEYWORDS
 

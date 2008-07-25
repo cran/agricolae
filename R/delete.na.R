@@ -1,4 +1,4 @@
-"delete.na" <-
+`delete.na` <-
 function (x, alternative = c("less", "greater") )
 {
 if (alternative == "less")

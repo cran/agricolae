@@ -1,4 +1,4 @@
-"LSD.test" <-
+`LSD.test` <-
 function (y, trt, DFerror, MSerror, alpha = 0.05, p.adj = c("none",
     "holm", "hochberg", "bonferroni", "BH", "BY", "fdr"), group = TRUE,
     main = NULL)
@@ -7,9 +7,9 @@ function (y, trt, DFerror, MSerror, alpha = 0.05, p.adj = c("none",
     name.y <- paste(deparse(substitute(y)))
     name.t <- paste(deparse(substitute(trt)))
     junto <- subset(data.frame(y, trt), is.na(y) == FALSE)
-    means <- tapply.stat(junto[, 2], junto[, 1], stat="mean")
-    sds <- tapply.stat(junto[, 2], junto[, 1], stat="sd")
-    nn <- tapply.stat(junto[, 2], junto[, 1], stat="length")
+    means <- tapply.stat(junto[, 1], junto[, 2], stat="mean") #change
+    sds <- tapply.stat(junto[, 1], junto[, 2], stat="sd")     #change
+    nn <- tapply.stat(junto[, 1], junto[, 2], stat="length")  #change
     means <- data.frame(means, std.err = sds[, 2]/sqrt(nn[, 2]),
         replication = nn[, 2])
     names(means)[1:2] <- c(name.t, name.y)
@@ -87,3 +87,4 @@ function (y, trt, DFerror, MSerror, alpha = 0.05, p.adj = c("none",
     }
     return(output)
     }
+

@@ -1,4 +1,4 @@
-"correlation" <-
+`correlation` <-
 function (x, y = NULL, method = c("pearson","kendall","spearman"), alternative = "two.sided")
 {
 x1<-x
@@ -142,7 +142,7 @@ pvalue[i,j]<-corr$pvalue
 }
 names(method)=""
 estimate<-round(estimate,2)
-pvalue<-round(pvalue,4)
+diag(pvalue)<-1
 cat("\nCorrelation Analysis\n\nMethod     :",method)
 cat("\nAlternative:",alternative,"\n\n")
 n1<-unique(c(nn))
@@ -152,3 +152,4 @@ return(lista)
 #-------------
 }
 }
+

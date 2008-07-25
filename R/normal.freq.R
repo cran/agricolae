@@ -1,9 +1,10 @@
-"normal.freq" <-
-function (histogram,probability=FALSE, ...)
+`normal.freq` <-
+function (histogram,frequency=1, ...)
 {
-    xx <- histogram$mids
-    if (probability==FALSE) yy <- histogram$counts
-    else yy <- histogram$density
+xx <- histogram$mids
+if(frequency==1)yy<-histogram$counts
+if(frequency==2)yy<-histogram$counts/sum(histogram$counts)
+if(frequency==3)yy<-histogram$density   
     media <- sum(yy * xx)/sum(yy)
     variancia <- sum(yy * (xx - media)^2)/sum(yy)
     zz <- histogram$breaks

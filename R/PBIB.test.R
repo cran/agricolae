@@ -5,7 +5,8 @@ function (block, trt, replication, y, k, method = "lsd", alpha = 0.05)
     trt.unadj <- as.factor(trt)
     replication <- as.factor(replication)
     name.y <- paste(deparse(substitute(y)))
-    model <- lm(y ~ replication + trt.unadj+ block.adj%in%replication)
+    modelo <- formula(paste(name.y,"~ replication + trt.unadj+ block.adj%in%replication"))
+    model <- lm(modelo)
     SCt <- anova(model)[2, 2]
     ntr <- nlevels(trt.unadj)
     r <- nlevels(replication)
@@ -16,7 +17,7 @@ function (block, trt, replication, y, k, method = "lsd", alpha = 0.05)
     glerror <- df.residual(model)
     Ee <- deviance(model)/glerror
     Eb <- anova(model)[3, 3]
-    mean.trt <- tapply.stat(trt, y, mean)[, 2]
+    mean.trt <- tapply.stat(y, trt, mean)[, 2]   # change
     X <- rep(0, obs * ntr)
     dim(X) <- c(obs, ntr)
     for (i in 1:obs) {
@@ -53,9 +54,18 @@ function (block, trt, replication, y, k, method = "lsd", alpha = 0.05)
     lambda <- 1/(r*k*(1/phi+1)-k)
 #   lambda <- 1/(r * k - k) only 1/phi = zero
     W <- t(N) %*% N - k * Ib - g * kronecker((Jr - Ir), Js)
+####################
+#    c1 <- W%*%c0
+#    for (ic in 1:100) {
+#    c1 <- W%*%c1
+#    }
+#    c2 <- W%*%c1
+#    print(c0); print(c1); print(c2)
+########################
     inversa <- pseudoinverse(Ib - lambda * W)
     tauIntra <- t(X) %*% y/r - lambda * N %*% inversa %*% c0
     vartau <- (Ee/r) * (Iv + lambda * N %*% inversa %*% t(N))
+#   vartau <- (Ee/r) * (Iv + lambda * N %*%t(N)+lambda^2 * N%*%W%*%t(N))
     vardif <- matrix(0, ntr, ntr)
     for (i in 1:(ntr - 1)) {
         for (j in (i + 1):ntr) {
@@ -69,8 +79,9 @@ function (block, trt, replication, y, k, method = "lsd", alpha = 0.05)
     cat("\nTrts  : ", ntr)
     cat("\n\nNumber of observations: ", length(y), "\n\n")
     print(anova(model))
-    cat("coefficient of variation:", round(cv.model(model), 1),
+    cat("\ncoefficient of variation:", round(cv.model(model), 1),
         "%\n")
+    cat(name.y, "Means:", mean(y,na.rm=TRUE), "\n") 
     cat("\nTreatments\n")
     cat("\nParameters PBIB")
     cat("\ntreatmeans :", ntr)
@@ -83,13 +94,14 @@ function (block, trt, replication, y, k, method = "lsd", alpha = 0.05)
     comb <- combn(ntr, 2)
     nn <- ncol(comb)
     dif <- rep(0, nn)
+    stdt <- rep(0, nn)
     pvalue <- rep(0, nn)
     for (k in 1:nn) {
         i <- comb[1, k]
         j <- comb[2, k]
         dif[k] <- abs(tauIntra[i] - tauIntra[j])
-        tc <- dif[k]/sqrt(vartau[i, i] + vartau[j, j] - 2 * vartau[i,
-            j])
+        stdt[k] <- sqrt(vartau[i, i] + vartau[j, j] - 2 * vartau[i,j])
+        tc <- dif[k]/stdt[k]
         if (method == "lsd")
             pvalue[k] <- 2 * round(1 - pt(tc, glerror), 4)
         if (method == "tukey")
@@ -100,9 +112,9 @@ function (block, trt, replication, y, k, method = "lsd", alpha = 0.05)
     tr.j <- comb[2, ]
     cat("\nComparison between treatments means\n")
     cat("\n<<< to see the objects: comparison and means  >>>\n\n")
-    comparison <- data.frame(row.names = NULL, tr.i, tr.j, diff = dif,
+    comparison <- data.frame(row.names = NULL, tr.i, tr.j, diff = dif, stderr=stdt,
         pvalue = pvalue)
     means <- data.frame(trt = 1:ntr, means = mean.trt, mean.adj = as.numeric(tauIntra),
         N = r, std.err = sqrt(diag(vartau)))
-    return(list(comparison = comparison, means = means))
+    return(list(comparison = comparison, means = means,vartau=vartau))
 }

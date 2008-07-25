@@ -67,7 +67,7 @@ text(data[,3],data[,4],data[,5],col="blue",cex=1)
 plot(dend,type="t",edgePar = list(lty=1:2, col=2:1))
 text(data[,3],data[,4],data[,5],col="blue",cex=1)
 # Without the control of duplicates
-output<-consensus( pamCIP,duplicate=FALSE,nboot=500)
+output<-consensus( pamCIP,duplicate=FALSE,nboot=100)
 }
 
 \keyword{ cluster }

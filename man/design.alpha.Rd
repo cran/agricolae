@@ -46,7 +46,7 @@ Number of treatment is equal to k*s
  }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{design.bib}}, \code{\link{lattice.simple}}}
+\seealso{\code{\link{design.bib}}, \code{\link{design.lattice}}, \code{\link{design.cyclic}}}
 
 \examples{
 library(agricolae)
@@ -60,13 +60,10 @@ s<-t/k
 # replications r
 r <- 2
 book<- design.alpha(trt,k,r)
-plots<-book[,1]
+plots<-book$book[,1]
 dim(plots)<-c(k,s,r)
 for (i in 1:r) print(t(plots[,,i]))
-trt<-as.numeric(book[,4])
-dim(trt)<-c(k,s,r)
-for (i in 1:r) print(t(trt[,,i]))
-
+book$design
 # Example two 
 trt<-letters[1:12] 
 t <- length(trt)
@@ -74,12 +71,10 @@ k<-3
 r<-3
 s<-t/k
 book<- design.alpha(trt,k,r)
-plots<-book[,1]
+plots<-book$book[,1]
 dim(plots)<-c(k,s,r)
 for (i in 1:r) print(t(plots[,,i]))
-trt<-book[,4]
-dim(trt)<-c(k,s,r)
-for (i in 1:r) print(t(trt[,,i]))
-
+book$design
+book$alpha
 }
 \keyword{ design }% __ONLY ONE__ keyword per line

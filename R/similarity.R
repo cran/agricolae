@@ -1,4 +1,4 @@
-"similarity" <-
+`similarity` <-
 function(A) {
 nc<-ncol(A)
 nf <- nrow(A)

@@ -1,5 +1,5 @@
- AMMI <-
- function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
+`AMMI` <-
+function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
     ...)
 {
     name.y <- paste(deparse(substitute(Y)))
@@ -134,7 +134,7 @@
         nssammi<-nrow(SSAMMI)
     SSAMMI<-SSAMMI[SSAMMI$Df>0,]
     nss<-nrow(SSAMMI)
-    row.names(SSAMMI) <- paste("CP", 1:nss, sep = "")
+    row.names(SSAMMI) <- paste("PC", 1:nss, sep = "")
     cat("\nAnalysis\n")
     
     print(SSAMMI)
@@ -142,7 +142,7 @@
     SCOREG <- U %*% LL
     SCOREE <- V %*% LL
     SCORES <- rbind(SCOREG, SCOREE)
-    colnames(SCORES) <- paste("CP", 1:nssammi, sep = "")
+    colnames(SCORES) <- paste("PC", 1:nssammi, sep = "")
     MSCORES <- SCORES[1:ngen, ]
     NSCORES <- SCORES[(ngen + 1):(ngen + nenv), ]
     MGEN <- data.frame(type = "GEN", Y = apply(OUTMED, 1, mean),
@@ -164,13 +164,13 @@
         if (number == TRUE) {
             plot(MGEN[, 3], MGEN[, 4], cex = 0, text(MGEN[, 3],
                 MGEN[, 4], labels = as.character(1:nrow(MGEN)),
-                col = "blue"), xlab = "CP 1", ylab = "CP 2",
+                col = "blue"), xlab = "PC 1", ylab = "PC 2",
                 frame = TRUE, ...)
         }
         if (number == FALSE) {
             plot(MGEN[, 3], MGEN[, 4], cex = 0, text(MGEN[, 3],
                 MGEN[, 4], labels = row.names(MGEN), col = "blue"),
-                xlab = "CP 1", ylab = "CP 2", frame = TRUE, ...)
+                xlab = "PC 1", ylab = "PC 2", frame = TRUE, ...)
         }
         points(MENV[, 3], MENV[, 4], cex = 0, text(MENV[, 3],
             MENV[, 4], labels = row.names(MENV), col = "brown"))
@@ -179,7 +179,7 @@
         arrows(0, 0, 0.9 * MENV[, 3][s], 0.9 * MENV[, 4][s],
             col = "brown", lwd = 1.8, length = 0.1, code = 2)
         legend("topleft", NULL, pch = c("1", "2"), cp.per[1:2],
-            , title = "CP     %", lty = 0)
+            , title = "PC     %", lty = 0)
     }
     if (graph == "triplot") {
         y <- bplot
@@ -209,7 +209,7 @@
         suppressWarnings(warning(text(tritrafo(point3), cp.name,
             adj = c(0.5, 0), cex = 1)))
         legend("topleft", NULL, pch = c("1", "2", "3"), cp.per,
-            , title = "CP     %", lty = 0)
+            , title = "PC     %", lty = 0)
         trilines(centerlines(3), lty = 2.5, col = "green", lwd = 2)
         for (i in 1:nlugar) {
             suppressWarnings(warning(trilines(c(point2[i, 1],
@@ -219,5 +219,4 @@
     }
     return(list(genXenv=OUTRES2, analysis=SSAMMI, means=MEDIAS, biplot=bplot))
 }
-
 

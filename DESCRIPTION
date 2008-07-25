@@ -1,12 +1,12 @@
 Package: agricolae
 Type: Package
 Title: Statistical Procedures for Agricultural Research
-Version: 1.0-4
-Date: 2007-09-11
+Version: 1.0-5
+Date: 2008-07-25
 Author: Felipe de Mendiburu
 Maintainer: Felipe de Mendiburu <f.mendiburu@cgiar.org>
 Suggests: akima, klaR, SuppDists, corpcor
-Description: These functions are currently utilized by the International Potato Center Research (CIP), the Statistics and Informatics Instructors and the Students of the Universidad Nacional Agraria La Molina Peru, and the Specialized Master in "Bosques y Gestion de Recursos Forestales" (Forest Resource Management). This package contains functionality for the statistical analysis of experimental designs applied specially for field experiments in  agriculture and plant breeding. Planning of field  experiments: Lattice, factorial, RCBD, CRD, Latin Square, Greaco, BIB, PBIB, Alpha design. Comparison of multi-location trials: AMMI (biplot and triplot), Stability. Comparison  between treatments: LSD, Bonferroni, HSD, Waller, Kruskal, Friedman, Durbin, Van Der Waerden. Resampling and simulation: resampling.model, simulation.model, analysis Mother and baby trials, Ecology: Indices Biodiversity, path analysis, consensus cluster, Uniformity Soil: Index Smith's. 
+Description: Agricolae is a project in order to obtain the degree of master in Systems Engineering in the National University of Engineering in Lima-Peru (UNI in Spanish). These functions are currently utilized by the International Potato Center Research (CIP), the Universidad Nacional Agraria La Molina (UNALM-PERU), and the Instituto Nacional de Investigacion Agricola (INIA-PERU). It comprises the functionality of statistical analysis into experimental designs applied specially for field experiments in  agriculture and plant breeding: Lattice, factorial, complete and incomplete block, Latin Square, Greaco, Alpha designs, Cyclic designs, comparison of multi-location trials, comparison  between treatments, resampling, simulation, biodiversity indexes and consensus cluster.
 License: GPL
 URL: http://tarwi.lamolina.edu.pe/~fmendiburu
-Packaged: Tue Sep 11 20:55:49 2007; hornik
+Packaged: Fri Jul 25 19:04:19 2008; fdemendiburu

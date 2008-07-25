@@ -1,4 +1,4 @@
-"kendall" <-
+`kendall` <-
 function(data1,data2) {
 n<-length(data1)
 n2<-0;n1<-0;is<-0

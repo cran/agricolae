@@ -1,4 +1,4 @@
-"reg.homog" <-
+`reg.homog` <-
 function(trt,y,x) {
 sumx<-function(x)(nrow(x)-1)*var(x)
 datos<-data.frame(trt,y,x)

@@ -38,17 +38,17 @@ bar.err(x, std = TRUE, horiz = FALSE, ...)
 \examples{
 library(agricolae)
 data(sweetpotato)
-attach(sweetpotato)
-model<-aov(yield~virus)
+model<-aov(yield~virus,data=sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
 Fc<-anova(model)[1,4]
+attach(sweetpotato)
 comparison <- waller.test(yield,virus,df, MSerror, Fc,
 main="Yield of sweetpotato\ndealt with different virus")
-# std = F (default) is standard error 
+detach(sweetpotato)
+# std = FALSE (default) is standard error 
 #startgraph
-par(mfrow=c(2,2))
-par(cex=1)
+par(mfrow=c(2,2),cex=1)
 bar.err(comparison,horiz=TRUE,xlim=c(0,45),angle=125,density=6,
  main="Standard deviation")
 bar.err(comparison,std=FALSE,horiz=TRUE,xlim=c(0,45),density=8,
@@ -57,6 +57,7 @@ bar.err(comparison,ylim=c(0,45),density=4,angle=125,col="green",
  main="Standard deviation")
 bar.err(comparison,std=FALSE,ylim=c(0,45),density=10,col="blue",
  main="Standard error")
+par(mfrow=c(1,1))
 #endgraph
 }
 \keyword{ aplot }% at least one, from doc/KEYWORDS

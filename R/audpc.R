@@ -1,4 +1,4 @@
-"audpc" <-
+`audpc` <-
 function(evaluation, dates, type = "absolute") {
 n<-length(dates)
 k<-ncol(evaluation)

@@ -1,4 +1,4 @@
-"vark" <-
+`vark` <-
 function(x, y)
     {
         ties.x <- rle(sort(x))$lengths

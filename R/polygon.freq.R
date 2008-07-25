@@ -1,8 +1,10 @@
-"polygon.freq" <-
-function(histogram, ...){
+`polygon.freq` <-
+function(histogram,frequency=1, ...){
 xx<-histogram$mids
-yy<-histogram$counts
 zz<-histogram$breaks
+if(frequency==1)yy<-histogram$counts
+if(frequency==2)yy<-histogram$counts/sum(histogram$counts)
+if(frequency==3)yy<-histogram$density
 x1 <- xx[1]-zz[2]+zz[1]
 z<-length(zz)
 x2<-xx[z-1]+zz[z]-zz[z-1]

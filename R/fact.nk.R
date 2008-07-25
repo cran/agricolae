@@ -1,4 +1,4 @@
-"fact.nk" <-
+`fact.nk` <-
 function(level,factors,blocks,seed=0,kinds="Super-Duper")
 {
 if(seed != 0) set.seed(seed,kinds)

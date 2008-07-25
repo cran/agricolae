@@ -37,11 +37,12 @@ x: data frame formed by 5 columns: name of the bars, height and level of the bar
 # Example 1
 library(agricolae)
 data(sweetpotato)
-attach(sweetpotato)
-model<-aov(yield~virus)
+model<-aov(yield~virus,data=sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
+attach(sweetpotato)
 comparison<- LSD.test(yield, virus,df,MSerror,alpha=0.01,group=TRUE)
+detach(sweetpotato)
 #startgraph
 par(cex=1.5)
 bar.group(comparison,horiz=TRUE,density=8,col="blue",border="red",xlim=c(0,50))

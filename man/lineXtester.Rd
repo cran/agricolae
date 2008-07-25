@@ -48,10 +48,18 @@ output:
 \examples{
 # see structure line by testers
 library(agricolae)
+# example 1
+data(heterosis)
+site1<-subset(heterosis,heterosis[,1]==1)
+attach(site1)
+output1<-lineXtester(Replication, Female, Male, v2)
+detach(site1)
+# example 2
 data(LxT)
 str(LxT)
 attach(LxT)
-analisis<-lineXtester(replication, line, tester, yield)
+output2<-lineXtester(replication, line, tester, yield)
+detach(LxT)
 
 }
 \keyword{ models }% at least one, from doc/KEYWORDS

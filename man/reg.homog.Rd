@@ -29,8 +29,8 @@ reg.homog(trt, y, x)
 
 \examples{
 library(agricolae)
-data(homog1)
-attach(homog1)
+data(frijol)
+attach(frijol)
 evaluation<-reg.homog(technology,production,index)
 }
 \keyword{ regression }% at least one, from doc/KEYWORDS

@@ -1,4 +1,4 @@
-"design.crd" <-
+`design.crd` <-
 function(trt,r,number=1,seed=0,kinds="Super-Duper")
 {
 junto<-data.frame(trt,r)

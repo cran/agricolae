@@ -1,12 +1,12 @@
-\name{ltrv}
-\alias{ltrv}
+\name{plrv}
+\alias{plrv}
 \docType{data}
-\title{ Data clones from the LTVR population }
+\title{ Data clones from the PLRV population }
 \description{
   Six environments: Ayacucho, La Molina 02, San Ramon 02, Huancayo,
   La Molina 03, San Ramon 03.
 }
-\usage{data(ltrv)}
+\usage{data(plrv)}
 \format{
   A data frame with 504 observations on the following 6 variables.
   \describe{
@@ -27,7 +27,7 @@
 }
 \examples{
 library(agricolae)
-data(ltrv)
-str(ltrv)
+data(plrv)
+str(plrv)
 }
 \keyword{datasets}

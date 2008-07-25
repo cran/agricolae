@@ -1,4 +1,4 @@
-"stat.freq" <-
+`stat.freq` <-
 function(histogram) {
 xx <- histogram$mids
 yy <- histogram$counts

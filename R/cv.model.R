@@ -1,4 +1,4 @@
-"cv.model" <-
+`cv.model` <-
 function(x) {
 suma2 <- sum(x$residual^2)
 gl <- x$df.residual

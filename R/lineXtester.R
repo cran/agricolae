@@ -1,6 +1,9 @@
-"lineXtester" <-
+`lineXtester` <-
 function(replications,lines,testers,y)
 {
+name.y <- deparse(substitute(y))
+
+cat("\nANALYSIS LINE x TESTER: ", name.y, "\n")
 replications<-as.factor(replications)
 lines<-as.factor(lines)
 testers<-as.factor(testers)

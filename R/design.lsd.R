@@ -1,4 +1,4 @@
-"design.lsd" <-
+`design.lsd` <-
 function (trt,number=1,seed=0,kinds="Super-Duper")
 {
 r <- length(trt)

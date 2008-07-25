@@ -27,7 +27,7 @@ Hibrido Mission (V1); Hibrido Mark (V2); Hibrido Topfligth (V3); Hibrido Hales B
   Universidad Agraria la Molina - Lima Peru.
 }
 \references{
-Universidad Agraria la Molina - Lima Peru
+ Universidad Nacional Agraria la molina.
 }
 \examples{
 library(agricolae)

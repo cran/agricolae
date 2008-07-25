@@ -12,8 +12,6 @@ hgroups(hmerge)
 \arguments{
   \item{hmerge}{ The object is components of the hclust}
 }
-\details{
-}
 \value{
   \item{data }{object merge of hcluster'}
 }

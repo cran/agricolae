@@ -8,17 +8,18 @@
   in the histogram.
 }
 \usage{
-normal.freq(histogram, probability = FALSE, ...)
+normal.freq(histogram, frequency=1, ...)
 }
 
 \arguments{
   \item{histogram}{ object constructed by the function hist}
-  \item{probability}{ when histogram is by density }
+  \item{frequency}{ 1=counts, 2=relative, 3=density }
   \item{\dots}{ Other parameters of the function hist }
 }
 
 \value{
   \item{Histogram }{object}
+  \item{frequency}{ numeric }  
   \item{probability }{logic False or True}
 }
 
@@ -33,12 +34,12 @@ library(agricolae)
 data(growth)
 attach(growth)
 #startgraph
-h1<-hist(height,col="green",xlim=c(8,14))
+h1<-hist(height,col="green",xlim=c(6,14))
 normal.freq(h1,col="blue")
 #endgraph
 #startgraph
-h2<-hist(height,col="yellow",xlim=c(8,14),probability=TRUE)
-normal.freq(h2,probability=TRUE)
+h2<-graph.freq(height,col="yellow",xlim=c(6,14),frequency=2)
+normal.freq(h2,frequency=2)
 #endgraph
 }
 \keyword{ aplot }% at least one, from doc/KEYWORDS

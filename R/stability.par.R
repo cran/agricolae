@@ -1,4 +1,4 @@
-"stability.par" <-
+`stability.par` <-
 function(data,rep,MSerror,alpha=0.1,main=NULL,cova=FALSE,
 name.cov=NULL,file.cov=0){
 #-----------

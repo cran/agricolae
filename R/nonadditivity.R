@@ -1,4 +1,4 @@
-"nonadditivity" <-
+`nonadditivity` <-
 function (y,factor1, factor2, df, MSerror)
 {
 name.y <- paste(deparse(substitute(y)))

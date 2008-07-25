@@ -35,6 +35,18 @@ American Journal Potato Research 75, pag 211-217.
 library(agricolae)
 data(haynes)
 stability.nonpar(haynes,"YIELD",ranking=TRUE)
+# Example 2
+data(CIC)
+data1<-CIC$comas[,c(1,6,7,17,18)]
+data2<-CIC$oxapampa[,c(1,6,7,19,20)]
+cic <- rbind(data1,data2)
+attach(cic)
+means <- by(cic[,5], cic[,c(2,1)], function(x) mean(x,na.rm=TRUE))
+means <-as.data.frame(means[,])
+cic.mean<-data.frame(genotype=row.names(means),means)
+cic.mean<-delete.na(cic.mean,"greater")
+stability.nonpar(cic.mean)
+
 }
 \keyword{ nonparametric }% at least one, from doc/KEYWORDS
 

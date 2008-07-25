@@ -1,17 +1,10 @@
-"simulation.model" <-
+`simulation.model` <-
 function(k,file,model,categorical=NULL) {
 modelo<-model
 parte<-strsplit(model,"~")[[1]]
-name.y<-strsplit(parte[1]," ")[[1]]
-nm<-names(file)
-nc<-length(nm)
-for(i in 1:nc){
-if (name.y==nm[i]) pos.dep=i
-}
 model<-as.formula(model)
 posicion<-0
 if(length(categorical)>0){
-#posicion<-as.numeric(strsplit(categorical,",")[[1]])
 posicion<-categorical
 n<-length(posicion)
 for( i in 1:n) {
@@ -32,10 +25,12 @@ m<-length(predicho)
 sd.model<-sqrt(deviance(ecuacion)/gl[gk+1])
 f<-rep(0,k)
 cuenta <- rep(0,gk)
+model <- paste("y","~",parte[2])
+model<-as.formula(model)
 for(i in 1:k){
 errores<-rnorm(m,0,sd.model)
 # Simula nuevos datos experimentales
-file[pos.dep]<-predicho+errores
+y<-predicho+errores
 simula<-lm(model,data=file)
 for (j in 1:gk){
 f[j]<-anova(simula)[j,4]

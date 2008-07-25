@@ -7,16 +7,18 @@
   It is necessary to execute the function previously hist.
 }
 \usage{
-polygon.freq(histogram, ...)
+polygon.freq(histogram, frequency=1, ...)
 }
 
 \arguments{
   \item{histogram}{ Object constructed by the function hist }
+  \item{frequency}{ numeric, counts(1), relative(2) and density(3) }
   \item{\dots}{ Other parameters of the function hist }
 }
 
 \value{
   \item{histogram }{Object}
+  \item{frecuency}{ 1=counts, 2=relative, 3=density }
 }
 \author{ Felipe de Mendiburu Delgado }
 
@@ -30,11 +32,11 @@ data(growth)
 attach(growth)
 #startgraph
 h1<-hist(height,border=FALSE,xlim=c(6,14))
-polygon.freq(h1,col="red")
+polygon.freq(h1,frequency=1,col="red")
 #endgraph
 #startgraph
-h2<-hist(height,col="yellow",xlim=c(6,14))
-polygon.freq(h2,col="red")
+h2<-graph.freq(height,frequency=2,col="yellow",xlim=c(6,14))
+polygon.freq(h2,frequency=2,col="red")
 #endgraph
 }
 \keyword{ aplot }% at least one, from doc/KEYWORDS

@@ -1,4 +1,4 @@
-"grid3p" <-
+`grid3p` <-
 function(x,y,z,m,n) {
 xmax<-max(x); xmin<-min(x); ymax<-max(y); ymin<-min(y)
 x2<-seq(xmin,xmax,length=m)

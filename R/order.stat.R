@@ -1,4 +1,4 @@
-"order.stat" <-
+`order.stat` <-
 function(treatment,means,minimum) {
 n<-length(means)
 z<-data.frame(treatment,means)

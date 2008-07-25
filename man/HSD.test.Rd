@@ -48,6 +48,7 @@ df<-df.residual(model)
 MSerror<-deviance(model)/df
 comparison <- HSD.test(yield,virus,df,MSerror, group=TRUE,
 main="Yield of sweetpotato. Dealt with different virus")
+detach(sweetpotato)
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS
 

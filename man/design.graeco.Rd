@@ -7,7 +7,7 @@
   treatments simultaneously with three different blocking variables, each 
   at k levels.
   
-  The function is only for squares of the odd numbers and even numbers (4, 8 and 12)
+  The function is only for squares of the odd numbers and even numbers (4, 8, 10 and 12)
 }
 \usage{
 design.graeco(trt1, trt2, number = 1, seed = 0, kinds = "Super-Duper")
@@ -47,12 +47,19 @@ Wiley Classics Library Edition published 1992.
 library(agricolae)
 T1<-c("a","b","c","d")
 T2<-c("v","w","x","y")
-greco <-  design.graeco(T1,T2,number=101)
-plots <-as.numeric(greco[,1])
-trt <- paste(greco[,4],greco[,5])
+graeco <-  design.graeco(T1,T2,number=101)
+plots <-as.numeric(graeco[,1])
+trt <- paste(graeco[,4],graeco[,5])
 dim(plots)<-c(4,4)
 dim(trt) <-c(4,4)
 print(t(plots))
+print(t(trt))
+# 10 x 10
+T1 <- letters[1:10]
+T2 <- 1:10
+graeco <-  design.graeco(T1,T2)
+trt <- paste(graeco[,4],graeco[,5])
+dim(trt) <-c(10,10)
 print(t(trt))
 }
 \keyword{ design }

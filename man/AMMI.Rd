@@ -51,30 +51,33 @@ Steel & Torry & Dickey. Third Edition 1997
 library(agricolae)
 library(klaR)
 # Example 1
-data(ltrv)
+data(plrv)
 #startgraph
 # biplot
-model<- AMMI(ltrv[,2], ltrv[,1], ltrv[,3], ltrv[,5],xlim=c(-3,3),ylim=c(-4,4),
+model<- AMMI(plrv[,2], plrv[,1], plrv[,3], plrv[,5],xlim=c(-3,3),ylim=c(-4,4),
 graph="biplot")
-model<- AMMI(ltrv[,2], ltrv[,1], ltrv[,3], ltrv[,5],xlim=c(-3,3),ylim=c(-4,4),
+model<- AMMI(plrv[,2], plrv[,1], plrv[,3], plrv[,5],xlim=c(-3,3),ylim=c(-4,4),
 graph="biplot",number=FALSE)
 # triplot
-model<- AMMI(ltrv[,2], ltrv[,1], ltrv[,3], ltrv[,5],graph="triplot")
-model<- AMMI(ltrv[,2], ltrv[,1], ltrv[,3], ltrv[,5],graph="triplot",number=FALSE)
+model<- AMMI(plrv[,2], plrv[,1], plrv[,3], plrv[,5],graph="triplot")
+model<- AMMI(plrv[,2], plrv[,1], plrv[,3], plrv[,5],graph="triplot",number=FALSE)
 #endgraph
 # Example 2
 data(CIC)
-attach(CIC)
+data1<-CIC$comas[,c(1,6,7,17,18)]
+data2<-CIC$oxapampa[,c(1,6,7,19,20)]
+cic <- rbind(data1,data2)
+attach(cic)
 #startgraph
 par(cex=0.6)
-model<-AMMI(Environment, Genotype, Rep, Relative,xlim=c(-0.6,0.6),
+model<-AMMI(Locality, Genotype, Rep, relative,xlim=c(-0.6,0.6),
 ylim=c(-1.5e-8,1.5e-8))
 #endgraph
 pc<- princomp(model$genXenv, cor = FALSE)
 pc$loadings
 summary(pc)
 model$biplot
-detach(CIC)
+detach(cic)
 # Example 3
 # Only means. Mean square error is well-known.
 data(sinRepAmmi)
@@ -95,15 +98,15 @@ bplot<-model$biplot[,1:4]
 attach(bplot)
 #startgraph
 par(cex=0.8)
-plot(YLD,CP1,cex=0.0,text(YLD,CP1,labels=row.names(bplot),col="blue"),
+plot(YLD,PC1,cex=0.0,text(YLD,PC1,labels=row.names(bplot),col="blue"),
  main="AMMI BIPLOT",frame=TRUE)
-media<-mean(YLD)
-abline(h=0,v= media,lty=2,col="red")
+MEANS<-mean(YLD)
+abline(h=0,v= MEANS,lty=2,col="red")
 amb<-subset(bplot,type=="ENV")
 detach(bplot)
 attach(amb)
 s <- seq(length(YLD))
-arrows(media, 0, 0.9*(YLD[s]-media)+media, 0.9*CP1[s], col= "brown",
+arrows(MEANS, 0, 0.9*(YLD[s]-MEANS)+MEANS, 0.9*PC1[s], col= "brown",
 lwd=1.8,length=0.1)
 #endgraph
 detach(amb)
@@ -116,5 +119,4 @@ round(values$values*100/total,2)
 # AMMI: 64.81 18.58 13.50  3.11  0.00
 }
 \keyword{ models }% at least one, from doc/KEYWORDS
-
 

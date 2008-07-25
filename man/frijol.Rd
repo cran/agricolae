@@ -1,5 +1,5 @@
-\name{homog1}
-\alias{homog1}
+\name{frijol}
+\alias{frijol}
 \docType{data}
 \title{ Data of frijol }
 \description{
@@ -12,7 +12,7 @@
   60-120-60 kg/ha. N. P2O5 and K2O + 2 t/ha of gallinaza.
   40-80-40 kg/ha.  N. P2O5 and K2O + 4 t/ha of gallinaza.
 }
-\usage{data(homog1)}
+\usage{data(frijol)}
 \format{
   A data frame with 84 observations on the following 3 variables.
   \describe{
@@ -28,8 +28,8 @@ Colombia.
 }
 \examples{
 library(agricolae)
-data(homog1)
-str(homog1)
+data(frijol)
+str(frijol)
 }
 \keyword{datasets}
 

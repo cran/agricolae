@@ -1,5 +1,5 @@
-"tapply.stat" <-
-function (x, y, stat = "mean")
+`tapply.stat` <-
+function (y, x, stat = "mean")
 {
 cx<-deparse(substitute(x))
 cy<-deparse(substitute(y))

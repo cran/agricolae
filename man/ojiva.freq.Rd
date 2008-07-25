@@ -10,7 +10,7 @@
 ojiva.freq(histogram, ...)
 }
 \arguments{
-  \item{histogram}{ object created by the function hist() }
+  \item{histogram}{ object created by the function hist() or graph.freq()}
   \item{\dots}{ Parameters of the hist() }
 }
 \value{
@@ -30,8 +30,8 @@ data(growth)
 attach(growth)
 
 #startgraph
-h1<-hist(height,plot=FALSE)
-points<-ojiva.freq(h1,type="l",col="red",frame=FALSE,
+h<-graph.freq(height,plot=FALSE)
+points<-ojiva.freq(h,type="l",col="red",frame=FALSE,
 xlab="Limit of class", ylab="Accumulated relative frequency", main="ojiva")
 grid(col="black")
 #endgraph

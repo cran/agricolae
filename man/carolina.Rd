@@ -27,23 +27,24 @@ model = 1,2 and 3 is I, II and III see carolina1,2 and 3.
              Singh, Chaudhary. 1979 }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{carolina1}}, \code{\link{carolina2}}, \code{\link{carolina3} } }
+\seealso{\code{\link{DC}} }
 \examples{
 
 library(agricolae)
-data(carolina1)
+data(DC)
+carolina1 <- DC$carolina1
 # str(carolina1)
 output<-carolina(model=1,carolina1)
 output[][-1]
 
-data(carolina2)
+carolina2 <- DC$carolina2
 # str(carolina2)
 majes<-subset(carolina2,carolina2[,1]==1)
 majes<-majes[,c(2,5,4,3,6:8)]
 output<-carolina(model=2,majes[,c(1:4,6)])
 output[][-1]
 
-data(carolina3)
+carolina3 <- DC$carolina3
 # str(carolina3)
 output<-carolina(model=3,carolina3)
 output[][-1]

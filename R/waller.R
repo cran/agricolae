@@ -1,4 +1,4 @@
-"waller" <-
+`waller` <-
 function(K,q,f,Fc) {
 a0<-1
 b0<-20

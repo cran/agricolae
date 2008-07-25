@@ -1,4 +1,4 @@
-"lastC" <-
+`lastC` <-
 function(x) {
 y<-sub(" +$", "",x)
 p1<-nchar(y)
