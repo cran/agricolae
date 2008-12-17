@@ -23,6 +23,7 @@ resampling.cv(A, size, npoints)
   \item{npoints}{ numeric }
 }
 
+\references{Efron, B., Tibshirani, R. (1993) An Introduction to the Boostrap. Chapman and Hall/CRC }
 \author{ Felipe de Mendiburu }
 
 \seealso{\code{\link{cv.similarity}}, \code{\link{similarity} } }

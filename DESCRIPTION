@@ -1,12 +1,12 @@
 Package: agricolae
 Type: Package
 Title: Statistical Procedures for Agricultural Research
-Version: 1.0-5
-Date: 2008-07-25
+Version: 1.0-6
+Date: 2008-12-17
 Author: Felipe de Mendiburu
 Maintainer: Felipe de Mendiburu <f.mendiburu@cgiar.org>
 Suggests: akima, klaR, SuppDists, corpcor
 Description: Agricolae is a project in order to obtain the degree of master in Systems Engineering in the National University of Engineering in Lima-Peru (UNI in Spanish). These functions are currently utilized by the International Potato Center Research (CIP), the Universidad Nacional Agraria La Molina (UNALM-PERU), and the Instituto Nacional de Investigacion Agricola (INIA-PERU). It comprises the functionality of statistical analysis into experimental designs applied specially for field experiments in  agriculture and plant breeding: Lattice, factorial, complete and incomplete block, Latin Square, Greaco, Alpha designs, Cyclic designs, comparison of multi-location trials, comparison  between treatments, resampling, simulation, biodiversity indexes and consensus cluster.
 License: GPL
 URL: http://tarwi.lamolina.edu.pe/~fmendiburu
-Packaged: Fri Jul 25 19:04:19 2008; fdemendiburu
+Packaged: Wed Dec 17 09:47:13 2008; fdemendiburu

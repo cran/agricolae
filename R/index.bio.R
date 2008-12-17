@@ -1,6 +1,6 @@
 `index.bio` <-
 function (data, method = c("Margalef","Simpson.Dom", "Simpson.Div", "Berger.Parker",
-"McIntosh","Shannon"),level = 95, nboot = 500, noprint=FALSE)
+"McIntosh","Shannon"),level = 95, nboot = 500, console=TRUE)
 {
     method <- match.arg(method)
     x <- data
@@ -27,7 +27,7 @@ function (data, method = c("Margalef","Simpson.Dom", "Simpson.Div", "Berger.Park
     }
     lic = as.numeric(quantile(estimador, (1 - 0.01 * level)/2, type = 6))
     lsc = as.numeric(quantile(estimador, (1 + 0.01 * level)/2, type = 6))
-    if (!noprint) {
+    if (console) {
     cat("\nMethod:", method, "\n")
     cat("\nThe index:", index, "\n\n")
     cat(level, "percent confidence interval:\n", lic, ";", lsc, 

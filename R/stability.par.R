@@ -107,7 +107,6 @@ SKH <- SKVM - SKMB
 MKH <- SKH / (A - 1)
 SHKLT <- M * (A - 1) * (N - 1)
 
-# valor tabulares
 T05 <- qt(0.95,SHKLT)
 DMV05 <- T05 * sqrt(2 * MKE / (N * M))
 for ( i in 1: A) {
@@ -132,58 +131,51 @@ for ( i in 1: A) {
 FS[i] <- SI[i] / MKE
 FSS[i] <- S[i] / MKE
 }
-SHF1 <-(A - 1) * (M - 1); SHF2 = (A - 1)
+SHF2 <-(A - 1) * (M - 1); SHF1 = (A - 1)
 # value F and t-student
 F05 <- qf(0.95,SHF1, SHF2)
 F01 <- qf(0.99,SHF1, SHF2)
-if( FV >= F01 ) DD <- "**"
-if( (FV < F01) & (FV >= F05) ) DD <- "*"
-if( FV <  F05 ) DD <- "ns"
-SHF1 <- M * (A - 1) * (N - 1)
-SHF2 <- M - 1
+pvalue <- round(1-pf( FV ,SHF1, SHF2),3)
+DD<-paste("",pvalue)
+if (pvalue <0.001) DD<-"<0.001"
+SHF2 <- M * (A - 1) * (N - 1)
+SHF1 <- M - 1
 F05 <- qf(0.95,SHF1, SHF2)
 F01 <- qf(0.99,SHF1, SHF2)
-if( FM >= F01 ) NNN <- "**"
-if( (FM < F01) & (FM >= F05) ) NNN <- "*"
-if( FM < F05 ) NNN <- "ns"
-SHF1 <- M * (A - 1) * (N - 1); SHF2 <- (A - 1) * (M - 1)
+pvalue<- round(1-pf( FM ,SHF1, SHF2),3)
+NNN<-paste("",pvalue)
+if (pvalue <0.001) NNN<-"<0.001"
+SHF2 <- M * (A - 1) * (N - 1); SHF1 <- (A - 1) * (M - 1)
 F05 <- qf(0.95,SHF1, SHF2)
 F01 <- qf(0.99,SHF1, SHF2)
-if( FVM >= F01 ) LL <- "**"
-if( (FVM < F01) & (FVM >= F05) ) LL <- "*"
-if( FVM < F05 ) LL <- "ns"
-
-SHF1 <- (A - 1) * (M - 2); SHF2 <- A - 1
+pvalue <-  round(1-pf( FVM ,SHF1, SHF2),3)
+LL<-paste("",pvalue)
+if (pvalue <0.001) LL<-"<0.001"
+SHF2 <- (A - 1) * (M - 2); SHF1 <- A - 1
 F05 <- qf(0.95,SHF1, SHF2)
 F01 <- qf(0.99,SHF1, SHF2)
-
-if( FH >= F01 ) HH <- "**"
-if( (FH < F01) & (FH >= F05) ) HH <- "*"
-if( FH < F05 ) HH <- "ns"
-SHF1 <- M * (A - 1) * (N - 1); SHF2 <- (A - 1) * (M - 2)
+pvalue <-  round(1-pf( FH ,SHF1, SHF2),3)
+HH<-paste("",pvalue)
+if (pvalue <0.001) HH<-"<0.001"
+SHF2 <- M * (A - 1) * (N - 1); SHF1 <- (A - 1) * (M - 2)
 F05 <- qf(0.95,SHF1, SHF2)
 F01 <- qf(0.99,SHF1, SHF2)
-if( FMS >= F01 ) BB <- "**"
-if( (FMS < F01) & (FMS >= F05) ) BB <- "*"
-if( FMS < F05 ) BB <- "ns"
-
-SHF1 <- M * (A - 1) * (N - 1)
-SHF2 <- M - 1
+pvalue <-  round(1-pf( FMS ,SHF1, SHF2),4)
+BB<-paste("",pvalue)
+if (pvalue <0.001) BB<-"<0.001"
+SHF2 <- M * (A - 1) * (N - 1)
+SHF1 <- M - 1
 F05 <- qf(0.95,SHF1, SHF2)
 F01 <- qf(0.99,SHF1, SHF2)
-#F05<- 1.76  # verdadero valor es:   2.413671281
-#F01<- 2.2   # 3.620981178
 for ( i in 1: A) {
 if(FS[i] >= F01 ) NN[i] <- "**"
 if( (FS[i] < F01) & (FS[i] >= F05) ) NN[i] <- "*"
 if( FS[i] < F05 ) NN[i] <- "ns"
 }
-SHF1 <- M * (A - 1) * (N - 1)
-SHF2 <- M - 2
+SHF2 <- M * (A - 1) * (N - 1)
+SHF1 <- M - 2
 F05 <- qf(0.95,SHF1, SHF2)
 F01 <- qf(0.99,SHF1, SHF2)
-#F05<- 1.76  # True is:   2.546791447
-#F01<- 2.2   # 3.927394672
 for ( i in 1: A) {
 if( FSS[i] >= F01 ) MMM[i] <- "**"
 if( (FSS[i] < F01) & (FSS[i] >= F05) ) MMM[i] <- "*"
@@ -196,7 +188,7 @@ cat("\n","                       YIELD - STABILITY (YSi) STATISTICS")
 cat("\n\n",RR,"\n",KK," - covariate \n")
 cat("\n","Analysis of Variance")
 cat("\n",rep("-",35))
-cat("\n","Source         d.f.   Sum of Squares  Mean Squares         F")
+cat("\n","Source         d.f.   Sum of Squares  Mean Squares         F  p.value")
 cat("\n",rep("-",35))
 fuentes<- c( "TOTAL       ","GENOTYPES", "ENVIRONMENTS","INTERACTION",
              "HETEROGENEITY" , "RESIDUAL","POOLED ERROR")
@@ -255,19 +247,15 @@ for ( i in 1: A) {
 cat("\n",i, "\t", Z[i,1],"\t", Z[i,2], Z[i,3], "\t",Z[i,4], Z[i,5],"\t", Z[i,6])
 }
 FF <- SI / MKE # each genotype
-SHF1 <- M * (A - 1) * (N - 1); SHF2 <- M - 1
+SHF2 <- M * (A - 1) * (N - 1); SHF1 <- M - 1
 F05 <- qf(0.95,SHF1, SHF2)
 F01 <- qf(0.99,SHF1, SHF2)
-#F05<- 1.76  # True value:   2.546791447
-#F01<- 2.2   # 3.927394672
-
 for ( i in 1: A) {
 if( FF[i] < FM0) F1[i] <- 0
 if( FF[i] >= FM0) F1[i] <- -2
 if( FF[i] >= F05) F1[i] <- -4
 if( FF[i] >= F01) F1[i] <- -8
 }
-
 for ( i in 1: A) {
 R0 <- 1
 for ( j in 1: A) {
@@ -275,7 +263,6 @@ if( MV[j] < MV[i]) R0 <- R0 + 1
 }
 R[i] <- R0
 }
-
 for ( i in 1: A) GY[i] <- R[i] + MV1[i]
 for ( i in 1: A) GYS[i] <- GY[i] + F1[i]
 SGYS<-0
@@ -294,7 +281,7 @@ Z<-data.frame(Genotype=rownames(y),MV, R, MV1,GY,SI,F1,GYS,GYY)
 names(Z)<-names
 print(data.frame( row.names=NULL,Z))
 cat("\n","Yield Mean:", MES)
-cat("\n","YS    Mean:", MGYS)
+cat("`\n","YS    Mean:", MGYS)
 cat("\n","LSD (0.05):", DMV05)
 cat("\n",rep("-",11))
 cat("\n","+   selected genotype"                                            )

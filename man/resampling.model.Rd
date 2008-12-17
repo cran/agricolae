@@ -23,6 +23,7 @@ resampling.model(k, data, model)
   \item{model}{ model }
 }
 
+\references{Efron, B., Tibshirani, R. (1993) An Introduction to the Boostrap. Chapman and Hall/CRC }
 \author{ Felipe de Mendiburu }
 
 \seealso{\code{\link{simulation.model} } }
