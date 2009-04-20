@@ -18,7 +18,7 @@ index.smith(data, ...)
 }
 \details{
  
- $V_{x}=\frac{V_{(x)}}{x^b}$
+ Vx=V(x)/x b
  
 
  V(x) is the between-plot variance,

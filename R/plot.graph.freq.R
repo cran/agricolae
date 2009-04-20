@@ -1,4 +1,4 @@
-`graph.freq` <-
+`plot.graph.freq` <-
 function (x, breaks="sturges",counts=NULL,frequency=1, plot=TRUE, nclass=NULL,xlab="",ylab="",...)
 {
 if (xlab=="") xlab= deparse(substitute(x))
@@ -68,7 +68,7 @@ a<-breaks[1]-ancho[1]/2
 b<-breaks[k+1]+ancho[k]/2
 relative<-round(counts/sum(counts),4)
 density <- relative/ancho
-histogram<-structure(list(breaks=breaks,counts=counts,mids=mids,relative=relative,density=density),class="graph.freq")
+histogram<-list(breaks=breaks,counts=counts,mids=mids,relative=relative,density=density)
 
 if(plot) {
 x <- c(a, b)
@@ -92,3 +92,4 @@ suppressWarnings(warning(rect(breaks[j], 0, breaks[j + 1], density[j], ...)))
 }
     invisible(histogram)
 }
+

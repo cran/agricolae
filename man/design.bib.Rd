@@ -42,7 +42,7 @@ library(agricolae)
 # 4 treatments and k=3 size block
 trt<-c("A","B","C","D")
 k<-3
-bib <-design.bib(trt,k,number=101,seed =41,kinds ="Super-Duper") # seed = 37
+bib <-design.bib(trt,k,number=101,seed =41,kinds ="Super-Duper") # seed = 41
 plots <-as.numeric(bib[,1])
 field <-as.character(bib[,3])
 t(matrix(plots,c(3,4)))

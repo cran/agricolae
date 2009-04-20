@@ -30,7 +30,9 @@ index.bio(data, method = c("Margalef", "Simpson.Dom", "Simpson.Div", "Berger.Par
   \item{level }{ value 0-100 percentage }
   \item{nboot }{ size 100, 500,... }
 }
-\references{Efron, B., Tibshirani, R. (1993) An Introduction to the Boostrap. Chapman and Hall/CRC }
+\references{Magurran, A.E. (1988) Ecological diversity and its measurement. Princeton University Press
+Efron, B., Tibshirani, R. (1993) An Introduction to the Boostrap. Chapman and Hall/CRC 
+}
 \author{ Felipe de Mendiburu }
 \examples{
 library(agricolae)

@@ -15,7 +15,7 @@ cv.model(x)
   \item{x}{ object of model lm() or AOV() }
 }
 \details{
-$\frac{sqrt(MSerror)}{mean(x)}\*100$
+sqrt(MSerror)*100/mean(x)
 }
 \value{
 

@@ -12,13 +12,7 @@ skewness(x)
 \arguments{
   \item{x}{a numeric vector}
 }
-\details{
 
-n = length(x)
-
-$\frac{n}{(n-1)(n-2)}\sum_{i}\left(\frac{x_i - mean(x)}{sd(x)}\right)^3$
-
-}
 \value{
 
   \item{x }{The skewness of x}

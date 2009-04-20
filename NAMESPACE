@@ -1,0 +1,3 @@
+exportPattern("^[[:alpha:]]+")
+S3method(summary,graph.freq)
+S3method(plot,graph.freq)

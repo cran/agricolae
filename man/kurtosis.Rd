@@ -13,13 +13,7 @@ kurtosis(x)
 \arguments{
   \item{x}{ a numeric vector }
 }
-\details{
 
-n = length(x)
-
-$\frac{n(n+1)}{(n-1)(n-2)(n-3)}\sum_{i}\left(\frac{x_i - mean(x)}{sd(x)}\right)^4 - \frac{3(n-1)^2}{(n-2)(n-3)}$
-
-}
 \value{
 
   \item{x }{ The kurtosis of x }

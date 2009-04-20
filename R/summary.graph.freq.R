@@ -1,5 +1,5 @@
-`table.freq` <-
-function(object){
+`summary.graph.freq` <-
+function(object,...){
 xx<-object$mids
 yy<-object$counts
 y1<-sum(yy)
