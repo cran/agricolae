@@ -34,9 +34,11 @@ s <- (y-r*(k+1)/2)^2
 s1 <- sum(s)
 # determina el valor de Durbin
 gl1<-ntr-1 ;gl2<-b*k-ntr-b+1
-s <- 12*(ntr-1)*s1/(r*ntr*(k-1)*(k+1))
+C <- b*k*(k+1)^2/4
+A <- sum(rango^2)
+s <- (ntr - 1) * s1/(A-C)
 prob<-1-pchisq(s,gl1); Tprob<-qt(1-alpha/2,gl2)
-sdtdif<- sqrt( r*k*(k+1)*(b*(k-1)-s)/(6*gl2))
+sdtdif <- sqrt(2*r*(A-C)*(1-s/(b*(k-1)))/gl2)
 LSD <-Tprob*sdtdif
 # s,prob,Tprob,Mc,gl1,gl2)
 # Impresion de resultados
@@ -87,4 +89,3 @@ output<-data.frame(means,M="",N=r)
 #
 return(output)
 }
-

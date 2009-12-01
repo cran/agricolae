@@ -1,5 +1,5 @@
 `simulation.model` <-
-function(k,file,model,categorical=NULL) {
+function(model,file,categorical=NULL,k) {
 modelo<-model
 parte<-strsplit(model,"~")[[1]]
 model<-as.formula(model)

@@ -10,15 +10,18 @@ function (y, trt, DFerror, MSerror, alpha = 0.05, p.adj = c("none",
     means <- tapply.stat(junto[, 1], junto[, 2], stat="mean") #change
     sds <- tapply.stat(junto[, 1], junto[, 2], stat="sd")     #change
     nn <- tapply.stat(junto[, 1], junto[, 2], stat="length")  #change
-    means <- data.frame(means, std.err = sds[, 2]/sqrt(nn[, 2]),
-        replication = nn[, 2])
+    std.err <- sds[, 2]/sqrt(nn[, 2])
+    Tprob <- qt(1 - alpha/2, DFerror)
+    LCI <- means[,2]-Tprob*std.err
+    UCI <- means[,2]+Tprob*std.err
+    means <- data.frame(means, std.err, replication = nn[, 2],
+    LCI, UCI)
     names(means)[1:2] <- c(name.t, name.y)
     #row.names(means) <- means[, 1]
     ntr <- nrow(means)
     nk <- choose(ntr, 2)
-    if (p.adj == "none")
-        Tprob <- qt(1 - alpha/2, DFerror)
-    else {
+    if (p.adj != "none")
+        {
         a <- 1e-06
         b <- 1
         for (i in 1:100) {
@@ -43,7 +46,7 @@ function (y, trt, DFerror, MSerror, alpha = 0.05, p.adj = c("none",
     xtabla <- data.frame(...... = nvalor)
     row.names(xtabla) <- nfila
     print(xtabla)
-    cat("\nTreatment Means\n")
+    cat("\nTreatment Means and Individual (1-alpha)*100% CI\n")
     print(data.frame(row.names = NULL, means))
     if (group) {
         if (length(nr) == 1) {
@@ -60,6 +63,8 @@ function (y, trt, DFerror, MSerror, alpha = 0.05, p.adj = c("none",
         cat("\n\nGroups, Treatments and means\n")
         output <- order.group(means[, 1], means[, 2], means[,
             4], MSerror, Tprob, means[, 3])
+        w<-order(means[,2],decreasing = TRUE)
+        output <- data.frame(output,LCI=means[w,5],UCI=means[w,6])
     }
     if (!group) {
         comb <- combn(ntr, 2)
@@ -83,7 +88,7 @@ function (y, trt, DFerror, MSerror, alpha = 0.05, p.adj = c("none",
         print(data.frame(row.names = NULL, tr.i, tr.j, diff = dif,
             pvalue = pvalue))
         output <- data.frame(trt = means[, 1], means = means[,
-            2], M = "", N = means[, 4], std.err = means[, 3])
+            2], M = "", N = means[, 4], std.err ,LCI,UCI)
     }
     return(output)
     }

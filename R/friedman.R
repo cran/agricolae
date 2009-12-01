@@ -50,11 +50,14 @@ C1 <-m[1]*m[2]*(m[2]+1)^2/4
 T1.aj <-(m[2]-1)*(t(s)%*%s-m[1]*C1)/(A1-C1)
 T2.aj <-(m[1]-1)*T1.aj/(m[1]*(m[2]-1)-T1.aj)
 p.value<-1-pchisq(T1.aj,m[2]-1)
-p.fried<-1-pFriedman(T1.aj, ntr, nr)
-cat("\nChi-squard:",T1.aj)
-cat("\nPvalue    :",p.value)
-cat("\npFriedman :",p.fried)
-cat("\nAlpha     :",alpha)
+p.noadj<-1-pchisq(T1,m[2]-1)
+PF<-1-pf(T2.aj, ntr-1, (ntr-1)*(nr-1) )
+cat("\nAdjusted for ties")
+cat("\nValue:",T1.aj)
+cat("\nPvalue chisq :",p.value)
+cat("\nF value :",T2.aj)
+cat("\nPvalue F:",PF)
+cat("\n\nAlpha     :",alpha)
 cat("\nt-Student :",Tprob)
 #...............
 #cat("\nReplication:\t",nr)
@@ -80,7 +83,7 @@ dif[k]<-abs(s[comb[1,k]]-s[comb[2,k]])
 sdtdif<- sqrt(2*(m[1]*A1-t(s)%*%s)/DFerror)
 pvalue[k]<- 2*round(1-pt(dif[k]/sdtdif,DFerror),4)
 LSD[k]<-round(Tprob*sdtdif,2)
-if (dif[k] >= LSD[k]) stat[k]<-"*" 
+if (dif[k] >= LSD[k]) stat[k]<-"*"
 }
 tr.i<-comb[1,]
 tr.j<-comb[2,]
@@ -91,4 +94,3 @@ output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,3])
 }
 return(output)
 }
-

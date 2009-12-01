@@ -54,10 +54,8 @@ library(klaR)
 data(plrv)
 #startgraph
 # biplot
-model<- AMMI(plrv[,2], plrv[,1], plrv[,3], plrv[,5],xlim=c(-3,3),ylim=c(-4,4),
-graph="biplot")
-model<- AMMI(plrv[,2], plrv[,1], plrv[,3], plrv[,5],xlim=c(-3,3),ylim=c(-4,4),
-graph="biplot",number=FALSE)
+model<- AMMI(plrv[,2], plrv[,1], plrv[,3], plrv[,5],graph="biplot")
+model<- AMMI(plrv[,2], plrv[,1], plrv[,3], plrv[,5],graph="biplot",number=FALSE)
 # triplot
 model<- AMMI(plrv[,2], plrv[,1], plrv[,3], plrv[,5],graph="triplot")
 model<- AMMI(plrv[,2], plrv[,1], plrv[,3], plrv[,5],graph="triplot",number=FALSE)
@@ -70,7 +68,7 @@ cic <- rbind(data1,data2)
 attach(cic)
 #startgraph
 par(cex=0.6)
-model<-AMMI(Locality, Genotype, Rep, relative,xlim=c(-0.6,0.6),
+model<-AMMI(Locality, Genotype, Rep, relative,
 ylim=c(-1.5e-8,1.5e-8))
 #endgraph
 pc<- princomp(model$genXenv, cor = FALSE)
@@ -85,7 +83,7 @@ attach(sinRepAmmi)
 REP <- 3
 MSerror <- 93.24224
 #startgraph
-model<-AMMI(ENV, GEN, REP, YLD, MSerror,xlim=c(-8,6),ylim=c(-6,6))
+model<-AMMI(ENV, GEN, REP, YLD, MSerror)
 #endgraph
 pc<- princomp(model$genXenv, cor = FALSE)
 pc$loadings

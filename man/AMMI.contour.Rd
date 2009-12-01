@@ -39,7 +39,7 @@ REP <- 3
 MSerror <- 93.24224
 # Example 1
 #startgraph
-model<-AMMI(ENV, GEN, REP, YLD, MSerror,xlim=c(-8,6),ylim=c(-6,6))
+model<-AMMI(ENV, GEN, REP, YLD, MSerror)
 AMMI.contour(model,distance=0.7,shape=8,col="red",lwd=2,lty=5)
 #endgraph
 # Example 2

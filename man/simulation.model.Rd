@@ -13,21 +13,21 @@
   (F > F.value).
 }
 \usage{
-simulation.model(k, file, model, categorical = NULL)
+simulation.model(model,file, categorical = NULL,k)
 }
 
 \arguments{
-  \item{k}{ Number of simulations. }
-  \item{file}{ Data for the study of the model.}
   \item{model}{ Model in R.}
+  \item{file}{ Data for the study of the model.}  
   \item{categorical}{ position of the columns of the data that correspond
    to categorical variables. }
+  \item{k}{ Number of simulations. }
 }
 \value{
-  \item{k}{ constant numeric. }
-  \item{file}{ data frame}
   \item{model}{ Model}
+  \item{file}{ data frame}
   \item{categorical}{ Numeric}
+  \item{k}{ constant numeric. }
 }  
 \author{ Felipe de Mendiburu }
 
@@ -38,19 +38,19 @@ library(agricolae)
 #example 1
 data(clay)
 model<-"ralstonia ~ days"
-simulation.model(100,clay,model)
+simulation.model(model,clay,k=100)
 #example 2
 data(sweetpotato)
 model<-"yield~virus"
-simulation.model(100,sweetpotato,model,categorical=1)
+simulation.model(model,sweetpotato,categorical=1,k=100)
 #example 3
 data(Glycoalkaloids)
 model<-"HPLC ~ spectrophotometer"
-simulation.model(100,Glycoalkaloids,model)
+simulation.model(model,Glycoalkaloids,k=100)
 #example 4
 data(potato)
 model<-"cutting~date+variety"
-simulation.model(100,potato,model,categorical=c(1,2,3))
+simulation.model(model,potato,categorical=c(1,2,3),k=100)
 
 }
 \keyword{ models }% at least one, from doc/KEYWORDS

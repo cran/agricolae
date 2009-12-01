@@ -46,6 +46,10 @@ yield <- market + non_market
 model<-strip.plot(block, clon, trt, yield)
 comparison<-LSD.test(yield,clon,model$gl.a,model$Ea)
 comparison<-LSD.test(yield,trt,model$gl.b,model$Eb)
+# simple effects
+out<-by(yield,trt, function(x) LSD.test(x, clon, model$gl.c, model$Ec))
+out
+
 }
 \keyword{ models }% at least one, from doc/KEYWORDS
 

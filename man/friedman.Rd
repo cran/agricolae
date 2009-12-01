@@ -36,7 +36,6 @@ friedman(judge,trt,evaluation,alpha=0.05,group=TRUE,main=NULL)
 \seealso{ \code{\link{kruskal}}, \code{\link{durbin.test}} }
 
 \examples{
-library(SuppDists)
 library(agricolae)
 data(grass)
 attach(grass)

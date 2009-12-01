@@ -44,7 +44,7 @@ Wiley Classics Library Edition published 1992
 \seealso{\code{\link{BIB.test}}, \code{\link{design.alpha}} }
 \examples{
 library(agricolae)
-library(corpcor)
+library(MASS)
 # alpha design 
 trt<-1:30
 ntr<-length(trt)

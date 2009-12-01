@@ -62,7 +62,7 @@ function (block, trt, replication, y, k, method = "lsd", alpha = 0.05)
 #    c2 <- W%*%c1
 #    print(c0); print(c1); print(c2)
 ########################
-    inversa <- pseudoinverse(Ib - lambda * W)
+    inversa <- ginv(Ib - lambda * W)
     tauIntra <- t(X) %*% y/r - lambda * N %*% inversa %*% c0
     vartau <- (Ee/r) * (Iv + lambda * N %*% inversa %*% t(N))
 #   vartau <- (Ee/r) * (Iv + lambda * N %*%t(N)+lambda^2 * N%*%W%*%t(N))

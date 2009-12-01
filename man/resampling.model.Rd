@@ -4,26 +4,30 @@
 \title{ Resampling for linear models }
 \description{
   This process consists of finding the values of P-value by means of a 
-  re-sampling process along with the values obtained by variance analysis.
+  re-sampling (permutation) process along with the values obtained by variance analysis.
 }
 \usage{
-resampling.model(k, data, model)
+resampling.model(model,data,k)
 }
 
 \arguments{
-  \item{k}{ number of re-samplings }
-  \item{data}{ data for the study of the model }
   \item{model}{ model in R }
+  \item{data}{ data for the study of the model }
+  \item{k}{ number of re-samplings }
 }
 
 \value{
 
-  \item{k}{ constant numeric }
-  \item{data}{ data frame }
   \item{model}{ model }
+  \item{data}{ data frame }
+  \item{k}{ constant numeric }
+
 }
 
-\references{Efron, B., Tibshirani, R. (1993) An Introduction to the Boostrap. Chapman and Hall/CRC }
+\references{
+{Efron, B., Tibshirani, R. (1993) An Introduction to the Boostrap. Chapman and Hall/CRC }
+{Phillip I. Good, (2001) Resampling Methods. Birkhauser. Boston . Basel . Berlin } 
+}
 \author{ Felipe de Mendiburu }
 
 \seealso{\code{\link{simulation.model} } }
@@ -33,17 +37,17 @@ resampling.model(k, data, model)
 library(agricolae)
 data(clay)
 model<-"ralstonia ~ days"
-analysis<-resampling.model(200,clay,model)
+analysis<-resampling.model(model,clay,k=200)
 
 #example 2 Analysis of variance: RCD
 data(sweetpotato)
 model<-"yield~virus"
-analysis<-resampling.model(300,sweetpotato,model)
+analysis<-resampling.model(model,sweetpotato,k=300)
 
 #example 3 Simple linear regression
 data(Glycoalkaloids)
 model<-"HPLC ~ spectrophotometer"
-analysis<-resampling.model(100,Glycoalkaloids,model)
+analysis<-resampling.model(model,Glycoalkaloids,k=100)
 
 #example 4 Factorial in RCD
 
@@ -51,7 +55,7 @@ data(potato)
 potato[,1]<-as.factor(potato[,1])
 potato[,2]<-as.factor(potato[,2])
 model<-"cutting~variety + date + variety:date"
-analysis<-resampling.model(100,potato,model)
+analysis<-resampling.model(model,potato,k=100)
 
 }
 \keyword{ multivariate }% at least one, from doc/KEYWORDS

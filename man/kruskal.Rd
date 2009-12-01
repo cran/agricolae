@@ -29,7 +29,6 @@ kruskal(y, trt, alpha = 0.05, group=TRUE, main = NULL)
 \seealso{ \code{\link{friedman}}, \code{\link{durbin.test}} }
 
 \examples{
-library(SuppDists)
 library(agricolae)
 data(corn)
 attach(corn)

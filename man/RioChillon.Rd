@@ -33,7 +33,6 @@
 }
 \examples{
 # Analisys the Mother/Baby Trial Design
-library(SuppDists)
 library(agricolae)
 data(RioChillon)
 # First analysis the Mother Trial Design.

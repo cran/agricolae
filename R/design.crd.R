@@ -18,9 +18,9 @@ for (i in 2:tr) y <- c(y, rep(TR[i], r[i]))
 for (i in 2:length(r)) {
 	r1<-c(r1,seq(1,r[i]))
 }
-yy<-data.frame(xx,r=r1)
+yy<-data.frame(plots=xx[,1],r=r1,xx[,2])
 book<-yy[order(yy[,1]),]
-names(book)[2]<-c(paste(deparse(substitute(trt))))
+names(book)[3]<-c(paste(deparse(substitute(trt))))
 return(book)
 }
 

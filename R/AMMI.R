@@ -136,7 +136,6 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
     nss<-nrow(SSAMMI)
     row.names(SSAMMI) <- paste("PC", 1:nss, sep = "")
     cat("\nAnalysis\n")
-    
     print(SSAMMI)
     LL <- sqrt(diag(L))
     SCOREG <- U %*% LL
@@ -161,16 +160,16 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
     cp.name <- rownames(SSAMMI)[1:3]
     cp.per <- SSAMMI[1:3, 1]
     if (graph == "biplot") {
-        if (number == TRUE) {
-            plot(MGEN[, 3], MGEN[, 4], cex = 0, text(MGEN[, 3],
-                MGEN[, 4], labels = as.character(1:nrow(MGEN)),
-                col = "blue"), xlab = "PC 1", ylab = "PC 2",
+    plot(bplot[,3],bplot[,4],cex=0, xlab = "PC 1", ylab = "PC 2",
                 frame = TRUE, ...)
+        if (number == TRUE) {
+            text(MGEN[, 3], MGEN[, 4], cex = 0, text(MGEN[, 3],
+                MGEN[, 4], labels = as.character(1:nrow(MGEN)),
+                col = "blue"))
         }
         if (number == FALSE) {
-            plot(MGEN[, 3], MGEN[, 4], cex = 0, text(MGEN[, 3],
-                MGEN[, 4], labels = row.names(MGEN), col = "blue"),
-                xlab = "PC 1", ylab = "PC 2", frame = TRUE, ...)
+            text(MGEN[, 3], MGEN[, 4], cex = 0, text(MGEN[, 3],
+                MGEN[, 4], labels = row.names(MGEN), col = "blue"))
         }
         points(MENV[, 3], MENV[, 4], cex = 0, text(MENV[, 3],
             MENV[, 4], labels = row.names(MENV), col = "brown"))
@@ -219,4 +218,3 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
     }
     return(list(genXenv=OUTRES2, analysis=SSAMMI, means=MEDIAS, biplot=bplot))
 }
-

@@ -44,5 +44,5 @@ trt<-c(as.numeric(t(c1)),as.numeric(t(c2)),as.numeric(t(c3)))
 plots<-(number-1)+1:(3*k*k)
 plan<-data.frame(plots,sqr=sqr,block=block,trt=trt)
 if (type=="triple") return(list(square1=c1,square2=c2,square3=c3,plan=plan))
-if (type=="simple") return(list(square1=c1,square2=c2,plan=subset(plan,plan[,3]<3)))
+if (type=="simple") return(list(square1=c1,square2=c2,plan=subset(plan,as.numeric(plan[,2])<3)))
 }

@@ -22,13 +22,11 @@ DFerror<-N - ntr
         S <- (sum(junto[, 1]^2) - (N * (N + 1)^2)/4)/(N - 1)
         H <- (rs - (N * (N + 1)^2)/4)/S
     cat("\nStudy:",main)
-    cat("\nKruskal-Wallis test's\n")
+    cat("\nKruskal-Wallis test's\nTies or no Ties\n")
     cat("\nValue:", H)
     cat("\ndegrees of freedom:", ntr - 1)
     p.chisq <- 1 - pchisq(H, ntr - 1)
-    p.kw <- 1-pKruskalWallis(H, ntr, N, U)
     cat("\nPvalue chisq  :", p.chisq)
-    cat("\npKruskalWallis:", p.kw, "\n")
     DFerror <- N - ntr
     Tprob <- qt(1 - alpha/2, DFerror)
     MSerror <- S * ((N - 1 - H)/(N - ntr))
@@ -52,7 +50,7 @@ cat("\nAlpha    :",alpha)
          cat("\nLSD      :", LSD1,"\n")
          cat("\nHarmonic Mean of Cell Sizes ", nr1)
          }
-cat("\nMeans with the same letter are not significantly different\n")
+cat("\n\nMeans with the same letter are not significantly different\n")
 cat("\nGroups, Treatments and mean of the ranks\n")
 output <- order.group(means[,1], means[,2], means[,3], MSerror, Tprob,std.err=sqrt(MSerror/ means[,3]))
  }

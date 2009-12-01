@@ -1,5 +1,5 @@
 `resampling.model` <-
-function(k,data,model) {
+function(model,data,k) {
 modelo<-model
 parte<-strsplit(model,"~")[[1]]
 model<-as.formula(model)
