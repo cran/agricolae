@@ -1,12 +1,13 @@
 `consensus` <-
 function(data,distance=c("binary","euclidean","maximum","manhattan","canberra",
-"minkowski"),method=c("complete","ward","single","average","mcquitty","median",
+"minkowski","gower"),method=c("complete","ward","single","average","mcquitty","median",
 "centroid"),nboot=500,duplicate=TRUE,cex.text=1,col.text="red", ...)
 {
 t0<-Sys.time()
 distance <- match.arg(distance)
 method <- match.arg(method)
-distancia<-dist(data,method=distance)
+if(distance=="gower") distancia<-daisy(data,metric=distance)
+else distancia<-dist(data,method=distance)
 nc<-ncol(data)
 nr<-nrow(data)
 dend<-hclust(distancia,method=method)
@@ -37,7 +38,7 @@ ndup1<-nrow(dup1)
 ncdup<-ncol(dup1)
 for ( i in 1:ndup0) {
 for ( j in 1:ndup1) {
-if(sum(dup0[i,2:ncdup]==dup1[j,-1],na.rm=TRUE) == ncdup-1){ 
+if(sum(dup0[i,2:ncdup]==dup1[j,-1],na.rm=TRUE) == ncdup-1){
 dup0[i,ncdup+1]<-dup1[j,1]
 break
 }
@@ -51,7 +52,8 @@ data<-rbind(data,add1)
 rownames(data)<-data[,1]
 data<-data[,c(-1,-2)]
 nc<-ncol(data)
-distancia<-dist(data,method=distance)
+if(distance=="gower") distancia<-daisy(data,metric=distance)
+else distancia<-dist(data,method=distance)
 dend<-hclust(distancia,method=method)
 duplicate<-dup0[dup0[,ncdup+1]!="",][,c(1,ncdup+1)]
 names(duplicate)[1]<-"duplicate"
@@ -73,7 +75,8 @@ d<-NULL
 for ( k in 1: b) {
 muestra<-sample(1:nc,replace=TRUE)
 boot1<-data[,muestra]
-distancia<-dist(boot1,method=distance)
+if(distance=="gower") distancia<-daisy(boot1,metric=distance)
+else distancia<-dist(boot1,method=distance)
 d1<-hclust(distancia,method=method)$merge
 d1<-hgroups(d1)
 d<-rbind(d,d1)
@@ -129,4 +132,3 @@ plot(dend,...)
 text(p,cc[,3],ceiling(cc[,4]),cex=cex.text,col=col.text)
 return(list(table.dend=table.dend,dendrogram=dend,duplicates=duplicate) )
 }
-

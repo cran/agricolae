@@ -1,6 +1,6 @@
 \name{waller.test}
 \alias{waller.test}
-%- waller.group.
+%- waller.test.
 \title{ Multiple comparisons, Waller-Duncan }
 \description{
   The Waller-Duncan k-ratio t test is performed on all main effect means
@@ -11,8 +11,8 @@
 waller.test(y, trt, DFerror, MSerror, Fc, K = 100, group=TRUE, main = NULL)
 }
 \arguments{
-  \item{y}{ Variable response }
-  \item{trt}{ Treatments }
+  \item{y}{ model(aov or lm) or answer of the experimental unit  }
+  \item{trt}{ Constant( only y=model) or vector treatment applied to each experimental unit  }
   \item{DFerror}{ Degrees of freedom }
   \item{MSerror}{ Mean Square Error }
   \item{Fc}{ F Value }
@@ -31,8 +31,8 @@ and 0.01. By default, the procedure uses the default value of 100.
 }
 \value{
 
-  \item{y }{Numeric}
-  \item{trt }{factor}
+  \item{y }{class (aov or lm) or vector numeric}
+  \item{trt }{constant (only y=model) or vector alfanumeric}
   \item{DFerror }{Numeric}
   \item{MSerror }{Numeric}
   \item{Fc }{Numeric}
@@ -54,27 +54,32 @@ Principles and procedures of statistics a biometrical approach
 }
 \author{ Felipe de Mendiburu}
 
-\seealso{\code{\link{HSD.test}}, \code{\link{LSD.test}}, \code{\link{bar.err}},
- \code{\link{bar.group}} }
+\seealso{\code{\link{HSD.test}}, \code{\link{LSD.test}}, \code{\link{SNK.test} }, 
+\code{\link{bar.err}}, \code{\link{bar.group}},\code{\link{duncan.test} } }
 
 \examples{
 library(agricolae)
 data(sweetpotato)
-attach(sweetpotato)
-model<-aov(yield~virus)
-df<-df.residual(model)
-MSerror<-deviance(model)/df
-Fc<-anova(model)[1,4]
-comparison <- waller.test(yield, virus, df, MSerror, Fc, group=TRUE, 
-main="Yield of sweetpotato. Dealt with different virus")
-# std = F (default) is standard error
+model<-aov(yield~virus, data=sweetpotato)
+comparison <- waller.test(model,"virus", group=TRUE,
+main="Yield of sweetpotato\nDealt with different virus")
 #startgraph
 par(mfrow=c(2,2))
-bar.err(comparison,std=TRUE,horiz=TRUE,xlim=c(0,45),density=4)
-bar.err(comparison,std=TRUE,horiz=FALSE,ylim=c(0,45),density=8,col="blue")
+# std = TRUE (default) is standard deviation
+# std = FALSE is standard error
+bar.err(comparison,std=FALSE,horiz=TRUE,xlim=c(0,45),density=4)
+bar.err(comparison,std=FALSE,horiz=FALSE,ylim=c(0,45),density=8,col="blue")
 bar.group(comparison,horiz=FALSE,ylim=c(0,45),density=8,col="red")
 bar.group(comparison,horiz=TRUE,xlim=c(0,45),density=4,col="green")
 #endgraph
+# Old version HSD.test()
+attach(sweetpotato)
+df<-df.residual(model)
+MSerror<-deviance(model)/df
+Fc<-anova(model)["virus",4]
+comparison <- waller.test(yield, virus, df, MSerror, Fc, group=TRUE, 
+main="Yield of sweetpotato. Dealt with different virus")
+detach(sweetpotato)
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS
 

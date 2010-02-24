@@ -35,9 +35,9 @@ rs<-s-m[1]*(m[2]+1)/2
 T1<-12*t(rs)%*%rs/(m[1]*m[2]*(m[2]+1))
 T2<-(m[1]-1)*T1/(m[1]*(m[2]-1)-T1)
 # Impresion de resultados
-cat("\nStudy:",main)
-cat("\n\nSum of the ranks\n")
-print(data.frame( row.names=NULL,means))
+cat("\nStudy:",main,"\n\n")
+cat(paste(name.t,",",sep="")," Sum of the ranks\n\n")
+print(data.frame(row.names = means[,1], means[,-1]))
 cat("\nFriedman's Test")
 cat("\n===============")
 A1<-0
@@ -64,7 +64,7 @@ cat("\nt-Student :",Tprob)
 if (group) {
 cat("\nLSD       :",LSD)
 cat("\n\nMeans with the same letter are not significantly different.")
-cat("\nGroup, Treatment and Sum of the ranks\n")
+cat("\nGroupTreatment and Sum of the ranks\n")
 s<-as.numeric(s)
 output<-order.stat(name,s,LSD)
 names(output)[2]<-"Sum of ranks"
@@ -74,23 +74,37 @@ comb <-combn(ntr,2)
 nn<-ncol(comb)
 dif<-rep(0,nn)
 pvalue<-rep(0,nn)
+LCL<-dif
+UCL<-dif
+sig<-NULL
 LSD<-rep(0,nn)
 stat<-rep("ns",nn)
 for (k in 1:nn) {
 i<-comb[1,k]
 j<-comb[2,k]
+if (means[i, 2] < means[j, 2]){
+comb[1, k]<-j
+comb[2, k]<-i
+}
 dif[k]<-abs(s[comb[1,k]]-s[comb[2,k]])
 sdtdif<- sqrt(2*(m[1]*A1-t(s)%*%s)/DFerror)
-pvalue[k]<- 2*round(1-pt(dif[k]/sdtdif,DFerror),4)
+pvalue[k]<- 2*round(1-pt(dif[k]/sdtdif,DFerror),6)
 LSD[k]<-round(Tprob*sdtdif,2)
-if (dif[k] >= LSD[k]) stat[k]<-"*"
+LCL[k] <- dif[k] - LSD[k]
+UCL[k] <- dif[k] + LSD[k]
+sig[k]<-" "
+if (pvalue[k] <= 0.001) sig[k]<-"***"
+else  if (pvalue[k] <= 0.01) sig[k]<-"**"
+else  if (pvalue[k] <= 0.05) sig[k]<-"*"
+else  if (pvalue[k] <= 0.1) sig[k]<-"."
 }
-tr.i<-comb[1,]
-tr.j<-comb[2,]
+tr.i <- means[comb[1, ],1]
+tr.j <- means[comb[2, ],1]
+output<-data.frame("Difference" = dif, pvalue=pvalue,sig,LCL,UCL)
+rownames(output)<-paste(tr.i,tr.j,sep=" - ")
 cat("\n\nComparison between treatments\nSum of the ranks\n\n")
-print(data.frame(row.names=NULL,tr.i,tr.j,diff=dif,pvalue=pvalue,signf=stat,LSD=LSD))
-
+print(output)
 output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,3])
 }
-return(output)
+invisible(output)
 }

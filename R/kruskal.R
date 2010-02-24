@@ -26,15 +26,15 @@ DFerror<-N - ntr
     cat("\nValue:", H)
     cat("\ndegrees of freedom:", ntr - 1)
     p.chisq <- 1 - pchisq(H, ntr - 1)
-    cat("\nPvalue chisq  :", p.chisq)
+    cat("\nPvalue chisq  :", p.chisq,"\n\n")
     DFerror <- N - ntr
     Tprob <- qt(1 - alpha/2, DFerror)
     MSerror <- S * ((N - 1 - H)/(N - ntr))
 #cat("\nComparison of treatments")
 #...............
-cat("\nMean of the ranks\n")
 means[,2]<- means[, 2]/means[, 3]
-print(data.frame( row.names=NULL,means))
+cat(paste(name.t,",",sep="")," means of the ranks\n\n")
+print(data.frame(row.names = means[,1], means[,-1]))
 nr <- unique(means[,3])
 if (group) {
 Tprob<-qt(1-alpha/2,DFerror)
@@ -50,7 +50,7 @@ cat("\nAlpha    :",alpha)
          cat("\nLSD      :", LSD1,"\n")
          cat("\nHarmonic Mean of Cell Sizes ", nr1)
          }
-cat("\n\nMeans with the same letter are not significantly different\n")
+cat("\nMeans with the same letter are not significantly different\n")
 cat("\nGroups, Treatments and mean of the ranks\n")
 output <- order.group(means[,1], means[,2], means[,3], MSerror, Tprob,std.err=sqrt(MSerror/ means[,3]))
  }
@@ -58,24 +58,39 @@ output <- order.group(means[,1], means[,2], means[,3], MSerror, Tprob,std.err=sq
 comb <-combn(ntr,2)
 nn<-ncol(comb)
 dif<-rep(0,nn)
+LCL<-dif
+UCL<-dif
+sig<-NULL
 pvalue<-rep(0,nn)
 LSD<-rep(0,nn)
 stat<-rep("ns",nn)
 for (k in 1:nn) {
 i<-comb[1,k]
 j<-comb[2,k]
+if (means[i, 2] < means[j, 2]){
+comb[1, k]<-j
+comb[2, k]<-i
+}
 dif[k]<-abs(means[i,2]-means[j,2])
 sdtdif<- sqrt(S*((N-1-H)/(N-ntr))*(1/means[i,3]+1/means[j,3]))
-pvalue[k]<- 2*round(1-pt(dif[k]/sdtdif,DFerror),4)
-LSD[k]<-round(Tprob*sdtdif,2)
-if (dif[k] >= LSD[k]) stat[k]<-"*" 
+pvalue[k]<- 2*round(1-pt(dif[k]/sdtdif,DFerror),6)
+LSD<-Tprob*sdtdif
+LCL[k] <- dif[k] - LSD
+UCL[k] <- dif[k] + LSD
+sig[k]<-" "
+if (pvalue[k] <= 0.001) sig[k]<-"***"
+else  if (pvalue[k] <= 0.01) sig[k]<-"**"
+else  if (pvalue[k] <= 0.05) sig[k]<-"*"
+else  if (pvalue[k] <= 0.1) sig[k]<-"."
 }
-tr.i<-comb[1,]
-tr.j<-comb[2,]
-cat("\nComparison between treatments mean of the ranks\n")
-print(data.frame(row.names=NULL,tr.i,tr.j,diff=dif,pvalue=pvalue,signf=stat,LSD=LSD))
+tr.i <- means[comb[1, ],1]
+tr.j <- means[comb[2, ],1]
+output<-data.frame("Difference" = dif, pvalue=pvalue,sig,LCL,UCL)
+rownames(output)<-paste(tr.i,tr.j,sep=" - ")
+cat("\nComparison between treatments mean of the ranks\n\n")
+print(output)
 output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,3])
 }
-    return(output)
+    invisible(output)
 }
 

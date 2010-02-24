@@ -43,8 +43,9 @@ LSD <-Tprob*sdtdif
 # s,prob,Tprob,Mc,gl1,gl2)
 # Impresion de resultados
 cat("\nStudy:",main,"\n")
-cat("\nSum of ranks\n")
-print(data.frame( row.names=NULL,means))
+cat(paste(name.t,",",sep="")," Sum of ranks\n\n")
+nameTrt<-as.character(means[,1])
+print(data.frame(row.names = nameTrt, sum=means[,2]))
 cat("\nDurbin Test")
 cat("\n===========")
 cat("\nValue      :",s)
@@ -67,25 +68,36 @@ cat("\nGroups, Treatments and sum of the ranks\n\n")
 y<-as.numeric(y)
 output<-order.stat(name,y,LSD)
 }
+
 if (!group) {
 comb <-combn(ntr,2)
 nn<-ncol(comb)
 dif<-rep(0,nn)
 pvalue<-rep(0,nn)
-stat<-rep("ns",nn)
+sig<-rep(" ",nn)
 for (kk in 1:nn) {
 i<-comb[1,kk]
 j<-comb[2,kk]
+if (y[i] < y[j]){
+comb[1,kk]<-j
+comb[2,kk]<-i
+}
 dif[kk]<-abs(y[comb[1,kk]]-y[comb[2,kk]])
-pvalue[kk]<- 2*round(1-pt(dif[kk]/sdtdif,gl2),4)
-if (dif[kk] >= LSD) stat[kk]<-"*"
+pvalue[kk]<- 2*round(1-pt(dif[kk]/sdtdif,gl2),6)
+sig[kk]<-" "
+if (pvalue[kk] <= 0.001) sig[kk]<-"***"
+else  if (pvalue[kk] <= 0.01) sig[kk]<-"**"
+else  if (pvalue[kk] <= 0.05) sig[kk]<-"*"
+else  if (pvalue[kk] <= 0.1) sig[kk]<-"."
 }
-tr.i<-comb[1,]
-tr.j<-comb[2,]
+tr.i <- nameTrt[comb[1, ]]
+tr.j <- nameTrt[comb[2, ]]
 cat("\nComparison between treatments sum of the ranks\n\n")
-print(data.frame(row.names=NULL,tr.i,tr.j,diff=dif,pvalue=pvalue,signf=stat))
-output<-data.frame(means,M="",N=r)
+output<-data.frame("Difference" = dif, pvalue=pvalue,sig)
+rownames(output)<-paste(tr.i,tr.j,sep=" - ")
+print(output)
 }
+output<-data.frame(means,M="",N=r)
 #
-return(output)
+invisible(output)
 }

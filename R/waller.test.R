@@ -3,6 +3,19 @@ function (y, trt, DFerror, MSerror, Fc, K = 100, group=TRUE,main = NULL)
 {
     name.y <- paste(deparse(substitute(y)))
     name.t <- paste(deparse(substitute(trt)))
+    clase<-c("aov","lm")
+    if("aov"%in%class(y) | "lm"%in%class(y)){
+    A<-y$model
+    DFerror<-df.residual(y)
+    MSerror<-deviance(y)/DFerror
+    ipch<-pmatch(trt,names(A))
+    if( is.na(ipch)) return(cat("Name: ",trt,"\n",names(A)[-1],"\n"))
+    name.t <-names(A)[ipch]
+    Fc<-anova(y)[trt,4]
+    trt<-A[,ipch]
+    y<-A[,1]
+    name.y <- names(A)[1]
+    }
     junto <- subset(data.frame(y, trt), is.na(y) == FALSE)
     means <- tapply.stat(junto[,1],junto[,2],stat="mean") # change
     sds <-   tapply.stat(junto[,1],junto[,2],stat="sd")   # change
@@ -23,8 +36,9 @@ nvalor<-c( K,  DFerror, MSerror, Fc, Tprob)
 xtabla<-data.frame("......"=nvalor)
 row.names(xtabla)<-nfila
 print(xtabla)
-cat("\nTreatment Means\n")
-print(data.frame( row.names=NULL,means))
+cat("\n")
+cat(paste(name.t,",",sep="")," means\n\n")
+print(data.frame(row.names = means[,1], means[,-1]))
     if (length(nr) == 1) {
         MSD <- Tprob * sqrt(2 * MSerror/nr)
         cat("\nMinimum Significant Difference", MSD)
@@ -46,24 +60,28 @@ MSD1<-rep(0,nn)
 for (k in 1:nn) {
 i<-comb[1,k]
 j<-comb[2,k]
+if (means[i, 2] < means[j, 2]){
+comb[1, k]<-j
+comb[2, k]<-i
+}
 dif[k]<-abs(means[i,2]-means[j,2])
 MSD1[k]<-Tprob*sqrt(MSerror * (1/means[i,4] + 1/means[j,4]))
 }
-
-tr.i<-comb[1,]
-tr.j<-comb[2,]
-
-cat("\nComparison between treatments means\n\n")
+tr.i <- means[comb[1, ],1]
+tr.j <- means[comb[2, ],1]
 if (length(nr) == 1)  {
 significant = dif > MSD
-print(data.frame(row.names=NULL,tr.i,tr.j,diff=dif,significant))
+output<-data.frame("Difference" = dif, significant)
 }
 else  {
 significant = dif > MSD1
-print(data.frame(row.names=NULL,tr.i,tr.j,diff=dif,MSD=MSD1,significant))
+output<-data.frame("Difference" = dif, MSD=MSD1,significant)
 }
+rownames(output)<-paste(tr.i,tr.j,sep=" - ")
+cat("\nComparison between treatments means\n\n")
+print(output)
 output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,4],std.err=means[,3])
 }
-return(output)
+invisible(output)
 }
 

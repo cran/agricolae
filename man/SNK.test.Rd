@@ -1,13 +1,14 @@
-\name{HSD.test}
-\alias{HSD.test}
-%- HSD.
-\title{ Multiple comparisons: Tukey  }
+\name{SNK.test}
+\alias{SNK.test}
+%- SNK.
+\title{ Student-Newman-Keuls (SNK) }
 \description{
-  It makes multiple comparisons of treatments by means of Tukey.
-  The level by alpha default is 0.05.
+  SNK is derived from Tukey, but it is less conservative (finds more differences).
+  Tukey controls the error for all comparisons, where SNK only controls for 
+  comparisons under consideration. The level by alpha default is 0.05.
 }
 \usage{
-HSD.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL)
+SNK.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL)
 }
 
 \arguments{
@@ -37,25 +38,21 @@ HSD.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL)
              Steel & Torry & Dickey. Third Edition 1997 }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{LSD.test}}, \code{\link{waller.test} }, \code{\link{SNK.test} },
+\seealso{\code{\link{LSD.test}}, \code{\link{waller.test} }, \code{\link{HSD.test} },
 \code{\link{duncan.test} } }
 
 \examples{
 library(agricolae)
 data(sweetpotato)
-model<-aov(yield~virus, data=sweetpotato)
-comparison <- HSD.test(model,"virus", group=TRUE,
-main="Yield of sweetpotato\nDealt with different virus")
-#stargraph
-bar.group(comparison,ylim=c(0,45),density=4,border="blue")
-#endgraph
-HSD.test(model,"virus", group=FALSE)
-# Old version HSD.test()
+model<-aov(yield~virus,data=sweetpotato)
+comparison <- SNK.test(model,"virus", 
+main="Yield of sweetpotato. Dealt with different virus")
+SNK.test(model,"virus", group=FALSE)
+# version old SNK.test()
 attach(sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
-HSD.test(yield,virus,df,MSerror, group=TRUE,
-main="Yield of sweetpotato. Dealt with different virus")
+comparison <- SNK.test(yield,virus,df,MSerror, group=TRUE)
 detach(sweetpotato)
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS

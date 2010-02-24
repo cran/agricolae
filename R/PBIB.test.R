@@ -1,6 +1,7 @@
 `PBIB.test` <-
-function (block, trt, replication, y, k, method = "lsd", alpha = 0.05)
+function (block, trt, replication, y, k, method = c("lsd","tukey"), alpha = 0.05)
 {
+    method<-match.arg(method)
     block.adj <- as.factor(block)
     trt.unadj <- as.factor(trt)
     replication <- as.factor(replication)
@@ -99,22 +100,28 @@ function (block, trt, replication, y, k, method = "lsd", alpha = 0.05)
     for (k in 1:nn) {
         i <- comb[1, k]
         j <- comb[2, k]
+        if (tauIntra[i] < tauIntra[j]){
+        comb[1, k]<-j
+        comb[2, k]<-i
+        }
+        
         dif[k] <- abs(tauIntra[i] - tauIntra[j])
         stdt[k] <- sqrt(vartau[i, i] + vartau[j, j] - 2 * vartau[i,j])
         tc <- dif[k]/stdt[k]
         if (method == "lsd")
-            pvalue[k] <- 2 * round(1 - pt(tc, glerror), 4)
+            pvalue[k] <- 2 * round(1 - pt(tc, glerror), 6)
         if (method == "tukey")
             pvalue[k] <- round(1 - ptukey(tc, ntr, glerror),
-                4)
+                6)
     }
     tr.i <- comb[1, ]
     tr.j <- comb[2, ]
+    
     cat("\nComparison between treatments means\n")
     cat("\n<<< to see the objects: comparison and means  >>>\n\n")
-    comparison <- data.frame(row.names = NULL, tr.i, tr.j, diff = dif, stderr=stdt,
-        pvalue = pvalue)
+    comparison <- data.frame("Difference" = dif, stderr=stdt, pvalue = pvalue)
+    rownames(comparison)<-paste(tr.i,tr.j,sep=" - ")
     means <- data.frame(trt = 1:ntr, means = mean.trt, mean.adj = as.numeric(tauIntra),
         N = r, std.err = sqrt(diag(vartau)))
-    return(list(comparison = comparison, means = means,vartau=vartau))
+    invisible(list(comparison = comparison, means = means,vartau=vartau))
 }

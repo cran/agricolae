@@ -23,16 +23,16 @@ cat("\nVan der Waerden (Normal Scores) test's\n")
 cat("\nValue :", T1)
 p.chisq <- 1 - pchisq(T1, ntr - 1)
 cat("\nPvalue:", p.chisq)
-cat("\nDegrees of freedom: ", ntr - 1)
-cat("\n\nMeans of the normal score\n")
-print(data.frame( row.names=NULL,means))
+cat("\nDegrees of freedom: ", ntr - 1,"\n\n")
+cat(paste(name.t,",",sep="")," means of the normal score\n\n")
+print(data.frame(row.names = means[,1], means[,-1]))
 MSerror <- S * ((N - 1 - T1)/(N - ntr))
 #cat("\nComparison of treatments")
 #...............
 
 nr <- unique(means[,3])
-if (group) {
 Tprob<-qt(1-alpha/2,DFerror)
+if (group) {
 cat("\nt-Student:", Tprob)
 cat("\nAlpha    :",alpha)
     if (length(nr) == 1) {
@@ -53,20 +53,37 @@ output <- order.group(means[,1], means[,2], means[,3], MSerror, Tprob,std.err=sq
 comb <-combn(ntr,2)
 nn<-ncol(comb)
 dif<-rep(0,nn)
+LCL<-dif
+UCL<-dif
+sig<-NULL
 pvalue<-rep(0,nn)
 for (k in 1:nn) {
 i<-comb[1,k]
 j<-comb[2,k]
+if (means[i, 2] < means[j, 2]){
+comb[1, k]<-j
+comb[2, k]<-i
+}
 dif[k]<-abs(means[i,2]-means[j,2])
 sdtdif<- sqrt(S*((N-1-T1)/(N-ntr))*(1/means[i,3]+1/means[j,3]))
-pvalue[k]<- 2*round(1-pt(dif[k]/sdtdif,DFerror),4)
+pvalue[k]<- 2*round(1-pt(dif[k]/sdtdif,DFerror),6)
+LSD <- Tprob*sdtdif
+LCL[k] <- dif[k] - LSD
+UCL[k] <- dif[k] + LSD
+sig[k]<-" "
+if (pvalue[k] <= 0.001) sig[k]<-"***"
+else  if (pvalue[k] <= 0.01) sig[k]<-"**"
+else  if (pvalue[k] <= 0.05) sig[k]<-"*"
+else  if (pvalue[k] <= 0.1) sig[k]<-"."
 }
-tr.i<-comb[1,]
-tr.j<-comb[2,]
-cat("\nComparison between treatments means\nmean of the normal score\n")
-print(data.frame(row.names=NULL,tr.i,tr.j,diff=dif,pvalue=pvalue))
+tr.i <- means[comb[1, ],1]
+tr.j <- means[comb[2, ],1]
+output<-data.frame("Difference" = dif, pvalue=pvalue,sig,LCL,UCL)
+rownames(output)<-paste(tr.i,tr.j,sep=" - ")
+cat("\nComparison between treatments means\nmean of the normal score\n\n")
+print(output)
 output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,3])
 }
-    return(output)
+    invisible(output)
 }
 

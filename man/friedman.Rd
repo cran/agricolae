@@ -1,6 +1,6 @@
 \name{friedman}
 \alias{friedman}
-%- friedman.group.
+%- friedman.
 \title{ Friedman test and multiple comparison of treatments }
 \description{
   The data consist of b mutually independent k-variate random variables

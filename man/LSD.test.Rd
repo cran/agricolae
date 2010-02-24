@@ -1,6 +1,6 @@
 \name{LSD.test}
 \alias{LSD.test}
-%- LSD.group.
+%- LSD.
 \title{ Multiple comparisons, "Least significant difference" and Adjust P-values }
 \description{
   Multiple comparisons of treatments by means of LSD and a grouping of treatments. 
@@ -12,8 +12,8 @@ LSD.test(y, trt, DFerror, MSerror, alpha = 0.05, p.adj=c("none","holm",
 }
 
 \arguments{
-  \item{y}{ Answer of the experimental unit  }
-  \item{trt}{ Treatment applied to each experimental unit  }
+  \item{y}{ model(aov or lm) or answer of the experimental unit  }
+  \item{trt}{ Constant( only y=model) or vector treatment applied to each experimental unit  }
   \item{DFerror}{ Degrees of freedom of the experimental error }
   \item{MSerror}{ Means square error of the experimental  }
   \item{alpha}{ Level of risk for the test  }
@@ -30,8 +30,8 @@ LSD.test(y, trt, DFerror, MSerror, alpha = 0.05, p.adj=c("none","holm",
 }
 \value{
  
-  \item{y }{Numeric}
-  \item{trt }{alfanumeric}
+  \item{y }{class (aov or lm) or vector numeric}
+  \item{trt }{constant (only y=model) or vector alfanumeric}
   \item{DFerror }{Numeric}
   \item{MSerror }{Numeric}
   \item{alpha }{Numeric}
@@ -46,22 +46,29 @@ LSD.test(y, trt, DFerror, MSerror, alpha = 0.05, p.adj=c("none","holm",
      }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{HSD.test}}, \code{\link{waller.test}}, \code{\link{bar.err}}, 
-\code{\link{bar.group}} }
+\seealso{\code{\link{HSD.test}}, \code{\link{waller.test}}, \code{\link{SNK.test} }, 
+\code{\link{bar.err}}, \code{\link{bar.group}},\code{\link{duncan.test} } }
 
 \examples{
 library(agricolae)
 data(sweetpotato)
+model<-aov(yield~virus, data=sweetpotato)
+comparison <- LSD.test(model,"virus", p.adj="bonferroni",
+main="Yield of sweetpotato\ndealt with different virus")
+#stargraph
+bar.group(comparison,ylim=c(0,45),density=4,border="blue")
+#endgraph
+# Old version LSD.test()
 attach(sweetpotato)
-model<-aov(yield~virus)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
 comparison <- LSD.test(yield,virus,df,MSerror, p.adj="bonferroni", group=FALSE,
 main="Yield of sweetpotato\ndealt with different virus")
 detach(sweetpotato)
 #stargraph
-bar.err(comparison,std=TRUE,ylim=c(0,45),density=4,border="blue")
+bar.err(comparison,std=TRUE,ylim=c(0,45),density=4,border="red")
 #endgraph
+LSD.test(model,"virus",p.adj="bon")
 
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS

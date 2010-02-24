@@ -1,11 +1,11 @@
 Package: agricolae
 Type: Package
 Title: Statistical Procedures for Agricultural Research
-Version: 1.0-8
-Date: 2009-12-01
+Version: 1.0-9
+Date: 2010-2-24
 Author: Felipe de Mendiburu
 Maintainer: Felipe de Mendiburu <f.mendiburu@cgiar.org>
-Suggests: akima, klaR, MASS
+Suggests: akima, klaR, MASS, cluster
 Description: Agricolae was presented on 28 August 2009 in the thesis "A
         statistical analysis tool for agricultural research" to obtain
         the degree of Master on science, mention Systems Engineering,
@@ -21,12 +21,12 @@ Description: Agricolae was presented on 28 August 2009 in the thesis "A
         analysis into experimental designs applied specially in field
         experiments in agriculture and plant breeding: Lattice,
         factorial, complete and incomplete block, Latin Square, Graeco,
-        Alpha designs, Cyclic, split and strip plot designs, comparison
-        of multi-location trials, comparison between treatments,
-        resampling, simulation, biodiversity indexes and consensus
-        cluster.
+        Alpha designs, Cyclic, augmented block, split and strip plot
+        designs, comparison of multi-location trials, comparison
+        between treatments, resampling, simulation, biodiversity
+        indexes and consensus cluster.
 License: GPL
 URL: http://tarwi.lamolina.edu.pe/~fmendiburu
-Packaged: 2009-12-01 16:41:30 UTC; fdemendiburu
+Packaged: 2010-02-24 13:18:39 UTC; fdemendiburu
 Repository: CRAN
-Date/Publication: 2009-12-01 17:35:22
+Date/Publication: 2010-02-24 15:03:04

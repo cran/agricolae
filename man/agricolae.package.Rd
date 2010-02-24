@@ -13,13 +13,13 @@ designs applied specially for field experiments in agriculture and plant breedin
 \tabular{ll}{
 Package: \tab agricolae\cr
 Type: \tab Package\cr
-Version: \tab 1.0-8\cr
-Date: \tab 2009-12-01\cr
+Version: \tab 1.0-9\cr
+Date: \tab 2010-2-24\cr
 License: \tab GPL\cr
 }
-Planning of field experiments: lattice, factorial, RCBD, CRD, Latin Square, Graeco, BIB, Alpha design, Cyclic, split and strip plot Designs. 
+Planning of field experiments: lattice, factorial, RCBD, CRD, Latin Square, Graeco, BIB, Alpha design, Cyclic, augmented block, split and strip plot Designs. 
 Comparison of multi-location trials: AMMI Stability (biplot and triplot),
-Comparison between treatments: LSD, Bonferroni and other p-adjust, HSD, Waller;
+Comparison between treatments: LSD, Bonferroni and other p-adjust, HSD, Waller, Student Newman Keuls SNK, Duncan, Scheffe;
 Non parametric tests: Kruskal, Friedman, Durbin, Van Der Waerden. Analysis of genetic experiments: North Carolina designs, LinexTester, Balanced Incomplete Block, Strip plot,
 Partially Balanced Incomplete Block, analysis Mother and baby trials (see data RioChillon).
 Resampling and simulation: resampling.model, simulation.model, montecarlo

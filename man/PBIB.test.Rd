@@ -7,7 +7,7 @@
   Applied to resoluble designs: Lattices and alpha design.
 }
 \usage{
-PBIB.test(block,trt,replication,y,k, method="lsd", alpha=0.05)
+PBIB.test(block,trt,replication,y,k, method = c("lsd","tukey"), alpha=0.05)
 }
 
 \arguments{

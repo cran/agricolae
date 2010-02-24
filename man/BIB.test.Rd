@@ -6,7 +6,8 @@
   Analysis of variance BIB and comparison mean adjusted. 
 }
 \usage{
-BIB.test(block, trt, y, method = "lsd", alpha = 0.05, group = TRUE)
+BIB.test(block, trt, y, method = c("lsd","tukey","duncan","waller","snk"), alpha = 0.05, group = TRUE)
+
 }
 
 \arguments{
@@ -19,9 +20,11 @@ BIB.test(block, trt, y, method = "lsd", alpha = 0.05, group = TRUE)
 }
 \details{
 Method of comparison treatment. 
-lsd: least significant difference.
+lsd: Least significant difference.
 tukey: Honestly significant differente.
-waller: test Waller-Duncan.
+duncan: Duncan's new multiple range test
+waller: Waller-Duncan test.
+snk: Student-Newman-Keuls (SNK)
 }
 \value{
   \item{block}{ Vector }
@@ -58,14 +61,15 @@ y <-c(69,77,72,63,70,54,65,65,57,59,50,45,68,75,59,38,60,60,62,
  55,54,65,62,65,61,39,54,67,63,56)
 varieties<-gl(6,5)
 block <- c(1,2,3,4,5,1,2,6,7,8,1,3,6,9,10,2,4,7,9,10,3,5,7,8,9,4,5,6,8,10)
-model<-BIB.test(block, varieties, y)
+BIB.test(block, varieties, y)
 # Example Introduction to experimental statistics. Ching Chun Li. 1964
 # pag. 395 table. 27.2
 # 7 trt, k=3 and b=7.
 y <-c(10,15,11,4,12,15,5,14,10,14,19,19,8,10,17,6,11,12,5,14,21)
 block<-gl(7,3)
 trt <- c(1,2,4,2,3,5,3,4,6,4,5,7,1,5,6,2,6,7,1,3,7)
-model<-BIB.test(block, trt, y)
+model<-BIB.test(block, trt, y, method="duncan")
+bar.group(model,col="blue",density=4,ylim=c(0,max(y)))
 }
 \keyword{ models }
 

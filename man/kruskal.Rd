@@ -34,6 +34,7 @@ data(corn)
 attach(corn)
 str(corn)
 comparison<-kruskal(observation,method,group=TRUE, main="corn")
+detach(corn)
 }
 \keyword{ nonparametric }% at least one, from doc/KEYWORDS
 

@@ -8,7 +8,7 @@
 }
 \usage{
 consensus(data,distance=c("binary","euclidean","maximum","manhattan",
-"canberra", "minkowski"),method=c("complete","ward","single","average",
+"canberra", "minkowski", "gower"),method=c("complete","ward","single","average",
 "mcquitty","median", "centroid"),nboot=500,duplicate=TRUE,cex.text=1, 
 col.text="red", ...)
 }
@@ -23,9 +23,9 @@ col.text="red", ...)
   \item{\dots}{ parameters of the plot dendrogram }
 }
 \details{
-  distance: "euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski".
+  distance: "euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski", "gower".
   Method: "ward", "single", "complete", "average", "mcquitty", "median", "centroid".
-  see functions: dist(), hclust().
+  see functions: dist(), hclust() and daisy() of cluster.
 }
 \value{
   \item{data }{numerical, the rownames is necesary'}
@@ -45,7 +45,7 @@ data(pamCIP)
 # only code
 rownames(pamCIP)<-substr(rownames(pamCIP),1,6)
 par(cex=0.8)
-output<-consensus( pamCIP,distance="binary", method="complete",nboot=500)
+output<-consensus( pamCIP,distance="binary", method="complete",nboot=100)
 # Order consensus
 Groups<-output$table.dend[,c(6,5)]
 Groups<-Groups[order(Groups[,2],decreasing=TRUE),]
@@ -68,6 +68,9 @@ plot(dend,type="t",edgePar = list(lty=1:2, col=2:1))
 text(data[,3],data[,4],data[,5],col="blue",cex=1)
 # Without the control of duplicates
 output<-consensus( pamCIP,duplicate=FALSE,nboot=100)
+# using distance gower
+library(cluster)
+output<-consensus( pamCIP,distance="gower", method="complete",nboot=100)
 }
 
 \keyword{ cluster }

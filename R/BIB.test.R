@@ -1,9 +1,11 @@
 `BIB.test` <-
-function (block, trt, y, method = "lsd", alpha = 0.05, group = TRUE)
+function (block, trt, y, method = c("lsd","tukey","duncan","waller","snk"), alpha = 0.05, group = TRUE)
 {
+    method<-match.arg(method)
     block.unadj <- as.factor(block)
     trt.adj <- as.factor(trt)
     name.y <- paste(deparse(substitute(y)))
+    name.t <- paste(deparse(substitute(trt)))
     modelo <- formula(paste(name.y,"~ block.unadj + trt.adj"))
     model <- lm(modelo)
     DFerror <- df.residual(model)
@@ -35,11 +37,12 @@ function (block, trt, y, method = "lsd", alpha = 0.05, group = TRUE)
     print(anova(model))
     cat("\ncoefficient of variation:", round(cv.model(model), 1),
         "%\n")
-    cat(name.y, "Means:", mean(y,na.rm=TRUE), "\n")
-    cat("\nTreatments\n")
-    print(data.frame(row.names = 1:ntr, trt = row.names(Y), means = Y/r,
-        mean.adj, StdError.adj))
+    cat(name.y, "Means:", mean(y,na.rm=TRUE), "\n\n")
+    cat(paste(name.t,",",sep="")," statistics\n\n")
+    nameTrt<-row.names(Y)
+    print(data.frame(row.names = nameTrt, means=Y/r,mean.adj, StdError.adj))
     parameter <- k/(lambda * ntr)
+    snk<-0
     if (method == "lsd") {
         Tprob <- qt(1 - alpha/2, DFerror)
         cat("\nLSD test")
@@ -49,6 +52,7 @@ function (block, trt, y, method = "lsd", alpha = 0.05, group = TRUE)
     }
     if (method == "tukey") {
         Tprob <- qtukey(1 - alpha, ntr, DFerror)
+        sdtdif<-sdtdif/sqrt(2)
         cat("\nTukey")
         cat("\nAlpha      :", alpha)
         cat("\nStd.err    :", sdtdif)
@@ -64,8 +68,32 @@ function (block, trt, y, method = "lsd", alpha = 0.05, group = TRUE)
         cat("\nk Ratio    : ", K)
         cat("\nMSD        :", Tprob * sdtdif)
     }
+    if (method == "snk") {
+        snk<-1
+        sdtdif<-sdtdif/sqrt(2)
+        cat("\nStudent Newman Keuls")
+        cat("\nAlpha     :", alpha)
+        cat("\nStd.err   :", sdtdif)
+        Tprob <- qtukey(1-alpha,2:ntr, DFerror)
+        SNK <- Tprob * sdtdif
+        names(SNK)<-2:ntr
+        cat("\nCritical Range\n")
+        print(SNK)
+        }
+      if (method == "duncan") {
+        snk<-2
+        sdtdif<-sdtdif/sqrt(2)
+        cat("\nDuncan's new multiple range test")
+        cat("\nAlpha     :", alpha)
+        cat("\nStd.err   :", sdtdif)
+        Tprob <- qtukey((1-alpha)^(1:(ntr-1)),2:ntr, DFerror)
+        duncan <- Tprob * sdtdif
+        names(duncan)<-2:ntr
+        cat("\n\nCritical Range\n")
+        print(duncan)
+    }
     E <- lambda * ntr/(r * k)
-    cat("\n\nParameters BIB")
+    cat("\nParameters BIB")
     cat("\nLambda     :", lambda)
     cat("\ntreatmeans :", ntr)
     cat("\nBlock size :", k)
@@ -75,40 +103,65 @@ function (block, trt, y, method = "lsd", alpha = 0.05, group = TRUE)
     if (group) {
         cat("\nMeans with the same letter are not significantly different.")
         cat("\n\nComparison of treatments\n\nGroups, Treatments and means\n")
+        if (snk==0)
         output <- order.group(names(mean.adj), as.numeric(mean.adj),
             rep(1, ntr), MSerror, Tprob, std.err = StdError.adj,
-            parameter)
+            parameter,sdtdif=sdtdif)
+        else output <- order.group(names(mean.adj), as.numeric(mean.adj),
+            rep(1, ntr), MSerror, Tprob, std.err = StdError.adj,
+            parameter, snk=snk,DFerror,alpha,sdtdif=sdtdif)
         output[, 4] <- r
     }
     if (!group) {
+        Omeans<-order(mean.adj,decreasing = TRUE)
+        Ordindex<-order(Omeans)
         comb <- combn(ntr, 2)
         nn <- ncol(comb)
         dif <- rep(0, nn)
-        pvalue <- rep(0, nn)
+        sig <- rep(" ",nn)
+        pvalue <- dif
+        odif<-dif
         for (k in 1:nn) {
             i <- comb[1, k]
             j <- comb[2, k]
+            if (mean.adj[i] < mean.adj[j]){
+            comb[1, k]<-j
+            comb[2, k]<-i
+            }
             dif[k] <- abs(mean.adj[i] - mean.adj[j])
             if (method == "lsd")
                 pvalue[k] <- 2 * round(1 - pt(dif[k]/sdtdif,
-                  DFerror), 4)
+                  DFerror), 6)
             if (method == "tukey")
-                pvalue[k] <- round(1 - ptukey(dif[k] * sqrt(2)/sdtdif,
-                  ntr, DFerror), 4)
+                pvalue[k] <- round(1 - ptukey(dif[k] /sdtdif,
+                  ntr, DFerror), 6)
+            if (method == "snk"){
+                odif[k] <- abs(Ordindex[i]- Ordindex[j])+1
+                pvalue[k] <- round(1 - ptukey(dif[k] /sdtdif,
+                odif[k], DFerror), 6)
+                }
+        	if (method == "duncan"){
+	        	nx<-abs(i-j)+1
+	        	odif[k] <- abs(Ordindex[i]- Ordindex[j])+1
+				pvalue[k]<- round((1-ptukey(dif[k]/sdtdif,odif[k],DFerror))^1/(odif[k]-1),6)
+        		}
+        sig[k]<-" "
+		if (pvalue[k] <= 0.001) sig[k]<-"***"
+		else  if (pvalue[k] <= 0.01) sig[k]<-"**"
+		else  if (pvalue[k] <= 0.05) sig[k]<-"*"
+		else  if (pvalue[k] <= 0.1) sig[k]<-"."
         }
         if (method == "waller")
             significant = dif > Tprob * sdtdif
-        tr.i <- comb[1, ]
-        tr.j <- comb[2, ]
+        tr.i <- nameTrt[comb[1, ]]
+        tr.j <- nameTrt[comb[2, ]]
         cat("\nComparison between treatments means\n")
-        if (method == "waller")
-            print(data.frame(row.names = NULL, tr.i, tr.j, diff = dif,
-                significant))
-        else print(data.frame(row.names = NULL, tr.i, tr.j, diff = dif,
-            pvalue))
+        if (method == "waller") output<-data.frame("Difference" = dif, significant)
+        else  output<-data.frame("Difference" = dif, pvalue=pvalue,sig)
+        rownames(output)<-paste(tr.i,tr.j,sep=" - ")
+        print(output)
         output <- data.frame(trt = names(mean.adj), means = as.numeric(mean.adj),
             M = "", N = r, std.err = StdError.adj)
     }
-    return(output)
+    invisible(output)
 }
-

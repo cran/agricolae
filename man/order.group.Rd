@@ -10,7 +10,7 @@
   procedures.
 }
 \usage{
-order.group(trt, means, N, MSerror, Tprob, std.err, parameter=1)
+order.group(trt, means, N, MSerror, Tprob, std.err, parameter=1, snk=0, DFerror=NULL,alpha=NULL,sdtdif=NULL)
 }
 
 \arguments{
@@ -21,6 +21,10 @@ order.group(trt, means, N, MSerror, Tprob, std.err, parameter=1)
   \item{Tprob}{ minimum value for the comparison }
   \item{std.err}{ standard error }
   \item{parameter}{ Constante 1 (Sd), 0.5 (Sx) }
+  \item{snk}{ Constante = 1 (Student Newman Keuls) }
+  \item{DFerror}{ Degrees of freedom of the experimental error }
+  \item{alpha}{ Level of risk for the test  } 
+  \item{sdtdif}{ standar deviation of difference in BIB  } 
 }
 \value{
   \item{trt}{ Factor }
@@ -30,6 +34,10 @@ order.group(trt, means, N, MSerror, Tprob, std.err, parameter=1)
   \item{Tprob}{ value between 0 and 1 }
   \item{std.err}{ Numeric }
   \item{parameter}{ Constant }
+  \item{snk}{ Constant }
+  \item{DFerror }{Numeric}
+  \item{alpha }{Numeric}  
+  \item{sdtdif}{Numeric}  
 }
 
 \author{ Felipe de Mendiburu }

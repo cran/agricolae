@@ -1,6 +1,6 @@
 \name{durbin.test}
 \alias{durbin.test}
-%- durbin.test.
+%- durbin.
 \title{ Durbin test and multiple comparison of treatments }
 \description{
   A multiple comparison of the Durbin test for the balanced incomplete 
