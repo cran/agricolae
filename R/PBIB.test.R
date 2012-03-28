@@ -1,7 +1,9 @@
 `PBIB.test` <-
-function (block, trt, replication, y, k, method = c("lsd","tukey"), alpha = 0.05)
+function (block, trt, replication, y, k, method = c("lsd","tukey"), alpha = 0.05,group=TRUE)
 {
     method<-match.arg(method)
+    if(method =="lsd") snk=3
+    if(method =="tukey") snk=4
     block.adj <- as.factor(block)
     trt.unadj <- as.factor(trt)
     replication <- as.factor(replication)
@@ -82,10 +84,10 @@ function (block, trt, replication, y, k, method = c("lsd","tukey"), alpha = 0.05
     print(anova(model))
     cat("\ncoefficient of variation:", round(cv.model(model), 1),
         "%\n")
-    cat(name.y, "Means:", mean(y,na.rm=TRUE), "\n") 
+    cat(name.y, "Means:", mean(y,na.rm=TRUE), "\n")
     cat("\nTreatments\n")
     cat("\nParameters PBIB")
-    cat("\ntreatmeans :", ntr)
+    cat("\ntreatments :", ntr)
     cat("\nBlock size :", k)
     cat("\nBlocks/rep :", b/r)
     cat("\nReplication:", r, "\n")
@@ -104,7 +106,7 @@ function (block, trt, replication, y, k, method = c("lsd","tukey"), alpha = 0.05
         comb[1, k]<-j
         comb[2, k]<-i
         }
-        
+
         dif[k] <- abs(tauIntra[i] - tauIntra[j])
         stdt[k] <- sqrt(vartau[i, i] + vartau[j, j] - 2 * vartau[i,j])
         tc <- dif[k]/stdt[k]
@@ -116,12 +118,20 @@ function (block, trt, replication, y, k, method = c("lsd","tukey"), alpha = 0.05
     }
     tr.i <- comb[1, ]
     tr.j <- comb[2, ]
-    
+    if(group){
+    cat("\nMeans with the same letter are not significantly different.")
+    cat("\n\nGroups, Treatments and means\n")
+    output <- order.group(trt=1:ntr, tauIntra, r, MSerror=NULL, Tprob=NULL, 
+    std.err=sqrt(diag(vartau)),parameter=1,snk, DFerror=glerror,alpha,sdtdif=1, vartau)
+    names(output)[2]<-"mean.adj"
+    }
     cat("\nComparison between treatments means\n")
     cat("\n<<< to see the objects: comparison and means  >>>\n\n")
     comparison <- data.frame("Difference" = dif, stderr=stdt, pvalue = pvalue)
     rownames(comparison)<-paste(tr.i,tr.j,sep=" - ")
     means <- data.frame(trt = 1:ntr, means = mean.trt, mean.adj = as.numeric(tauIntra),
         N = r, std.err = sqrt(diag(vartau)))
-    invisible(list(comparison = comparison, means = means,vartau=vartau))
+if(!group) output=NULL
+invisible(list(comparison = comparison, means = means,vartau=vartau,groups=output))
+
 }

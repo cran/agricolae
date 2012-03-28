@@ -28,7 +28,7 @@ clases <-rbind(clases,paste( parte1,parte2,sep="-") )
 }
 
 for(i in 1:n1) {
-x<-strsplit(clases[i,1],spli="-")[[1]]
+x<-strsplit(clases[i,1],split="-")[[1]]
 x
 unique(x)
 y<-as.numeric(unique(x))

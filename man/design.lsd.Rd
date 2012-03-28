@@ -8,7 +8,7 @@
   The seed is by set.seed(seed, kinds).
 }
 \usage{
-design.lsd(trt, number = 1, seed = 0, kinds = "Super-Duper")
+design.lsd(trt, number = 1, seed = 0, kinds = "Super-Duper",first=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -16,6 +16,7 @@ design.lsd(trt, number = 1, seed = 0, kinds = "Super-Duper")
   \item{number}{ number of first plot }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
+  \item{first}{ TRUE or FALSE - randomize rep 1}
 }
 \details{
   kinds <- c("Wichmann-Hill", "Marsaglia-Multicarry", "Super-Duper",
@@ -26,6 +27,8 @@ design.lsd(trt, number = 1, seed = 0, kinds = "Super-Duper")
   \item{trt }{Vector names of treatments}
   \item{number }{Numeric}
   \item{seed }{Numeric}
+  \item{kinds}{ character }
+  \item{first }{Logic}
 }
 \references{ Introduction to Experimental Statistics. 
 Ching Chun Li. McGraw-Hill Book Company, INC, New. York, 1969 }
@@ -48,8 +51,6 @@ print(t(trt))
 # Write on hard disk.
 # write.table(lsd,"lsd.txt", row.names=FALSE, sep="\t")
 # file.show("lsd.txt")
-
-
 }
 \keyword{ design }% at least one, from doc/KEYWORDS
 

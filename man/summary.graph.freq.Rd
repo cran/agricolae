@@ -1,16 +1,18 @@
 \name{summary.graph.freq}
 \alias{summary.graph.freq}
-\title{ Frequency Table of a Histogram  }
+%- summary.graph.freq.
+\title{ frequency Table of a Histogram  }
 \description{
-  It finds the absolute, relative and accumulated frequencies with the class
-  intervals defined from a previously calculated histogram by "graph.freq".
+  It finds the absolute, relative and accumulated frequencies with the class 
+  intervals defined from a previously calculated histogram by the "hist" of R
+  function.
 }
 \usage{
-summary.graph.freq(object,...)
+\method{summary}{graph.freq}(object,...)
 }
 
 \arguments{
-  \item{object}{Object by function graph.freq() }
+  \item{object}{ Object by function graph.freq() }
   \item{\dots}{ other parameters of graphic}
 }
 \value{
@@ -20,7 +22,7 @@ summary.graph.freq(object,...)
 
 \seealso{\code{\link{polygon.freq}}, \code{\link{stat.freq}}, \code{\link{graph.freq}},
 \code{\link{intervals.freq}}, \code{\link{sturges.freq}}, \code{\link{join.freq}},
-\code{\link{ojiva.freq}}, \code{\link{normal.freq} } }
+\code{\link{ojiva.freq}}, \code{\link{normal.freq} } }          
 \examples{
 library(agricolae)
 data(growth)
@@ -29,3 +31,4 @@ h2<-graph.freq(height,plot=FALSE)
 summary(h2)
 }
 \keyword{ distribution }% at least one, from doc/KEYWORDS
+

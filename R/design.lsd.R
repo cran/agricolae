@@ -1,5 +1,5 @@
 `design.lsd` <-
-function (trt,number=1,seed=0,kinds="Super-Duper")
+function (trt,number=1,seed=0,kinds="Super-Duper",first=FALSE)
 {
 r <- length(trt)
 if(seed != 0) set.seed(seed,kinds)
@@ -14,15 +14,18 @@ a[i, j] <- k
 }
 }
 m<-sample(2:r,r-1)
-a<-a[c(1,m),]
-m<-sample(1:r,r)
-a<-a[,m]
+a<-a[,c(1,m)]
+if (first) {
+	m<-sample(1:r,r)
+	a<-a[m,]
+}
 trat<-trt[a]
-columna<- rep(gl(r,1),r)
-fila <- gl(r,r)
-plots <- number+1:length(trat)-1
-book<-data.frame(plots,row=as.factor(fila),col=as.factor(columna),
-trat=as.factor(trat))
-names(book)[4]<-c(paste(deparse(substitute(trt))))
-return(book) }
+columna <- rep(gl(r, 1), r)
+fila <- gl(r, r)
+plots <- number + 1:length(trat) - 1
+book <- data.frame(plots, row = as.factor(fila), col = as.factor(columna),
+		trat = as.factor(trat))
+names(book)[4] <- c(paste(deparse(substitute(trt))))
+return(book)
+}
 

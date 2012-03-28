@@ -19,15 +19,15 @@ function (block, trt, y, method = c("lsd","tukey","duncan","waller","snk"), alph
     tabla <- by(datos[,3], datos[,1:2], function(x) mean(x,na.rm=TRUE))
     tabla <-as.data.frame(tabla[,])
     AA <- !is.na(tabla)
-    BB <- tapply(y, block.unadj, sum)
+    BB <- tapply(y, block.unadj, function(x) sum(x, na.rm=TRUE))
     B <- BB %*% AA
-    Y <- tapply(y, trt.adj, sum)
+    Y <- tapply(y, trt.adj, function(x) sum(x, na.rm=TRUE))
     Q <- Y - as.numeric(B)/k
     SStrt.adj <- sum(Q^2) * k/(lambda * ntr)
     MStrt.adj <- SStrt.adj/(ntr - 1)
     sdtdif <- sqrt(2 * k * MSerror/(lambda * ntr))
     Fvalue <- MStrt.adj/MSerror
-    mean.adj <- mean(y) + Q * k/(lambda * ntr)
+    mean.adj <- mean(y,na.rm=TRUE) + Q * k/(lambda * ntr)
     StdError.adj <- sqrt(MSerror * (1 + k * r * (ntr - 1)/(lambda *
         ntr))/(r * ntr))
     cat("\nANALYSIS BIB: ", name.y, "\nClass level information\n")

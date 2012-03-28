@@ -1,9 +1,9 @@
 \name{haynes}
 \alias{haynes}
 \docType{data}
-\title{ Data of yield for nonparametrical stability analysis }
+\title{ Data of AUDPC for nonparametrical stability analysis }
 \description{
-  Published data. Haynes.
+  Published data. Haynes. Mean area under the disease progress curve (AUDPC) for each of 16 potato clones evaluated at eight sites across the United States in 1996
 }
 \usage{data(haynes)}
 \format{

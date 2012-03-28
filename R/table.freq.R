@@ -18,7 +18,7 @@ z[i,6]<-yy[i]+acum
 acum<-z[i,6]
 z[i,7]<-z[i,6]/y1
 }
-colnames(z)<-c("Inf","Sup","MC","fi","fri","Fi","Fri")
+colnames(z)<-c("Lower","Upper","Main","freq","relative","CF","RCF")
 rownames(z)<-rep(" ",x)
 return(z)
 }

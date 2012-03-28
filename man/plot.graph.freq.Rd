@@ -1,26 +1,25 @@
 \name{plot.graph.freq}
 \alias{plot.graph.freq}
-%- Also NEED an '\alias' for EACH other topic documented here.
+%- plot.graph.freq.
 \title{ Histogram }
 \description{
   In many situations it has intervals of class defined with its respective
-  frequencies. By means of this function, the graphic of frequency is obtained
-  and it is possible to superpose the normal distribution, polygon of frequency,
+  frequencies. By means of this function, the graphic of frequency is obtained 
+  and it is possible to superpose the normal distribution, polygon of frequency, 
   Ojiva and to construct the table of complete frequency.
 }
 \usage{
-plot.graph.freq(x, breaks="sturges",counts=NULL,frequency=1, plot=TRUE, nclass=NULL,xlab="",ylab="",...)
-
+\method{plot}{graph.freq}(x, breaks="sturges",counts=NULL,frequency=1, plot=TRUE, nclass=NULL,xlab="",ylab="",...)
 }
 \arguments{
-  \item{x}{ a vector of values, a object hist(), graph.freq() }
+  \item{x}{ a vector of values, a object hist(), graphFreq() }
   \item{counts}{ frequency and x is class intervals}
   \item{breaks}{ a vector giving the breakpoints between histogram cells }
   \item{frequency}{ 1=counts, 2=relative, 3=density }
   \item{plot}{ logic }
   \item{nclass}{ number of classes }
   \item{xlab}{ x labels}
-  \item{ylab}{ y labels}
+  \item{ylab}{ y labels}    
   \item{\dots}{ other parameters of graphic}
 }
 
@@ -29,13 +28,13 @@ plot.graph.freq(x, breaks="sturges",counts=NULL,frequency=1, plot=TRUE, nclass=N
   \item{plot }{TRUE or FALSE}
   \item{counts }{Numeric}
   \item{frequency}{ Numeric }
-
+  
 }
 
 \author{ Felipe de Mendiburu }
 
 \seealso{\code{\link{polygon.freq}}, \code{\link{table.freq}}, \code{\link{stat.freq}},
-\code{\link{intervals.freq}}, \code{\link{sturges.freq}}, \code{\link{join.freq}},
+\code{\link{intervals.freq}}, \code{\link{sturges.freq}}, \code{\link{join.freq}}, 
 \code{\link{ojiva.freq}}, \code{\link{normal.freq} } }
 
 \examples{
@@ -48,7 +47,7 @@ h<- graph.freq(yield,axes=FALSE, frequency=1, ylab="frequency",col="yellow")
 axis(1,h$breaks)
 axis(2,seq(0,20,0.1))
 # To reproduce histogram.
-h1 <- graph.freq(h, col="blue", frequency=2,border="red", density=8,axes=FALSE, xlab="YIELD",ylab="relative")
+h1 <- plot(h, col="blue", frequency=2,border="red", density=8,axes=FALSE, xlab="YIELD",ylab="relative")
 axis(1,h$breaks)
 axis(2,seq(0,.4,0.1))
 # summary, only frecuency
@@ -58,7 +57,7 @@ frequencies <-c(2,6,8,7,3,4)
 h<-graph.freq(limits,counts=frequencies,col="bisque",xlab="Classes")
 polygon.freq(h,col="red")
 title( main="Histogram and polygon of frequency",
-ylab="Frequency")
+ylab=".frequency")
 #endgraph
 # Statistics
 measures<-stat.freq(h)
@@ -83,3 +82,4 @@ lines(density(yield), col = "red", lwd = 2)
 title("Draw curve for Histogram")
 }
 \keyword{ aplot }% at least one, from doc/KEYWORDS
+

@@ -77,11 +77,11 @@ cov4<-((matriz[6,3]-matriz[9,3])+(matriz[7,3]-matriz[9,3])+(matriz[8,3]-matriz[9
 # variancias
 # Para F = 0 y F= 1
 F<-0
-var.A0 <-  cov3*(4/(1+F))^2
-var.D0 <- ((matriz[8,3]-matriz[9,3])/r)*(2/(1+F))^2
+var.A0 <-  cov3*(4/(1+F))
+var.D0 <- ((matriz[8,3]-matriz[9,3])/r)*(2/(1+F))
 F<-1
-var.A1 <-  cov3*(4/(1+F))^2
-var.D1 <- ((matriz[8,3]-matriz[9,3])/r)*(2/(1+F))^2
+var.A1 <-  cov3*(4/(1+F))
+var.D1 <- ((matriz[8,3]-matriz[9,3])/r)*(2/(1+F))
 # Contribucion proporcional
 c1<- matriz[6,2]*100/matriz[5,2]
 c2<- matriz[7,2]*100/matriz[5,2]
@@ -121,8 +121,8 @@ cat("\nCov H.S. (line)   :",cov1)
 cat("\nCov H.S. (tester) :",cov2)
 cat("\nCov H.S. (average):",cov3)
 cat("\nCov F.S. (average):",cov4)
-cat("\nF = 0, Aditive genetic variance :",var.A0)
-cat("\nF = 1, Aditive genetic variance :",var.A1)
+cat("\nF = 0, Adittive genetic variance:",var.A0)
+cat("\nF = 1, Adittive genetic variance:",var.A1)
 cat("\nF = 0, Variance due to Dominance:",var.D0)
 cat("\nF = 1, Variance due to Dominance:",var.D1,"\n")
 cat("\nProportional contribution of lines, testers",

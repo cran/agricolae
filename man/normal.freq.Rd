@@ -26,7 +26,7 @@ normal.freq(histogram, frequency=1, ...)
 \author{ Felipe de Mendiburu }
 
 \seealso{\code{\link{polygon.freq}}, \code{\link{table.freq}}, \code{\link{stat.freq}},
-\code{\link{intervals.freq}}, \code{\link{sturges.freq}}, \code{\link{join.freq}},
+\code{\link{intervals.freq}}, \code{\link{sturges.freq}}, \code{\link{join.freq}}, 
 \code{\link{ojiva.freq}}, \code{\link{graph.freq} } }
 
 \examples{
@@ -39,7 +39,7 @@ normal.freq(h1,col="blue")
 #endgraph
 #startgraph
 h2<-graph.freq(height,col="yellow",xlim=c(6,14),frequency=2)
-normal.freq(h2,frequency=2)
+normal.freq(h2,.frequency=2)
 #endgraph
 }
 \keyword{ aplot }% at least one, from doc/KEYWORDS

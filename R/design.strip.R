@@ -18,7 +18,7 @@ design.strip<-function (trt1, trt2,r, number = 1, seed = 0, kinds = "Super-Duper
         block <- c(block,rep(i,n1*n2))
     }}
     plots <- number + 1:(n1*n2 * r) - 1
-    book <- data.frame(plots, block = as.factor(block), row = as.factor(fila), column=as.factor(columna))
+    book <- data.frame(plots, block = as.factor(block), column=as.factor(columna),row = as.factor(fila))
     names(book)[3] <- c(paste(deparse(substitute(trt1))))
     names(book)[4] <- c(paste(deparse(substitute(trt2))))
     return(book)

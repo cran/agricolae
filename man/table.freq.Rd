@@ -1,7 +1,7 @@
 \name{table.freq}
 \alias{table.freq}
 %- table.freq.
-\title{ Frequency Table of a Histogram  }
+\title{ frequency Table of a Histogram  }
 \description{
   It finds the absolute, relative and accumulated frequencies with the class 
   intervals defined from a previously calculated histogram by the "hist" of R

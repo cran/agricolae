@@ -95,7 +95,7 @@ cat("\nConsensus hclust\n" )
 cat("\nMethod distance:",distance)
 cat("\nMethod cluster :",method)
 cat("\nrows and cols  :",nr,nc)
-cat("\nn-boostrap     :",nboot)
+cat("\nn-bootstrap    :",nboot)
 cat("\nRun time       :",tiempo,unidad,"\n\n")
 cc<-cbind(dend$merge,height=dend$height,percentage=round(junto[,6],1))
 co<-dend$order

@@ -1,9 +1,9 @@
 \name{ojiva.freq}
 \alias{ojiva.freq}
-%- ojiva.freq.
+%- ojiva..freq.
 \title{ Plotting the ojiva from a histogram }
 \description{
-  It plots the cumulative relative frequencies with the intervals of classes
+  It plots the cumulative relative .frequencies with the intervals of classes
   defined in the histogram.
 }
 \usage{
@@ -21,7 +21,7 @@ ojiva.freq(histogram, ...)
 \author{ Felipe de Mendiburu }
 
 \seealso{\code{\link{polygon.freq}}, \code{\link{table.freq}}, \code{\link{stat.freq}},
-\code{\link{intervals.freq}}, \code{\link{sturges.freq}}, \code{\link{join.freq}},
+\code{\link{intervals.freq}}, \code{\link{sturges.freq}}, \code{\link{join.freq}}, 
 \code{\link{graph.freq}}, \code{\link{normal.freq} } }
 
 \examples{

@@ -10,7 +10,7 @@
   procedures.
 }
 \usage{
-order.group(trt, means, N, MSerror, Tprob, std.err, parameter=1, snk=0, DFerror=NULL,alpha=NULL,sdtdif=NULL)
+order.group(trt, means, N, MSerror, Tprob, std.err, parameter=1, snk=0, DFerror=NULL,alpha=NULL,sdtdif=NULL,vartau=NULL)
 }
 
 \arguments{
@@ -25,6 +25,7 @@ order.group(trt, means, N, MSerror, Tprob, std.err, parameter=1, snk=0, DFerror=
   \item{DFerror}{ Degrees of freedom of the experimental error }
   \item{alpha}{ Level of risk for the test  } 
   \item{sdtdif}{ standar deviation of difference in BIB  } 
+  \item{vartau}{ matrix var-cov in PBIB  } 
 }
 \value{
   \item{trt}{ Factor }
@@ -38,6 +39,7 @@ order.group(trt, means, N, MSerror, Tprob, std.err, parameter=1, snk=0, DFerror=
   \item{DFerror }{Numeric}
   \item{alpha }{Numeric}  
   \item{sdtdif}{Numeric}  
+  \item{vartau}{ Numeric, matrix } 
 }
 
 \author{ Felipe de Mendiburu }

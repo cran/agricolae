@@ -41,7 +41,7 @@ Kwanchai A. Gomez, Arturo A. Gomez. John Wiley & Sons, new York, 1984 }
 
 \examples{
 library(agricolae)
-# 4 treatments and 5 blocks in split-plot
+# 4 and 3 treatments and 3 blocks in strip-plot
 t1<-c("A","B","C","D")
 t2<-c(1,2,3)
 r<-3

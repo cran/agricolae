@@ -15,15 +15,16 @@ indice<-barplot(y,horiz=horiz, ...)
 tope<-max(nivel1)/20
 for ( i in 1:n) {
 if (horiz)  {
-lines(rbind(c(nivel0[i],indice[i]),c(nivel1[i],indice[i])),col="red")
+lines(rbind(c(nivel0[i],indice[i]),c(nivel1[i],indice[i])))
 text( cex=1,nivel0[i],indice[i],"[")
 text( cex=1,nivel1[i],indice[i],"]")
 }
 else {
-lines(rbind(c(indice[i],nivel0[i]),c(indice[i],nivel1[i])),col="red")
+lines(rbind(c(indice[i],nivel0[i]),c(indice[i],nivel1[i])))
 text( cex=1,indice[i],nivel0[i],"---")
 text( cex=1,indice[i],nivel1[i],"---")
 }
 }
+invisible(list(indice=indice,nivel=nivel1))
 }
 

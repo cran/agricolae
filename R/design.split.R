@@ -1,4 +1,4 @@
-design.split<-function (trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),number = 1, seed = 0, kinds = "Super-Duper") 
+design.split<-function (trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),number = 1, seed = 0, kinds = "Super-Duper",first=FALSE ) 
 {
     n1<-length(trt1)
     n2<-length(trt2)
@@ -10,11 +10,11 @@ design.split<-function (trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),number =
         k<-3
         }
     if (design == "rcbd"){
-        book<-design.rcbd(trt1,r,number, seed, kinds)
+        book<-design.rcbd(trt1,r,number, seed, kinds, first)
         k<-3
         }
     if (design == "lsd") {
-        book<-design.lsd(trt1,number, seed, kinds)
+        book<-design.lsd(trt1,number, seed, kinds, first)
         r<-n1
         k<-4
         }

@@ -1,7 +1,9 @@
 `DAU.test` <-
-function (block, trt, y, method = c("lsd","tukey"))
+function (block, trt, y, method = c("lsd","tukey"),alpha=0.05,group=TRUE)
 {
     method<-match.arg(method)
+	if(method =="lsd") snk=5
+	if(method =="tukey") snk=6
     block.unadj <- as.factor(block)
     trt.adj <- as.factor(trt)
     block.adj <- as.factor(block)
@@ -17,8 +19,6 @@ function (block, trt, y, method = c("lsd","tukey"))
     r <- unique(table(trt.adj))
     b <- nlevels(block.unadj)
     ntr <- nlevels(trt.adj)  # nro trt
-   
-
     mean.trt<-tapply.stat( y, trt, function(x) mean(x,na.rm=TRUE))
     mean.y<- mean( y, na.rm=TRUE )
     #mean.block<- data.frame(mean.block,ri=mean.block[,2]-mean.y )
@@ -28,7 +28,7 @@ function (block, trt, y, method = c("lsd","tukey"))
     r.trt[,6]<-as.character(r.trt[,6])
     estado <- NULL 
     n<-length(y)
-    for (i in 1:n) {
+	for (i in 1:n) {
     for (j in 1:ntr) {
     if (trt[i] == r.trt[j,1]) {
     estado[i]<-r.trt[j,3];
@@ -136,7 +136,7 @@ cat("\nANALYSIS DAU: ", name.y, "\nClass level information\n")
     cat("\ncoefficient of variation:", round(cv.model(model1), 1),
         "%\n")
     cat(name.y, "Means:", mean.yy, "\n")
-    cat("\nCritical Differences (Between)                SEd \n")  
+    cat("\nCritical Differences (Between)         Std Error Diff.\n")  
 cat("\nTwo Control Treatments                       ",sqrt(2*MSerror/b))
 cat("\nTwo Augmented Treatments (Same Block)        ",sqrt(2*MSerror))
 cat("\nTwo Augmented Treatments(Different Blocks)   ",sqrt(2*MSerror*(1+1/comunes)))
@@ -152,6 +152,14 @@ cat("\nA Augmented Treatment and A Control Treatment",sqrt(MSerror*(1+1/b+1/comu
     pvalue[i,j] <- round(1 - ptukey(tc*sqrt(2), ntr, glerror), 6)
     }
     }
+
+	if(group){
+		cat("\n\nMeans with the same letter are not significantly different.")
+		cat("\n\nGroups, Treatments and means\n")
+		output <- order.group(trt=r.trt[,1], r.trt[,5], r.trt[,2], MSerror=NULL, Tprob=NULL, 
+				std.err=r.trt[,7],parameter=1,snk, DFerror=glerror,alpha,sdtdif=1, vartau=V)
+		names(output)[2]<-"mean.adj"
+	}
     cat("\nComparison between treatments means\n")
     cat("\n<<< to see the objects: comparison and means  >>>\n\n")
     pvalue <- as.dist(pvalue)
@@ -159,5 +167,6 @@ cat("\nA Augmented Treatment and A Control Treatment",sqrt(MSerror*(1+1/b+1/comu
     means<-r.trt[,c(1,4,5,2,6,7)]
     rownames(means)<- means[,1]
     means<-means[,-1]
-    invisible(list(means=means,pvalue = pvalue))
+	if(!group) output=NULL
+	invisible(list(means = means,pvalue = pvalue,groups=output))
 }

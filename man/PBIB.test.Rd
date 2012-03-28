@@ -7,7 +7,7 @@
   Applied to resoluble designs: Lattices and alpha design.
 }
 \usage{
-PBIB.test(block,trt,replication,y,k, method = c("lsd","tukey"), alpha=0.05)
+PBIB.test(block,trt,replication,y,k, method = c("lsd","tukey"), alpha=0.05, group=TRUE)
 }
 
 \arguments{
@@ -18,6 +18,7 @@ PBIB.test(block,trt,replication,y,k, method = c("lsd","tukey"), alpha=0.05)
   \item{k}{ size block  }  
   \item{method}{ Comparison treatments }
   \item{alpha}{ Significant test }
+  \item{group}{ TRUE or FALSE }
 }
 \details{
 Method of comparison treatment. 
@@ -32,6 +33,7 @@ tukey: Honestly significant differente.
   \item{k}{ numeric constant }    
   \item{method}{ Character }
   \item{alpha}{ Numeric }
+  \item{group}{ Logic} 
 }
 \references{
 1. Iterative Analysis of Generalizad Lattice Designs.
@@ -66,7 +68,8 @@ model <- PBIB.test(block, trt, replication, yield, k=3)
 detach(dbook)
 # model$comparison
 # model$means
-
+# model$groups
+bar.group(model$groups,xlim=c(0,9), col="yellow",horiz=TRUE,las=2)
 }
 \keyword{ models }
 

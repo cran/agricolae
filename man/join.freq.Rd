@@ -3,9 +3,9 @@
 %- join.freq.
 \title{ Join class for histogram }
 \description{
-  In many situations it is required to join classes because of the low frequency
+  In many situations it is required to join classes because of the low .frequency
   in the intervals. In this process, it is required to join the intervals and
-  ad the frequencies of them.
+  ad the .frequencies of them.
  }
 \usage{
 join.freq(breaks, join)

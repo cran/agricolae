@@ -34,18 +34,14 @@ It is only valid for the BIPLOT function but not for the TRIPLOT one.
 library(agricolae)
 # see AMMI.
 data(sinRepAmmi)
-attach(sinRepAmmi)
+Environment <- sinRepAmmi$ENV
+Genotype <- sinRepAmmi$GEN
+Yield <- sinRepAmmi$YLD
 REP <- 3
 MSerror <- 93.24224
-# Example 1
 #startgraph
-model<-AMMI(ENV, GEN, REP, YLD, MSerror)
+model<-AMMI(Environment, Genotype, REP, Yield, MSerror)
 AMMI.contour(model,distance=0.7,shape=8,col="red",lwd=2,lty=5)
 #endgraph
-# Example 2
-#startgraph
-for (i in seq(0,0.7,length=15)) {
-AMMI.contour(model,distance=i,shape=100,col="green",lwd=2)
-}
 }
 \keyword{ aplot }% __ONLY ONE__ keyword per line

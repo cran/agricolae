@@ -34,7 +34,7 @@ American Journal Potato Research 75, pag 211-217.
 \examples{
 library(agricolae)
 data(haynes)
-stability.nonpar(haynes,"YIELD",ranking=TRUE)
+stability.nonpar(haynes,"AUDPC",ranking=TRUE)
 # Example 2
 data(CIC)
 data1<-CIC$comas[,c(1,6,7,17,18)]

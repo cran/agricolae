@@ -41,7 +41,9 @@ output:
   \item{testers}{ vector, numeric }
   \item{y}{ vector, numeric }
 }
-\references{ Biometrical Methods in Quantitative Genetic Analysis, Singh, Chaudhary. 1979 }
+\references{ 
+Biometrical Methods in Quantitative Genetic Analysis, Singh, Chaudhary. 1979.
+Hierarchial and factorial mating designs for quantitative genetic analysis in tetrasomic potato. R. Ortis; A.Golmirzaie. Theor Appl Genet (2002) 104:675-679 }
 \author{ Felipe de Mendiburu }
 
 \seealso{\code{\link{AMMI} } }

@@ -1,32 +1,26 @@
 Package: agricolae
 Type: Package
 Title: Statistical Procedures for Agricultural Research
-Version: 1.0-9
-Date: 2010-2-24
+Version: 1.1-0
+Date: 2012-03-28
 Author: Felipe de Mendiburu
 Maintainer: Felipe de Mendiburu <f.mendiburu@cgiar.org>
 Suggests: akima, klaR, MASS, cluster
-Description: Agricolae was presented on 28 August 2009 in the thesis "A
-        statistical analysis tool for agricultural research" to obtain
-        the degree of Master on science, mention Systems Engineering,
-        of the facultad de ingenieria industrial y de sistemas -
-        Universidad Nacional de Ingenieria, Lima-Peru (UNI), being
-        approved with the qualification of 18.14 in a scale from 0 to
-        20. The thesis includes a satisfaction survey of the library,
-        with an index quality of the software of 0.8 in scale of 0-1.
-        These functions are currently used by the International Potato
-        Center (CIP), the Universidad Nacional Agraria La Molina
-        (UNALM-PERU), and the Instituto Nacional de Innovacion Agraria
-        (INIA-PERU). It comprises the functionality of statistical
-        analysis into experimental designs applied specially in field
-        experiments in agriculture and plant breeding: Lattice,
-        factorial, complete and incomplete block, Latin Square, Graeco,
-        Alpha designs, Cyclic, augmented block, split and strip plot
-        designs, comparison of multi-location trials, comparison
-        between treatments, resampling, simulation, biodiversity
-        indexes and consensus cluster.
+Description: Agricolae was presented in the thesis "A statistical
+        analysis tool for agricultural research" to obtain the degree
+        of Master on science, mention Systems Engineering, Faculty of
+        Industrial and Systems Engineering, National Engineering
+        University (UNI), Lima-Peru Agricolae offers extensive
+        functionality on experimental design especially for
+        agricultural and plant breeding experiments, which can also be
+        useful for other purposes. It supports planning of lattice,
+        Alpha, Cyclic, Complete Block, Latin Square, Graeco-Latin
+        Squares, augmented block, split and strip plot designs. There
+        are also various analysis facilities for experimental data,
+        e.g. treatment comparison procedures and several non-parametric
+        tests comparison, biodiversity indexes and consensus cluster.
 License: GPL
 URL: http://tarwi.lamolina.edu.pe/~fmendiburu
-Packaged: 2010-02-24 13:18:39 UTC; fdemendiburu
+Packaged: 2012-03-28 16:20:56 UTC; fdemendiburu
 Repository: CRAN
-Date/Publication: 2010-02-24 15:03:04
+Date/Publication: 2012-03-28 18:13:06

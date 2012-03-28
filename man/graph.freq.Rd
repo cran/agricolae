@@ -5,8 +5,8 @@
 \description{
   In many situations it has intervals of class defined with its respective
   frequencies. By means of this function, the graphic of frequency is obtained 
-  and it is possible to superpose the normal distribution, polygon of frequency, 
-  Ojiva and to construct the table of complete frequency.
+  and it is possible to superpose the normal distribution, polygon of .frequency, 
+  Ojiva and to construct the table of complete .frequency.
 }
 \usage{
 graph.freq(x, breaks="sturges",counts=NULL,frequency=1, plot=TRUE, nclass=NULL,xlab="",ylab="",...)
@@ -58,7 +58,7 @@ frequencies <-c(2,6,8,7,3,4)
 h<-graph.freq(limits,counts=frequencies,col="bisque",xlab="Classes")
 polygon.freq(h,col="red")
 title( main="Histogram and polygon of frequency",
-ylab="Frequency")
+ylab="frequency")
 #endgraph
 # Statistics
 measures<-stat.freq(h)
@@ -67,8 +67,8 @@ print(measures)
 round(table.freq(h),2)
 #startgraph
 # Ojiva
-ojiva.freq(h,col="red",type="b",xlab="Variable",ylab="Accumulated relative frequency")
-# only frequency polygon
+ojiva.freq(h,col="red",type="b",xlab="Variable",ylab="Accumulated relative .frequency")
+# only .frequency polygon
 h<-graph.freq(limits,counts=frequencies,border=FALSE,col=NULL,xlab="   ",ylab="")
 title( main="Polygon of frequency",
 xlab="Variable", ylab="Frecuency")

@@ -281,7 +281,7 @@ Z<-data.frame(Genotype=rownames(y),MV, R, MV1,GY,SI,F1,GYS,GYY)
 names(Z)<-names
 print(data.frame( row.names=NULL,Z))
 cat("\n","Yield Mean:", MES)
-cat("`\n","YS    Mean:", MGYS)
+cat("\n","YS    Mean:", MGYS)
 cat("\n","LSD (0.05):", DMV05)
 cat("\n",rep("-",11))
 cat("\n","+   selected genotype"                                            )

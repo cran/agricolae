@@ -1,7 +1,7 @@
 `wxyz` <-
 function(model,x,y,z) {
 datos<-data.frame(x,y,z)
-lista<-by(datos,list(x=x,y=y),mean)
+lista<-by(datos[,3],datos[,1:2],mean)
 pp<-as.matrix(lista)
 m<-nrow(pp)
 n<-ncol(pp)

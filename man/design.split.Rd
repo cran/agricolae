@@ -8,7 +8,7 @@
   The seed is by set.seed(seed, kinds).
 }
 \usage{
-design.split(trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),number = 1, seed = 0, kinds = "Super-Duper")
+design.split(trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),number = 1, seed = 0, kinds = "Super-Duper", first=FALSE)
 }
 
 \arguments{
@@ -19,6 +19,7 @@ design.split(trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),number = 1, seed = 
   \item{number}{ number of first plot }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
+  \item{first}{ TRUE or FALSE - randomize rep 1}
 }
 \details{
   kinds <- c("Wichmann-Hill", "Marsaglia-Multicarry", "Super-Duper",
@@ -33,6 +34,8 @@ design.split(trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),number = 1, seed = 
   \item{design}{character}
   \item{number }{Numeric}
   \item{seed }{Numeric}
+  \item{kinds}{ character }
+  \item{first }{Logic}
 }
 \references{ Statistical Procedures for Agricultural Research. 
 Kwanchai A. Gomez, Arturo A. Gomez. John Wiley & Sons, new York, 1984 }

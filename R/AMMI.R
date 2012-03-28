@@ -15,7 +15,8 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
         REP <- as.factor(REP)
         nrep <- length(unique(REP))
         cat("\nREP: ", unique(REP))
-        cat("\n\nNumber of observations: ", length(na.omit(Y)), "\n\n")
+        cat("\n\nNumber of observations: ", length(na.omit(Y)),
+            "\n\n")
         modelo <- aov(Y ~ ENV + REP %in% ENV + GEN + ENV:GEN)
         cat("model Y:", name.y, " ~ ENV + REP%in%ENV + GEN + ENV:GEN\n")
         cat("Random effect REP%in%ENV\n\n")
@@ -30,7 +31,7 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
         print(mm)
         DFE <- df.residual(modelo)
         MSE <- deviance(modelo)/DFE
-        medy <- mean(Y,na.rm=TRUE)
+        medy <- mean(Y, na.rm = TRUE)
         cat("\nCoeff var", "\tMean", name.y, "\n")
         cat(sqrt(MSE) * 100/medy, "\t", medy, "\n")
     }
@@ -38,9 +39,11 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
         DFE <- nenv * (ngen - 1) * (REP - 1)
         DFEa <- nenv * (REP - 1)
         nrep <- REP
-        modelo <- aov(Y ~ ENV + GEN + ENV:GEN)
+        modelo <- aov(Y ~ ENV + GEN)
         xx <- as.matrix(anova(modelo))
-        xx <- rbind(xx[1, ], xx[1, ], xx[2:4, ])
+        xx <- rbind(xx[1, ], xx[1, ], xx[2:3, ],xx[3,])
+		row.names(xx)[4] <- "ENV:GEN"
+		row.names(xx)[5] <- "Residuals"
         xx[2, 1] <- DFEa
         xx[2, 2:5] <- NA
         xx[, 2] <- xx[, 2] * nrep
@@ -60,10 +63,11 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
         cat("\n\nNumber of means: ", length(na.omit(Y)), "\n")
         cat("\nDependent Variable:", name.y, "\n\nAnalysis of variance\n")
         print(xx, na.print = "")
-        medy <- mean(Y,na.rm=TRUE)
+        medy <- mean(Y, na.rm = TRUE)
         cat("\nCoeff var", "\tMean", name.y, "\n")
         cat(sqrt(MSE) * 100/medy, "\t", medy, "\n")
     }
+
     raw <- data.frame(ENV, GEN, Y)
     MEDIAS <- tapply(raw[, 3], raw[, c(1, 2)], mean)
     xx <- rownames(MEDIAS)
@@ -83,7 +87,7 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
             z[k] <- MEDIAS[i, j]
         }
     }
-    MEDIAS <- data.frame(ENV=x, GEN=y, Y=z)
+    MEDIAS <- data.frame(ENV = x, GEN = y, Y = z)
     x <- MEDIAS[, 1]
     y <- MEDIAS[, 2]
     z <- MEDIAS[, 3]
@@ -100,8 +104,8 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
     mlabel <- names(MEDIAS)
     names(MEDIAS) <- c(mlabel[1:2], name.y, mlabel[4])
     OUTRES <- MEDIAS[order(MEDIAS[, 1], MEDIAS[, 2]), ]
-    OUTRES2 <- by(OUTRES[, 4], OUTRES[, c(2, 1)], function(x) sum(x))
-    OUTMED <- by(OUTRES[, 3], OUTRES[, c(2, 1)], function(x) sum(x))
+    OUTRES2 <- by(OUTRES[, 4], OUTRES[, c(2, 1)], function(x) sum(x,na.rm=TRUE))
+    OUTMED <- by(OUTRES[, 3], OUTRES[, c(2, 1)], function(x) sum(x,na.rm=TRUE))
     s <- svd(OUTRES2)
     U <- s$u
     L <- s$d
@@ -119,7 +123,8 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
     acumula <- 0
     for (i in 1:minimo) {
         DF <- (ngen - 1) + (nenv - 1) - (2 * i - 1)
-        if (DF <= 0) break
+        if (DF <= 0)
+            break
         DFAMMI[i] <- DF
         acumula <- acumula + percent[i]
         acum[i] <- acum[i] + acumula
@@ -129,11 +134,11 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
     }
     SS <- round(SS, 6)
     MSAMMI <- round(MSAMMI, 6)
-    SSAMMI <- data.frame(percent, acum, Df = DFAMMI, "Sum Sq" = SS,
-        "Mean Sq" = MSAMMI, "F value" = F.AMMI, Pr.F = PROBF)
-        nssammi<-nrow(SSAMMI)
-    SSAMMI<-SSAMMI[SSAMMI$Df>0,]
-    nss<-nrow(SSAMMI)
+    SSAMMI <- data.frame(percent, acum, Df = DFAMMI, `Sum Sq` = SS,
+        `Mean Sq` = MSAMMI, `F value` = F.AMMI, Pr.F = PROBF)
+    nssammi <- nrow(SSAMMI)
+    SSAMMI <- SSAMMI[SSAMMI$Df > 0, ]
+    nss <- nrow(SSAMMI)
     row.names(SSAMMI) <- paste("PC", 1:nss, sep = "")
     cat("\nAnalysis\n")
     print(SSAMMI)
@@ -149,7 +154,7 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
     MENV <- data.frame(type = "ENV", Y = apply(OUTMED, 2, mean),
         NSCORES)
     bplot <- rbind(MGEN, MENV)
-    bplot<- bplot[,1:(nss+2)]
+    bplot <- bplot[, 1:(nss + 2)]
     mlabel <- names(bplot)
     names(bplot) <- c(mlabel[1], name.y, mlabel[c(-1, -2)])
     maxy <- max(bplot[, 4])
@@ -159,9 +164,12 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
     row.names(bplot) <- c(row.names(MGEN), row.names(MENV))
     cp.name <- rownames(SSAMMI)[1:3]
     cp.per <- SSAMMI[1:3, 1]
+    cp1 <- paste("PC 1 (",cp.per[1],")",sep="")
+    cp2 <- paste("PC 2 (",cp.per[2],")",sep="")
+    cp3 <- paste("PC 3 (",cp.per[3],")",sep="")
     if (graph == "biplot") {
-    plot(bplot[,3],bplot[,4],cex=0, xlab = "PC 1", ylab = "PC 2",
-                frame = TRUE, ...)
+        plot(bplot[, 3], bplot[, 4], cex = 0, xlab = cp1, ylab = cp2,
+            frame = TRUE, ...)
         if (number == TRUE) {
             text(MGEN[, 3], MGEN[, 4], cex = 0, text(MGEN[, 3],
                 MGEN[, 4], labels = as.character(1:nrow(MGEN)),
@@ -177,8 +185,6 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
         s <- seq(length(MENV[, 3]))
         arrows(0, 0, 0.9 * MENV[, 3][s], 0.9 * MENV[, 4][s],
             col = "brown", lwd = 1.8, length = 0.1, code = 2)
-        legend("topleft", NULL, pch = c("1", "2"), cp.per[1:2],
-            , title = "PC     %", lty = 0)
     }
     if (graph == "triplot") {
         y <- bplot
@@ -193,10 +199,9 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
         nlugar <- nrow(lugar)
         point1 <- cbind(clones[, 1], clones[, 2], clones[, 3])
         point2 <- cbind(lugar[, 1], lugar[, 2], lugar[, 3])
-        point3 <- cbind(c(0.6, 0.6, 0), c(0, 0.6, 0.6), c(0.6,
-            0, 0.6))
+        point3 <- cbind(c(0.6, 0.6, 0), c(0, 0.8, 0.8), c(0.6, 0, 0.6))
         suppressWarnings(warning(triplot(point1, cex = 0, grid = TRUE,
-            label = "")))
+            label = "", center=TRUE,frame=TRUE)))
         if (number == TRUE)
             suppressWarnings(warning(text(tritrafo(point1), as.character(1:nclon),
                 adj = c(0.5, 0), col = "blue", cex = 0.8)))
@@ -205,10 +210,10 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
                 adj = c(0.5, 0), col = "blue", cex = 0.8)))
         suppressWarnings(warning(text(tritrafo(point2), rownames(lugar),
             adj = c(0.5, 0), col = "red", cex = 0.8)))
-        suppressWarnings(warning(text(tritrafo(point3), cp.name,
+        suppressWarnings(warning(text(tritrafo(point3), c(cp1,cp2,cp3),
             adj = c(0.5, 0), cex = 1)))
-        legend("topleft", NULL, pch = c("1", "2", "3"), cp.per,
-            , title = "PC     %", lty = 0)
+#        legend("topleft", NULL, pch = c("1", "2", "3"), cp.per,
+#            , title = "PC     %", lty = 0)
         trilines(centerlines(3), lty = 2.5, col = "green", lwd = 2)
         for (i in 1:nlugar) {
             suppressWarnings(warning(trilines(c(point2[i, 1],
@@ -216,5 +221,6 @@ function (ENV, GEN, REP, Y, MSE = 0, number = TRUE, graph = "biplot",
                 col = "red", lty = 1)))
         }
     }
-    return(list(genXenv=OUTRES2, analysis=SSAMMI, means=MEDIAS, biplot=bplot))
+    return(list(genXenv = OUTRES2, analysis = SSAMMI, means = MEDIAS,
+        biplot = bplot))
 }

@@ -3,17 +3,20 @@
 %- sturges.freq.
 \title{ Class intervals for a histogram, the rule of Sturges }
 \description{
-  Number classes: k = 1 + 3.33 log10 (N).
+  if k=0 then classes: k = 1 + 3.33 log10 (N).
+  if k > 0, fixed nclass.
 }
 \usage{
-sturges.freq(x)
+sturges.freq(x,k=0)
 }
 \arguments{
   \item{x}{ vector }
-}
+  \item{k}{ constant }
+  }
 
 \value{
   \item{x }{Numeric}
+  \item{k }{Numeric}
 }
 \references{
   Reza A. Hoshmand. 1988. Statistical Methods for Agricultural Sciences,

@@ -6,7 +6,7 @@
   Analysis of variance Augmented block and comparison mean adjusted. 
 }
 \usage{
-DAU.test(block, trt, y, method = c("lsd","tukey"))
+DAU.test(block, trt, y, method = c("lsd","tukey"),alpha=0.05,group=TRUE)
 
 }
 
@@ -15,6 +15,8 @@ DAU.test(block, trt, y, method = c("lsd","tukey"))
   \item{trt}{ Treatment }
   \item{y}{ Response  }
   \item{method}{ Comparison treatments }
+  \item{alpha}{ Significant test }
+  \item{group}{ TRUE or FALSE }
 }
 \details{
 Method of comparison treatment. 
@@ -26,6 +28,8 @@ tukey: Honestly significant differente.
   \item{trt}{ Vector }
   \item{y}{ numeric vector}
   \item{method}{ Character }
+  \item{alpha}{ Numeric }
+  \item{group}{ Logic} 
 }
 \references{ Federer, W. T. (1956). Augmented (or hoonuiaku) designs. Hawaiian Planters, Record LV(2):191-208. }
 
@@ -36,7 +40,7 @@ library(agricolae)
 block<-c(rep("I",7),rep("II",6),rep("III",7))
 trt<-c("A","B","C","D","g","k","l","A","B","C","D","e","i","A","B","C","D","f","h","j")
 yield<-c(83,77,78,78,70,75,74,79,81,81,91,79,78,92,79,87,81,89,96,82)
-model<- DAU.test(block,trt,yield,method="lsd")
+model<- DAU.test(block,trt,yield,method="lsd", group=TRUE)
 }
 \keyword{ models }
 

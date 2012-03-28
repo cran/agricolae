@@ -10,13 +10,11 @@ Coeff[i,j]<-Direct[j]*corr.x[i,j]
 }
 }
 Residual<-1-t(Direct)%*%corr.y
-cat("Correlations\n============\n")
-print(corr.x)
-cat("\n============\n")
-print(corr.y)
-cat("\n\nDirect(Diagonal) and indirect effect path coefficients",
+cat("Direct(Diagonal) and indirect effect path coefficients",
     "\n======================================================\n")
 print(Coeff)
 cat("\nResidual Effect^2 = ",Residual,"\n")
+output<-list(Coeff=Coeff,Residual=as.numeric(Residual))
+invisible(output)
 }
 
