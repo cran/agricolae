@@ -1,4 +1,4 @@
-0782ee789c134744cce6f3460ed781e4 *DESCRIPTION
+d31b998e9bbe0eea331f5971074daa8e *DESCRIPTION
 e79b1262fe29225e12e495d0c93a8cfd *NAMESPACE
 ac915672b4823dd46f1f67401b2e9aae *R/AMMI.R
 63bc79669decc3e830d4bc48db2f9b87 *R/AMMI.contour.R
@@ -60,7 +60,7 @@ a76382b84367fa44a352db3013017640 *R/plot.graph.freq.R
 4d60fa15a02edcd1249eca207e196349 *R/reg.homog.R
 79f5d456dabed74f3aadbb9a787d7efc *R/resampling.cv.R
 bd0612f814df5a663e3f7e5c299595f0 *R/resampling.model.R
-e2fd2927dcb94bc712db17ba6b06f9bc *R/scheffe.test.R
+4f85fe8d0a8c46d7123724a49f9f5d49 *R/scheffe.test.R
 d6e3b2794952971fc5f427a55198f2fe *R/similarity.R
 a98e09f60ed734ef5924cebd5dbff750 *R/simulation.model.R
 cc4e5133b27731530e7fcda9f5748bdf *R/skewness.R
@@ -114,7 +114,7 @@ ec644fe2f1fb85a8d096cc5b61888ddd *data/sinRepAmmi.rda
 f89bebe0b89dcc945e5d4850104f5570 *data/sweetpotato.rda
 93feb78eface8720dbdeff6d343a39e2 *data/wilt.rda
 06d77e44fb004716afa58983e3c0ff08 *data/yacon.rda
-c380501c57d765f4ed22e5b4e68a7ecb *inst/doc/ENagricolae.pdf
+f40a9aa2626609de66dd5f212a9ffd5d *inst/doc/ENagricolae.pdf
 7206ba43e8d2e7e4e5896bb03667cff4 *man/AMMI.Rd
 a996c0a1566a9620c631175230988a38 *man/AMMI.contour.Rd
 e0b3273103fef5ea477a6ea5b4ea4cbf *man/BIB.test.Rd
@@ -132,7 +132,7 @@ a580a74fed1b77b25497b31c8652076b *man/LSD.test.Rd
 ec69dfd27ecd2cf4e54295a9f0fb29ef *man/RioChillon.Rd
 fb29a382767dab6dcc5ce8efdcd9f550 *man/SNK.test.Rd
 30b5902afaf496e315ffcfcade077771 *man/VanderWarden.Rd
-cac3468c8e81e958d597db119ed5f7f0 *man/agricolae-package.Rd
+96445709cfe9eac39b22636f27efc7d4 *man/agricolae-package.Rd
 f4371b480b19a062d0366349142113db *man/audpc.Rd
 cfd78a46392468ea6a3d4d4744959ab8 *man/bar.err.Rd
 3e731ec6579295532923edaf40655149 *man/bar.group.Rd
