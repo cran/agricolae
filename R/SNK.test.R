@@ -64,14 +64,14 @@ odif<-dif
 for (k in 1:nn) {
 i<-comb[1,k]
 j<-comb[2,k]
-if (means[i, 2] < means[j, 2]){
-comb[1, k]<-j
-comb[2, k]<-i
-}
-dif[k]<-abs(means[i,2]-means[j,2])
+#if (means[i, 2] < means[j, 2]){
+#comb[1, k]<-j
+#comb[2, k]<-i
+#}
+dif[k]<-means[i,2]-means[j,2]
 nx<-abs(i-j)+1
 odif[k] <- abs(Ordindex[i]- Ordindex[j])+1
-pvalue[k]<- round(1-ptukey(dif[k]/sdtdif,odif[k],DFerror),6)
+pvalue[k]<- round(1-ptukey(abs(dif[k])/sdtdif,odif[k],DFerror),6)
 LCL[k] <- dif[k] - SNK[odif[k]-1]
 UCL[k] <- dif[k] + SNK[odif[k]-1]
 sig[k]<-" "

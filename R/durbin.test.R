@@ -78,12 +78,12 @@ sig<-rep(" ",nn)
 for (kk in 1:nn) {
 i<-comb[1,kk]
 j<-comb[2,kk]
-if (y[i] < y[j]){
-comb[1,kk]<-j
-comb[2,kk]<-i
-}
-dif[kk]<-abs(y[comb[1,kk]]-y[comb[2,kk]])
-pvalue[kk]<- 2*round(1-pt(dif[kk]/sdtdif,gl2),6)
+#if (y[i] < y[j]){
+#comb[1,kk]<-j
+#comb[2,kk]<-i
+#}
+dif[kk]<-y[comb[1,kk]]-y[comb[2,kk]]
+pvalue[kk]<- 2*round(1-pt(abs(dif[kk])/sdtdif,gl2),6)
 sig[kk]<-" "
 if (pvalue[kk] <= 0.001) sig[kk]<-"***"
 else  if (pvalue[kk] <= 0.01) sig[kk]<-"**"

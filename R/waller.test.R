@@ -60,17 +60,17 @@ MSD1<-rep(0,nn)
 for (k in 1:nn) {
 i<-comb[1,k]
 j<-comb[2,k]
-if (means[i, 2] < means[j, 2]){
-comb[1, k]<-j
-comb[2, k]<-i
-}
-dif[k]<-abs(means[i,2]-means[j,2])
+#if (means[i, 2] < means[j, 2]){
+#comb[1, k]<-j
+#comb[2, k]<-i
+#}
+dif[k]<-means[i,2]-means[j,2]
 MSD1[k]<-Tprob*sqrt(MSerror * (1/means[i,4] + 1/means[j,4]))
 }
 tr.i <- means[comb[1, ],1]
 tr.j <- means[comb[2, ],1]
 if (length(nr) == 1)  {
-significant = dif > MSD
+significant = abs(dif) > MSD
 output<-data.frame("Difference" = dif, significant)
 }
 else  {

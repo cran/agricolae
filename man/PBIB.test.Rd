@@ -7,32 +7,38 @@
   Applied to resoluble designs: Lattices and alpha design.
 }
 \usage{
-PBIB.test(block,trt,replication,y,k, method = c("lsd","tukey"), alpha=0.05, group=TRUE)
+PBIB.test(block,trt,replication,y,k, method = c("lsd","tukey"), alpha=0.05, 
+estimate=c("REML","ML","VC"), group=TRUE)
 }
-
 \arguments{
   \item{block}{ blocks }
   \item{trt}{ Treatment }
   \item{replication}{ Replication }  
   \item{y}{ Response  }
-  \item{k}{ size block  }  
+  \item{k}{ Block size  }  
   \item{method}{ Comparison treatments }
   \item{alpha}{ Significant test }
+  \item{estimate}{ Estimation method: REML, ML and VC }
   \item{group}{ TRUE or FALSE }
 }
 \details{
 Method of comparison treatment. 
 lsd: least significant difference.
 tukey: Honestly significant differente.
+Estimate: specifies the estimation method for the covariance parameters.
+The REML is the default method. The REML specification performs residual (restricted) maximum likelihood, and 
+The ML specification performs maximum likelihood, and 
+the VC specifications apply only to variance component models. 
 }
 \value{
   \item{block}{ Vector, consecutive numbers by replication }
-  \item{trt}{ Vector }
+  \item{trt}{ Vector numeric or character }
   \item{replication}{ Vector }  
   \item{y}{ numeric vector}
   \item{k}{ numeric constant }    
-  \item{method}{ Character }
+  \item{method}{ Character: comparison methods lsd and tukey}
   \item{alpha}{ Numeric }
+  \item{estimate}{ Character: REML, ML and VC }  
   \item{group}{ Logic} 
 }
 \references{
@@ -45,31 +51,31 @@ Wiley Classics Library Edition published 1992
 \author{ F. de Mendiburu }
 \seealso{\code{\link{BIB.test}}, \code{\link{design.alpha}} }
 \examples{
-library(agricolae)
-library(MASS)
+require(agricolae)
+require(MASS) # Estimate = VC in PBIB.test
+require(lme4) # Estimate = REML or LM in PBIB.test
 # alpha design 
-trt<-1:30
-ntr<-length(trt)
+Genotype<-paste("geno",1:30,sep="")
+ntr<-length(Genotype)
 r<-2
 k<-3
 s<-10
 obs<-ntr*r
 b <- s*r
-book<-design.alpha(trt,k,r,seed=5)
+book<-design.alpha(Genotype,k,r,seed=5)
 book$book[,3]<- gl(20,3)
 # dataset
 y<-c(5,2,7,6,4,9,7,6,7,9,6,2,1,1,3,2,4,6,7,9,8,7,6,4,3,2,2,1,1,2,
      1,1,2,4,5,6,7,8,6,5,4,3,1,1,2,5,4,2,7,6,6,5,6,4,5,7,6,5,5,4)
 dbook<-data.frame(book$book,yield=y)
-rm(y,trt)
+rm(y,Genotype)
 # analysis
 attach(dbook)
-model <- PBIB.test(block, trt, replication, yield, k=3)
+model <- PBIB.test(block, Genotype, replication, yield, k=3, estimate="REML", group=TRUE)
 detach(dbook)
-# model$comparison
-# model$means
-# model$groups
-bar.group(model$groups,xlim=c(0,9), col="yellow",horiz=TRUE,las=2)
+head(model$comparison)
+model$means
+model$groups
+bar.group(model$groups,ylim=c(0,9), density=20, las=2)
 }
 \keyword{ models }
-

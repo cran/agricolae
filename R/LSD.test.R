@@ -88,14 +88,14 @@ function (y, trt, DFerror, MSerror, alpha = 0.05, p.adj = c("none",
         for (k in 1:nn) {
             i <- comb[1, k]
             j <- comb[2, k]
-            if (means[i, 2] < means[j, 2]) {
-                comb[1, k] <- j
-                comb[2, k] <- i
-            }
-            dif[k] <- abs(means[i, 2] - means[j, 2])
+#            if (means[i, 2] < means[j, 2]) {
+#                comb[1, k] <- j
+#                comb[2, k] <- i
+#            }
+            dif[k] <-means[i, 2] - means[j, 2]
             sdtdif[k] <- sqrt(MSerror * (1/means[i, 4] + 1/means[j, 
                 4]))
-            pvalue[k] <- 2 * (1 - pt(dif[k]/sdtdif[k], DFerror))
+            pvalue[k] <- 2 * (1 - pt(abs(dif[k])/sdtdif[k], DFerror))
         }
         if (p.adj != "none") 
             pvalue <- round(p.adjust(pvalue, p.adj), 6)

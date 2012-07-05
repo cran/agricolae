@@ -60,13 +60,13 @@ pvalue<-rep(0,nn)
 for (k in 1:nn) {
 i<-comb[1,k]
 j<-comb[2,k]
-if (means[i, 2] < means[j, 2]){
-comb[1, k]<-j
-comb[2, k]<-i
-}
-dif[k]<-abs(means[i,2]-means[j,2])
+#if (means[i, 2] < means[j, 2]){
+#comb[1, k]<-j
+#comb[2, k]<-i
+#}
+dif[k]<-means[i,2]-means[j,2]
 sdtdif<- sqrt(S*((N-1-T1)/(N-ntr))*(1/means[i,3]+1/means[j,3]))
-pvalue[k]<- 2*round(1-pt(dif[k]/sdtdif,DFerror),6)
+pvalue[k]<- 2*round(1-pt(abs(dif[k])/sdtdif,DFerror),6)
 LSD <- Tprob*sdtdif
 LCL[k] <- dif[k] - LSD
 UCL[k] <- dif[k] + LSD

@@ -27,7 +27,7 @@ k<-k+1
 cambio<-i
 cambio1<-0
 ja<-j
-for(jj in cambio:n) M[jj]<-paste(M[jj]," ",sep="")
+for(jj in cambio:n) M[jj]<-paste(M[jj],"",sep="") # El espacio
 M[cambio]<-paste(M[cambio],letras[k],sep="")
 for( v in ja:cambio) {
 if(abs(w[v,2]-w[cambio,2])>minimum) {j<-j+1

@@ -55,13 +55,13 @@ pvalue<-rep(0,nn)
 for (k in 1:nn) {
 i<-comb[1,k]
 j<-comb[2,k]
-if (means[i, 2] < means[j, 2]){
-comb[1, k]<-j
-comb[2, k]<-i
-}
-dif[k]<-abs(means[i,2]-means[j,2])
+#if (means[i, 2] < means[j, 2]){
+#comb[1, k]<-j
+#comb[2, k]<-i
+#}
+dif[k]<-means[i,2]-means[j,2]
 sdtdif<-sqrt(MSerror * (1/means[i,4] + 1/means[j,4]))
-pvalue[k]<- round(1-pf(dif[k]^2/((ntr-1)*sdtdif^2),ntr-1,DFerror),6)
+pvalue[k]<- round(1-pf(abs(dif[k])^2/((ntr-1)*sdtdif^2),ntr-1,DFerror),6)
 
 LCL[k] <- dif[k] - sqrt(Tprob*(ntr-1))*sdtdif
 UCL[k] <- dif[k] + sqrt(Tprob*(ntr-1))*sdtdif

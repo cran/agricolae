@@ -124,26 +124,26 @@ function (block, trt, y, method = c("lsd","tukey","duncan","waller","snk"), alph
         for (k in 1:nn) {
             i <- comb[1, k]
             j <- comb[2, k]
-            if (mean.adj[i] < mean.adj[j]){
-            comb[1, k]<-j
-            comb[2, k]<-i
-            }
-            dif[k] <- abs(mean.adj[i] - mean.adj[j])
+#            if (mean.adj[i] < mean.adj[j]){
+#            comb[1, k]<-j
+#            comb[2, k]<-i
+#            }
+            dif[k] <- mean.adj[i] - mean.adj[j]
             if (method == "lsd")
-                pvalue[k] <- 2 * round(1 - pt(dif[k]/sdtdif,
+                pvalue[k] <- 2 * round(1 - pt(abs(dif[k])/sdtdif,
                   DFerror), 6)
             if (method == "tukey")
-                pvalue[k] <- round(1 - ptukey(dif[k] /sdtdif,
+                pvalue[k] <- round(1 - ptukey(abs(dif[k]) /sdtdif,
                   ntr, DFerror), 6)
             if (method == "snk"){
                 odif[k] <- abs(Ordindex[i]- Ordindex[j])+1
-                pvalue[k] <- round(1 - ptukey(dif[k] /sdtdif,
+                pvalue[k] <- round(1 - ptukey(abs(dif[k]) /sdtdif,
                 odif[k], DFerror), 6)
                 }
         	if (method == "duncan"){
 	        	nx<-abs(i-j)+1
 	        	odif[k] <- abs(Ordindex[i]- Ordindex[j])+1
-				pvalue[k]<- round((1-ptukey(dif[k]/sdtdif,odif[k],DFerror))^1/(odif[k]-1),6)
+				pvalue[k]<- round((1-ptukey(abs(dif[k])/sdtdif,odif[k],DFerror))^1/(odif[k]-1),6)
         		}
         sig[k]<-" "
 		if (pvalue[k] <= 0.001) sig[k]<-"***"
@@ -152,7 +152,7 @@ function (block, trt, y, method = c("lsd","tukey","duncan","waller","snk"), alph
 		else  if (pvalue[k] <= 0.1) sig[k]<-"."
         }
         if (method == "waller")
-            significant = dif > Tprob * sdtdif
+            significant = abs(dif) > Tprob * sdtdif
         tr.i <- nameTrt[comb[1, ]]
         tr.j <- nameTrt[comb[2, ]]
         cat("\nComparison between treatments means\n")

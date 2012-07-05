@@ -44,7 +44,7 @@ k<-k+1
 cambio<-i
 cambio1<-0
 ja<-j
-for(jj in cambio:n) M[jj]<-paste(M[jj]," ",sep="")
+for(jj in cambio:n) M[jj]<-paste(M[jj],sep="")
 M[cambio]<-paste(M[cambio],letras[k],sep="")
 for( v in ja:cambio) {
 nx<-abs(v-cambio)+1
@@ -78,6 +78,7 @@ if (cambio1 ==0 )j<-j+1
 w <- data.frame(w, stat = M)
 trt <- as.character(w$trt)
 means <- as.numeric(w$means)
+means1<-signif(means,4)
 N <- as.numeric(w$N)
 std.err <- as.numeric(w$std.err)
 replications<-w$replications
@@ -87,7 +88,7 @@ trt <- substr(trt, 1, cmax)
 output1<-cbind(trt,means)
 rownames(output1)<-M
 for (i in 1:n) {
-	cat(rownames(output1)[i], "\t", output1[i,1], "\t", output1[i,2], "\n")
+	cat(rownames(output1)[i], "\t", output1[i,1], "\t", means1[i], "\n")
 }
 output <- data.frame(trt, means, M, N=replications, std.err)
 invisible(output)

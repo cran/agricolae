@@ -161,7 +161,7 @@ cat("\nA Augmented Treatment and A Control Treatment",sqrt(MSerror*(1+1/b+1/comu
 		names(output)[2]<-"mean.adj"
 	}
     cat("\nComparison between treatments means\n")
-    cat("\n<<< to see the objects: comparison and means  >>>\n\n")
+    cat("\n<<< to see the objects: pvalue and means  >>>\n\n")
     pvalue <- as.dist(pvalue)
     #    N = r, std.err = sqrt(diag(vartau)))
     means<-r.trt[,c(1,4,5,2,6,7)]

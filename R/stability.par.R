@@ -185,11 +185,11 @@ if( FSS[i] < F05 ) MMM[i] <- "ns"
 #-------
 cat("\n","INTERACTIVE PROGRAM FOR CALCULATING SHUKLA'S STABILITY VARIANCE AND KANG'S")
 cat("\n","                       YIELD - STABILITY (YSi) STATISTICS")
-cat("\n\n",RR,"\n",KK," - covariate \n")
-cat("\n","Analysis of Variance")
-cat("\n",rep("-",35))
-cat("\n","Source         d.f.   Sum of Squares  Mean Squares         F  p.value")
-cat("\n",rep("-",35))
+cat("\n",RR,"\n",KK," - covariate \n")
+cat("\n","Analysis of Variance\n")
+#cat("\n")
+#cat("\n","Source         d.f.   Sum of Squares  Mean Squares         F  p.value")
+#cat("\n",rep("-",35))
 fuentes<- c( "TOTAL       ","GENOTYPES", "ENVIRONMENTS","INTERACTION",
              "HETEROGENEITY" , "RESIDUAL","POOLED ERROR")
 gl <- c(A*M-1, A-1, M-1, (M - 1) * (A - 1), A - 1,(A - 1) * (M - 2),M * (A - 1) * (N - 1))
@@ -202,17 +202,24 @@ CM <- c(0,CM)
 Fcal<-round(c(FV,FM,FVM,FH,FMS),2)
 Fcal<-c(0,Fcal,0)
 
-resul<-c(0,DD,NNN,LL,HH,BB,0)
+resul<-c(" ",DD,NNN,LL,HH,BB," ")
 
-Z<-data.frame(fuentes,gl,SC,CM,Fcal, resul)
-Z<-as.matrix(Z)
+Z<-data.frame(gl,SC,CM,Fcal, resul)
+names(Z)<-c("d.f.","Sum of Squares","Mean Squares","F","p.value")
+rownames(Z)<- c( "TOTAL       ","GENOTYPES", "ENVIRONMENTS","INTERACTION",
+		"HETEROGENEITY" , "RESIDUAL","POOLED ERROR")
+cat("\n")
+Z[7,c(2,4)]<-" ";Z[1,c(3,4)]<-" "; 
+print(Z)
 
-Z[1,4:6]   <-" "
-Z[7,c(3,5,6)]<-"       "
-for ( i in 1: 7) {
-cat("\n", Z[i,1],"\t",Z[i,2],"\t", Z[i,3],"\t", Z[i,4], "\t",Z[i,5], Z[i,6])
-}
-cat("\n",rep("-",35))
+#Z<-as.matrix(Z)
+
+#Z[1,4:6]   <-" "
+#Z[7,c(3,5,6)]<-"       "
+#for ( i in 1: 7) {
+#cat("\n", Z[i,1],"\t",Z[i,2],"\t", Z[i,3],"\t", Z[i,4], "\t",Z[i,5], Z[i,6])
+#}
+#cat("\n",rep("-",35))
 
 for ( i in 1: A) {
 for ( j in 1: M) {
@@ -236,16 +243,17 @@ for ( j in 1: M) {
 W[i] <- W[i] + (y[i, j] - X1M[i] - X2M[j] + MM1) ^ 2 * N
 }
 }
-cat("\n\n","Stability statistics")
-cat("\n",rep("-",35))
-cat("\nGenotype    MEANS       Sigma-square      s-square      Ecovalence")
-cat("\n",rep("-",35))
+cat("\n","Genotype. Stability statistics\n")
 MV<-round(MV,6); SI<-round(SI,6); S<-round(S,6); W<-round(W,6);
 Z<-data.frame(MV, SI, NN, S,MMM,W)
+names(Z)<-c("Mean","Sigma-square",".","s-square",".","Ecovalence")
+rownames(Z)<-rownames(y)
+cat("\n")
+print(Z)
 Z<-as.matrix(Z)
-for ( i in 1: A) {
-cat("\n",i, "\t", Z[i,1],"\t", Z[i,2], Z[i,3], "\t",Z[i,4], Z[i,5],"\t", Z[i,6])
-}
+#for ( i in 1: A) {
+#cat("\n",i, "\t", Z[i,1],"\t", Z[i,2], Z[i,3], "\t",Z[i,4], Z[i,5],"\t", Z[i,6])
+#}
 FF <- SI / MKE # each genotype
 SHF2 <- M * (A - 1) * (N - 1); SHF1 <- M - 1
 F05 <- qf(0.95,SHF1, SHF2)
@@ -276,10 +284,11 @@ if( GYS[i] > MGYS ) GYY[i] <- "+"
 cat("\n\nSignif. codes:  0 '**' 0.01 '*' 0.05 'ns' 1\n\n")
 
 cat("Simultaneous selection for yield and stability  (++)\n\n")
-names<-c("Genotype","Yield","Rank","Adj.rank","Adjusted","Stab.var","Stab.rating","YSi","..." )
-Z<-data.frame(Genotype=rownames(y),MV, R, MV1,GY,SI,F1,GYS,GYY)
+names<-c("Yield","Rank","Adj.rank","Adjusted","Stab.var","Stab.rating","YSi","..." )
+Z<-data.frame(MV, R, MV1,GY,SI,F1,GYS,GYY)
+rownames(Z)<-rownames(y)
 names(Z)<-names
-print(data.frame( row.names=NULL,Z))
+print(Z)
 cat("\n","Yield Mean:", MES)
 cat("\n","YS    Mean:", MGYS)
 cat("\n","LSD (0.05):", DMV05)

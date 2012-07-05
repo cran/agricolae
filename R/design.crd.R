@@ -20,6 +20,7 @@ for (i in 2:length(r)) {
 }
 yy<-data.frame(plots=xx[,1],r=r1,xx[,2])
 book<-yy[order(yy[,1]),]
+rownames(book)<-rownames(yy)
 names(book)[3]<-c(paste(deparse(substitute(trt))))
 return(book)
 }

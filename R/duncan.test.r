@@ -58,6 +58,7 @@ Ordindex<-order(Omeans)
 comb <-combn(ntr,2)
 nn<-ncol(comb)
 dif<-rep(0,nn)
+DIF<-dif
 LCL<-dif
 UCL<-dif
 pvalue<-dif
@@ -66,15 +67,16 @@ sig<-NULL
 for (k in 1:nn) {
 i<-comb[1,k]
 j<-comb[2,k]
-if (means[i, 2] < means[j, 2]){
-comb[1, k]<-j
-comb[2, k]<-i
-}
-dif[k]<-abs(means[i,2]-means[j,2])
+#if (means[i, 2] < means[j, 2]){
+#comb[1, k]<-j
+#comb[2, k]<-i
+#}
+dif[k]<-means[i,2]-means[j,2]
+DIF[k]<-abs(dif[k])
 nx<-abs(i-j)+1
 odif[k] <- abs(Ordindex[i]- Ordindex[j])+1
 #sdtdif<-sqrt(MSerror * (1/means[i,4] + 1/means[j,4]))
-pvalue[k]<- round((1-ptukey(dif[k]/sdtdif,odif[k],DFerror))^1/(odif[k]-1),6)
+pvalue[k]<- round((1-ptukey(DIF[k]/sdtdif,odif[k],DFerror))^1/(odif[k]-1),6)
 LCL[k] <- dif[k] - DUNCAN[odif[k]-1]
 UCL[k] <- dif[k] + DUNCAN[odif[k]-1]
 sig[k]<-" "

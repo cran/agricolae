@@ -82,13 +82,13 @@ stat<-rep("ns",nn)
 for (k in 1:nn) {
 i<-comb[1,k]
 j<-comb[2,k]
-if (means[i, 2] < means[j, 2]){
-comb[1, k]<-j
-comb[2, k]<-i
-}
-dif[k]<-abs(s[comb[1,k]]-s[comb[2,k]])
+#if (means[i, 2] < means[j, 2]){
+#comb[1, k]<-j
+#comb[2, k]<-i
+#}
+dif[k]<-s[comb[1,k]]-s[comb[2,k]]
 sdtdif<- sqrt(2*(m[1]*A1-t(s)%*%s)/DFerror)
-pvalue[k]<- 2*round(1-pt(dif[k]/sdtdif,DFerror),6)
+pvalue[k]<- 2*round(1-pt(abs(dif[k])/sdtdif,DFerror),6)
 LSD[k]<-round(Tprob*sdtdif,2)
 LCL[k] <- dif[k] - LSD[k]
 UCL[k] <- dif[k] + LSD[k]
