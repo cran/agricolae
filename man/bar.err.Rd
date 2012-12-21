@@ -8,25 +8,26 @@
  HSD, Kruskal and Waller-Duncan. 
  }
 \usage{
-bar.err(x, std = TRUE, horiz = FALSE, ...)
+bar.err(x,variation=c("std","SE","rank"),horiz=FALSE, bar=TRUE,...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ object or comparisons the LSD.test, HSD.test,...,etc }
-  \item{std}{ Standard deviation or standar error }
+  \item{x}{ object means of the comparisons the LSD.test, HSD.test,...,etc }
+  \item{variation}{ std=Standard deviation, SE=standard error or rank=Max.-Min.}
   \item{horiz}{ Horizontal or vertical bars }
+  \item{bar}{paint bar}
   \item{\dots}{ Parameters of the function barplot()}
 }
 \details{
   x: data frame formed by 5 columns: name of the bars, height, level
-  replications and standard error of the bar.
-  std = T : standard deviation.
-  std = F : standard error.
+  out: LSD.test, HSD, waller.test, scheffe.test, duncan.test, SNK.test, friedman, kruskal, waerden.test 
+  x: out$means
 }
 \value{
   \item{x}{ object  }
-  \item{std}{ TRUE or FALSE }
+  \item{variation}{ character std, SE or rank }
   \item{horiz}{ TRUE or FALSE }
+  \item{bar}{ TRUE or FALSE }
   \item{\dots}{ Parameters of the function barplot()}
 }
 
@@ -39,23 +40,23 @@ bar.err(x, std = TRUE, horiz = FALSE, ...)
 library(agricolae)
 data(sweetpotato)
 model<-aov(yield~virus,data=sweetpotato)
-df<-df.residual(model)
-MSerror<-deviance(model)/df
-Fc<-anova(model)[1,4]
-attach(sweetpotato)
-comparison <- waller.test(yield,virus,df, MSerror, Fc,
+out <- waller.test(model,"virus",
 main="Yield of sweetpotato\ndealt with different virus")
-detach(sweetpotato)
+par(mfrow=c(1,2),cex=1)
+bar.err(out$means,variation="std",ylim=c(0,45),bar=FALSE,col=0)
+abline(h=0)
+# horiz = TRUE
+bar.err(out$means,variation="std",horiz=TRUE,xlim=c(0,45),bar=FALSE,col=0)
 # std = FALSE (default) is standard error 
 #startgraph
 par(mfrow=c(2,2),cex=1)
-bar.err(comparison,horiz=TRUE,xlim=c(0,45),angle=125,density=6,
+bar.err(out$means,variation="std",horiz=TRUE,xlim=c(0,45),angle=125,density=6,
  main="Standard deviation")
-bar.err(comparison,std=FALSE,horiz=TRUE,xlim=c(0,45),density=8,
+bar.err(out$means,variation="SE",horiz=TRUE,xlim=c(0,45),density=8,
  col="brown",main="Standard error")
-bar.err(comparison,ylim=c(0,45),density=4,angle=125,col="green",
- main="Standard deviation")
-bar.err(comparison,std=FALSE,ylim=c(0,45),density=10,col="blue",
+bar.err(out$means,variation="rank",ylim=c(0,45),bar=FALSE,col="green",
+ main="rank")
+bar.err(out$means,variation="SE",ylim=c(0,45),col=colors()[30],
  main="Standard error")
 par(mfrow=c(1,1))
 #endgraph

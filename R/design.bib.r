@@ -26,6 +26,8 @@ cat("\nBlock size :",k)
 cat("\nBlocks     :",b)
 cat("\nReplication:",r,"\n")
 cat("\nEfficiency factor",E,"\n\n<<< Book >>>\n")
-return(book)
+parameters<-data.frame(lambda= lambda,treatmeans=ntr,blockSize=k,blocks=b,r=r,Efficiency=E)
+rownames(parameters)<-"values"
+return(list(parameters=parameters,book=book))
 }
 

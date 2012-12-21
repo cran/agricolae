@@ -86,6 +86,8 @@ function (trt, k, r, number = 1, seed = 0, kinds = "Super-Duper")
             cat("\nBlocks     :", s)
             cat("\nReplication:", r, "\n")
             cat("\nEfficiency factor\n(E )", E, "\n\n<<< Book >>>\n")
+			parameters<-data.frame(treatments= ntr,blockSize=k,blocks=s,r=r,Efficiency=E)
+			rownames(parameters)<-"values"			
             for (m in 1:r) {
                 for (j in 1:s) {
                   aleatorio <- sample(1:k, k)
@@ -122,7 +124,7 @@ function (trt, k, r, number = 1, seed = 0, kinds = "Super-Duper")
             if ( r == 2) design<-list(rep1=t(tr[,,1]),rep2=t(tr[,,2]))
             if ( r == 3) design<-list(rep1=t(tr[,,1]),rep2=t(tr[,,2]),rep3=t(tr[,,3]))
             if ( r == 4) design<-list(rep1=t(tr[,,1]),rep2=t(tr[,,2]),rep3=t(tr[,,3]),rep4=t(tr[,,4]))
-            return(list(book=book, alpha=alpha, intermediate=intermediate, design=design))
+            return(list(parameters=parameters, book=book, alpha=alpha, intermediate=intermediate, design=design))
         }
     }
 }

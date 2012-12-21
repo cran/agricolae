@@ -44,12 +44,14 @@ HSD.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL)
 library(agricolae)
 data(sweetpotato)
 model<-aov(yield~virus, data=sweetpotato)
-comparison <- HSD.test(model,"virus", group=TRUE,
+out <- HSD.test(model,"virus", group=TRUE,
 main="Yield of sweetpotato\nDealt with different virus")
 #stargraph
-bar.group(comparison,ylim=c(0,45),density=4,border="blue")
+bar.group(out$groups,ylim=c(0,45),density=4,border="blue")
 #endgraph
-HSD.test(model,"virus", group=FALSE)
+out<-HSD.test(model,"virus", group=FALSE)
+means<-out$means
+
 # Old version HSD.test()
 attach(sweetpotato)
 df<-df.residual(model)

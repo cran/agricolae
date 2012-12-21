@@ -61,24 +61,26 @@ Principles and procedures of statistics a biometrical approach
 library(agricolae)
 data(sweetpotato)
 model<-aov(yield~virus, data=sweetpotato)
-comparison <- waller.test(model,"virus", group=TRUE,
+out <- waller.test(model,"virus", group=TRUE,
 main="Yield of sweetpotato\nDealt with different virus")
 #startgraph
 par(mfrow=c(2,2))
-# std = TRUE (default) is standard deviation
-# std = FALSE is standard error
-bar.err(comparison,std=FALSE,horiz=TRUE,xlim=c(0,45),density=4)
-bar.err(comparison,std=FALSE,horiz=FALSE,ylim=c(0,45),density=8,col="blue")
-bar.group(comparison,horiz=FALSE,ylim=c(0,45),density=8,col="red")
-bar.group(comparison,horiz=TRUE,xlim=c(0,45),density=4,col="green")
+# variation: std is standard deviation
+# variation: SE is error standard
+# variation: rank is Max. - Min.
+bar.err(out$means,variation="std",horiz=TRUE,xlim=c(0,45),bar=FALSE,col=colors()[25],space=2, main="Standard deviation",las=1)
+bar.err(out$means,variation="SE",horiz=FALSE,ylim=c(0,45),bar=FALSE,col=colors()[15],space=2,main="Error Standard",las=1)
+bar.err(out$means,variation="rank",ylim=c(0,45),bar=FALSE,col="green",space=3,main="Rank = Max. - Min.",las=1)
+bar.group(out$groups,horiz=FALSE,ylim=c(0,45),density=8,col="red", main="Groups",las=1)
 #endgraph
 # Old version HSD.test()
 attach(sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
 Fc<-anova(model)["virus",4]
-comparison <- waller.test(yield, virus, df, MSerror, Fc, group=TRUE, 
+out <- waller.test(yield, virus, df, MSerror, Fc, group=TRUE, 
 main="Yield of sweetpotato. Dealt with different virus")
+print(out$mean)
 detach(sweetpotato)
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS

@@ -37,17 +37,17 @@ resampling.model(model,data,k)
 library(agricolae)
 data(clay)
 model<-"ralstonia ~ days"
-analysis<-resampling.model(model,clay,k=20)
+analysis<-resampling.model(model,clay,k=5)
 
 #example 2 Analysis of variance: RCD
 data(sweetpotato)
 model<-"yield~virus"
-analysis<-resampling.model(model,sweetpotato,k=20)
+analysis<-resampling.model(model,sweetpotato,k=5)
 
 #example 3 Simple linear regression
 data(Glycoalkaloids)
 model<-"HPLC ~ spectrophotometer"
-analysis<-resampling.model(model,Glycoalkaloids,k=20)
+analysis<-resampling.model(model,Glycoalkaloids,k=5)
 
 #example 4 Factorial in RCD
 
@@ -55,7 +55,7 @@ data(potato)
 potato[,1]<-as.factor(potato[,1])
 potato[,2]<-as.factor(potato[,2])
 model<-"cutting~variety + date + variety:date"
-analysis<-resampling.model(model,potato,k=20)
+analysis<-resampling.model(model,potato,k=5)
 
 }
 \keyword{ multivariate }% at least one, from doc/KEYWORDS

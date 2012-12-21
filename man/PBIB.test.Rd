@@ -7,8 +7,8 @@
   Applied to resoluble designs: Lattices and alpha design.
 }
 \usage{
-PBIB.test(block,trt,replication,y,k, method = c("lsd","tukey"), alpha=0.05, 
-estimate=c("REML","ML","VC"), group=TRUE)
+PBIB.test(block,trt,replication,y,k, method=c("REML","ML","VC"), 
+test = c("lsd","tukey"), alpha=0.05, group=TRUE)
 }
 \arguments{
   \item{block}{ blocks }
@@ -16,9 +16,9 @@ estimate=c("REML","ML","VC"), group=TRUE)
   \item{replication}{ Replication }  
   \item{y}{ Response  }
   \item{k}{ Block size  }  
-  \item{method}{ Comparison treatments }
+  \item{method}{ Estimation method: REML, ML and VC }
+  \item{test}{ Comparison treatments }
   \item{alpha}{ Significant test }
-  \item{estimate}{ Estimation method: REML, ML and VC }
   \item{group}{ TRUE or FALSE }
 }
 \details{
@@ -36,9 +36,9 @@ the VC specifications apply only to variance component models.
   \item{replication}{ Vector }  
   \item{y}{ numeric vector}
   \item{k}{ numeric constant }    
-  \item{method}{ Character: comparison methods lsd and tukey}
+  \item{method}{ Character: REML, ML and VC }
+  \item{test}{ Character: comparison methods lsd and tukey}
   \item{alpha}{ Numeric }
-  \item{estimate}{ Character: REML, ML and VC }  
   \item{group}{ Logic} 
 }
 \references{
@@ -52,8 +52,8 @@ Wiley Classics Library Edition published 1992
 \seealso{\code{\link{BIB.test}}, \code{\link{design.alpha}} }
 \examples{
 require(agricolae)
-require(MASS) # Estimate = VC in PBIB.test
-require(lme4) # Estimate = REML or LM in PBIB.test
+require(MASS) # method = VC in PBIB.test
+require(lme4) # method = REML or LM in PBIB.test
 # alpha design 
 Genotype<-paste("geno",1:30,sep="")
 ntr<-length(Genotype)
@@ -71,8 +71,10 @@ dbook<-data.frame(book$book,yield=y)
 rm(y,Genotype)
 # analysis
 attach(dbook)
-model <- PBIB.test(block, Genotype, replication, yield, k=3, estimate="REML", group=TRUE)
+model <- PBIB.test(block, Genotype, replication, yield, k=3, method="REML", group=TRUE)
 detach(dbook)
+model$method
+model$parameters
 head(model$comparison)
 model$means
 model$groups

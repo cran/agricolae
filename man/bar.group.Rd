@@ -45,8 +45,9 @@ comparison<- LSD.test(yield, virus,df,MSerror,alpha=0.01,group=TRUE)
 detach(sweetpotato)
 #startgraph
 par(cex=1.5)
-bar.group(comparison,horiz=TRUE,density=8,col="blue",border="red",xlim=c(0,50))
-title(cex.main=0.8,main="Comparison between\ntreatment means",xlab="Yield", ylab="Virus")
+bar.group(comparison$groups,horiz=TRUE,density=8,col="blue",border="red",
+xlim=c(0,50),las=1)
+title(cex.main=0.8,main="Comparison between\ntreatment means",xlab="Yield",ylab="Virus")
 #endgraph
 # Example 2
 library(agricolae)

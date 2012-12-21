@@ -6,7 +6,7 @@
   Analysis of variance BIB and comparison mean adjusted. 
 }
 \usage{
-BIB.test(block, trt, y, method = c("lsd","tukey","duncan","waller","snk"), alpha = 0.05, group = TRUE)
+BIB.test(block, trt, y, test = c("lsd","tukey","duncan","waller","snk"), alpha = 0.05, group = TRUE)
 
 }
 
@@ -14,12 +14,12 @@ BIB.test(block, trt, y, method = c("lsd","tukey","duncan","waller","snk"), alpha
   \item{block}{ blocks }
   \item{trt}{ Treatment }
   \item{y}{ Response  }
-  \item{method}{ Comparison treatments }
+  \item{test}{ Comparison treatments }
   \item{alpha}{ Significant test }
   \item{group}{logical }
 }
 \details{
-Method of comparison treatment. 
+Test of comparison treatment. 
 lsd: Least significant difference.
 tukey: Honestly significant differente.
 duncan: Duncan's new multiple range test
@@ -30,7 +30,7 @@ snk: Student-Newman-Keuls (SNK)
   \item{block}{ Vector }
   \item{trt}{ Vector }
   \item{y}{ numeric vector}
-  \item{method}{ Character }
+  \item{test}{ Character }
   \item{alpha}{ Numeric }
   \item{group}{ TRUE or FALSE }
 }
@@ -49,11 +49,13 @@ psi<-c(250,325,475,250,475,550,325,400,550,400,475,550,325,475,550,
 250,400,475,250,325,400,250,400,550,250,325,550,325,400,475)
 monovinyl<-c(16,18,32,19,46,45,26,39,61,21,35,55,19,47,48,20,33,31,13,13,34,21,
  30,52,24,10,50,24,31,37)
-out<-BIB.test(run,psi,monovinyl,method="waller",group=FALSE)
-out<-BIB.test(run,psi,monovinyl,method="waller",group=TRUE)
-out<-BIB.test(run,psi,monovinyl,method="tukey",group=TRUE)
-out<-BIB.test(run,psi,monovinyl,method="tukey",group=FALSE)
-bar.err(out,density=4,ylim=c(0,60))
+out<-BIB.test(run,psi,monovinyl,test="waller",group=FALSE)
+print(out)
+bar.err(out$means,variation="rank",ylim=c(0,60),bar=FALSE,col=0)
+out<-BIB.test(run,psi,monovinyl,test="waller",group=TRUE)
+out<-BIB.test(run,psi,monovinyl,test="tukey",group=TRUE)
+out<-BIB.test(run,psi,monovinyl,test="tukey",group=FALSE)
+rm(run,psi,monovinyl,out)
 # Example linear estimation and design of experiments. D.D. Joshi. 1987
 # Professor of Statistics, Institute of Social Sciences Agra, India
 # 6 varieties of wheat crop in a BIB whit 10 blocks of 3 plots each.
@@ -68,8 +70,9 @@ BIB.test(block, varieties, y)
 y <-c(10,15,11,4,12,15,5,14,10,14,19,19,8,10,17,6,11,12,5,14,21)
 block<-gl(7,3)
 trt <- c(1,2,4,2,3,5,3,4,6,4,5,7,1,5,6,2,6,7,1,3,7)
-model<-BIB.test(block, trt, y, method="duncan")
-bar.group(model,col="blue",density=4,ylim=c(0,max(y)))
+out<-BIB.test(block, trt, y, test="duncan")
+bar.group(out$groups,col="blue",density=4,ylim=c(0,max(y)))
+rm(y,block,trt,out)
 }
 \keyword{ models }
 

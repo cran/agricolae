@@ -32,7 +32,7 @@ resampling.cv(A, size, npoints)
 library(agricolae)
 #example table of molecular markers
 data(markers)
-study<-resampling.cv(markers,size=2,npoints=25)
+study<-resampling.cv(markers,size=1,npoints=15)
 #
 # Results of the model
 summary(study$model)

@@ -16,19 +16,23 @@ v[i,]<-rank(matriz[i,])
 }
 vv<-as.numeric(v)
 junto <- data.frame(evaluation, trt)
-means <- tapply.stat(junto[,1],junto[,2],stat="mean")  # change
+Means <- tapply.stat(junto[,1],junto[,2],stat="mean")  # change
 sds <-   tapply.stat(junto[,1],junto[,2],stat="sd")    # change
 nn <-   tapply.stat(junto[,1],junto[,2],stat="length") # change
-
+mi<-tapply.stat(junto[,1],junto[,2],stat="min") # change
+ma<-tapply.stat(junto[,1],junto[,2],stat="max") # change
 nr<-unique(nn[,2])
 s<-array(0,m[2])
 # Suma de rangos por tratamiento
 for (j in 1:m[2]){
 s[j]<-sum(v[,j])
 }
-means<-data.frame(means,replication=nn[,2])
+Means<-data.frame(Means,std.err=sds[,2]/sqrt(nn[,2]),r=nn[,2],Min.=mi[,2],Max.=ma[,2]) 
+names(Means)[1:2]<-c(name.t,name.y)
+means<-Means[,c(1:2,4)]
+rownames(Means)<-Means[,1]
+Means<-Means[,-1]
 means[,2]<-s
-names(means)[1:2]<-c(name.t,name.y)
 # row.names(means)<-means[,1]
 rs<-array(0,m[2])
 rs<-s-m[1]*(m[2]+1)/2
@@ -66,8 +70,10 @@ cat("\nLSD       :",LSD)
 cat("\n\nMeans with the same letter are not significantly different.")
 cat("\nGroupTreatment and Sum of the ranks\n")
 s<-as.numeric(s)
-output<-order.stat(name,s,LSD)
-names(output)[2]<-"Sum of ranks"
+groups<-order.stat(name,s,LSD)
+names(groups)[2]<-"Sum of ranks"
+comparison=NULL
+statistics<-data.frame(Chisq=T1.aj,p.chisq=p.value,F=T2.aj,p.F=PF,LSD)
 }
 if (!group) {
 comb <-combn(ntr,2)
@@ -100,11 +106,18 @@ else  if (pvalue[k] <= 0.1) sig[k]<-"."
 }
 tr.i <- means[comb[1, ],1]
 tr.j <- means[comb[2, ],1]
-output<-data.frame("Difference" = dif, pvalue=pvalue,sig,LCL,UCL)
-rownames(output)<-paste(tr.i,tr.j,sep=" - ")
+comparison<-data.frame("Difference" = dif, pvalue=pvalue,"sig."=sig,LCL,UCL)
+rownames(comparison)<-paste(tr.i,tr.j,sep=" - ")
 cat("\n\nComparison between treatments\nSum of the ranks\n\n")
-print(output)
-output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,3])
+print(comparison)
+statistics<-data.frame(Chisq=T1.aj,p.chisq=p.value,F=T2.aj,p.F=PF)
+groups=NULL
+# output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,3])
 }
+parameters<-data.frame(Df=ntr-1,ntr = ntr, t.value=Tprob)
+rownames(parameters)<-" "
+rownames(statistics)<-" "
+output<-list(statistics=statistics,parameters=parameters, 
+		means=Means,comparison=comparison,groups=groups)
 invisible(output)
 }

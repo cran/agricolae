@@ -10,6 +10,14 @@ b <-nlevels(judge)
 ntr <-nlevels(trt)
 lambda<-r*(k-1)/(ntr-1)
 x<-data.frame(judge,trt,evaluation)
+Means<- tapply.stat(x[,3],x[,2],stat="mean")  # change
+sds <-  tapply.stat(x[,3],x[,2],stat="sd")
+mi <-   tapply.stat(x[,3],x[,2],stat="min")
+ma <-   tapply.stat(x[,3],x[,2],stat="max")
+Means<-data.frame(Means,std.err=sds[,2]*sqrt(r),r,Min.=mi[,2],Max.=ma[,2])
+rownames(Means)<-Means[,1]
+Means<-Means[,-1]
+names(Means)[1] <- name.y
 # Determina el rango dentro de cada juez
 z <- by(x,x$judge,function(x) rank(x$evaluation))
 y<-data.frame(c(z))
@@ -22,10 +30,11 @@ kk=i+m[1]*(j-1)
 rango[kk]<-y[i,j]
 }
 }
+x <- data.frame(x, rango)
+means <- tapply.stat(x[, 4], x[, 2], stat = "sum")
+names(means)[1:2] <- c(name.t, name.y)
 x<-data.frame(x,rango)
-means <- tapply.stat(x[,4],x[,2],stat="sum")  # change
-#sds <-   tapply.stat(x[,2],x[,4],stat="sd")
-#means<-data.frame(means,std.sum=sds[,2]*sqrt(r))
+
 names(means)[1:2]<-c(name.t,name.y)
 z <-by(x,x$trt,function(x) sum(x$rango))
 y<-as.vector(c(z))
@@ -66,7 +75,8 @@ if (group)
 {
 cat("\nGroups, Treatments and sum of the ranks\n\n")
 y<-as.numeric(y)
-output<-order.stat(name,y,LSD)
+groups<-order.stat(name,y,LSD)
+comparison<-NULL
 }
 
 if (!group) {
@@ -93,11 +103,19 @@ else  if (pvalue[kk] <= 0.1) sig[kk]<-"."
 tr.i <- nameTrt[comb[1, ]]
 tr.j <- nameTrt[comb[2, ]]
 cat("\nComparison between treatments sum of the ranks\n\n")
-output<-data.frame("Difference" = dif, pvalue=pvalue,sig)
-rownames(output)<-paste(tr.i,tr.j,sep=" - ")
-print(output)
+comparison<-data.frame("Difference" = dif, pvalue=pvalue,"sig."=sig)
+rownames(comparison)<-paste(tr.i,tr.j,sep=" - ")
+print(comparison)
+groups=NULL
 }
-output<-data.frame(means,M="",N=r)
+#output<-data.frame(means,M="",N=r)
 #
+parameters<-data.frame(lambda=lambda,treatments=ntr,blockSize=k,blocks=b,r=r)
+statistics<-data.frame(chisq.value=s, p.value=prob, t.value=Tprob,LSD=LSD)
+	rownames(parameters)<-" "
+	rownames(statistics)<-" "
+	output<-list(statistics=statistics,parameters=parameters, 
+	means=Means,rank=means,comparison=comparison,groups=groups)
+	
 invisible(output)
 }

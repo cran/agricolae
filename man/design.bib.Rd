@@ -43,13 +43,15 @@ library(agricolae)
 trt<-c("A","B","C","D")
 k<-3
 bib <-design.bib(trt,k,number=101,seed =41,kinds ="Super-Duper") # seed = 41
-plots <-as.numeric(bib[,1])
-field <-as.character(bib[,3])
+print(bib$parameters)
+book<-bib$book
+plots <-as.numeric(book[,1])
+field <-as.character(book[,3])
 t(matrix(plots,c(3,4)))
 t(matrix(field,c(3,4)))
 # write in hard disk
-# write.table(bib,"bib.txt", row.names=FALSE, sep="\t")
-# file.show("bib.txt")
+# write.csv(book,"book.csv", row.names=FALSE)
+# file.show("book.csv")
 
 }
 \keyword{ design }% at least one, from doc/KEYWORDS

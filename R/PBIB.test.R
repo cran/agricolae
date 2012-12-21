@@ -1,14 +1,17 @@
 `PBIB.test` <-
-		function (block, trt, replication, y, k, method = c("lsd", "tukey"),
-				alpha = 0.05, estimate=c("REML","ML","VC"),group = TRUE)
+		function (block, trt, replication, y, k, method=c("REML","ML","VC"), 
+		test = c("lsd", "tukey"), alpha = 0.05, group = TRUE)
 {
-	
-	method <- match.arg(method)
-	if (method == "lsd")
+
+	test <- match.arg(test)
+	if (test == "lsd")
 		snk = 3
-	if (method == "tukey")
+	if (test == "tukey")
 		snk = 4
-	estimate <- match.arg(estimate)
+	method <- match.arg(method)
+	if(method=="REML") nMethod<-"Residual (restricted) maximum likelihood"
+	if(method=="ML") nMethod<-"Maximum likelihood"
+	if(method=="VC") nMethod<-"Variances component model"
 	name.y <- paste(deparse(substitute(y)))
 	name.r <- paste(deparse(substitute(replication)))
 	name.b <- paste(deparse(substitute(block)))
@@ -17,15 +20,20 @@
 	trt.adj <- as.factor(trt)
 	replication <- as.factor(replication)
 	mean.trt <- as.matrix(by(y, trt, function(x) mean(x,na.rm=TRUE)))
-	indice <- rownames(mean.trt)
+	mi <- as.matrix(by(y, trt, function(x) min(x,na.rm=TRUE)))
+	ma <- as.matrix(by(y, trt, function(x) max(x,na.rm=TRUE)))
 	n.rep <- as.matrix(by(y, trt, function(x) length(na.omit(x))))
+	sds<- as.matrix(by(y, trt, function(x) sd(x,na.rm=TRUE)))
+	std.err<-sds/sqrt(n.rep)
+	indice <- rownames(mean.trt)
+	
 	ntr <- nlevels(trt.adj)
 	r <- nlevels(replication)
 	s <- ntr/k
 	obs <- length(na.omit(y))
 	# Use function lm #
-	if (estimate=="VC" & obs != r*ntr ) {
-		cat("\nWarning.. incomplete repetition. Please you use estimate REML or ML\n")
+	if (method=="VC" & obs != r*ntr ) {
+		cat("\nWarning.. incomplete repetition. Please you use method REML or ML\n")
 		return()
 	}
 	modelo <- formula(paste(name.y, "~ replication + trt.adj+ block.adj%in%replication"))
@@ -34,18 +42,19 @@
 	ANOVA<-anova(model)
 	rownames(ANOVA)[2]<-name.trt
 	CV<- cv.model(model)
-	if (estimate == "VC") {
+	Mean<-mean(y,na.rm=TRUE)
+	if (method == "VC") {
 		rownames(ANOVA)<- c(name.r,paste(name.trt,".unadj",sep=""),paste(name.b,"/",name.r,sep=""),"Residual")
 	}
 # Use function lmer #
-	if (estimate == "REML" | estimate == "ML") {
+	if (method == "REML" | method == "ML") {
 		trt.adj <- as.factor(trt)
-		
-		if (estimate == "REML"){
+
+		if (method == "REML"){
 			modlmer <- lmer(y ~  0+(1 | replication) + trt.adj + (1 | replication/block.adj), REML=TRUE)
 			model <- lmer(y ~ (1 | replication) + trt.adj + (1 | replication/block.adj), REML=TRUE)
 		}
-		if (estimate == "ML"){
+		if (method == "ML"){
 			modlmer <- lmer(y ~  0+(1 | replication) + trt.adj + (1 | replication/block.adj), REML=FALSE)
 			model <- lmer(y ~ (1 | replication) + trt.adj + (1 | replication/block.adj), REML=FALSE)
 		}
@@ -68,7 +77,7 @@
 #
 	b <- s * r
 	glt <- ntr - 1
-	if (estimate == "VC") {
+	if (method == "VC") {
 		SCt<- anova(model)[2, 2]
 		Ee <- deviance(model)/glerror
 		Eb <- anova(model)[3, 3]
@@ -113,9 +122,9 @@
 		vartau <- (Ee/r) * (Iv + lambda * N %*% inversa %*% t(N))
 		dvar <- sqrt(diag(vartau))
 	}
-	
+
 	# use function lmer #
-	if (estimate == "REML" | estimate == "ML") {
+	if (method == "REML" | method == "ML") {
 		tauIntra<-fixef(modlmer)
 		vartau <- vcov(modlmer)
 		DIA<-as.matrix(vartau)
@@ -134,9 +143,9 @@
 	cat(name.b,":",b,"\n")
 	cat(name.trt,":", ntr)
 	cat("\n\nNumber of observations: ", length(y), "\n\n")
-	cat("Estimation Method: ",estimate,"\n\n")
+	cat("Estimation Method: ",nMethod,"\n\n")
 	media<-mean(y, na.rm = TRUE)
-	if (estimate == "REML" | estimate == "ML") {
+	if (method == "REML" | method == "ML") {
 		cat("Parameter Estimates\n")
 		print(VarRand)
 		Fstat<-data.frame(c(deviance(model),AIC(model),BIC(model)))
@@ -156,6 +165,11 @@
 	print(design)
 	E <- (ntr - 1) * (r - 1)/((ntr - 1) * (r - 1) + r * (s-1))
 	cat("\nEfficiency factor", E, "\n")
+	cat("\nComparison test", test, "\n")
+	parameters<-data.frame(treatments=ntr,blockSize=k,blocks=s,r=r)
+	statistics<-data.frame(Efficiency=E,Mean=Mean,CV=CV)
+	rownames(parameters)<-" "
+	rownames(statistics)<-" "
 	comb <- combn(ntr, 2)
 	nn <- ncol(comb)
 	dif <- rep(0, nn)
@@ -171,9 +185,9 @@
         dif[k]<- tauIntra[i] - tauIntra[j]
 		stdt[k] <- sqrt(vartau[i, i] + vartau[j, j]- 2 * vartau[i,j])
 		tc <- abs(dif[k])/stdt[k]
-		if (method == "lsd")
+		if (test == "lsd")
 			pvalue[k] <- 2 * round(1 - pt(tc, glerror),6)
-		if (method == "tukey")
+		if (test == "tukey")
 			pvalue[k] <- round(1 - ptukey(tc, ntr, glerror),6)
 	}
 	tr.i <- comb[1, ]
@@ -181,25 +195,27 @@
 	if (group) {
 		cat("\nMeans with the same letter are not significantly different.")
 		cat("\n\nGroups, Treatments and means\n")
-		output <- order.group(trt = 1:ntr, tauIntra, n.rep, MSerror = NULL,
+		groups <- order.group(trt = 1:ntr, tauIntra, n.rep, MSerror = NULL,
 				Tprob = NULL, std.err = dvar, parameter = 1,
 				snk, DFerror = glerror, alpha, sdtdif = 1, vartau)
-		names(output)[2] <- "mean.adj"
-		rownames(output)<- output$trt
-		indices<-as.numeric(as.character(output$trt))
-		output$trt<-indice[indices]
-		names(output)[1] <- name.trt
+		names(groups)[2] <- "mean.adj"
+		rownames(groups)<- groups$trt
+		indices<-as.numeric(as.character(groups$trt))
+		groups$trt<-indice[indices]
+		names(groups)[1] <- name.trt
+		groups<-groups[,1:3]
 	}
 	cat("\nComparison between treatments means and its name\n")
 	cat("\n<<< to see the objects: means, comparison and groups. >>>\n\n")
 	comparison <- data.frame(Difference = dif, stderr = stdt,
 			pvalue = pvalue)
 	rownames(comparison) <- paste(tr.i, tr.j, sep = " - ")
-	means <- data.frame(trt = 1:ntr, means = mean.trt, mean.adj = as.numeric(tauIntra),
-			N = n.rep, std.err = dvar)
-	
-	if (!group)
-		output = NULL
-	invisible(list(comparison = comparison, means = means, vartau = vartau,
-					groups = output))
+	means <- data.frame(means = mean.trt,trt = 1:ntr,  mean.adj = as.numeric(tauIntra),
+			SE = dvar, r = n.rep, std.err=std.err,Min.=mi,Max.=ma)
+	names(means)[1]<-name.y
+	if (!group) groups = NULL
+	output<-list(method=nMethod,parameters=parameters,statistics=statistics ,
+			comparison = comparison, means = means, groups = groups, vartau = vartau)
+			
+	invisible(output)
 }

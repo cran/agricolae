@@ -39,10 +39,10 @@ friedman(judge,trt,evaluation,alpha=0.05,group=TRUE,main=NULL)
 library(agricolae)
 data(grass)
 attach(grass)
-comparison<-friedman(judge,trt, evaluation,alpha=0.05, group=TRUE,
+out<-friedman(judge,trt, evaluation,alpha=0.05, group=TRUE,
 main="Data of the book of Conover")
 #startgraph
-bar.group(comparison,density=3,border="red",col="blue",ylim=c(0,45))
+bar.group(out$groups,density=3,border="red",col="blue",ylim=c(0,45))
 #endgraph
 }
 \keyword{ nonparametric }% at least one, from doc/KEYWORDS

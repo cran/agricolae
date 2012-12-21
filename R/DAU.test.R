@@ -19,12 +19,21 @@ function (block, trt, y, method = c("lsd","tukey"),alpha=0.05,group=TRUE)
     r <- unique(table(trt.adj))
     b <- nlevels(block.unadj)
     ntr <- nlevels(trt.adj)  # nro trt
-    mean.trt<-tapply.stat( y, trt, function(x) mean(x,na.rm=TRUE))
-    mean.y<- mean( y, na.rm=TRUE )
+    Means<-tapply.stat(y,trt, function(x) mean(x,na.rm=TRUE))
+	mi <- tapply.stat(y, trt, function(x) min(x,na.rm=TRUE))
+	ma <- tapply.stat(y, trt, function(x) max(x,na.rm=TRUE))
+	n.rep <- tapply.stat(y, trt, function(x) length(na.omit(x)))
+	sds<- tapply.stat(y, trt, function(x) sd(x,na.rm=TRUE))
+	std.err<-sds[,2]/sqrt(n.rep[,2])
+	Means<-data.frame(Means,std.err=sds[,2]*sqrt(n.rep[,2]),r=n.rep[,2],Min.=mi[,2],Max.=ma[,2])
+	names(Means)[1:2] <- c(name.t, name.y)
+	mean.y<- mean( y, na.rm=TRUE )
+	nameTrt<-Means[,1] 
     #mean.block<- data.frame(mean.block,ri=mean.block[,2]-mean.y )
     r.trt<-tapply.stat( y, trt, length)
     names(r.trt)[2]="N"
-    r.trt<-data.frame(r.trt,control=r.trt[,2]==b,means=mean.trt[,2],mean.adj=mean.trt[,2],block="",std.err=sqrt(MSerror/r.trt[,2]))
+    r.trt<-data.frame(r.trt,control=r.trt[,2]==b,means=Means[,2],mean.adj =Means[,2], 
+			block="",std.err=sqrt(MSerror/r.trt[,2]))
     r.trt[,6]<-as.character(r.trt[,6])
     estado <- NULL 
     n<-length(y)
@@ -35,7 +44,6 @@ function (block, trt, y, method = c("lsd","tukey"),alpha=0.05,group=TRUE)
     break;
     }
     }}
-    
     datos <- data.frame(block, trt, y, control=estado)
     mean.block<-tapply.stat( datos[datos$control,3],datos[datos$control,1], function(x) mean(x,na.rm=TRUE))
     mean.y<- mean( datos[datos$control,3], na.rm=TRUE )
@@ -107,6 +115,7 @@ function (block, trt, y, method = c("lsd","tukey"),alpha=0.05,group=TRUE)
     }
     }
     }
+	n.rep
 # matriz variancia
 comunes<-sum(r.trt[,3])
 V<-diag(0,ntr)
@@ -133,40 +142,72 @@ cat("\nANALYSIS DAU: ", name.y, "\nClass level information\n")
     print(A1)
     cat("\nANOVA, Block Adjusted\n")
     print(A2)
-    cat("\ncoefficient of variation:", round(cv.model(model1), 1),
-        "%\n")
+    CV<-round(cv.model(model1), 1)
+    cat("\ncoefficient of variation:", CV, "%\n")
     cat(name.y, "Means:", mean.yy, "\n")
-    cat("\nCritical Differences (Between)         Std Error Diff.\n")  
-cat("\nTwo Control Treatments                       ",sqrt(2*MSerror/b))
-cat("\nTwo Augmented Treatments (Same Block)        ",sqrt(2*MSerror))
-cat("\nTwo Augmented Treatments(Different Blocks)   ",sqrt(2*MSerror*(1+1/comunes)))
-cat("\nA Augmented Treatment and A Control Treatment",sqrt(MSerror*(1+1/b+1/comunes-1/(b*comunes))))
-    
-    pvalue <- V
-    for (i in 1:ntr) {
-    for (j in 1:ntr) {
-    tc <- abs(r.trt[i,5] - r.trt[j,5])/sqrt(V[i,j])
+ SE.dif<-rbind(sqrt(2*MSerror/b),sqrt(2*MSerror),sqrt(2*MSerror*(1+1/comunes)),
+ sqrt(MSerror*(1+1/b+1/comunes-1/(b*comunes))))
+rownames(SE.dif)<- c("Two Control Treatments","Two Augmented Treatments (Same Block)",
+"Two Augmented Treatments(Different Blocks)","A Augmented Treatment and A Control Treatment")
+colnames(SE.dif)<-"Std Error Diff."
+#    cat("\nCritical Differences (Between)         Std Error Diff.\n")
+cat("\nCritical Differences (Between)\n")
+print(SE.dif)
+cat("\n")    
+if(!group){
+#	Omeans<-order(mean.adj,decreasing = TRUE)
+#	Ordindex<-order(Omeans)
+	comb <- combn(ntr, 2)
+	nn <- ncol(comb)
+	dif <- rep(0, nn)
+	sig <- rep(" ",nn)
+	pvalue <- dif
+	odif<-dif
+	for (k in 1:nn) {
+		i <- comb[1, k]
+		j <- comb[2, k]
+		dif[k] <- r.trt[i, 5] - r.trt[j, 5]
+		tc <- abs(dif[k])/sqrt(V[i,j])
     if (method == "lsd")
-    pvalue[i,j] <- 2 * round(1 - pt(tc, glerror), 6)
+    pvalue[k] <- 2 * round(1 - pt(tc, glerror), 6)
     if (method == "tukey")
-    pvalue[i,j] <- round(1 - ptukey(tc*sqrt(2), ntr, glerror), 6)
+    pvalue[k] <- round(1 - ptukey(tc*sqrt(2), ntr, glerror), 6)
+	sig[k]<-" "
+	if (pvalue[k] <= 0.001) sig[k]<-"***"
+	else  if (pvalue[k] <= 0.01) sig[k]<-"**"
+	else  if (pvalue[k] <= 0.05) sig[k]<-"*"
+	else  if (pvalue[k] <= 0.1) sig[k]<-"."
     }
+	groups <- NULL
+	tr.i <- nameTrt[comb[1, ]]
+	tr.j <- nameTrt[comb[2, ]]
+	comparison<-data.frame("Difference" = dif, pvalue=pvalue,"sig."=sig)
+	rownames(comparison)<-paste(tr.i,tr.j,sep=" - ")
     }
-
 	if(group){
 		cat("\n\nMeans with the same letter are not significantly different.")
 		cat("\n\nGroups, Treatments and means\n")
-		output <- order.group(trt=r.trt[,1], r.trt[,5], r.trt[,2], MSerror=NULL, Tprob=NULL, 
-				std.err=r.trt[,7],parameter=1,snk, DFerror=glerror,alpha,sdtdif=1, vartau=V)
-		names(output)[2]<-"mean.adj"
+		groups <- order.group(trt=r.trt[,1], r.trt[,5], r.trt[,2], MSerror=NULL, Tprob=NULL, 
+		std.err=r.trt[,7],parameter=1,snk, DFerror=glerror,alpha,sdtdif=1, vartau=V)
+		names(groups)[2]<-"mean.adj"
+		groups<-groups[,1:3]
+		comparison=NULL
 	}
     cat("\nComparison between treatments means\n")
-    cat("\n<<< to see the objects: pvalue and means  >>>\n\n")
-    pvalue <- as.dist(pvalue)
+    cat("\n<<< to see the objects: comparison and means  >>>\n\n")
+    #pvalue <- as.dist(pvalue)
     #    N = r, std.err = sqrt(diag(vartau)))
-    means<-r.trt[,c(1,4,5,2,6,7)]
+    means<-data.frame(Means[,1:6],mean.adj=r.trt[,5],SE=r.trt[,7],block=r.trt[,6])
     rownames(means)<- means[,1]
     means<-means[,-1]
-	if(!group) output=NULL
-	invisible(list(means = means,pvalue = pvalue,groups=output))
+	parameters<-data.frame(treatments=ntr,Controls=comunes,
+	Augmented=ntr-comunes,blocks=b)
+	statistics<-data.frame(Mean=mean.yy,CV=CV)
+	rownames(parameters)<-" "
+	rownames(statistics)<-" "
+	output<-list(means = means, parameters=parameters, statistics=statistics,
+	comparison=comparison,groups=groups,SE.difference=SE.dif,vartau = V)
+	invisible(output)
 }
+
+

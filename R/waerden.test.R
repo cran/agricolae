@@ -3,19 +3,30 @@ function(y, trt,alpha=0.05,group=TRUE,main=NULL) {
 name.y <- paste(deparse(substitute(y)))
 name.t <- paste(deparse(substitute(trt)))
 junto <- subset(data.frame(y, trt), is.na(y) == FALSE)
+Means <- tapply.stat(junto[,1],junto[,2],stat="mean") # change
+sds <-   tapply.stat(junto[,1],junto[,2], stat="sd")  #change
+nn <-   tapply.stat(junto[,1],junto[,2],stat="length") # change
+mi<-tapply.stat(junto[,1],junto[,2],stat="min") # change
+ma<-tapply.stat(junto[,1],junto[,2],stat="max") # change
+Means<-data.frame(Means,std.err=sds[,2]/sqrt(nn[,2]),r=nn[,2],Min.=mi[,2],Max.=ma[,2]) 
+rownames(Means)<-Means[,1]
+Means<-Means[,-1]
+names(Means)[1]<-name.y
+
 N<- nrow(junto)
 junto[, 1] <- qnorm(round(rank(junto[, 1]) /(N+1),3))
 S <- sum(junto[,1]^2)/(N-1)
 means <- tapply.stat(junto[,1],junto[,2],stat="mean") # change
+sds <-   tapply.stat(junto[,1],junto[,2], stat="sd")  #change
 nn <-   tapply.stat(junto[,1],junto[,2],stat="length") # change
-means<-data.frame(means,replication=nn[,2])
+means<-data.frame(means,std.err=sds[,2]/sqrt(nn[,2]),r=nn[,2])  
 names(means)[1:2]<-c(name.t,name.y)
 #row.names(means)<-means[,1]
 ntr<-nrow(means)
 DFerror<-N - ntr
 T1 <- 0
 for (i in 1:ntr) {
-T1 <- T1 + means[i, 2]^2*means[i,3]
+T1 <- T1 + means[i, 2]^2*means[i,4] # change
 }
 T1<-T1/S
 cat("\nStudy:",main)
@@ -30,24 +41,29 @@ MSerror <- S * ((N - 1 - T1)/(N - ntr))
 #cat("\nComparison of treatments")
 #...............
 
-nr <- unique(means[,3])
+nr <- unique(means[,4]) # change
+nr1<-nr
 Tprob<-qt(1-alpha/2,DFerror)
 if (group) {
 cat("\nt-Student:", Tprob)
 cat("\nAlpha    :",alpha)
-    if (length(nr) == 1) {
+    if (length(nr1) == 1) {
         LSD <- Tprob * sqrt(2 * MSerror/nr)
 cat("\nLSD      :", LSD,"\n")
+statistics<-data.frame(Chisq=T1,p.chisq=p.chisq,LSD=LSD )
     }
     else {
-         nr1 <- 1/mean(1/nn[, 2])
-         LSD1 <- Tprob * sqrt(2 * MSerror/nr1)
-         cat("\nLSD      :", LSD1,"\n")
-         cat("\nHarmonic Mean of Cell Sizes ", nr1)
-         }   
+         nr <- 1/mean(1/nn[, 2])
+         LSD <- Tprob * sqrt(2 * MSerror/nr)
+         cat("\nLSD      :", LSD,"\n")
+         cat("\nHarmonic Mean of Cell Sizes ", nr)
+		 statistics<-data.frame(Chisq=T1,p.chisq=p.chisq,LSD=LSD,r.harmonic=nr)    
+	 }   
 cat("\nMeans with the same letter are not significantly different\n")
 cat("\nGroups, Treatments and means of the normal score\n")
-output <- order.group(means[,1], means[,2], means[,3], MSerror, Tprob,std.err=sqrt(MSerror/ means[,3]))
+groups <- order.group(means[,1], means[,2], means[,4], MSerror, Tprob,std.err=sqrt(MSerror/ means[,4])) # change
+groups<-groups[,1:3]
+comparison=NULL
  }
  if (!group) {
 comb <-combn(ntr,2)
@@ -65,7 +81,7 @@ j<-comb[2,k]
 #comb[2, k]<-i
 #}
 dif[k]<-means[i,2]-means[j,2]
-sdtdif<- sqrt(S*((N-1-T1)/(N-ntr))*(1/means[i,3]+1/means[j,3]))
+sdtdif<- sqrt(S*((N-1-T1)/(N-ntr))*(1/means[i,4]+1/means[j,4])) # change
 pvalue[k]<- 2*round(1-pt(abs(dif[k])/sdtdif,DFerror),6)
 LSD <- Tprob*sdtdif
 LCL[k] <- dif[k] - LSD
@@ -78,12 +94,19 @@ else  if (pvalue[k] <= 0.1) sig[k]<-"."
 }
 tr.i <- means[comb[1, ],1]
 tr.j <- means[comb[2, ],1]
-output<-data.frame("Difference" = dif, pvalue=pvalue,sig,LCL,UCL)
-rownames(output)<-paste(tr.i,tr.j,sep=" - ")
+comparison<-data.frame("Difference" = dif, pvalue=pvalue,"sig."=sig,LCL,UCL)
+rownames(comparison)<-paste(tr.i,tr.j,sep=" - ")
 cat("\nComparison between treatments means\nmean of the normal score\n\n")
-print(output)
-output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,3])
+print(comparison)
+statistics<-data.frame(Chisq=T1,p.chisq=p.chisq) 
+groups=NULL
+#output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,4]) # change
 }
+parameters<-data.frame(Df=ntr-1,ntr = ntr, t.value=Tprob)
+rownames(parameters)<-" "
+rownames(statistics)<-" "
+output<-list(statistics=statistics,parameters=parameters, 
+		means=Means,comparison=comparison,groups=groups)
     invisible(output)
 }
 

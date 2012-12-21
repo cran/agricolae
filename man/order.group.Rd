@@ -50,12 +50,21 @@ library(agricolae)
 treatments <- c("A","B","C","D","E","F")
 means<-c(20,40,35,72,49,58)
 std.err<-c(1.2, 2, 1.5, 2.4, 1, 3.1)
+minimun<-c(15,38,30,68,43,54)
+maximun<-c(23,45,39,76,53,61)
 replications <- c(4,4,3,4,3,3)
 MSerror <- 55.8
 value.t <- 2.1314
 groups<-order.group(treatments,means,replications,MSerror,value.t,std.err)
-groups
-bar.err(groups,ylim=c(0,80))
+Means<-data.frame(treatments,means,std.err,r=replications,Min.= minimun,Max.=maximun)
+rownames(Means)<-Means[,1]
+Means<-Means[,-1]
+par(mfrow=c(2,2))
+bar.group(groups,ylim=c(0,80))
+bar.err(Means,variation="SE", bar=FALSE,col="green",main="Standard error",ylim=c(0,80))
+bar.err(Means,variation="std", bar=FALSE,col=colors()[15],main="Standard deviation",ylim=c(0,80))
+out<-bar.err(Means,variation="rank", bar=FALSE,col=colors()[25],space=2,main="Rank",ylim=c(0,80))
+points(out$index,out$means,pch=17,col="orange",cex=2)
 }
 \keyword{ manip }% at least one, from doc/KEYWORDS
 

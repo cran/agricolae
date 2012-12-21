@@ -36,7 +36,7 @@ design.lattice(k, type="triple", number = 1, seed = 0, kinds = "Super-Duper")
 
 \examples{
 library(agricolae)
-design.lattice(10,type="simple") # simple lattice desing, 10x10 (100 varieties)
+design.lattice(10,type="simple") # simple lattice design, 10x10 (100 varieties)
 design.lattice(3,type="triple") # triple lattice design,  3x3 ( 9 varieties)
 }
 \keyword{ design }% at least one, from doc/KEYWORDS

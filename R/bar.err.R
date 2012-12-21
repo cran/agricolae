@@ -1,18 +1,30 @@
 `bar.err` <-
-function(x,std=TRUE,horiz=FALSE, ...) {
-y<-x[,2]
-names(y)<-x[,1]
-if( std ) {
-nivel0<-x[,2]-x[,5]*sqrt(x[,4])
-nivel1<-x[,2]+x[,5]*sqrt(x[,4])
+function(x,variation=c("std","SE","rank"),horiz=FALSE, bar=TRUE,...) {
+variation<-match.arg(variation)
+y<-x[,1]
+names(y)<-rownames(x)
+if( variation=="std" ) {
+nivel0<-y-x$"std.err"*sqrt(x$r)
+nivel1<-y+x$"std.err"*sqrt(x$r)
 }
-else {
-nivel0<-x[,2]-x[,5]
-nivel1<-x[,2]+x[,5]
+if( variation=="SE" ) {
+nivel0<-y-x$"std.err"
+nivel1<-y+x$"std.err"
+}
+if( variation=="rank" ) {
+nivel0<-x$"Min."
+nivel1<-x$"Max."
 }
 n<-length(y)
+if (bar) {
 indice<-barplot(y,horiz=horiz, ...)
 tope<-max(nivel1)/20
+}
+else {
+indice<-barplot(y,horiz=horiz, border=0, ...)
+if(horiz)lines(y,indice,type="b")
+else lines(indice,y,type="b")
+}
 for ( i in 1:n) {
 if (horiz)  {
 lines(rbind(c(nivel0[i],indice[i]),c(nivel1[i],indice[i])))
@@ -25,6 +37,6 @@ text( cex=1,indice[i],nivel0[i],"---")
 text( cex=1,indice[i],nivel1[i],"---")
 }
 }
-invisible(list(indice=indice,nivel=nivel1))
+invisible(list(index=indice,means=y))
 }
 

@@ -53,20 +53,22 @@ LSD.test(y, trt, DFerror, MSerror, alpha = 0.05, p.adj=c("none","holm",
 library(agricolae)
 data(sweetpotato)
 model<-aov(yield~virus, data=sweetpotato)
-comparison <- LSD.test(model,"virus", p.adj="bonferroni",
+out <- LSD.test(model,"virus", p.adj="bonferroni",
 main="Yield of sweetpotato\ndealt with different virus")
 #stargraph
-bar.group(comparison,ylim=c(0,45),density=4,border="blue")
+bar.group(out$groups,ylim=c(0,45),density=4,border="blue")
 #endgraph
 # Old version LSD.test()
 attach(sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
-comparison <- LSD.test(yield,virus,df,MSerror, p.adj="bonferroni", group=FALSE,
+out <- LSD.test(yield,virus,df,MSerror, p.adj="bonferroni", group=FALSE,
 main="Yield of sweetpotato\ndealt with different virus")
 detach(sweetpotato)
 #stargraph
-bar.err(comparison,std=TRUE,ylim=c(0,45),density=4,border="red")
+# Variation rank: Max. - Min.
+bar.err(out$means,variation="rank",ylim=c(0,44),bar=FALSE,col=0)
+
 #endgraph
 LSD.test(model,"virus",p.adj="bon")
 
