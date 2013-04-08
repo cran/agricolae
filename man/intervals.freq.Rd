@@ -27,6 +27,7 @@ library(agricolae)
 data(growth)
 attach(growth)
 h2<-hist(height,plot=FALSE)
+detach(growth)
 intervals.freq(h2$breaks)
 # example 2
 x<-seq(10,40,5)

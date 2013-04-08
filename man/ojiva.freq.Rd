@@ -31,6 +31,7 @@ attach(growth)
 
 #startgraph
 h<-graph.freq(height,plot=FALSE)
+detach(growth)
 points<-ojiva.freq(h,type="l",col="red",frame=FALSE,
 xlab="Limit of class", ylab="Accumulated relative frequency", main="ojiva")
 grid(col="black")

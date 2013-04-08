@@ -41,6 +41,7 @@ normal.freq(h1,col="blue")
 h2<-graph.freq(height,col="yellow",xlim=c(6,14),frequency=2)
 normal.freq(h2,.frequency=2)
 #endgraph
+detach(growth)
 }
 \keyword{ aplot }% at least one, from doc/KEYWORDS
 

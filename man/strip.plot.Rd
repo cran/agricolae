@@ -39,7 +39,6 @@ strip.plot(BLOCK, COL, ROW, Y)
 # Yield
 library(agricolae)
 data(huasahuasi)
-attach(huasahuasi)
 YIELD<-huasahuasi$YIELD
 attach(YIELD)
 market <- y1da + y2da
@@ -48,6 +47,7 @@ yield <- market + non_market
 model<-strip.plot(block, clon, trt, yield)
 comparison<-LSD.test(yield,clon,model$gl.a,model$Ea)
 comparison<-LSD.test(yield,trt,model$gl.b,model$Eb)
+detach(YIELD)
 # simple effects
 A<-model$data
 a<-nlevels(A$clon)

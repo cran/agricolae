@@ -32,6 +32,7 @@ library(agricolae)
 data(frijol)
 attach(frijol)
 evaluation<-reg.homog(technology,production,index)
+detach(frijol)
 }
 \keyword{ regression }% at least one, from doc/KEYWORDS
 

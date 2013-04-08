@@ -40,7 +40,7 @@ data(CIC)
 data1<-CIC$comas[,c(1,6,7,17,18)]
 data2<-CIC$oxapampa[,c(1,6,7,19,20)]
 cic <- rbind(data1,data2)
-attach(cic)
+
 means <- by(cic[,5], cic[,c(2,1)], function(x) mean(x,na.rm=TRUE))
 means <-as.data.frame(means[,])
 cic.mean<-data.frame(genotype=row.names(means),means)

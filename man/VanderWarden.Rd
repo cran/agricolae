@@ -40,10 +40,12 @@ data(corn)
 attach(corn)
 comparison<-waerden.test(observation,method,group=TRUE)
 comparison<-waerden.test(observation,method,group=FALSE)
+detach(corn)
 # example 2
 data(sweetpotato)
 attach(sweetpotato)
 comparison<-waerden.test(yield,virus,alpha=0.01,group=TRUE)
+detach(sweetpotato)
 }
 
 \keyword{ nonparametric }% at least one, from doc/KEYWORDS

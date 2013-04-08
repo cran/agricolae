@@ -64,7 +64,7 @@ if (p.adj != "none") {
    }
 nr <- unique(means[, 3])
 if (group) {
-Tprob <- qt(1 - alpha/2, DFerror)
+if (p.adj == "none")Tprob <- qt(1 - alpha/2, DFerror)
 cat("\nt-Student:", Tprob)
 cat("\nAlpha    :", alpha)
 if (length(nr) == 1) {
@@ -73,16 +73,17 @@ cat("\nLSD      :", LSD, "\n")
 statistics<-data.frame(Chisq=H,p.chisq=p.chisq,LSD=LSD )
 }
 else {
-nr <- 1/mean(1/nn[, 2])
-LSD <- Tprob * sqrt(2 * MSerror/nr)
-cat("\nLSD      :", LSD, "\n")
-cat("\nHarmonic Mean of Cell Sizes ", nr)
-statistics<-data.frame(Chisq=H,p.chisq=p.chisq,LSD=LSD,r.harmonic=nr)
+cat("\nMinimum difference changes for each comparison\n")
+#nr <- 1/mean(1/nn[, 2])
+#LSD <- Tprob * sqrt(2 * MSerror/nr)
+#cat("\nLSD      :", LSD, "\n")
+#cat("\nHarmonic Mean of Cell Sizes ", nr)
+statistics<-data.frame(Chisq=H,p.chisq=p.chisq)
 }
 cat("\nMeans with the same letter are not significantly different\n")
 cat("\nGroups, Treatments and mean of the ranks\n")
 groups <- order.group(means[, 1], means[, 2], means[,3], MSerror, 
-Tprob, std.err = sqrt(MSerror/means[,3]))
+Tprob, std.err = sqrt(MSerror/means[,3]),alpha=alpha)
 groups<-groups[,1:3]
 comparison=NULL
 ranks=means
@@ -99,7 +100,8 @@ for (k in 1:nn) {
 i <- comb[1, k]
 j <- comb[2, k]
 dif[k] <- means[i, 2] - means[j, 2]
-sdtdif[k] <- sqrt(S * ((N - 1 - H)/(N - ntr)) * (1/means[i,3] + 1/means[j, 3]))
+# S * ((N - 1 - H)/(N - ntr))
+sdtdif[k] <- sqrt(MSerror * (1/means[i,3] + 1/means[j, 3]))
 pvalue[k] <- 2 * round(1 - pt(abs(dif[k])/sdtdif[k],DFerror), 6)
 }
 if (p.adj != "none") 

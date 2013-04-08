@@ -45,6 +45,7 @@ axis(2,seq(0,400,50),las=2)
 title(main="Histogram of frequency\nSize of the tubercule of the Oca",
 xlab="Size of the oca", ylab="Frequency")
 #endgraph
+detach(natives)
 }
 \keyword{ manip }% at least one, from doc/KEYWORDS
 

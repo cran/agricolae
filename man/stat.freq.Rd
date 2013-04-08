@@ -26,6 +26,7 @@ library(agricolae)
 data(growth)
 attach(growth)
 grouped<-hist(height,plot=FALSE)
+detach(growth)
 measures<-stat.freq(grouped)
 print(measures)
 

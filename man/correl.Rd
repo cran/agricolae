@@ -34,7 +34,7 @@ attach(soil)
 correl(pH,clay,method="kendall")
 correl(pH,clay,method="spearman")
 correl(pH,clay,method="pearson")
-
+detach(soil)
 }
 \keyword{ multivariate }% at least one, from doc/KEYWORDS
 

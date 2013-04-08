@@ -29,6 +29,7 @@ data(growth)
 attach(growth)
 h2<-graph.freq(height,plot=FALSE)
 summary(h2)
+detach(growth)
 }
 \keyword{ distribution }% at least one, from doc/KEYWORDS
 

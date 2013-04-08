@@ -38,6 +38,7 @@ polygon.freq(h1,frequency=1,col="red")
 h2<-graph.freq(height,frequency=2,col="yellow",xlim=c(6,14))
 polygon.freq(h2,frequency=2,col="red")
 #endgraph
+detach(growth)
 }
 \keyword{ aplot }% at least one, from doc/KEYWORDS
 

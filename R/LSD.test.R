@@ -76,21 +76,23 @@
 		if (length(nr) == 1) {
 			LSD <- Tprob * sqrt(2 * MSerror/nr)
 			cat("\nLeast Significant Difference", LSD)
+    statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror,LSD=LSD)
 		}
 		else {
-			nr1 <- 1/mean(1/nn[, 2])
-			LSD <- Tprob * sqrt(2 * MSerror/nr1)
-			cat("\nLeast Significant Difference", LSD)
-			cat("\nHarmonic Mean of Cell Sizes ", nr1)
+		cat("\nMinimum difference changes for each comparison\n")
+		#	nr1 <- 1/mean(1/nn[, 2])
+		#	LSD <- Tprob * sqrt(2 * MSerror/nr1)
+		#	cat("\nLeast Significant Difference", LSD)
+		#	cat("\nHarmonic Mean of Cell Sizes ", nr1)
+    statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror)
 		}
 		cat("\nMeans with the same letter are not significantly different.")
 		cat("\n\nGroups, Treatments and means\n")
 		groups <- order.group(means[, 1], means[, 2], means[,
-						4], MSerror, Tprob, means[, 3])
+						4], MSerror, Tprob, means[, 3],alpha=alpha)
 		w <- order(means[, 2], decreasing = TRUE)
 		groups <- data.frame(groups[,1:3])
 		comparison=NULL
-		statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror,LSD=LSD)
 	}
 	if (!group) {
 		LSD=" "

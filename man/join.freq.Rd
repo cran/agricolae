@@ -44,7 +44,7 @@ inter<-join.freq(breaks,9:10)
 # new table
 h2<-hist(size,breaks=inter,xlim=c(0,0.12),col="bisque")
 table.freq(h2)
-
+detach(natives)
 }
 \keyword{ univar }% at least one, from doc/KEYWORDS
 

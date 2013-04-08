@@ -27,6 +27,7 @@ library(agricolae)
 data(growth)
 attach(growth)
 h2<-graph.freq(height,plot=FALSE)
+detach(growth)
 table.freq(h2)
 }
 \keyword{ distribution }% at least one, from doc/KEYWORDS

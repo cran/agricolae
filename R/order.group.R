@@ -1,7 +1,7 @@
 `order.group` <-
 function(trt,means,N,MSerror,Tprob,std.err,parameter=1, snk=0, DFerror=NULL,alpha=NULL,sdtdif=NULL,vartau=NULL ) {
 replications <- N
-N<-rep(1/mean(1/N),length(means))
+#N<-rep(1/mean(1/N),length(means))
 n<-length(means)
 z<-data.frame(trt,means,N=N,std.err,replications)
 letras<-c(letters[1:26],LETTERS[1:26],1:9)
@@ -15,6 +15,7 @@ cambio<-n
 cambio1<-0
 chequeo=0
 M[1]<-letras[k]
+N<-w$N
 while(j<n) {
 chequeo<-chequeo+1
 if (chequeo > n) break

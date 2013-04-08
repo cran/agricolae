@@ -1,8 +1,8 @@
 Package: agricolae
 Type: Package
 Title: Statistical Procedures for Agricultural Research
-Version: 1.1-3
-Date: 2012-12-21
+Version: 1.1-4
+Date: 2013-4-8
 Author: Felipe de Mendiburu
 Maintainer: Felipe de Mendiburu <f.mendiburu@cgiar.org>
 Suggests: akima, klaR, MASS, lme4, cluster
@@ -21,6 +21,7 @@ Description: Agricolae was presented in the thesis "A statistical
         tests comparison, biodiversity indexes and consensus cluster.
 License: GPL
 URL: http://tarwi.lamolina.edu.pe/~fmendiburu
-Packaged: 2012-12-21 17:21:52 UTC; FDEMENDIBURU
+Packaged: 2013-04-09 14:25:17 UTC; fdemendiburu
+NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2012-12-21 19:26:57
+Date/Publication: 2013-04-09 17:19:01

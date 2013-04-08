@@ -53,11 +53,12 @@ cat("\nLSD      :", LSD,"\n")
 statistics<-data.frame(Chisq=T1,p.chisq=p.chisq,LSD=LSD )
     }
     else {
-         nr <- 1/mean(1/nn[, 2])
-         LSD <- Tprob * sqrt(2 * MSerror/nr)
-         cat("\nLSD      :", LSD,"\n")
-         cat("\nHarmonic Mean of Cell Sizes ", nr)
-		 statistics<-data.frame(Chisq=T1,p.chisq=p.chisq,LSD=LSD,r.harmonic=nr)    
+    cat("\nMinimum difference changes for each comparison\n")
+#         nr <- 1/mean(1/nn[, 2])
+#         LSD <- Tprob * sqrt(2 * MSerror/nr)
+#         cat("\nLSD      :", LSD,"\n")
+#         cat("\nHarmonic Mean of Cell Sizes ", nr)
+		 statistics<-data.frame(Chisq=T1,p.chisq=p.chisq)
 	 }   
 cat("\nMeans with the same letter are not significantly different\n")
 cat("\nGroups, Treatments and means of the normal score\n")
