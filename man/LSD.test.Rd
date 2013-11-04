@@ -8,7 +8,7 @@
 }
 \usage{
 LSD.test(y, trt, DFerror, MSerror, alpha = 0.05, p.adj=c("none","holm", 
-"hochberg", "bonferroni", "BH", "BY", "fdr"), group=TRUE, main = NULL)
+"hochberg", "bonferroni", "BH", "BY", "fdr"), group=TRUE, main = NULL,console=FALSE)
 }
 
 \arguments{
@@ -20,6 +20,7 @@ LSD.test(y, trt, DFerror, MSerror, alpha = 0.05, p.adj=c("none","holm",
   \item{p.adj}{ Method for adjusting p values (see p.adjust)  }  
   \item{group}{ TRUE or FALSE }
   \item{main}{ title of the study  }
+  \item{console}{logical, print output }
 }  
 \details{
   For equal or different repetition.
@@ -53,8 +54,7 @@ LSD.test(y, trt, DFerror, MSerror, alpha = 0.05, p.adj=c("none","holm",
 library(agricolae)
 data(sweetpotato)
 model<-aov(yield~virus, data=sweetpotato)
-out <- LSD.test(model,"virus", p.adj="bonferroni",
-main="Yield of sweetpotato\ndealt with different virus")
+out <- LSD.test(model,"virus", p.adj="bonferroni")
 #stargraph
 bar.group(out$groups,ylim=c(0,45),density=4,border="blue")
 #endgraph
@@ -62,15 +62,14 @@ bar.group(out$groups,ylim=c(0,45),density=4,border="blue")
 attach(sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
-out <- LSD.test(yield,virus,df,MSerror, p.adj="bonferroni", group=FALSE,
-main="Yield of sweetpotato\ndealt with different virus")
+out <- LSD.test(yield,virus,df,MSerror, p.adj="bonferroni", group=FALSE)
 detach(sweetpotato)
 #stargraph
-# Variation rank: Max. - Min.
-bar.err(out$means,variation="rank",ylim=c(0,44),bar=FALSE,col=0)
+# Variation range: Max. - Min.
+bar.err(out$means,variation="range",ylim=c(0,44),bar=FALSE,col=0)
 
 #endgraph
-LSD.test(model,"virus",p.adj="bon")
+LSD.test(model,"virus",p.adj="bon",console=TRUE)
 
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS

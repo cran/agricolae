@@ -116,5 +116,5 @@ total<-sum(values$values)
 round(values$values*100/total,2)
 # AMMI: 64.81 18.58 13.50  3.11  0.00
 }
-\keyword{ models }% at least one, from doc/KEYWORDS
+\keyword{ models }
 

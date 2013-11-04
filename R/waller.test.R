@@ -1,5 +1,5 @@
 `waller.test` <-                                                                                     
-		function (y, trt, DFerror, MSerror, Fc, K = 100, group=TRUE,main = NULL)                             
+		function (y, trt, DFerror, MSerror, Fc, K = 100, group=TRUE,main = NULL,console=FALSE)                             
 {                                                                                                    
 	name.y <- paste(deparse(substitute(y)))                                                          
 	name.t <- paste(deparse(substitute(trt)))                                                        
@@ -14,7 +14,7 @@
 		nipch<- length(ipch)                                                                             
 		for(i in 1:nipch){                                                                           
 			if (is.na(ipch[i]))                                                                          
-				return(cat("Name: ", trt, "\n", names(A)[-1], "\n"))                                     
+				return(if(console)cat("Name: ", trt, "\n", names(A)[-1], "\n"))                                     
 		}                                                                                            
 		name.t<- names(A)[ipch][1]                                                                   
 		trt <- A[, ipch]                                                                             
@@ -35,7 +35,7 @@
 	nn <-   tapply.stat(junto[,1],junto[,2],stat="length") # change                                  
 	mi<-tapply.stat(junto[,1],junto[,2],stat="min") # change
 	ma<-tapply.stat(junto[,1],junto[,2],stat="max") # change
-	means<-data.frame(means,std.err=sds[,2]/sqrt(nn[,2]),r=nn[,2],Min.=mi[,2],Max.=ma[,2])                         
+	means<-data.frame(means,std.err=sqrt(MSerror)/sqrt(nn[,2]),r=nn[,2],Min.=mi[,2],Max.=ma[,2])
 	names(means)[1:2]<-c(name.t,name.y)                                                              
 #    row.names(means)<-means[,1]                                                                     
 	ntr<-nrow(means)                                                                                 
@@ -45,31 +45,32 @@
 	nfila<-c("K ratio", "Error Degrees of Freedom", "Error Mean Square","F value",                       
 			"Critical Value of Waller")                                                                          
 	nvalor<-c( K,  DFerror, MSerror, Fc, Tprob)                                                          
+	if(console){
 	cat("\nStudy:", main)                                                                            
 	cat("\n\nWaller-Duncan K-ratio t Test for",name.y,"\n")                                          
 	cat("\nThis test minimizes the Bayes risk under additive")                                       
-	cat("\nloss and certain other assumptions.\n")                                                   
+	cat("\nloss and certain other assumptions.\n") }                                                  
 	xtabla<-data.frame("......"=nvalor)                                                                  
 	row.names(xtabla)<-nfila                                                                             
-	print(xtabla)                                                                                        
+	if(console){print(xtabla)                                                                                        
 	cat("\n")                                                                                            
 	cat(paste(name.t,",",sep="")," means\n\n")                                                           
-	print(data.frame(row.names = means[,1], means[,-1]))                                                 
+	print(data.frame(row.names = means[,1], means[,-1]))}                                                 
 	if (length(nr) == 1) {                                                                           
 		MSD <- Tprob * sqrt(2 * MSerror/nr)                                                          
-		cat("\nMinimum Significant Difference", MSD)                                                 
+		if(console)cat("\nMinimum Significant Difference", MSD)                                                 
 
 	}                                                                                                
 	else {                                                                                           
 		nr<- 1/mean(1/nn[,2])
 		MSD <- Tprob * sqrt(2 * MSerror/nr)
-        cat("\nHarmonic Mean of Cell Sizes ", nr )
+        if(console)cat("\nHarmonic Mean of Cell Sizes ", nr )
 	}                                                                                                
 
 	if (group) {                                                                                         
-		cat("\nMeans with the same letter are not significantly different.")                                 
-		cat("\n\nComparison of treatments\n\nGroups, Treatments and means\n")                                
-		groups <- order.group(means[,1], means[,2], nr, MSerror, Tprob,means[,3])                     
+		if(console){cat("\nMeans with the same letter are not significantly different.")                                 
+		cat("\n\nComparison of treatments\n\nGroups, Treatments and means\n")}                               
+		groups <- order.group(means[,1], means[,2], nr, MSerror, Tprob,means[,3],console=console)                     
 		comparison=NULL
 		groups <- data.frame(groups[,1:3])
 statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror,F.Value=Fc,CriticalDifference=MSD)	
@@ -102,8 +103,8 @@ statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror,F.Value=Fc,CriticalDiffer
 statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror,F.Value=Fc, r.harmonic=nr)
 		}                                                                                                    
 		rownames(comparison)<-paste(tr.i,tr.j,sep=" - ")                                                         
-		cat("\nComparison between treatments means\n\n")                                                     
-		print(comparison)                                                                                        
+		if(console){cat("\nComparison between treatments means\n\n")                                                     
+		print(comparison)}                                                                                       
 		groups=NULL
 #		output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,4],std.err=means[,3])               
 	}                                                                                                    

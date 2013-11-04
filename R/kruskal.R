@@ -1,6 +1,6 @@
 `kruskal` <-
 function (y, trt, alpha = 0.05, p.adj = c("none", "holm", "hochberg", 
-"bonferroni", "BH", "BY", "fdr"), group = TRUE, main = NULL) 
+"bonferroni", "BH", "BY", "fdr"), group = TRUE, main = NULL,console=FALSE) 
 {
 name.y <- paste(deparse(substitute(y)))
 name.t <- paste(deparse(substitute(trt)))
@@ -33,20 +33,22 @@ U <- U + 1/means[i, 3]
 }
 S <- (sum(junto[, 1]^2) - (N * (N + 1)^2)/4)/(N - 1)
 H <- (rs - (N * (N + 1)^2)/4)/S
+p.chisq <- 1 - pchisq(H, ntr - 1)
+if(console){
 cat("\nStudy:", main)
 cat("\nKruskal-Wallis test's\nTies or no Ties\n")
 cat("\nValue:", H)
 cat("\ndegrees of freedom:", ntr - 1)
-p.chisq <- 1 - pchisq(H, ntr - 1)
 cat("\nPvalue chisq  :", p.chisq, "\n\n")
+}
 DFerror <- N - ntr
 Tprob <- qt(1 - alpha/2, DFerror)
 MSerror <- S * ((N - 1 - H)/(N - ntr))
 means[, 2] <- means[, 2]/means[, 3]
-cat(paste(name.t, ",", sep = ""), " means of the ranks\n\n")
-print(data.frame(row.names = means[, 1], means[, -1]))
+if(console){cat(paste(name.t, ",", sep = ""), " means of the ranks\n\n")
+print(data.frame(row.names = means[, 1], means[, -1]))}
 if (p.adj != "none") {
-   cat("\nP value adjustment method:", p.adj)
+   if(console)cat("\nP value adjustment method:", p.adj)
    a <- 1e-06
    b <- 1
    for (i in 1:100) {
@@ -65,25 +67,25 @@ if (p.adj != "none") {
 nr <- unique(means[, 3])
 if (group) {
 if (p.adj == "none")Tprob <- qt(1 - alpha/2, DFerror)
-cat("\nt-Student:", Tprob)
-cat("\nAlpha    :", alpha)
+if(console){cat("\nt-Student:", Tprob)
+cat("\nAlpha    :", alpha)}
 if (length(nr) == 1) {
 LSD <- Tprob * sqrt(2 * MSerror/nr)
-cat("\nLSD      :", LSD, "\n")
+if(console)cat("\nLSD      :", LSD, "\n")
 statistics<-data.frame(Chisq=H,p.chisq=p.chisq,LSD=LSD )
 }
 else {
-cat("\nMinimum difference changes for each comparison\n")
+if(console)cat("\nMinimum difference changes for each comparison\n")
 #nr <- 1/mean(1/nn[, 2])
 #LSD <- Tprob * sqrt(2 * MSerror/nr)
 #cat("\nLSD      :", LSD, "\n")
 #cat("\nHarmonic Mean of Cell Sizes ", nr)
 statistics<-data.frame(Chisq=H,p.chisq=p.chisq)
 }
-cat("\nMeans with the same letter are not significantly different\n")
-cat("\nGroups, Treatments and mean of the ranks\n")
+if(console){cat("\nMeans with the same letter are not significantly different\n")
+cat("\nGroups, Treatments and mean of the ranks\n")}
 groups <- order.group(means[, 1], means[, 2], means[,3], MSerror, 
-Tprob, std.err = sqrt(MSerror/means[,3]),alpha=alpha)
+Tprob, std.err = sqrt(MSerror/means[,3]),alpha=alpha,console=console)
 groups<-groups[,1:3]
 comparison=NULL
 ranks=means
@@ -123,8 +125,8 @@ tr.i <- means[comb[1, ], 1]
 tr.j <- means[comb[2, ], 1]
 comparison <- data.frame(Difference = dif, pvalue = pvalue, "sig."=sig, LCL, UCL)
 rownames(comparison) <- paste(tr.i, tr.j, sep = " - ")
-cat("\nComparison between treatments mean of the ranks\n\n")
-print(comparison)
+if(console){cat("\nComparison between treatments mean of the ranks\n\n")
+print(comparison)}
 statistics<-data.frame(Chisq=H,p.chisq=p.chisq)
 groups=NULL
 ranks=means

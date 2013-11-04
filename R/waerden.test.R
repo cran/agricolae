@@ -1,5 +1,5 @@
 `waerden.test` <-
-function(y, trt,alpha=0.05,group=TRUE,main=NULL) {
+function(y, trt,alpha=0.05,group=TRUE,main=NULL,console=FALSE) {
 name.y <- paste(deparse(substitute(y)))
 name.t <- paste(deparse(substitute(trt)))
 junto <- subset(data.frame(y, trt), is.na(y) == FALSE)
@@ -29,14 +29,16 @@ for (i in 1:ntr) {
 T1 <- T1 + means[i, 2]^2*means[i,4] # change
 }
 T1<-T1/S
+p.chisq <- 1 - pchisq(T1, ntr - 1)
+if(console){
 cat("\nStudy:",main)
 cat("\nVan der Waerden (Normal Scores) test's\n")
 cat("\nValue :", T1)
-p.chisq <- 1 - pchisq(T1, ntr - 1)
 cat("\nPvalue:", p.chisq)
 cat("\nDegrees of freedom: ", ntr - 1,"\n\n")
 cat(paste(name.t,",",sep="")," means of the normal score\n\n")
 print(data.frame(row.names = means[,1], means[,-1]))
+}
 MSerror <- S * ((N - 1 - T1)/(N - ntr))
 #cat("\nComparison of treatments")
 #...............
@@ -45,24 +47,24 @@ nr <- unique(means[,4]) # change
 nr1<-nr
 Tprob<-qt(1-alpha/2,DFerror)
 if (group) {
-cat("\nt-Student:", Tprob)
-cat("\nAlpha    :",alpha)
+if(console){cat("\nt-Student:", Tprob)
+cat("\nAlpha    :",alpha)}
     if (length(nr1) == 1) {
         LSD <- Tprob * sqrt(2 * MSerror/nr)
-cat("\nLSD      :", LSD,"\n")
+if(console)cat("\nLSD      :", LSD,"\n")
 statistics<-data.frame(Chisq=T1,p.chisq=p.chisq,LSD=LSD )
     }
     else {
-    cat("\nMinimum difference changes for each comparison\n")
+    if(console)cat("\nMinimum difference changes for each comparison\n")
 #         nr <- 1/mean(1/nn[, 2])
 #         LSD <- Tprob * sqrt(2 * MSerror/nr)
 #         cat("\nLSD      :", LSD,"\n")
 #         cat("\nHarmonic Mean of Cell Sizes ", nr)
 		 statistics<-data.frame(Chisq=T1,p.chisq=p.chisq)
 	 }   
-cat("\nMeans with the same letter are not significantly different\n")
-cat("\nGroups, Treatments and means of the normal score\n")
-groups <- order.group(means[,1], means[,2], means[,4], MSerror, Tprob,std.err=sqrt(MSerror/ means[,4])) # change
+if(console){cat("\nMeans with the same letter are not significantly different\n")
+cat("\nGroups, Treatments and means of the normal score\n")}
+groups <- order.group(means[,1], means[,2], means[,4], MSerror, Tprob,std.err=sqrt(MSerror/ means[,4]),console=console) # change
 groups<-groups[,1:3]
 comparison=NULL
  }
@@ -97,8 +99,8 @@ tr.i <- means[comb[1, ],1]
 tr.j <- means[comb[2, ],1]
 comparison<-data.frame("Difference" = dif, pvalue=pvalue,"sig."=sig,LCL,UCL)
 rownames(comparison)<-paste(tr.i,tr.j,sep=" - ")
-cat("\nComparison between treatments means\nmean of the normal score\n\n")
-print(comparison)
+if(console){cat("\nComparison between treatments means\nmean of the normal score\n\n")
+print(comparison)}
 statistics<-data.frame(Chisq=T1,p.chisq=p.chisq) 
 groups=NULL
 #output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,4]) # change

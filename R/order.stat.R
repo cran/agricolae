@@ -1,5 +1,5 @@
 `order.stat` <-
-function(treatment,means,minimum) {
+function(treatment,means,minimum,console) {
 n<-length(means)
 z<-data.frame(treatment,means)
 letras<-c(letters[1:26],LETTERS[1:26])
@@ -45,7 +45,7 @@ w<-data.frame(w,stat=M)
 trt<-as.character(w$treatment)
 means<-as.numeric(w$means)
 for(i in 1:n){
-cat(M[i],"\t",trt[i],"\t",means[i],"\n")
+if(console)cat(M[i],"\t",trt[i],"\t",means[i],"\n")
 }
 output<-data.frame(trt,means,M)
 return(output)

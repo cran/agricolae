@@ -8,7 +8,8 @@
   constructed for the corresponding linear. The test is conservative. 
   }
 \usage{
-scheffe.test(y, trt, DFerror, MSerror, Fc, alpha = 0.05, group=TRUE, main = NULL)
+scheffe.test(y, trt, DFerror, MSerror, Fc, alpha = 0.05, group=TRUE, main = NULL,
+console=FALSE )
 }
 \arguments{
   \item{y}{ model(aov or lm) or answer of the experimental unit  }
@@ -19,12 +20,12 @@ scheffe.test(y, trt, DFerror, MSerror, Fc, alpha = 0.05, group=TRUE, main = NULL
   \item{alpha}{ Significant level }
   \item{group}{ TRUE or FALSE }
   \item{main}{ Title }
+  \item{console}{logical, print output }
 }
 \details{
 It is necessary first makes a analysis of variance.
 }
 \value{
-
   \item{y }{class (aov or lm) or vector numeric}
   \item{trt }{constant (only y=model) or vector alfanumeric}
   \item{DFerror }{Numeric}
@@ -48,7 +49,7 @@ A Biometrical Approach. pp189
 library(agricolae)
 data(sweetpotato)
 model<-aov(yield~virus, data=sweetpotato)
-comparison <- scheffe.test(model,"virus", group=TRUE,
+comparison <- scheffe.test(model,"virus", group=TRUE,console=TRUE,
 main="Yield of sweetpotato\nDealt with different virus")
 # Old version scheffe.test()
 attach(sweetpotato)

@@ -1,5 +1,5 @@
 `durbin.test` <-
-function(judge,trt,evaluation,alpha=0.05, group=TRUE,main=NULL) {
+function(judge,trt,evaluation,alpha=0.05, group=TRUE,main=NULL,console=FALSE) {
 name.y <- paste(deparse(substitute(evaluation)))
 name.t <- paste(deparse(substitute(trt)))
 judge<-as.factor(judge)
@@ -49,11 +49,12 @@ s <- (ntr - 1) * s1/(A-C)
 prob<-1-pchisq(s,gl1); Tprob<-qt(1-alpha/2,gl2)
 sdtdif <- sqrt(2*r*(A-C)*(1-s/(b*(k-1)))/gl2)
 LSD <-Tprob*sdtdif
+nameTrt<-as.character(means[,1])
 # s,prob,Tprob,Mc,gl1,gl2)
 # Impresion de resultados
+if(console){
 cat("\nStudy:",main,"\n")
 cat(paste(name.t,",",sep="")," Sum of ranks\n\n")
-nameTrt<-as.character(means[,1])
 print(data.frame(row.names = nameTrt, sum=means[,2]))
 cat("\nDurbin Test")
 cat("\n===========")
@@ -71,11 +72,12 @@ cat("\ntreatmeans :",ntr)
 cat("\nBlock size :",k)
 cat("\nBlocks     :",b)
 cat("\nReplication:",r,"\n")
+}
 if (group)
 {
-cat("\nGroups, Treatments and sum of the ranks\n\n")
+if(console)cat("\nGroups, Treatments and sum of the ranks\n\n")
 y<-as.numeric(y)
-groups<-order.stat(name,y,LSD)
+groups<-order.stat(name,y,LSD,console=console)
 comparison<-NULL
 }
 
@@ -102,10 +104,10 @@ else  if (pvalue[kk] <= 0.1) sig[kk]<-"."
 }
 tr.i <- nameTrt[comb[1, ]]
 tr.j <- nameTrt[comb[2, ]]
-cat("\nComparison between treatments sum of the ranks\n\n")
 comparison<-data.frame("Difference" = dif, pvalue=pvalue,"sig."=sig)
 rownames(comparison)<-paste(tr.i,tr.j,sep=" - ")
-print(comparison)
+if(console){cat("\nComparison between treatments sum of the ranks\n\n")
+print(comparison)}
 groups=NULL
 }
 #output<-data.frame(means,M="",N=r)

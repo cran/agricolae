@@ -6,7 +6,7 @@
   This test is adapted from the Newman-Keuls method. Duncan's test does not control family wise error rate at the specified alpha level. It has more power than the other post tests, but only because it doesn't control the error rate properly. The Experimentwise Error Rate at: 1-(1-alpha)^(a-1); where "a" is the number of means and is the Per-Comparison Error Rate. Duncan's procedure is only very slightly more conservative than LSD. The level by alpha default is 0.05.
 }
 \usage{
-duncan.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL)
+duncan.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL,console=FALSE)
 }
 
 \arguments{
@@ -17,6 +17,7 @@ duncan.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL)
   \item{alpha}{ Significant level }
   \item{group}{ TRUE or FALSE }
   \item{main}{ Title }
+  \item{console}{logical, print output }
 }
 \details{
   It is necessary first makes a analysis of variance.
@@ -45,12 +46,13 @@ data(sweetpotato)
 model<-aov(yield~virus,data=sweetpotato)
 comparison <- duncan.test(model,"virus", 
 main="Yield of sweetpotato. Dealt with different virus")
-duncan.test(model,"virus",alpha=0.01)
+duncan.test(model,"virus",alpha=0.01,console=TRUE)
 # version old duncan.test()
 attach(sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
 comparison <- duncan.test(yield,virus,df,MSerror, group=TRUE)
+print(comparison$groups)
 detach(sweetpotato)
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS

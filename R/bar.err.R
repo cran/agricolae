@@ -1,17 +1,13 @@
 `bar.err` <-
-function(x,variation=c("std","SE","rank"),horiz=FALSE, bar=TRUE,...) {
+function(x,variation=c("SE","range"),horiz=FALSE, bar=TRUE,...) {
 variation<-match.arg(variation)
 y<-x[,1]
 names(y)<-rownames(x)
-if( variation=="std" ) {
-nivel0<-y-x$"std.err"*sqrt(x$r)
-nivel1<-y+x$"std.err"*sqrt(x$r)
-}
 if( variation=="SE" ) {
 nivel0<-y-x$"std.err"
 nivel1<-y+x$"std.err"
 }
-if( variation=="rank" ) {
+if( variation=="range" ) {
 nivel0<-x$"Min."
 nivel1<-x$"Max."
 }

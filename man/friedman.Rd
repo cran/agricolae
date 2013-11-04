@@ -9,7 +9,7 @@
   without ties. A first result is obtained by friedman.test of R.
 }
 \usage{
-friedman(judge,trt,evaluation,alpha=0.05,group=TRUE,main=NULL)
+friedman(judge,trt,evaluation,alpha=0.05,group=TRUE,main=NULL,console=FALSE)
 }
 
 \arguments{
@@ -19,6 +19,7 @@ friedman(judge,trt,evaluation,alpha=0.05,group=TRUE,main=NULL)
   \item{alpha}{ Significant test }
   \item{group}{ TRUE or FALSE }
   \item{main}{ Title }
+  \item{console}{logical, print output }
 }  
 
 \value{
@@ -39,7 +40,7 @@ friedman(judge,trt,evaluation,alpha=0.05,group=TRUE,main=NULL)
 library(agricolae)
 data(grass)
 attach(grass)
-out<-friedman(judge,trt, evaluation,alpha=0.05, group=TRUE,
+out<-friedman(judge,trt, evaluation,alpha=0.05, group=TRUE,console=TRUE,
 main="Data of the book of Conover")
 detach(grass)
 #startgraph

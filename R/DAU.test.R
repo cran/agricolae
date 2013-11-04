@@ -1,5 +1,5 @@
 `DAU.test` <-
-function (block, trt, y, method = c("lsd","tukey"),alpha=0.05,group=TRUE)
+function (block, trt, y, method = c("lsd","tukey"),alpha=0.05,group=TRUE,console=FALSE)
 {
     method<-match.arg(method)
 	if(method =="lsd") snk=5
@@ -134,6 +134,8 @@ if (r.trt[i,3] != r.trt[j,3]) V[i,j]<- 1+1/b+1/comunes-1/(b*comunes)
 }}}
 V<-MSerror*V
 #
+CV<-round(cv.model(model1), 1)
+if(console){
 cat("\nANALYSIS DAU: ", name.y, "\nClass level information\n")
     cat("\nBlock: ", unique(as.character(block)))
     cat("\nTrt  : ", as.character(r.trt[,1]))
@@ -142,18 +144,18 @@ cat("\nANALYSIS DAU: ", name.y, "\nClass level information\n")
     print(A1)
     cat("\nANOVA, Block Adjusted\n")
     print(A2)
-    CV<-round(cv.model(model1), 1)
     cat("\ncoefficient of variation:", CV, "%\n")
     cat(name.y, "Means:", mean.yy, "\n")
+}
  SE.dif<-rbind(sqrt(2*MSerror/b),sqrt(2*MSerror),sqrt(2*MSerror*(1+1/comunes)),
  sqrt(MSerror*(1+1/b+1/comunes-1/(b*comunes))))
 rownames(SE.dif)<- c("Two Control Treatments","Two Augmented Treatments (Same Block)",
 "Two Augmented Treatments(Different Blocks)","A Augmented Treatment and A Control Treatment")
 colnames(SE.dif)<-"Std Error Diff."
 #    cat("\nCritical Differences (Between)         Std Error Diff.\n")
-cat("\nCritical Differences (Between)\n")
+if(console){cat("\nCritical Differences (Between)\n")
 print(SE.dif)
-cat("\n")    
+cat("\n")}   
 if(!group){
 #	Omeans<-order(mean.adj,decreasing = TRUE)
 #	Ordindex<-order(Omeans)
@@ -185,16 +187,17 @@ if(!group){
 	rownames(comparison)<-paste(tr.i,tr.j,sep=" - ")
     }
 	if(group){
+	if(console){
 		cat("\n\nMeans with the same letter are not significantly different.")
-		cat("\n\nGroups, Treatments and means\n")
+		cat("\n\nGroups, Treatments and means\n")}
 		groups <- order.group(trt=r.trt[,1], r.trt[,5], r.trt[,2], MSerror=NULL, Tprob=NULL, 
-		std.err=r.trt[,7],parameter=1,snk, DFerror=glerror,alpha,sdtdif=1, vartau=V)
+		std.err=r.trt[,7],parameter=1,snk, DFerror=glerror,alpha,sdtdif=1, vartau=V,console=console)
 		names(groups)[2]<-"mean.adj"
 		groups<-groups[,1:3]
 		comparison=NULL
 	}
-    cat("\nComparison between treatments means\n")
-    cat("\n<<< to see the objects: comparison and means  >>>\n\n")
+    if(console){cat("\nComparison between treatments means\n")
+    cat("\n<<< to see the objects: comparison and means  >>>\n\n")}
     #pvalue <- as.dist(pvalue)
     #    N = r, std.err = sqrt(diag(vartau)))
     means<-data.frame(Means[,1:6],mean.adj=r.trt[,5],SE=r.trt[,7],block=r.trt[,6])

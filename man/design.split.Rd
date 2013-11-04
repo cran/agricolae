@@ -8,7 +8,8 @@
   The seed is by set.seed(seed, kinds).
 }
 \usage{
-design.split(trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),number = 1, seed = 0, kinds = "Super-Duper", first=FALSE)
+design.split(trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),number = 1, 
+seed = 0, kinds = "Super-Duper", first=FALSE)
 }
 
 \arguments{
@@ -41,15 +42,15 @@ design.split(trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),number = 1, seed = 
 Kwanchai A. Gomez, Arturo A. Gomez. John Wiley & Sons, new York, 1984 }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{design.crd}}, \code{\link{design.lsd}}, \code{\link{random.ab}}, 
-\code{\link{fact.nk} } }
+\seealso{\code{\link{design.crd}}, \code{\link{design.lsd}}, 
+\code{\link{random.ab}}, \code{\link{fact.nk} } }
 
 \examples{
 library(agricolae)
 # 4 treatments and 5 blocks in split-plot
 t1<-c("A","B","C","D")
 t2<-c(1,2,3)
-book <-design.split(t1,t2,r=3,number=101,seed=45,kinds ="Super-Duper") # seed = 45
+book <-design.split(t1,t2,r=3,number=101,seed=45,kinds ="Super-Duper")#seed=45
 book # field book
 # write in hard disk
 # write.table(book,"book.txt", row.names=FALSE, sep="\t")

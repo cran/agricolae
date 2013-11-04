@@ -10,7 +10,8 @@
   procedures.
 }
 \usage{
-order.group(trt, means, N, MSerror, Tprob, std.err, parameter=1, snk=0, DFerror=NULL,alpha=NULL,sdtdif=NULL,vartau=NULL)
+order.group(trt, means, N, MSerror, Tprob, std.err, parameter=1, snk=0, 
+DFerror=NULL,alpha=NULL,sdtdif=NULL,vartau=NULL,console)
 }
 
 \arguments{
@@ -26,6 +27,7 @@ order.group(trt, means, N, MSerror, Tprob, std.err, parameter=1, snk=0, DFerror=
   \item{alpha}{ Level of risk for the test  } 
   \item{sdtdif}{ standar deviation of difference in BIB  } 
   \item{vartau}{ matrix var-cov in PBIB  } 
+  \item{console}{logical, print output }
 }
 \value{
   \item{trt}{ Factor }
@@ -55,15 +57,19 @@ maximun<-c(23,45,39,76,53,61)
 replications <- c(4,4,3,4,3,3)
 MSerror <- 55.8
 value.t <- 2.1314
-groups<-order.group(treatments,means,replications,MSerror,value.t,std.err)
-Means<-data.frame(treatments,means,std.err,r=replications,Min.= minimun,Max.=maximun)
+groups<-order.group(treatments,means,replications,MSerror,value.t,std.err,console=TRUE)
+Means<-data.frame(treatments,means,std.err,r=replications,Min.= minimun,
+Max.=maximun)
 rownames(Means)<-Means[,1]
 Means<-Means[,-1]
 par(mfrow=c(2,2))
 bar.group(groups,ylim=c(0,80))
-bar.err(Means,variation="SE", bar=FALSE,col="green",main="Standard error",ylim=c(0,80))
-bar.err(Means,variation="std", bar=FALSE,col=colors()[15],main="Standard deviation",ylim=c(0,80))
-out<-bar.err(Means,variation="rank", bar=FALSE,col=colors()[25],space=2,main="Rank",ylim=c(0,80))
+bar.err(Means,variation="SE", bar=FALSE,col="green",ylim=c(0,80),
+main="Standard error")
+bar.err(Means,variation="SE", bar=FALSE,col=colors()[15],ylim=c(0,80),
+main="Standard error",)
+out<-bar.err(Means,variation="range", bar=FALSE,col=colors()[25],ylim=c(0,80),
+space=2,main="Range")
 points(out$index,out$means,pch=17,col="orange",cex=2)
 }
 \keyword{ manip }% at least one, from doc/KEYWORDS

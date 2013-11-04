@@ -6,7 +6,8 @@
   Analysis of variance BIB and comparison mean adjusted. 
 }
 \usage{
-BIB.test(block, trt, y, test = c("lsd","tukey","duncan","waller","snk"), alpha = 0.05, group = TRUE)
+BIB.test(block, trt, y, test = c("lsd","tukey","duncan","waller","snk"), 
+alpha = 0.05, group = TRUE,console=FALSE)
 
 }
 
@@ -17,6 +18,7 @@ BIB.test(block, trt, y, test = c("lsd","tukey","duncan","waller","snk"), alpha =
   \item{test}{ Comparison treatments }
   \item{alpha}{ Significant test }
   \item{group}{logical }
+  \item{console}{logical, print output }
 }
 \details{
 Test of comparison treatment. 
@@ -51,10 +53,10 @@ monovinyl<-c(16,18,32,19,46,45,26,39,61,21,35,55,19,47,48,20,33,31,13,13,34,21,
  30,52,24,10,50,24,31,37)
 out<-BIB.test(run,psi,monovinyl,test="waller",group=FALSE)
 print(out)
-bar.err(out$means,variation="rank",ylim=c(0,60),bar=FALSE,col=0)
+bar.err(out$means,variation="range",ylim=c(0,60),bar=FALSE,col=0)
 out<-BIB.test(run,psi,monovinyl,test="waller",group=TRUE)
-out<-BIB.test(run,psi,monovinyl,test="tukey",group=TRUE)
-out<-BIB.test(run,psi,monovinyl,test="tukey",group=FALSE)
+out<-BIB.test(run,psi,monovinyl,test="tukey",group=TRUE,console=TRUE)
+out<-BIB.test(run,psi,monovinyl,test="tukey",group=FALSE,console=TRUE)
 rm(run,psi,monovinyl,out)
 # Example linear estimation and design of experiments. D.D. Joshi. 1987
 # Professor of Statistics, Institute of Social Sciences Agra, India

@@ -8,7 +8,7 @@
 }
 \usage{
 kruskal(y, trt, alpha = 0.05, p.adj=c("none","holm", 
-"hochberg", "bonferroni", "BH", "BY", "fdr"), group=TRUE, main = NULL)
+"hochberg", "bonferroni", "BH", "BY", "fdr"), group=TRUE, main = NULL,console=FALSE)
 }
 \arguments{
   \item{y}{ response }
@@ -17,6 +17,7 @@ kruskal(y, trt, alpha = 0.05, p.adj=c("none","holm",
   \item{p.adj}{ Method for adjusting p values (see p.adjust)  }
   \item{group}{ TRUE or FALSE }
   \item{main}{ Title }
+  \item{console}{logical, print output }
 }
 \details{
   For equal or different repetition.

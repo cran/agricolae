@@ -6,7 +6,7 @@
   Analysis of variance Augmented block and comparison mean adjusted. 
 }
 \usage{
-DAU.test(block, trt, y, method = c("lsd","tukey"),alpha=0.05,group=TRUE)
+DAU.test(block, trt, y, method = c("lsd","tukey"),alpha=0.05,group=TRUE,console=FALSE)
 
 }
 
@@ -17,6 +17,7 @@ DAU.test(block, trt, y, method = c("lsd","tukey"),alpha=0.05,group=TRUE)
   \item{method}{ Comparison treatments }
   \item{alpha}{ Significant test }
   \item{group}{ TRUE or FALSE }
+  \item{console}{logical, print output }
 }
 \details{
 Method of comparison treatment. 
@@ -41,6 +42,7 @@ block<-c(rep("I",7),rep("II",6),rep("III",7))
 trt<-c("A","B","C","D","g","k","l","A","B","C","D","e","i","A","B","C","D","f","h","j")
 yield<-c(83,77,78,78,70,75,74,79,81,81,91,79,78,92,79,87,81,89,96,82)
 model<- DAU.test(block,trt,yield,method="lsd", group=TRUE)
+print(model$groups)
 }
 \keyword{ models }
 

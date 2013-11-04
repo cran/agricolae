@@ -7,7 +7,7 @@
   The level by alpha default is 0.05.
 }
 \usage{
-HSD.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL)
+HSD.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL,console=FALSE)
 }
 
 \arguments{
@@ -18,6 +18,7 @@ HSD.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL)
   \item{alpha}{ Significant level }
   \item{group}{ TRUE or FALSE }
   \item{main}{ Title }
+  \item{console}{logical, print output }
 }
 \details{
   It is necessary first makes a analysis of variance.
@@ -44,10 +45,10 @@ HSD.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL)
 library(agricolae)
 data(sweetpotato)
 model<-aov(yield~virus, data=sweetpotato)
-out <- HSD.test(model,"virus", group=TRUE,
+out <- HSD.test(model,"virus", group=TRUE,console=TRUE,
 main="Yield of sweetpotato\nDealt with different virus")
 #stargraph
-bar.group(out$groups,ylim=c(0,45),density=4,border="blue")
+bar.group(out$groups,ylim=c(0,45),density=4,border="blue",console=TRUE)
 #endgraph
 out<-HSD.test(model,"virus", group=FALSE)
 means<-out$means
@@ -56,7 +57,7 @@ means<-out$means
 attach(sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
-HSD.test(yield,virus,df,MSerror, group=TRUE,
+HSD.test(yield,virus,df,MSerror, group=TRUE,console=TRUE,
 main="Yield of sweetpotato. Dealt with different virus")
 detach(sweetpotato)
 }

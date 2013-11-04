@@ -1,7 +1,7 @@
 `LSD.test` <-
 		function (y, trt, DFerror, MSerror, alpha = 0.05, p.adj = c("none",
 						"holm", "hochberg", "bonferroni", "BH", "BY", "fdr"), group = TRUE,
-				main = NULL)
+				main = NULL,console=FALSE)
 {
 	p.adj <- match.arg(p.adj)
 	clase <- c("aov", "lm")
@@ -16,7 +16,7 @@
 		nipch<- length(ipch)
 		for(i in 1:nipch){
 			if (is.na(ipch[i]))
-				return(cat("Name: ", trt, "\n", names(A)[-1], "\n"))
+				return(if(console)cat("Name: ", trt, "\n", names(A)[-1], "\n"))
 		}
 		name.t<- names(A)[ipch][1]
 		trt <- A[, ipch]
@@ -36,7 +36,7 @@
 	nn <- tapply.stat(junto[, 1], junto[, 2], stat = "length")
 	mi<-tapply.stat(junto[,1],junto[,2],stat="min") # change
 	ma<-tapply.stat(junto[,1],junto[,2],stat="max") # change
-	std.err <- sds[, 2]/sqrt(nn[, 2])
+	std.err <- sqrt(MSerror)/sqrt(nn[, 2]) # change sds[,2]
 	Tprob <- qt(1 - alpha/2, DFerror)
 	LCL <- means[, 2] - Tprob * std.err
 	UCL <- means[, 2] + Tprob * std.err
@@ -62,34 +62,35 @@
 		Tprob <- qt(1 - x/2, DFerror)
 	}
 	nr <- unique(nn[, 2])
+	if(console){
 	cat("\nStudy:", main)
-	cat("\n\nLSD t Test for", name.y, "\n")
-	if (p.adj != "none")
-		cat("P value adjustment method:", p.adj, "\n")
+	if(console)cat("\n\nLSD t Test for", name.y, "\n")
+	if (p.adj != "none")cat("P value adjustment method:", p.adj, "\n")
 	cat("\nMean Square Error: ", MSerror, "\n\n")
 	cat(paste(name.t, ",", sep = ""), " means and individual (",
 			(1 - alpha) * 100, "%) CI\n\n")
 	print(data.frame(row.names = means[, 1], means[, -1]))
 	cat("\nalpha:", alpha, "; Df Error:", DFerror)
 	cat("\nCritical Value of t:", Tprob, "\n")
+	}
 	if (group) {
 		if (length(nr) == 1) {
 			LSD <- Tprob * sqrt(2 * MSerror/nr)
-			cat("\nLeast Significant Difference", LSD)
+			if(console)cat("\nLeast Significant Difference", LSD)
     statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror,LSD=LSD)
 		}
 		else {
-		cat("\nMinimum difference changes for each comparison\n")
+		if(console)cat("\nMinimum difference changes for each comparison\n")
 		#	nr1 <- 1/mean(1/nn[, 2])
 		#	LSD <- Tprob * sqrt(2 * MSerror/nr1)
 		#	cat("\nLeast Significant Difference", LSD)
 		#	cat("\nHarmonic Mean of Cell Sizes ", nr1)
     statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror)
 		}
-		cat("\nMeans with the same letter are not significantly different.")
-		cat("\n\nGroups, Treatments and means\n")
+		if(console){cat("\nMeans with the same letter are not significantly different.")
+		cat("\n\nGroups, Treatments and means\n")}
 		groups <- order.group(means[, 1], means[, 2], means[,
-						4], MSerror, Tprob, means[, 3],alpha=alpha)
+						4], MSerror, Tprob, means[, 3],alpha=alpha,console=console)
 		w <- order(means[, 2], decreasing = TRUE)
 		groups <- data.frame(groups[,1:3])
 		comparison=NULL
@@ -133,8 +134,8 @@
 		comparison <- data.frame(Difference = dif, pvalue = pvalue,
 				"sig."=sig, LCL = LCL1, UCL = UCL1)
 		rownames(comparison) <- paste(tr.i, tr.j, sep = " - ")
-		cat("\nComparison between treatments means\n\n")
-		print(comparison)
+		if(console){cat("\nComparison between treatments means\n\n")
+		print(comparison)}
 		groups <- NULL
 		statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror)
 	}

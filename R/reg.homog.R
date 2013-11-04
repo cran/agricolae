@@ -1,7 +1,7 @@
 `reg.homog` <-
-function(trt,y,x) {
+function(trt,x,y) {
 sumx<-function(x)(nrow(x)-1)*var(x)
-datos<-data.frame(trt,y,x)
+datos<-data.frame(trt,x,y)
 sumxy<-by(datos[,-1],trt,function(x) sumx(x))
 t.vec<-as.character(unique(datos$trt))
 r.total <-nrow(datos)

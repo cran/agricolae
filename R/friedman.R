@@ -1,5 +1,5 @@
 `friedman` <-
-function(judge,trt,evaluation,alpha=0.05,group=TRUE,main=NULL){
+function(judge,trt,evaluation,alpha=0.05,group=TRUE,main=NULL,console=FALSE){
 name.x <- paste(deparse(substitute(judge)))
 name.y <- paste(deparse(substitute(evaluation)))
 name.t <- paste(deparse(substitute(trt)))
@@ -39,11 +39,13 @@ rs<-s-m[1]*(m[2]+1)/2
 T1<-12*t(rs)%*%rs/(m[1]*m[2]*(m[2]+1))
 T2<-(m[1]-1)*T1/(m[1]*(m[2]-1)-T1)
 # Impresion de resultados
+if(console){
 cat("\nStudy:",main,"\n\n")
 cat(paste(name.t,",",sep="")," Sum of the ranks\n\n")
 print(data.frame(row.names = means[,1], means[,-1]))
 cat("\nFriedman's Test")
 cat("\n===============")
+}
 A1<-0
 for (i in 1:m[1]) A1 <- A1 + t(v[i,])%*%v[i,]
 DFerror <-(m[1]-1)*(m[2]-1)
@@ -56,6 +58,7 @@ T2.aj <-(m[1]-1)*T1.aj/(m[1]*(m[2]-1)-T1.aj)
 p.value<-1-pchisq(T1.aj,m[2]-1)
 p.noadj<-1-pchisq(T1,m[2]-1)
 PF<-1-pf(T2.aj, ntr-1, (ntr-1)*(nr-1) )
+if(console){
 cat("\nAdjusted for ties")
 cat("\nValue:",T1.aj)
 cat("\nPvalue chisq :",p.value)
@@ -63,14 +66,16 @@ cat("\nF value :",T2.aj)
 cat("\nPvalue F:",PF)
 cat("\n\nAlpha     :",alpha)
 cat("\nt-Student :",Tprob)
+}
 #...............
 #cat("\nReplication:\t",nr)
 if (group) {
+if(console){
 cat("\nLSD       :",LSD)
 cat("\n\nMeans with the same letter are not significantly different.")
-cat("\nGroupTreatment and Sum of the ranks\n")
+cat("\nGroupTreatment and Sum of the ranks\n")}
 s<-as.numeric(s)
-groups<-order.stat(name,s,LSD)
+groups<-order.stat(name,s,LSD,console=console)
 names(groups)[2]<-"Sum of ranks"
 comparison=NULL
 statistics<-data.frame(Chisq=T1.aj,p.chisq=p.value,F=T2.aj,p.F=PF,LSD)
@@ -108,8 +113,8 @@ tr.i <- means[comb[1, ],1]
 tr.j <- means[comb[2, ],1]
 comparison<-data.frame("Difference" = dif, pvalue=pvalue,"sig."=sig,LCL,UCL)
 rownames(comparison)<-paste(tr.i,tr.j,sep=" - ")
-cat("\n\nComparison between treatments\nSum of the ranks\n\n")
-print(comparison)
+if(console){cat("\n\nComparison between treatments\nSum of the ranks\n\n")
+print(comparison)}
 statistics<-data.frame(Chisq=T1.aj,p.chisq=p.value,F=T2.aj,p.F=PF)
 groups=NULL
 # output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,3])

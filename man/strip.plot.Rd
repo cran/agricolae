@@ -68,12 +68,12 @@ tc <- qtukey(0.95,a*b,glc)
 tab<- ((b-1)*Ec*tc + Ea*ta)/cmab
 tba<- ((a-1)*Ec*tc + Eb*tb)/cmba
 # Comparison of clones by treatment
-groups<-by(B,B[,2], function(x)
-        order.group(x$clon,x$yield,N=b*r,cmab,tab, std.err=x$std,parameter=0.5))
+groups<-by(B,B[,2], function(x) order.group(x$clon,x$yield,N=b*r, cmab,tab, 
+        std.err=x$std,parameter=0.5,console=FALSE))
 groups
 # Comparison of treatments by clon
-groups<-by(B,B[,1], function(x)
-        order.group(x$trt,x$yield,N=a*r,cmba,tba, std.err=x$std,parameter=0.5))
+groups<-by(B,B[,1], function(x) order.group(x$trt,x$yield,N=a*r,cmba,tba, 
+        std.err=x$std,parameter=0.5,console=FALSE))
 groups
 # LSD t-student
 ta <- qt(0.975,gla)
@@ -82,12 +82,12 @@ tc <- qt(0.975,glc)
 tab<- ((b-1)*Ec*tc + Ea*ta)/cmab
 tba<- ((a-1)*Ec*tc + Eb*tb)/cmba
 # Comparison of clones by treatment
-groups<-by(B,B[,2], function(x)
-        order.group(x$clon,x$yield,N=b*r,cmab,tab, std.err=x$std))
+groups<-by(B,B[,2], function(x) order.group(x$clon,x$yield,N=b*r,cmab,tab, 
+        std.err=x$std,console=FALSE))
 groups
 # Comparison of treatments by clon
-groups<-by(B,B[,1], function(x)
-        order.group(x$trt,x$yield,N=a*r,cmba,tba, std.err=x$std))
+groups<-by(B,B[,1], function(x) order.group(x$trt,x$yield,N=a*r,cmba,tba, 
+        std.err=x$std,console=FALSE))
 groups
 }
 \keyword{ models }% at least one, from doc/KEYWORDS

@@ -8,7 +8,7 @@
 }
 \usage{
 PBIB.test(block,trt,replication,y,k, method=c("REML","ML","VC"), 
-test = c("lsd","tukey"), alpha=0.05, group=TRUE)
+test = c("lsd","tukey"), alpha=0.05, group=TRUE,console=FALSE)
 }
 \arguments{
   \item{block}{ blocks }
@@ -20,6 +20,7 @@ test = c("lsd","tukey"), alpha=0.05, group=TRUE)
   \item{test}{ Comparison treatments }
   \item{alpha}{ Significant test }
   \item{group}{ TRUE or FALSE }
+  \item{console}{logical, print output }
 }
 \details{
 Method of comparison treatment. 
@@ -53,7 +54,7 @@ Wiley Classics Library Edition published 1992
 \examples{
 require(agricolae)
 require(MASS) # method = VC in PBIB.test
-require(lme4) # method = REML or LM in PBIB.test
+# if(require(lme4)) # method = REML or LM in PBIB.test
 # alpha design 
 Genotype<-paste("geno",1:30,sep="")
 ntr<-length(Genotype)
@@ -71,7 +72,9 @@ dbook<-data.frame(book$book,yield=y)
 rm(y,Genotype)
 # analysis
 attach(dbook)
+if(require(lme4)) { # method = REML or LM in PBIB.test
 model <- PBIB.test(block, Genotype, replication, yield, k=3, method="REML", group=TRUE)
+}
 detach(dbook)
 model$method
 model$parameters

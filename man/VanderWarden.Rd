@@ -6,7 +6,7 @@
   A nonparametric test for several independent samples.
 }
 \usage{
-waerden.test(y, trt, alpha=0.05, group=TRUE, main=NULL)
+waerden.test(y, trt, alpha=0.05, group=TRUE, main=NULL,console=FALSE)
 }
 \arguments{
   \item{y}{ Variable response }
@@ -14,6 +14,7 @@ waerden.test(y, trt, alpha=0.05, group=TRUE, main=NULL)
   \item{alpha}{ Significant level }
   \item{group}{ TRUE or FALSE }
   \item{main}{ Title }
+  \item{console}{logical, print output }
 }
 \details{
 

@@ -1,5 +1,5 @@
 `SNK.test` <-
-		function (y, trt, DFerror, MSerror, alpha=0.05, group=TRUE,main = NULL)
+		function (y, trt, DFerror, MSerror, alpha=0.05, group=TRUE,main = NULL,console=FALSE)
 {
 	name.y <- paste(deparse(substitute(y)))
 	name.t <- paste(deparse(substitute(trt)))
@@ -13,7 +13,7 @@
 		nipch<- length(ipch)
 		for(i in 1:nipch){
 			if (is.na(ipch[i]))
-				return(cat("Name: ", trt, "\n", names(A)[-1], "\n"))
+				return(if(console)cat("Name: ", trt, "\n", names(A)[-1], "\n"))
 		}
 		name.t<- names(A)[ipch][1]
 		trt <- A[, ipch]
@@ -33,18 +33,20 @@
 	nn <-   tapply.stat(junto[,1],junto[,2],stat="length") # change
 	mi<-tapply.stat(junto[,1],junto[,2],stat="min") # change
 	ma<-tapply.stat(junto[,1],junto[,2],stat="max") # change
-	means<-data.frame(means,std.err=sds[,2]/sqrt(nn[,2]),r=nn[,2],Min.=mi[,2],Max.=ma[,2])
+	means<-data.frame(means,std.err=sqrt(MSerror)/sqrt(nn[,2]),r=nn[,2],Min.=mi[,2],Max.=ma[,2])
 	names(means)[1:2]<-c(name.t,name.y)
 #   row.names(means)<-means[,1]
 	ntr<-nrow(means)
 	Tprob <- qtukey(1-alpha,2:ntr, DFerror)
 	nr <- unique(nn[,2])
 #"Critical Value of Studentized Range")
+	if(console) {
 	cat("\nStudy:", main)
 	cat("\n\nStudent Newman Keuls Test\nfor",name.y,"\n")
 	cat("\nMean Square Error: ",MSerror,"\n\n")
 	cat(paste(name.t,",",sep="")," means\n\n")
 	print(data.frame(row.names = means[,1], means[,-1]))
+	}
 	if(length(nr) == 1 ) sdtdif <- sqrt(MSerror/nr)
 	else {
 		nr1 <-  1/mean(1/nn[,2])
@@ -52,17 +54,18 @@
 	}
 	SNK <- Tprob * sdtdif
 	names(SNK)<-2:ntr
+	if(console){
 	cat("\nalpha:",alpha,"; Df Error:",DFerror,"\n")
 	cat("\nCritical Range\n")
-	print(SNK)
+	print(SNK)}
 	if (length(nr) > 1) {
-		cat("\nHarmonic Mean of Cell Sizes ", nr1 )
-		cat("\n\nDifferent value for each comparison")
+		if(console){cat("\nHarmonic Mean of Cell Sizes ", nr1 )
+		cat("\n\nDifferent value for each comparison")}
 	}
 	if (group) {
-		cat("\nMeans with the same letter are not significantly different.")
-		cat("\n\nGroups, Treatments and means\n")
-		groups <- order.group(means[,1], means[,2], means[,4], MSerror, 1 ,means[,3], parameter=0.5,snk=1,DFerror,alpha,sdtdif)
+		if(console){cat("\nMeans with the same letter are not significantly different.")
+		cat("\n\nGroups, Treatments and means\n")}
+		groups <- order.group(means[,1], means[,2], means[,4], MSerror, 1 ,means[,3], parameter=0.5,snk=1,DFerror,alpha,sdtdif,console=console)
 		comparison=NULL
 		groups <- data.frame(groups[,1:3])
 	}
@@ -100,8 +103,8 @@
 		tr.j <- means[comb[2, ],1]
 		comparison<-data.frame("Difference" = dif, pvalue=pvalue,"sig."=sig,LCL,UCL)
 		rownames(comparison)<-paste(tr.i,tr.j,sep="-")
-		cat("\nComparison between treatments means\n\n")
-		print(comparison)
+		if(console){cat("\nComparison between treatments means\n\n")
+		print(comparison)}
 		groups=NULL
 #		output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,4],std.err=means[,3])
 	}

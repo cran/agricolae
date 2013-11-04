@@ -64,9 +64,9 @@ variety<-gl(3,45)
 model<-ssp.plot(block,nitrogen,management,variety,yield)
 gla<-model$gl.a; glb<-model$gl.b; glc<-model$gl.c
 Ea<-model$Ea; Eb<-model$Eb; Ec<-model$Ec
-LSD.test(yield,nitrogen,gla,Ea)
-LSD.test(yield,management,glb,Eb)
-LSD.test(yield,variety,glc,Ec)
+LSD.test(yield,nitrogen,gla,Ea,console=TRUE)
+LSD.test(yield,management,glb,Eb,console=TRUE)
+LSD.test(yield,variety,glc,Ec,console=TRUE)
 # with aov
 A<-data.frame(block, nitrogen,management,variety,yield)
 A[,2]<-as.factor(A[,2])

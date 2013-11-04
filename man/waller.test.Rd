@@ -8,17 +8,19 @@
   controlling details of the test.
 }
 \usage{
-waller.test(y, trt, DFerror, MSerror, Fc, K = 100, group=TRUE, main = NULL)
+waller.test(y, trt, DFerror, MSerror, Fc, K = 100, group=TRUE, main = NULL, 
+console=FALSE)
 }
 \arguments{
   \item{y}{ model(aov or lm) or answer of the experimental unit  }
-  \item{trt}{ Constant( only y=model) or vector treatment applied to each experimental unit  }
+  \item{trt}{ Constant( only y=model) or vector treatment applied to each unit}
   \item{DFerror}{ Degrees of freedom }
   \item{MSerror}{ Mean Square Error }
   \item{Fc}{ F Value }
   \item{K}{ K-RATIO }
   \item{group}{ TRUE or FALSE }
   \item{main}{ Title }
+  \item{console}{logical, print output }
 }
 \details{
 
@@ -54,32 +56,33 @@ Principles and procedures of statistics a biometrical approach
 }
 \author{ Felipe de Mendiburu}
 
-\seealso{\code{\link{HSD.test}}, \code{\link{LSD.test}}, \code{\link{SNK.test} }, 
+\seealso{\code{\link{HSD.test}}, \code{\link{LSD.test}},\code{\link{SNK.test} }, 
 \code{\link{bar.err}}, \code{\link{bar.group}},\code{\link{duncan.test} } }
 
 \examples{
 library(agricolae)
 data(sweetpotato)
 model<-aov(yield~virus, data=sweetpotato)
-out <- waller.test(model,"virus", group=TRUE,
-main="Yield of sweetpotato\nDealt with different virus")
+out <- waller.test(model,"virus", group=TRUE)
 #startgraph
 par(mfrow=c(2,2))
-# variation: std is standard deviation
 # variation: SE is error standard
-# variation: rank is Max. - Min.
-bar.err(out$means,variation="std",horiz=TRUE,xlim=c(0,45),bar=FALSE,col=colors()[25],space=2, main="Standard deviation",las=1)
-bar.err(out$means,variation="SE",horiz=FALSE,ylim=c(0,45),bar=FALSE,col=colors()[15],space=2,main="Error Standard",las=1)
-bar.err(out$means,variation="rank",ylim=c(0,45),bar=FALSE,col="green",space=3,main="Rank = Max. - Min.",las=1)
-bar.group(out$groups,horiz=FALSE,ylim=c(0,45),density=8,col="red", main="Groups",las=1)
+# variation: range is Max. - Min.
+bar.err(out$means,variation="SE",horiz=TRUE,xlim=c(0,45),bar=FALSE,
+col=colors()[25],space=2, main="Standard error",las=1)
+bar.err(out$means,variation="range",horiz=FALSE,ylim=c(0,45),bar=FALSE,
+col=colors()[15],space=2,main="Range",las=1)
+bar.err(out$means,variation="range",ylim=c(0,45),bar=FALSE,col="green",
+space=3,main="Range = Max. - Min.",las=1)
+bar.group(out$groups,horiz=FALSE,ylim=c(0,45),density=8,col="red", 
+main="Groups",las=1)
 #endgraph
 # Old version HSD.test()
 attach(sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
 Fc<-anova(model)["virus",4]
-out <- waller.test(yield, virus, df, MSerror, Fc, group=TRUE, 
-main="Yield of sweetpotato. Dealt with different virus")
+out <- waller.test(yield, virus, df, MSerror, Fc, group=TRUE)
 print(out$mean)
 detach(sweetpotato)
 }

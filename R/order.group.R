@@ -1,5 +1,5 @@
 `order.group` <-
-function(trt,means,N,MSerror,Tprob,std.err,parameter=1, snk=0, DFerror=NULL,alpha=NULL,sdtdif=NULL,vartau=NULL ) {
+function(trt,means,N,MSerror,Tprob,std.err,parameter=1, snk=0, DFerror=NULL,alpha=NULL,sdtdif=NULL,vartau=NULL,console ) {
 replications <- N
 #N<-rep(1/mean(1/N),length(means))
 n<-length(means)
@@ -89,7 +89,7 @@ trt <- substr(trt, 1, cmax)
 output1<-cbind(trt,means)
 rownames(output1)<-M
 for (i in 1:n) {
-	cat(rownames(output1)[i], "\t", output1[i,1], "\t", means1[i], "\n")
+	if(console)cat(rownames(output1)[i], "\t", output1[i,1], "\t", means1[i], "\n")
 }
 output <- data.frame(trt, means, M, N=replications, std.err)
 invisible(output)

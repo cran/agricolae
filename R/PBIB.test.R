@@ -1,6 +1,6 @@
 `PBIB.test` <-
 		function (block, trt, replication, y, k, method=c("REML","ML","VC"), 
-		test = c("lsd", "tukey"), alpha = 0.05, group = TRUE)
+		test = c("lsd", "tukey"), alpha = 0.05, group = TRUE,console=FALSE)
 {
 
 	test <- match.arg(test)
@@ -33,7 +33,7 @@
 	obs <- length(na.omit(y))
 	# Use function lm #
 	if (method=="VC" & obs != r*ntr ) {
-		cat("\nWarning.. incomplete repetition. Please you use method REML or ML\n")
+		if(console)cat("\nWarning.. incomplete repetition. Please you use method REML or ML\n")
 		return()
 	}
 	modelo <- formula(paste(name.y, "~ replication + trt.adj+ block.adj%in%replication"))
@@ -139,33 +139,39 @@
 			vardif[j, i] <- vardif[i, j]
 		}
 	}
+	media<-mean(y, na.rm = TRUE)
+	if(console){
 	cat("\nANALYSIS PBIB: ", name.y, "\n\nClass level information\n")
 	cat(name.b,":",b,"\n")
 	cat(name.trt,":", ntr)
 	cat("\n\nNumber of observations: ", length(y), "\n\n")
 	cat("Estimation Method: ",nMethod,"\n\n")
-	media<-mean(y, na.rm = TRUE)
+	}
 	if (method == "REML" | method == "ML") {
-		cat("Parameter Estimates\n")
-		print(VarRand)
 		Fstat<-data.frame(c(deviance(model),AIC(model),BIC(model)))
 		names(Fstat)<-"Fit Statistics"
-		rownames(Fstat)<-c("-2 Res Log Likelihood","AIC","BIC")
+		rownames(Fstat)<-c("-2 Res Log Likelihood","AIC","BIC")		
+		if(console){
+		cat("Parameter Estimates\n")
+		print(VarRand)
 		cat("\n")
 		print(Fstat)
 		cat("\n")
+		}
 		CV<- sqrt(CMerror)*100/media
 	}
+	design<-data.frame("."=c(ntr,k,b/r,r))
+	rownames(design)<-c(name.trt,paste(name.b,"size"),paste(name.b,"/",name.r,sep=""),name.r)
+	E <- (ntr - 1) * (r - 1)/((ntr - 1) * (r - 1) + r * (s-1))
+	if(console){	
 	print(ANOVA)
 	cat("\ncoefficient of variation:", round(CV,1), "%\n")
 	cat(name.y, "Means:", media, "\n")
 	cat("\nParameters PBIB\n")
-	design<-data.frame("."=c(ntr,k,b/r,r))
-	rownames(design)<-c(name.trt,paste(name.b,"size"),paste(name.b,"/",name.r,sep=""),name.r)
 	print(design)
-	E <- (ntr - 1) * (r - 1)/((ntr - 1) * (r - 1) + r * (s-1))
 	cat("\nEfficiency factor", E, "\n")
 	cat("\nComparison test", test, "\n")
+	}
 	parameters<-data.frame(treatments=ntr,blockSize=k,blocks=s,r=r)
 	statistics<-data.frame(Efficiency=E,Mean=Mean,CV=CV)
 	rownames(parameters)<-" "
@@ -193,11 +199,11 @@
 	tr.i <- comb[1, ]
 	tr.j <- comb[2, ]
 	if (group) {
-		cat("\nMeans with the same letter are not significantly different.")
-		cat("\n\nGroups, Treatments and means\n")
+		if(console){cat("\nMeans with the same letter are not significantly different.")
+		cat("\n\nGroups, Treatments and means\n")}
 		groups <- order.group(trt = 1:ntr, tauIntra, n.rep, MSerror = NULL,
 				Tprob = NULL, std.err = dvar, parameter = 1,
-				snk, DFerror = glerror, alpha, sdtdif = 1, vartau)
+				snk, DFerror = glerror, alpha, sdtdif = 1, vartau,console=console)
 		names(groups)[2] <- "mean.adj"
 		rownames(groups)<- groups$trt
 		indices<-as.numeric(as.character(groups$trt))
@@ -205,8 +211,8 @@
 		names(groups)[1] <- name.trt
 		groups<-groups[,1:3]
 	}
-	cat("\nComparison between treatments means and its name\n")
-	cat("\n<<< to see the objects: means, comparison and groups. >>>\n\n")
+	if(console){cat("\nComparison between treatments means and its name\n")
+	cat("\n<<< to see the objects: means, comparison and groups. >>>\n\n")}
 	comparison <- data.frame(Difference = dif, stderr = stdt,
 			pvalue = pvalue)
 	rownames(comparison) <- paste(tr.i, tr.j, sep = " - ")

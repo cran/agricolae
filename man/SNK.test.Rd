@@ -8,7 +8,7 @@
   comparisons under consideration. The level by alpha default is 0.05.
 }
 \usage{
-SNK.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL)
+SNK.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL,console=FALSE)
 }
 
 \arguments{
@@ -19,6 +19,7 @@ SNK.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL)
   \item{alpha}{ Significant level }
   \item{group}{ TRUE or FALSE }
   \item{main}{ Title }
+  \item{console}{logical, print output }
 }
 \details{
   It is necessary first makes a analysis of variance.
@@ -53,6 +54,7 @@ attach(sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
 comparison <- SNK.test(yield,virus,df,MSerror, group=TRUE)
+print(comparison$groups)
 detach(sweetpotato)
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS

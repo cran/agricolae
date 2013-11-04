@@ -1,6 +1,6 @@
 `index.bio` <-
 function (data, method = c("Margalef","Simpson.Dom", "Simpson.Div", "Berger.Parker",
-"McIntosh","Shannon"),level = 95, nboot = 500, console=TRUE)
+"McIntosh","Shannon"),level = 95, nboot = 100, console=TRUE)
 {
     method <- match.arg(method)
     x <- data
