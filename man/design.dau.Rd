@@ -7,14 +7,14 @@
   other treatments (new) are replicated once.
 }
 \usage{
-design.dau(trt1, trt2, r, number = 1, seed = 0, kinds = "Super-Duper", name="trt")
+design.dau(trt1, trt2, r, serie = 2, seed = 0, kinds = "Super-Duper", name="trt")
 }
 
 \arguments{
   \item{trt1}{ checks }
   \item{trt2}{ new }
   \item{r}{ Replications or blocks }
-  \item{number}{ number of first plot }
+  \item{serie}{ number plot, 1: 11,12; 2: 101,102; 3: 1001,1002 }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
   \item{name}{ name of treatments}
@@ -28,7 +28,7 @@ design.dau(trt1, trt2, r, number = 1, seed = 0, kinds = "Super-Duper", name="trt
   \item{trt1 }{vector, name of the treatments}
   \item{trt2 }{vector, name of the treatments}
   \item{r }{Numeric}
-  \item{number }{Numeric}
+  \item{serie }{Numeric}
   \item{seed }{Numeric}
 }
 \references{
@@ -37,14 +37,17 @@ design.dau(trt1, trt2, r, number = 1, seed = 0, kinds = "Super-Duper", name="trt
 }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{design.rcbd}} }
+\seealso{\code{\link{design.ab}}, \code{\link{design.alpha}},\code{\link{design.bib}}, 
+\code{\link{design.crd} }, \code{\link{design.cyclic} }, \code{\link{design.split} },
+\code{\link{design.graeco}}, \code{\link{design.lattice}}, \code{\link{design.lsd}},
+\code{\link{design.rcbd}}, \code{\link{design.strip}} }
 
 \examples{
 library(agricolae)
 # 4 treatments and 5 blocks
 T1<-c("A","B","C","D")
 T2<-letters[20:26]
-dau <-design.dau(T1,T2, r=5)
+dau <-design.dau(T1,T2, r=5,serie=2)
 # field book
 dau
 by(dau,dau[2],function(x) paste(x[,1],"-",as.character(x[,3])))

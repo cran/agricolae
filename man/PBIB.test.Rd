@@ -8,7 +8,7 @@
 }
 \usage{
 PBIB.test(block,trt,replication,y,k, method=c("REML","ML","VC"), 
-test = c("lsd","tukey"), alpha=0.05, group=TRUE,console=FALSE)
+test = c("lsd","tukey"), alpha=0.05, console=FALSE)
 }
 \arguments{
   \item{block}{ blocks }
@@ -19,7 +19,6 @@ test = c("lsd","tukey"), alpha=0.05, group=TRUE,console=FALSE)
   \item{method}{ Estimation method: REML, ML and VC }
   \item{test}{ Comparison treatments }
   \item{alpha}{ Significant test }
-  \item{group}{ TRUE or FALSE }
   \item{console}{logical, print output }
 }
 \details{
@@ -54,7 +53,7 @@ Wiley Classics Library Edition published 1992
 \examples{
 require(agricolae)
 require(MASS) # method = VC in PBIB.test
-# if(require(lme4)) # method = REML or LM in PBIB.test
+# require(nlme) # method = REML or LM in PBIB.test
 # alpha design 
 Genotype<-paste("geno",1:30,sep="")
 ntr<-length(Genotype)
@@ -71,13 +70,14 @@ y<-c(5,2,7,6,4,9,7,6,7,9,6,2,1,1,3,2,4,6,7,9,8,7,6,4,3,2,2,1,1,2,
 dbook<-data.frame(book$book,yield=y)
 rm(y,Genotype)
 # analysis
+require(nlme) # method = REML or LM in PBIB.test
 attach(dbook)
-if(require(lme4)) { # method = REML or LM in PBIB.test
-model <- PBIB.test(block, Genotype, replication, yield, k=3, method="REML", group=TRUE)
-}
+model <- PBIB.test(block, Genotype, replication, yield, k=3, method="REML")
 detach(dbook)
+model$ANOVA
 model$method
 model$parameters
+model$Fstat
 head(model$comparison)
 model$means
 model$groups

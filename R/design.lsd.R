@@ -1,6 +1,8 @@
 `design.lsd` <-
-function (trt,number=1,seed=0,kinds="Super-Duper",first=FALSE)
+function (trt,serie=2,seed=0,kinds="Super-Duper",first=FALSE)
 {
+number<-10
+if(serie>0) number<-10^serie
 r <- length(trt)
 if(seed != 0) set.seed(seed,kinds)
 a <- 1:(r * r)
@@ -22,7 +24,9 @@ if (first) {
 trat<-trt[a]
 columna <- rep(gl(r, 1), r)
 fila <- gl(r, r)
-plots <- number + 1:length(trat) - 1
+fila <- as.character(fila)
+fila <- as.numeric(fila)
+plots <- fila*number+(1:r)
 book <- data.frame(plots, row = as.factor(fila), col = as.factor(columna),
 		trat = as.factor(trat))
 names(book)[4] <- c(paste(deparse(substitute(trt))))

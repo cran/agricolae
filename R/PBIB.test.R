@@ -1,8 +1,7 @@
 `PBIB.test` <-
-		function (block, trt, replication, y, k, method=c("REML","ML","VC"), 
-		test = c("lsd", "tukey"), alpha = 0.05, group = TRUE,console=FALSE)
+		function (block, trt, replication, y, k, method=c("REML","ML","VC"),
+		test = c("lsd", "tukey"), alpha = 0.05, console=FALSE)
 {
-
 	test <- match.arg(test)
 	if (test == "lsd")
 		snk = 3
@@ -26,7 +25,7 @@
 	sds<- as.matrix(by(y, trt, function(x) sd(x,na.rm=TRUE)))
 	std.err<-sds/sqrt(n.rep)
 	indice <- rownames(mean.trt)
-	
+
 	ntr <- nlevels(trt.adj)
 	r <- nlevels(replication)
 	s <- ntr/k
@@ -36,44 +35,43 @@
 		if(console)cat("\nWarning.. incomplete repetition. Please you use method REML or ML\n")
 		return()
 	}
-	modelo <- formula(paste(name.y, "~ replication + trt.adj+ block.adj%in%replication"))
+ 	modelo <- formula(paste(name.y, "~ replication + trt.adj+ block.adj%in%replication"))
 	model <- lm(modelo)
 	glerror <- df.residual(model)
 	ANOVA<-anova(model)
 	rownames(ANOVA)[2]<-name.trt
-	CV<- cv.model(model)
+	CMerror<-as.numeric(deviance(model)/glerror)
 	Mean<-mean(y,na.rm=TRUE)
 	if (method == "VC") {
-		rownames(ANOVA)<- c(name.r,paste(name.trt,".unadj",sep=""),paste(name.b,"/",name.r,sep=""),"Residual")
+	rownames(ANOVA)<- c(name.r,paste(name.trt,".unadj",sep=""),paste(name.b,"/",name.r,sep=""),"Residual")
 	}
-# Use function lmer #
+# Use function lme #
 	if (method == "REML" | method == "ML") {
 		trt.adj <- as.factor(trt)
 
 		if (method == "REML"){
-			modlmer <- lmer(y ~  0+(1 | replication) + trt.adj + (1 | replication/block.adj), REML=TRUE)
-			model <- lmer(y ~ (1 | replication) + trt.adj + (1 | replication/block.adj), REML=TRUE)
+			modlmer <- lme(y ~  0+trt.adj, random = ~1|replication/block.adj, method="REML")
+			model <- lme(y ~  trt.adj, random = ~1|replication/block.adj, method="REML")
 		}
 		if (method == "ML"){
-			modlmer <- lmer(y ~  0+(1 | replication) + trt.adj + (1 | replication/block.adj), REML=FALSE)
-			model <- lmer(y ~ (1 | replication) + trt.adj + (1 | replication/block.adj), REML=FALSE)
+			modlmer <- lme(y ~  0+trt.adj, random = ~1|replication/block.adj, method="ML")
+			model <- lme(y ~  trt.adj, random = ~1|replication/block.adj, method="ML")
 		}
 		Afm<-anova(model)
-		VarRand<- as.numeric(VarCorr(model))
-		VarRand[2]<-VarRand[2]+VarRand[3]
-		CMerror<-sigma(model)^2
-		VarRand[3]<-CMerror
+		VarRand<-matrix(rep(0,3),nrow=3)
+		VarRand[c(1,3),1]<- as.numeric(VarCorr(model)[4:5,1])
+		VarRand[2,1]<-as.numeric(VarCorr(model)[2,1])
+		CMerror<-as.numeric(VarRand[3,1])
 		VarRand<-data.frame(VarRand)
 		names(VarRand)<-"Variance"
 		rownames(VarRand)<-c(paste(name.b,":",name.r,sep=""),name.r,"Residual")
 		ANOVA<-ANOVA[c(2,4),]
-		ANOVA[1,1:4]<-Afm
-		CMerror<-sigma(model)^2
 		ANOVA[2,3]<-CMerror
-		ANOVA[,2]<-ANOVA[,1]*ANOVA[,3]
+		ANOVA[1,1]<-Afm[2,1];ANOVA[1,4]<-Afm[2,3]; ANOVA[1,5]<-Afm[2,4]
+		ANOVA[1,3]<- ANOVA[2,3]*ANOVA[1,4]
+    	ANOVA[,2]<-ANOVA[,1]*ANOVA[,3]
 		ANOVA[2,4:5]<-NA
-		ANOVA[1,5]<-1-pf(ANOVA[1,4],ANOVA[1,1],ANOVA[2,1])
-	}
+ 	}
 #
 	b <- s * r
 	glt <- ntr - 1
@@ -147,23 +145,26 @@
 	cat("\n\nNumber of observations: ", length(y), "\n\n")
 	cat("Estimation Method: ",nMethod,"\n\n")
 	}
+	Fstat<-data.frame(c(AIC(model),BIC(model)))
+	rownames(Fstat)<-c("AIC","BIC")
+	names(Fstat)<-"Fit Statistics"   	
 	if (method == "REML" | method == "ML") {
-		Fstat<-data.frame(c(deviance(model),AIC(model),BIC(model)))
-		names(Fstat)<-"Fit Statistics"
-		rownames(Fstat)<-c("-2 Res Log Likelihood","AIC","BIC")		
+		Fstat<-rbind(Fstat,model$logLik)
+		rownames(Fstat)[3]<-"-2 Res Log Likelihood"
 		if(console){
 		cat("Parameter Estimates\n")
 		print(VarRand)
 		cat("\n")
-		print(Fstat)
-		cat("\n")
-		}
-		CV<- sqrt(CMerror)*100/media
+        }}
+	if(console){
+	print(Fstat)
+	cat("\n")
 	}
+	CV<- sqrt(CMerror)*100/media
 	design<-data.frame("."=c(ntr,k,b/r,r))
 	rownames(design)<-c(name.trt,paste(name.b,"size"),paste(name.b,"/",name.r,sep=""),name.r)
 	E <- (ntr - 1) * (r - 1)/((ntr - 1) * (r - 1) + r * (s-1))
-	if(console){	
+	if(console){
 	print(ANOVA)
 	cat("\ncoefficient of variation:", round(CV,1), "%\n")
 	cat(name.y, "Means:", media, "\n")
@@ -198,30 +199,23 @@
 	}
 	tr.i <- comb[1, ]
 	tr.j <- comb[2, ]
-	if (group) {
-		if(console){cat("\nMeans with the same letter are not significantly different.")
-		cat("\n\nGroups, Treatments and means\n")}
 		groups <- order.group(trt = 1:ntr, tauIntra, n.rep, MSerror = NULL,
 				Tprob = NULL, std.err = dvar, parameter = 1,
-				snk, DFerror = glerror, alpha, sdtdif = 1, vartau,console=console)
+				snk, DFerror = glerror, alpha, sdtdif = 1, vartau,console=FALSE)
 		names(groups)[2] <- "mean.adj"
 		rownames(groups)<- groups$trt
 		indices<-as.numeric(as.character(groups$trt))
 		groups$trt<-indice[indices]
 		names(groups)[1] <- name.trt
 		groups<-groups[,1:3]
-	}
-	if(console){cat("\nComparison between treatments means and its name\n")
-	cat("\n<<< to see the objects: means, comparison and groups. >>>\n\n")}
+	cat("\n<<< to see the objects: means, comparison and groups. >>>\n\n")
 	comparison <- data.frame(Difference = dif, stderr = stdt,
 			pvalue = pvalue)
-	rownames(comparison) <- paste(tr.i, tr.j, sep = " - ")
 	means <- data.frame(means = mean.trt,trt = 1:ntr,  mean.adj = as.numeric(tauIntra),
 			SE = dvar, r = n.rep, std.err=std.err,Min.=mi,Max.=ma)
 	names(means)[1]<-name.y
-	if (!group) groups = NULL
-	output<-list(method=nMethod,parameters=parameters,statistics=statistics ,
-			comparison = comparison, means = means, groups = groups, vartau = vartau)
-			
+	rownames(comparison) <- paste(indice[tr.i], indice[tr.j], sep = " - ")
+	output<-list(ANOVA=ANOVA,method=nMethod,parameters=parameters,statistics=statistics ,
+	Fstat=Fstat, comparison = comparison, means = means, groups = groups, vartau = vartau)
 	invisible(output)
 }

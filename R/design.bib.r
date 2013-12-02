@@ -1,6 +1,8 @@
 `design.bib` <-
-function (trt, k, number = 1, seed = 0, kinds = "Super-Duper")
+function (trt, k, serie = 2, seed = 0, kinds = "Super-Duper")
 {
+number<-10
+if(serie>0) number<-10^serie
     ntr <- length(trt)
     if (seed != 0) set.seed(seed, kinds)
     md<- t(combn(1:ntr, k))
@@ -13,7 +15,9 @@ function (trt, k, number = 1, seed = 0, kinds = "Super-Duper")
     }
 mtr<-trt[t(md)]
 block <- gl(b,k)
-plots <- number + 1:(b*k) - 1
+Rep<-as.numeric(block)
+plots <- Rep*number+(1:k)
+#plots <- number + 1:(b*k) - 1
 book <- data.frame(plots, block = as.factor(block), trt = as.factor(mtr))
 names(book)[3] <- c(paste(deparse(substitute(trt))))
 r<-as.numeric(table(book[,3])[1])

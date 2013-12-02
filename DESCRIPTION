@@ -1,15 +1,15 @@
 Package: agricolae
 Type: Package
 Title: Statistical Procedures for Agricultural Research
-Version: 1.1-5
-Date: 2013-11-04
+Version: 1.1-6
+Date: 2013-12-02
 Author: Felipe de Mendiburu
 Maintainer: Felipe de Mendiburu <f.mendiburu@cgiar.org>
-Suggests: akima, klaR, MASS, lme4, cluster
-Description: Agricolae was presented in the thesis "A statistical analysis tool for agricultural research" to obtain the degree of Master on science, mention Systems Engineering, Faculty of Industrial and Systems Engineering, National Engineering University (UNI), Lima-Peru Agricolae offers extensive functionality on experimental design especially for agricultural and plant breeding experiments, which can also be useful for other purposes. It supports planning of lattice, Alpha, Cyclic, Complete Block, Latin Square, Graeco-Latin Squares, augmented block, split and strip plot designs. There are also various analysis facilities for experimental data, e.g. treatment comparison procedures and several non-parametric tests comparison, biodiversity indexes and consensus cluster.
+Suggests: akima, klaR, MASS, nlme, cluster
+Description: Agricolae was presented in the thesis "A statistical analysis tool for agricultural research" to obtain the degree of Master on science, mention Systems Engineering, Faculty of Industrial and Systems Engineering, National Engineering University (UNI), Lima-Peru Agricolae offers extensive functionality on experimental design especially for agricultural and plant breeding experiments, which can also be useful for other purposes. It supports planning of lattice, Alpha, Cyclic, Complete Block, Latin Square, Graeco-Latin Squares, augmented block, factorial, split and strip plot designs. There are also various analysis facilities for experimental data, e.g. treatment comparison procedures and several non-parametric tests comparison, biodiversity indexes and consensus cluster.
 License: GPL
 URL: http://tarwi.lamolina.edu.pe/~fmendiburu
-Packaged: 2013-11-04 13:09:54 UTC; fdemendiburu
+Packaged: 2013-12-02 13:02:09 UTC; fdemendiburu
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2013-11-04 14:53:40
+Date/Publication: 2013-12-02 21:27:46

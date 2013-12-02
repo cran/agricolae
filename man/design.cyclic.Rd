@@ -9,13 +9,13 @@
   replications <= 10. 
 }
 \usage{
-design.cyclic(trt, k, r, number = 1, rowcol = FALSE, seed = 0, kinds = "Super-Duper")
+design.cyclic(trt, k, r, serie = 2, rowcol = FALSE, seed = 0, kinds = "Super-Duper")
 }
 \arguments{
   \item{trt}{ vector treatments }
   \item{k}{ block size}
   \item{r}{ Replications }
-  \item{number}{ number of first plot }
+  \item{serie}{ number plot, 1: 11,12; 2: 101,102; 3: 1001,1002 }
   \item{rowcol}{ TRUE: row-column design }
   \item{seed}{ init seed random }
   \item{kinds}{ random method }
@@ -29,7 +29,7 @@ design.cyclic(trt, k, r, number = 1, rowcol = FALSE, seed = 0, kinds = "Super-Du
 \value{
   \item{trt }{vector, name of the treatments}
   \item{k }{Constant, numeric}
-  \item{number }{Constant, numeric}
+  \item{serie }{Constant, numeric}
   \item{seed }{Constant, numeric}
   \item{kinds}{ character }
 }
@@ -37,12 +37,16 @@ design.cyclic(trt, k, r, number = 1, rowcol = FALSE, seed = 0, kinds = "Super-Du
 John, J.A. (1981) Efficient Cyclic Design. J. R. Statist. Soc. B, 43, No. 1, pp, 76-80.
 }
 \author{ Felipe de Mendiburu }
-\seealso{\code{\link{design.bib}}, \code{\link{design.lattice}}, \code{\link{design.alpha}} }
+\seealso{\code{\link{design.ab}}, \code{\link{design.alpha}},\code{\link{design.bib}}, 
+\code{\link{design.crd} }, \code{\link{design.split} }, \code{\link{design.dau} },
+\code{\link{design.graeco}}, \code{\link{design.lattice}}, \code{\link{design.lsd}},
+\code{\link{design.rcbd}}, \code{\link{design.strip}} }
+
 \examples{
 library(agricolae)
 trt<-letters[1:8]
 # block size = 2, replication = 6
-plan1 <- design.cyclic(trt,k=2, r=6)
+plan1 <- design.cyclic(trt,k=2, r=6,serie=2)
 names(plan1)
 # groups 1,2,3
 plan1$design[[1]]
@@ -50,7 +54,7 @@ plan1$design[[2]]
 plan1$design[[3]]
 plan1$book
 # row-column design
-plan2 <- design.cyclic(trt,k=2, r=6, rowcol=TRUE)
+plan2 <- design.cyclic(trt,k=2, r=6, serie=2, rowcol=TRUE)
 plan2$design
 }
 \keyword{ design  }

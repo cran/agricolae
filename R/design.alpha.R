@@ -1,6 +1,8 @@
 `design.alpha` <-
-function (trt, k, r, number = 1, seed = 0, kinds = "Super-Duper")
+function (trt, k, r, serie = 2, seed = 0, kinds = "Super-Duper")
 {
+number<-10
+if(serie>0) number<-10^serie
     name.trt <- c(paste(deparse(substitute(trt))))
     ntr <- length(trt)
     if (seed != 0)
@@ -113,11 +115,14 @@ function (trt, k, r, number = 1, seed = 0, kinds = "Super-Duper")
                   trt = as.factor(mtr), replication = i)
                 book <- rbind(book, book1)
             }
-            plots <- number + 1:(s * k * r) - 1
+            Rep<-book$replication
+            plots <- Rep*number+(1:ntr)
             cols <- as.numeric(rep(gl(k, 1), s * r))
             book <- data.frame(plots = plots, cols = cols, book)
             book <- data.frame(row.names = NULL, book)
             book$block <- gl(s * r, k)
+            book[,2]<-as.factor(book[,2])
+            book[,5]<-as.factor(book[,5])
             names(book)[4] <- name.trt
             tr<-as.character(book[,4])
             dim(tr)<-c(k,s,r)

@@ -9,13 +9,13 @@
 
 }
 \usage{
-design.crd(trt, r, number = 1, seed = 0, kinds = "Super-Duper")
+design.crd(trt, r, serie = 2, seed = 0, kinds = "Super-Duper")
 }
 
 \arguments{
   \item{trt}{ Treatments}
   \item{r}{ Replications }
-  \item{number}{ number of first plot }
+  \item{serie}{ number plot, 1: 11,12; 2: 101,102; 3: 1001,1002 }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
 }
@@ -29,28 +29,29 @@ design.crd(trt, r, number = 1, seed = 0, kinds = "Super-Duper")
   \item{trt }{vector, name of the treatments}
   \item{r }{vector, numeric}
   \item{r }{Numeric}
-  \item{number }{Numeric}
+  \item{serie }{Numeric}
   \item{seed }{Numeric}
 }
 \references{ Introduction to Experimental Statistics. 
 Ching Chun Li. McGraw-Hill Book Company, INC, New. York, 1964 }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{design.rcbd}}, \code{\link{design.lsd}}, \code{\link{design.ab}}, 
-\code{\link{fact.nk} } }
+\seealso{\code{\link{design.ab}}, \code{\link{design.alpha}},\code{\link{design.bib}}, 
+\code{\link{design.split} }, \code{\link{design.cyclic} }, \code{\link{design.dau} },
+\code{\link{design.graeco}}, \code{\link{design.lattice}}, \code{\link{design.lsd}},
+\code{\link{design.rcbd}}, \code{\link{design.strip}} }
 
 \examples{
 library(agricolae)
-cipnumber <-c("CIP-101","CIP-201","CIP-301","CIP-401","CIP-501")
-rep <-c(4,3,5,4,3)
+trt <-c("CIP-101","CIP-201","CIP-301","CIP-401","CIP-501")
+r <-c(4,3,5,4,3)
 # seed = 12543
-crd1 <-design.crd(cipnumber,rep,number=101,12543,"Mersenne-Twister")
+crd1 <-design.crd(trt,r,serie=2,2543,"Mersenne-Twister")
 # no seed
-crd2 <-design.crd(cipnumber,rep,number=101)
+crd2 <-design.crd(trt,r,serie=3)
 # write to hard disk
 # write.table(crd1,"crd.txt", row.names=FALSE, sep="\t")
-# file.show("crd.txt")
-
+# file.show("crd1.txt")
 }
 \keyword{ design }% at least one, from doc/KEYWORDS
 

@@ -8,12 +8,12 @@
   The seed is by set.seed(seed, kinds).
 }
 \usage{
-design.lsd(trt, number = 1, seed = 0, kinds = "Super-Duper",first=FALSE)
+design.lsd(trt, serie = 2, seed = 0, kinds = "Super-Duper",first=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{trt}{ Treatments }
-  \item{number}{ number of first plot }
+  \item{serie}{ number plot, 1: 11,12; 2: 101,102; 3: 1001,1002 }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
   \item{first}{ TRUE or FALSE - randomize rep 1}
@@ -25,7 +25,7 @@ design.lsd(trt, number = 1, seed = 0, kinds = "Super-Duper",first=FALSE)
 }
 \value{
   \item{trt }{Vector names of treatments}
-  \item{number }{Numeric}
+  \item{serie }{Numeric}
   \item{seed }{Numeric}
   \item{kinds}{ character }
   \item{first }{Logic}
@@ -34,13 +34,15 @@ design.lsd(trt, number = 1, seed = 0, kinds = "Super-Duper",first=FALSE)
 Ching Chun Li. McGraw-Hill Book Company, INC, New. York, 1969 }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{design.crd}}, \code{\link{design.rcbd}}, \code{\link{random.ab}}, 
-\code{\link{fact.nk} } }
+\seealso{\code{\link{design.ab}}, \code{\link{design.alpha}},\code{\link{design.bib}}, 
+\code{\link{design.crd} }, \code{\link{design.cyclic} }, \code{\link{design.dau} },
+\code{\link{design.graeco}}, \code{\link{design.lattice}}, \code{\link{design.split}},
+\code{\link{design.rcbd}}, \code{\link{design.strip}} }
 
 \examples{
 library(agricolae)
 varieties<-c("perricholi","yungay","maria bonita","tomasa")
-lsd <-design.lsd(varieties,number=1001,seed=23)
+lsd <-design.lsd(varieties,serie=2,seed=23)
 lsd # print field book.
 plots <-as.numeric(lsd[,1])
 trt <-as.character(lsd[,4])

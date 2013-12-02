@@ -1,6 +1,8 @@
 `design.crd` <-
-function(trt,r,number=1,seed=0,kinds="Super-Duper")
+function(trt,r,serie=2,seed=0,kinds="Super-Duper")
 {
+number<-0
+if(serie>0) number<-10^serie
 junto<-data.frame(trt,r)
 junto<-junto[order(junto[,1]),]
 TR<-as.character(junto[,1])
@@ -10,7 +12,7 @@ tr <- length(TR)
 if(seed != 0) set.seed(seed,kinds)
 for (i in 2:tr) y <- c(y, rep(TR[i], r[i]))
 	trat <- sample(y, length(y), replace = FALSE)
-	plots <- number+1:length(trat)-1
+	plots <- number+1:length(trat)
 	dca<-data.frame(plots, trat)
 	dca[,1]<-as.numeric(dca[,1])
 	xx<-dca[order(dca[,2],dca[,1]),]

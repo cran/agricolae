@@ -1,6 +1,8 @@
 `design.cyclic` <-
-function (trt, k, r, number = 1, rowcol=FALSE, seed = 0, kinds = "Super-Duper")
+function (trt, k, r, serie = 2, rowcol=FALSE, seed = 0, kinds = "Super-Duper")
 {
+number<-10
+if(serie>0) number<-10^serie
 name.trt <- deparse(substitute(trt))
 ntr <- length(trt)
 # Control
@@ -116,11 +118,13 @@ nr<-sample(1:ntr, replace=FALSE)
     design<-rbind(design,list(t(tr)))
     BOOK <-rbind(BOOK,book)
    }
-    plots <- number + 1:(nj*ntr* k) - 1
+    nr<-as.numeric(table(BOOK[,1]))
+    nt<-length(nr)
+    plots<-NULL
+    for(i in 1:nt) plots<-c(plots,i*number+1:nr[i])
     block <- gl(nj*ntr, k)
     book <- data.frame(plots=plots,group=BOOK[,1],block=block,trt=BOOK[,2])
     names(book)[4] <- name.trt
-    
     cat("\ncyclic design\n")
     cat("Generator block basic:\n")
     if (is.matrix(inicial)){

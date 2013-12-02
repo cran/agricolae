@@ -1,28 +1,52 @@
 `design.ab` <-
-function(A,B,r,number=1,seed=0,kinds="Super-Duper"){
-p<-length(A)
-q<-length(B)
-t<-rep(0,r*p*q)
-dim(t)<-c(p*q,r)
-ntr<-p*q
-if(seed != 0) set.seed(seed,kinds)
-trt<-random.ab(p,q)
-bloque<-c(rep(1,ntr))
-for (y in 2:r){
-bloque<-c(bloque,rep(y,ntr))
-trt<- rbind(trt, random.ab(p,q))
+function(trt, r=NULL,serie=2,design=c("rcbd","crd","lsd"),seed=0,kinds="Super-Duper",
+first=FALSE ){
+design <- match.arg(design)
+if( design=="rcbd" | design=="crd") posicion <- 3
+else posicion <- 4
+serie<-serie; seed<-seed; kinds<-kinds; first<-first;
+# Process to trt to factorial
+ntr<-length(trt)
+fact<-NULL
+tr0<-1:trt[1]
+k<-0
+a<-trt[1];b<-trt[2]
+for(i in 1:a){
+for(j in 1:b){
+k<-k+1
+fact[k]<-paste(tr0[i],j)
 }
-n<-nrow(trt)
-factor1<-rep(NA,n)
-factor2<-rep(NA,n)
-for ( i in 1:n){
-factor1[i]<-A[trt[i,1]]
-factor2[i]<-B[trt[i,2]]
 }
-plots <- number + 1:(ntr * r) - 1
-#libro<-cbind(parcela,bloque,trat)
-book<-data.frame(plots,block=as.factor(bloque),factor1=as.factor(factor1),
-factor2=as.factor(factor2))
-names(book)[c(3,4)]<-c(paste(deparse(substitute(A))),paste(deparse(substitute(B))))
+
+if(ntr >2) {
+for(m in 3:ntr){
+k<-0
+tr0<-fact
+fact<-NULL
+a<-a*b
+b<-trt[m]
+for(i in 1:a){
+for(j in 1:b){
+k<-k+1
+fact[k]<-paste(tr0[i],j)
+}
+}
+}
+}
+#------------------------------
+if(design=="rcbd")plan<-design.rcbd(trt=fact, r, serie, seed, kinds, first )
+if(design=="crd")plan<-design.crd(trt=fact, r, serie, seed, kinds)
+if(design=="lsd")plan<-design.lsd(trt=fact, serie, seed, kinds, first )
+trt<-as.character(plan[,posicion])
+nplan<-nrow(plan)
+A<-rep(" ",nplan*ntr)
+dim(A)<-c(nplan,ntr)
+colnames(A)<-LETTERS[1:ntr]
+
+for(i in 1:nplan) {
+A[i,]<-unlist(strsplit(trt[i], " "))
+}
+A<-as.data.frame(A)
+book<-data.frame(plan[,1:(posicion-1)],A)
 return(book) }
 

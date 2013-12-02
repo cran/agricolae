@@ -1,6 +1,8 @@
 `design.graeco` <-
-function (trt1, trt2, number = 1, seed = 0, kinds = "Super-Duper") 
+function (trt1, trt2, serie = 2, seed = 0, kinds = "Super-Duper")
 {
+number<-10
+if(serie>0) number<-10^serie
 r <- length(trt1)
 if (floor(r/2) * 2 == r) {
 if (r == 6 | r > 13) {
@@ -9,10 +11,12 @@ return()
 }
 }
 if (seed != 0) set.seed(seed, kinds)
-plots <- number + 1:(r^2) - 1
 col <- rep(gl(r, 1), r)
-row <- gl(r, r)
-C1 <- data.frame(plots, row, col)
+fila <- gl(r, r)
+fila <- as.character(fila)
+fila <- as.numeric(fila)
+plots <- fila*number+(1:r)
+C1 <- data.frame(plots, row=factor(fila), col)
 if ((r == 4) | (r == 8) | (r == 10) | (r == 12)) {
 if (r == 4) {
 c1 <- c(1,2,3,4,2,1,4,3,3,4,1,2,4,3,2,1)

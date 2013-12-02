@@ -6,13 +6,13 @@
   SIMPLE and TRIPLE lattice designs. It randomizes treatments in k x k lattice.
 }
 \usage{
-design.lattice(k, type="triple", number = 1, seed = 0, kinds = "Super-Duper")
+design.lattice(trt, r=3, serie = 2, seed = 0, kinds = "Super-Duper")
 }
 
 \arguments{
-  \item{k}{ order lattice }
-  \item{type}{simple or triple lattice}
-  \item{number}{ number of first plot }
+  \item{trt}{ treatments }
+  \item{r}{r=2(simple) or r=3(triple) lattice}
+  \item{serie}{ number plot, 1: 11,12; 2: 101,102; 3: 1001,1002 }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
 }
@@ -31,13 +31,19 @@ design.lattice(k, type="triple", number = 1, seed = 0, kinds = "Super-Duper")
 
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{design.crd}}, \code{\link{design.rcbd}}, \code{\link{design.lsd}},
-\code{\link{random.ab}}, \code{\link{fact.nk} } }
+\seealso{\code{\link{design.ab}}, \code{\link{design.alpha}},\code{\link{design.bib}}, 
+\code{\link{design.crd} }, \code{\link{design.cyclic} }, \code{\link{design.dau} },
+\code{\link{design.graeco}}, \code{\link{design.split}}, \code{\link{design.lsd}},
+\code{\link{design.rcbd}}, \code{\link{design.strip}} }
 
 \examples{
 library(agricolae)
-design.lattice(10,type="simple") # simple lattice design, 10x10 (100 varieties)
-design.lattice(3,type="triple") # triple lattice design,  3x3 ( 9 varieties)
+# triple lattice
+trt<-LETTERS[1:9]
+design.lattice(trt,r=3,serie=2) # triple lattice design ( 9 trt)
+# simple lattice
+trt<-1:100
+plan<-design.lattice(trt,r=2,serie=3) # simple lattice design, 10x10 
 }
 \keyword{ design }% at least one, from doc/KEYWORDS
 

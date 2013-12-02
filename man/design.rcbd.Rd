@@ -8,13 +8,13 @@
   The seed is by set.seed(seed, kinds).
 }
 \usage{
-design.rcbd(trt, r, number = 1, seed = 0, kinds = "Super-Duper", first=FALSE)
+design.rcbd(trt, r, serie = 2, seed = 0, kinds = "Super-Duper", first=FALSE)
 }
 
 \arguments{
   \item{trt}{ Treatments}
   \item{r}{ Replications or blocks }
-  \item{number}{ number of first plot }
+  \item{serie}{ number plot, 1: 11,12; 2: 101,102; 3: 1001,1002 }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
   \item{first}{ TRUE or FALSE - randomize rep 1}
@@ -37,14 +37,16 @@ design.rcbd(trt, r, number = 1, seed = 0, kinds = "Super-Duper", first=FALSE)
 Ching Chun Li. McGraw-Hill Book Company, INC, New. York, 1964 }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{design.crd}}, \code{\link{design.lsd}}, \code{\link{random.ab}}, 
-\code{\link{fact.nk} } }
+\seealso{\code{\link{design.ab}}, \code{\link{design.alpha}},\code{\link{design.bib}}, 
+\code{\link{design.crd} }, \code{\link{design.cyclic} }, \code{\link{design.dau} },
+\code{\link{design.graeco}}, \code{\link{design.lattice}}, \code{\link{design.lsd}},
+\code{\link{design.split}}, \code{\link{design.strip}} }
 
 \examples{
 library(agricolae)
 # 5 treatments and 6 blocks
 trt<-c("A","B","C","D","E")
-rcbd <-design.rcbd(trt,6,number=101,986,"Wichmann-Hill") # seed = 986
+rcbd <-design.rcbd(trt,6,serie=2,986,"Wichmann-Hill") # seed = 986
 rcbd # field book
 # write in hard disk
 # write.table(rcbd,"rcbd.txt", row.names=FALSE, sep="\t")

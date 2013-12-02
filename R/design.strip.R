@@ -1,5 +1,7 @@
-design.strip<-function (trt1, trt2,r, number = 1, seed = 0, kinds = "Super-Duper") 
+design.strip<-function (trt1, trt2,r, serie = 2, seed = 0, kinds = "Super-Duper")
 {
+number<-10
+if(serie>0) number<-10^serie
     n1<-length(trt1)
     n2<-length(trt2)
     if (seed != 0) 
@@ -17,7 +19,8 @@ design.strip<-function (trt1, trt2,r, number = 1, seed = 0, kinds = "Super-Duper
         columna <- c(columna,a[gl(n1,n2)])
         block <- c(block,rep(i,n1*n2))
     }}
-    plots <- number + 1:(n1*n2 * r) - 1
+    
+    plots <- block*number+1:(n1*n2)
     book <- data.frame(plots, block = as.factor(block), column=as.factor(columna),row = as.factor(fila))
     names(book)[3] <- c(paste(deparse(substitute(trt1))))
     names(book)[4] <- c(paste(deparse(substitute(trt2))))

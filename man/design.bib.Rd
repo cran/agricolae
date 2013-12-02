@@ -8,13 +8,13 @@
   The seed is by set.seed(seed, kinds).
 }
 \usage{
-design.bib(trt, k, number = 1, seed = 0, kinds = "Super-Duper")
+design.bib(trt, k, serie = 2, seed = 0, kinds = "Super-Duper")
 }
 
 \arguments{
   \item{trt}{ Treatments}
   \item{k}{ size block }
-  \item{number}{ number of first plot }
+  \item{serie}{ number plot, 1: 11,12; 2: 101,102; 3: 1001,1002 }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
 }
@@ -27,22 +27,24 @@ design.bib(trt, k, number = 1, seed = 0, kinds = "Super-Duper")
 
   \item{trt }{vector, name of the treatments}
   \item{k }{number, numeric}
-  \item{number }{Numeric}
+  \item{serie }{Numeric}
   \item{seed }{Numeric}
   \item{kinds}{ character }
 }
 \references{ Design of Experiments. Robert O. Kuehl. 2nd ed., Duxbury, 2000 }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{design.crd}}, \code{\link{design.lsd}}, \code{\link{random.ab}}, 
-\code{\link{design.rcbd} },\code{\link{fact.nk} } }
+\seealso{\code{\link{design.ab}}, \code{\link{design.alpha}},\code{\link{design.split}}, 
+\code{\link{design.crd} }, \code{\link{design.cyclic} }, \code{\link{design.dau} },
+\code{\link{design.graeco}}, \code{\link{design.lattice}}, \code{\link{design.lsd}},
+\code{\link{design.rcbd}}, \code{\link{design.strip}} }
 
 \examples{
 library(agricolae)
 # 4 treatments and k=3 size block
 trt<-c("A","B","C","D")
 k<-3
-bib <-design.bib(trt,k,number=101,seed =41,kinds ="Super-Duper") # seed = 41
+bib <-design.bib(trt,k,serie=2,seed =41,kinds ="Super-Duper") # seed = 41
 print(bib$parameters)
 book<-bib$book
 plots <-as.numeric(book[,1])

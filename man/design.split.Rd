@@ -8,7 +8,7 @@
   The seed is by set.seed(seed, kinds).
 }
 \usage{
-design.split(trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),number = 1, 
+design.split(trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),serie = 2,
 seed = 0, kinds = "Super-Duper", first=FALSE)
 }
 
@@ -17,7 +17,7 @@ seed = 0, kinds = "Super-Duper", first=FALSE)
   \item{trt2}{ Treatments in Subplots}
   \item{r}{ Replications or blocks }
   \item{design}{ Experimental design }
-  \item{number}{ number of first plot }
+  \item{serie}{ number plot, 1: 11,12; 2: 101,102; 3: 1001,1002 }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
   \item{first}{ TRUE or FALSE - randomize rep 1}
@@ -33,7 +33,7 @@ seed = 0, kinds = "Super-Duper", first=FALSE)
   \item{trt2}{vector, numeric}
   \item{r }{vector, numeric}
   \item{design}{character}
-  \item{number }{Numeric}
+  \item{serie }{Numeric}
   \item{seed }{Numeric}
   \item{kinds}{ character }
   \item{first }{Logic}
@@ -42,15 +42,17 @@ seed = 0, kinds = "Super-Duper", first=FALSE)
 Kwanchai A. Gomez, Arturo A. Gomez. John Wiley & Sons, new York, 1984 }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{design.crd}}, \code{\link{design.lsd}}, 
-\code{\link{random.ab}}, \code{\link{fact.nk} } }
+\seealso{\code{\link{design.ab}}, \code{\link{design.alpha}},\code{\link{design.bib}}, 
+\code{\link{design.crd} }, \code{\link{design.cyclic} }, \code{\link{design.dau} },
+\code{\link{design.graeco}}, \code{\link{design.lattice}}, \code{\link{design.lsd}},
+\code{\link{design.rcbd}}, \code{\link{design.strip}} }
 
 \examples{
 library(agricolae)
 # 4 treatments and 5 blocks in split-plot
 t1<-c("A","B","C","D")
 t2<-c(1,2,3)
-book <-design.split(t1,t2,r=3,number=101,seed=45,kinds ="Super-Duper")#seed=45
+book <-design.split(t1,t2,r=3,serie=2,seed=45,kinds ="Super-Duper")#seed=45
 book # field book
 # write in hard disk
 # write.table(book,"book.txt", row.names=FALSE, sep="\t")

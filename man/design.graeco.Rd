@@ -10,13 +10,13 @@
   The function is only for squares of the odd numbers and even numbers (4, 8, 10 and 12)
 }
 \usage{
-design.graeco(trt1, trt2, number = 1, seed = 0, kinds = "Super-Duper")
+design.graeco(trt1, trt2, serie = 2, seed = 0, kinds = "Super-Duper")
 }
 
 \arguments{
   \item{trt1}{ Treatments }
   \item{trt2}{ Treatments }
-  \item{number}{ number of first plot }
+  \item{serie}{ number plot, 1: 11,12; 2: 101,102; 3: 1001,1002 }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
 }
@@ -28,7 +28,7 @@ design.graeco(trt1, trt2, number = 1, seed = 0, kinds = "Super-Duper")
 \value{
   \item{trt1 }{vector, name of the treatments}
   \item{trt2 }{vector, name of the treatments}  
-  \item{number }{Numeric}
+  \item{serie }{Numeric}
   \item{seed }{Numeric}
 }
 \references{ 
@@ -40,14 +40,16 @@ Wiley Classics Library Edition published 1992.
 }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{design.crd}}, \code{\link{design.lsd}}, \code{\link{random.ab}}, 
-\code{\link{fact.nk} } }
+\seealso{\code{\link{design.ab}}, \code{\link{design.alpha}},\code{\link{design.bib}}, 
+\code{\link{design.crd} }, \code{\link{design.cyclic} }, \code{\link{design.dau} },
+\code{\link{design.split}}, \code{\link{design.lattice}}, \code{\link{design.lsd}},
+\code{\link{design.rcbd}}, \code{\link{design.strip}} }
 
 \examples{
 library(agricolae)
 T1<-c("a","b","c","d")
 T2<-c("v","w","x","y")
-graeco <-  design.graeco(T1,T2,number=101)
+graeco <-  design.graeco(T1,T2,serie=1)
 plots <-as.numeric(graeco[,1])
 trt <- paste(graeco[,4],graeco[,5])
 dim(plots)<-c(4,4)
@@ -57,7 +59,7 @@ print(t(trt))
 # 10 x 10
 T1 <- letters[1:10]
 T2 <- 1:10
-graeco <-  design.graeco(T1,T2)
+graeco <-  design.graeco(T1,T2,serie=2)
 trt <- paste(graeco[,4],graeco[,5])
 dim(trt) <-c(10,10)
 print(t(trt))

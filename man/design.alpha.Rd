@@ -7,19 +7,19 @@
   the 4 series formulated by Patterson and Williams.
   }
 \usage{
-design.alpha(trt, k, r, number = 1, seed = 0, kinds = "Super-Duper")
+design.alpha(trt, k, r, serie = 2, seed = 0, kinds = "Super-Duper")
 }
 \arguments{
   \item{trt}{ Treatments}
   \item{k}{ size block }
   \item{r}{ Replications }
-  \item{number}{ number of first plot }
+  \item{serie}{ number plot, 1: 11,12; 2: 101,102; 3: 1001,1002 }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
 }
 \details{
 
-Series:
+Parameters for the alpha design:
 I. 	r=2, k <= s;
 II.	r=3, s odd, k <= s;
 III.r=3, s even, k <= s-1;
@@ -35,7 +35,7 @@ Number of treatment is equal to k*s
   \item{trt }{vector, name of the treatments}
   \item{k }{Constant, numeric}
   \item{r}{ Constant, numeric }
-  \item{number }{Constant, numeric}
+  \item{serie }{Constant, numeric}
   \item{seed }{Constant, numeric}
   \item{kinds}{ character }
 }
@@ -46,7 +46,10 @@ Number of treatment is equal to k*s
  }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{design.bib}}, \code{\link{design.lattice}}, \code{\link{design.cyclic}}}
+\seealso{\code{\link{design.ab}}, \code{\link{design.split}},\code{\link{design.bib}}, 
+\code{\link{design.crd} }, \code{\link{design.cyclic} }, \code{\link{design.dau} },
+\code{\link{design.graeco}}, \code{\link{design.lattice}}, \code{\link{design.lsd}},
+\code{\link{design.rcbd}}, \code{\link{design.strip}} }
 
 \examples{
 library(agricolae)
@@ -59,7 +62,7 @@ k<-3
 s<-t/k
 # replications r
 r <- 2
-book<- design.alpha(trt,k,r)
+book<- design.alpha(trt,k,r,serie=2)
 plots<-book$book[,1]
 dim(plots)<-c(k,s,r)
 for (i in 1:r) print(t(plots[,,i]))
@@ -70,7 +73,7 @@ t <- length(trt)
 k<-3
 r<-3
 s<-t/k
-book<- design.alpha(trt,k,r)
+book<- design.alpha(trt,k,r,serie=2)
 plots<-book$book[,1]
 dim(plots)<-c(k,s,r)
 for (i in 1:r) print(t(plots[,,i]))
