@@ -25,7 +25,7 @@ function (block, trt, y, method = c("lsd","tukey"),alpha=0.05,group=TRUE,console
 	n.rep <- tapply.stat(y, trt, function(x) length(na.omit(x)))
 	sds<- tapply.stat(y, trt, function(x) sd(x,na.rm=TRUE))
 	std.err<-sds[,2]/sqrt(n.rep[,2])
-	Means<-data.frame(Means,std.err=sds[,2]*sqrt(n.rep[,2]),r=n.rep[,2],Min.=mi[,2],Max.=ma[,2])
+	Means<-data.frame(Means,std=sds[,2],r=n.rep[,2],Min=mi[,2],Max=ma[,2])
 	names(Means)[1:2] <- c(name.t, name.y)
 	mean.y<- mean( y, na.rm=TRUE )
 	nameTrt<-Means[,1] 

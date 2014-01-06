@@ -23,7 +23,7 @@
 	ma <- as.matrix(by(y, trt, function(x) max(x,na.rm=TRUE)))
 	n.rep <- as.matrix(by(y, trt, function(x) length(na.omit(x))))
 	sds<- as.matrix(by(y, trt, function(x) sd(x,na.rm=TRUE)))
-	std.err<-sds/sqrt(n.rep)
+	std<-sds
 	indice <- rownames(mean.trt)
 
 	ntr <- nlevels(trt.adj)
@@ -212,7 +212,7 @@
 	comparison <- data.frame(Difference = dif, stderr = stdt,
 			pvalue = pvalue)
 	means <- data.frame(means = mean.trt,trt = 1:ntr,  mean.adj = as.numeric(tauIntra),
-			SE = dvar, r = n.rep, std.err=std.err,Min.=mi,Max.=ma)
+			SE = dvar, r = n.rep, std,Min=mi,Max=ma)
 	names(means)[1]<-name.y
 	rownames(comparison) <- paste(indice[tr.i], indice[tr.j], sep = " - ")
 	output<-list(ANOVA=ANOVA,method=nMethod,parameters=parameters,statistics=statistics ,

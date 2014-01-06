@@ -1,14 +1,18 @@
 `graph.freq` <-
-function (x, breaks="sturges",counts=NULL,frequency=1, plot=TRUE, nclass=NULL,xlab="",ylab="",...)
+function (x, breaks=NULL,counts=NULL,frequency=1, plot=TRUE, nclass=NULL,xlab="",ylab="",axes="",las=1,...)
 {
+if(axes=="") ejes=TRUE
+else {
+ejes<-FALSE
+if (axes) ejes<-TRUE
+}
 if (xlab=="") xlab= deparse(substitute(x))
 if (is.numeric(x) & is.null(counts)) {
 x<-na.omit(x)
 	# histogram
 if (is.null(nclass)) {
-if (length(breaks)==1) {
-
-if(breaks== "sturges") breaks <- sturges.freq(x)$breaks
+if (is.null(breaks)) {
+breaks <- sturges.freq(x)$breaks
 }
 }
 else {
@@ -63,7 +67,13 @@ if(frequency==1)height<-round(1.1*max(counts),1)
 if(frequency==2)height<-round(1.1*max(relative),4)
 if(frequency==3)height<-round(1.1*max(density),4)
 y <- c(0, height)
-suppressWarnings(warning(plot(x,y, type = "n", xlab=xlab,ylab=ylab,...)))
+# suppressWarnings(warning(plot(x,y, type = "n", xlab=xlab,ylab=ylab,axes=axes,...)))
+if(ejes){
+suppressWarnings(warning(plot(x,y, type = "n", xlab=xlab,ylab=ylab,axes=FALSE,...)))
+axis(1,breaks,las=las)->ax; axis(2,las=las)->ay
+}
+else suppressWarnings(warning(plot(x,y, type = "n", xlab=xlab,ylab=ylab,axes=axes,...)))
+
 if (frequency==1) {
 for (j in 1:k) {
 suppressWarnings(warning(rect(breaks[j], 0, breaks[j + 1], counts[j], ...)))

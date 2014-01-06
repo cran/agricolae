@@ -7,15 +7,19 @@
   defined in the histogram.
 }
 \usage{
-ojiva.freq(histogram, ...)
+ojiva.freq(histogram,type="",xlab="",ylab="",axes="",las=1,...)
 }
 \arguments{
   \item{histogram}{ object created by the function hist() or graph.freq()}
-  \item{\dots}{ Parameters of the hist() }
+  \item{type}{ what type of plot should be drawn. See plot()}
+  \item{xlab}{ x labels}
+  \item{ylab}{ y labels}  
+  \item{axes}{ TRUE or FALSE}
+  \item{las}{ numeric in {0,1,2,3}; the style of axis labels. see plot()}
+  \item{\dots}{ Parameters of the plot() }
 }
 \value{
-  \item{histogram }{Object}
-  ...
+  \item{table}{data.frame}
 }
 
 \author{ Felipe de Mendiburu }
@@ -27,15 +31,9 @@ ojiva.freq(histogram, ...)
 \examples{
 library(agricolae)
 data(growth)
-attach(growth)
-
-#startgraph
-h<-graph.freq(height,plot=FALSE)
-detach(growth)
-points<-ojiva.freq(h,type="l",col="red",frame=FALSE,
-xlab="Limit of class", ylab="Accumulated relative frequency", main="ojiva")
-grid(col="black")
-#endgraph
+h<-graph.freq(growth$height,plot=FALSE)
+points<-ojiva.freq(h,col="red",frame=FALSE,
+xlab="Height", ylab="Accumulated relative frequency", main="ojiva")
 print(points)
 }
 \keyword{ aplot }% at least one, from doc/KEYWORDS

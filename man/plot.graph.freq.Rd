@@ -9,8 +9,8 @@
   Ojiva and to construct the table of complete frequency.
 }
 \usage{
-\method{plot}{graph.freq}(x, breaks="sturges",counts=NULL,frequency=1,plot=TRUE,
-nclass=NULL,xlab="",ylab="",...)
+\method{plot}{graph.freq}(x, breaks=NULL,counts=NULL,frequency=1,plot=TRUE,
+nclass=NULL,xlab="",ylab="",axes = "",las=1,...)
 }
 \arguments{
   \item{x}{ a vector of values, a object hist(), graphFreq() }
@@ -20,16 +20,18 @@ nclass=NULL,xlab="",ylab="",...)
   \item{plot}{ logic }
   \item{nclass}{ number of classes }
   \item{xlab}{ x labels}
-  \item{ylab}{ y labels}    
-  \item{\dots}{ other parameters of graphic}
+  \item{ylab}{ y labels} 
+  \item{axes}{ TRUE or FALSE}
+  \item{las}{ numeric in {0,1,2,3}; the style of axis labels. see plot()}     
+  \item{\dots}{ other parameters of plot}
 }
 
 \value{
-  \item{x }{Numeric or list}
-  \item{plot }{TRUE or FALSE}
-  \item{counts }{Numeric}
-  \item{frequency}{ Numeric }
-  
+  \item{breaks}{ a vector giving the breakpoints between histogram cells }
+  \item{counts}{ frequency and x is class intervals}
+  \item{mids}{ center point in class }
+  \item{relative}{ frequency }
+  \item{density}{ Numeric }   
 }
 
 \author{ Felipe de Mendiburu }

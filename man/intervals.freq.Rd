@@ -6,15 +6,14 @@
   List class intervals.
 }
 \usage{
-intervals.freq(breaks)
+intervals.freq(x)
 }
 
 \arguments{
-  \item{breaks}{ class intervals }
+  \item{x}{ class graph.freq, histogram or numeric }
 }
-
 \value{
-  \item{breaks}{ vector numeric }
+  \item{classes}{ matrix numeric }
 }
 \author{ Felipe de Mendiburu }
 \seealso{\code{\link{polygon.freq}}, \code{\link{table.freq}}, \code{\link{stat.freq}},
@@ -25,14 +24,13 @@ intervals.freq(breaks)
 library(agricolae)
 # example 1
 data(growth)
-attach(growth)
-h2<-hist(height,plot=FALSE)
-detach(growth)
-intervals.freq(h2$breaks)
+h<-hist(growth$height,plot=FALSE)
+intervals.freq(h)
 # example 2
 x<-seq(10,40,5)
 y<-c(2,6,8,7,3,4)
 intervals.freq(x)
+histogram <- graph.freq(x,counts=y)
 }
 \keyword{ univar }% at least one, from doc/KEYWORDS
 

@@ -2,13 +2,14 @@
 function(y, trt,alpha=0.05,group=TRUE,main=NULL,console=FALSE) {
 name.y <- paste(deparse(substitute(y)))
 name.t <- paste(deparse(substitute(trt)))
+if(is.null(main))main<-paste(name.y,"~", name.t)
 junto <- subset(data.frame(y, trt), is.na(y) == FALSE)
 Means <- tapply.stat(junto[,1],junto[,2],stat="mean") # change
 sds <-   tapply.stat(junto[,1],junto[,2], stat="sd")  #change
 nn <-   tapply.stat(junto[,1],junto[,2],stat="length") # change
 mi<-tapply.stat(junto[,1],junto[,2],stat="min") # change
 ma<-tapply.stat(junto[,1],junto[,2],stat="max") # change
-Means<-data.frame(Means,std.err=sds[,2]/sqrt(nn[,2]),r=nn[,2],Min.=mi[,2],Max.=ma[,2]) 
+Means<-data.frame(Means,std=sds[,2],r=nn[,2],Min=mi[,2],Max=ma[,2]) 
 rownames(Means)<-Means[,1]
 Means<-Means[,-1]
 names(Means)[1]<-name.y
@@ -19,7 +20,7 @@ S <- sum(junto[,1]^2)/(N-1)
 means <- tapply.stat(junto[,1],junto[,2],stat="mean") # change
 sds <-   tapply.stat(junto[,1],junto[,2], stat="sd")  #change
 nn <-   tapply.stat(junto[,1],junto[,2],stat="length") # change
-means<-data.frame(means,std.err=sds[,2]/sqrt(nn[,2]),r=nn[,2])  
+means<-data.frame(means,std=sds[,2],r=nn[,2])  
 names(means)[1:2]<-c(name.t,name.y)
 #row.names(means)<-means[,1]
 ntr<-nrow(means)

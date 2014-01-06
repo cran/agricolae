@@ -2,7 +2,7 @@
 function (x,k=0) 
 {
     n <- length(x)
-    if (k==0) k <- round(1+3.33 * log10(n),0)
+    if (k==0) k <- round(1+log(n,2),0)
     p<- floor(log(abs(median(x,na.rm=TRUE)),10))
 	x<-x/10^(p-1)
 	maximo <- max(x,na.rm=TRUE)

@@ -58,14 +58,14 @@ replications <- c(4,4,3,4,3,3)
 MSerror <- 55.8
 value.t <- 2.1314
 groups<-order.group(treatments,means,replications,MSerror,value.t,std.err,console=TRUE)
-Means<-data.frame(treatments,means,std.err,r=replications,Min.= minimun,
-Max.=maximun)
+Means<-data.frame(treatments,means,std.err,r=replications,Min = minimun,
+Max = maximun)
 rownames(Means)<-Means[,1]
 Means<-Means[,-1]
 par(mfrow=c(2,2))
 bar.group(groups,ylim=c(0,80))
-bar.err(Means,variation="SE", bar=FALSE,col="green",ylim=c(0,80),
-main="Standard error")
+bar.err(Means,variation="SD", bar=FALSE,col="green",ylim=c(0,80),
+main="Standard deviation")
 bar.err(Means,variation="SE", bar=FALSE,col=colors()[15],ylim=c(0,80),
 main="Standard error",)
 out<-bar.err(Means,variation="range", bar=FALSE,col=colors()[25],ylim=c(0,80),

@@ -48,7 +48,7 @@ model<-aov(yield~virus, data=sweetpotato)
 out <- HSD.test(model,"virus", group=TRUE,console=TRUE,
 main="Yield of sweetpotato\nDealt with different virus")
 #stargraph
-bar.group(out$groups,ylim=c(0,45),density=4,border="blue",console=TRUE)
+bar.group(out$groups,ylim=c(0,45),density=4,border="blue")
 #endgraph
 out<-HSD.test(model,"virus", group=FALSE)
 means<-out$means

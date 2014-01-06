@@ -1,13 +1,15 @@
 `intervals.freq` <-
-function(breaks){
+function(x){
+if(class(x)=="graph.freq" | class(x)=="histogram")breaks<-x$breaks
+if(class(x)=="numeric")breaks<-x
 n<-length(breaks)-1
-y<-rep(0,2*n)
-dim(y)<-c(n,2)
+classes<-rep(0,2*n)
+dim(classes)<-c(n,2)
 for (i in 1:n) {
-y[i,1]<-breaks[i]
-y[i,2]<-breaks[i+1]
+classes[i,1]<-breaks[i]
+classes[i,2]<-breaks[i+1]
 }
-colnames(y)<-c("lower","upper")
-return(y)
+colnames(classes)<-c("lower","upper")
+return(classes)
 }
 

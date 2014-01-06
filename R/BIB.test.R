@@ -48,8 +48,8 @@
 	cat(paste(name.t,",",sep="")," statistics\n\n")
     }
 	nameTrt<-row.names(Y)
-	std.err <- sds/sqrt(r)
-	means <-data.frame( means=Y/r,mean.adj, SE=StdError.adj,r,std.err,Min.=mi,Max.=ma)
+	std <- sds
+	means <-data.frame( means=Y/r,mean.adj, SE=StdError.adj,r,std,Min=mi,Max=ma)
 	rownames(means)<-nameTrt
 	names(means)[1]<-name.y
 	if(console)print(means)

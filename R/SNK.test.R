@@ -4,7 +4,9 @@
 	name.y <- paste(deparse(substitute(y)))
 	name.t <- paste(deparse(substitute(trt)))
 	clase<-c("aov","lm")
+	if(is.null(main))main<-paste(name.y,"~", name.t)
 	if("aov"%in%class(y) | "lm"%in%class(y)){
+		if(is.null(main))main<-y$call
 		A<-y$model
 		DFerror<-df.residual(y)
 		MSerror<-deviance(y)/DFerror
@@ -33,7 +35,7 @@
 	nn <-   tapply.stat(junto[,1],junto[,2],stat="length") # change
 	mi<-tapply.stat(junto[,1],junto[,2],stat="min") # change
 	ma<-tapply.stat(junto[,1],junto[,2],stat="max") # change
-	means<-data.frame(means,std.err=sqrt(MSerror)/sqrt(nn[,2]),r=nn[,2],Min.=mi[,2],Max.=ma[,2])
+	means<-data.frame(means,std=sds[,2],r=nn[,2],Min=mi[,2],Max=ma[,2])
 	names(means)[1:2]<-c(name.t,name.y)
 #   row.names(means)<-means[,1]
 	ntr<-nrow(means)

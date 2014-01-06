@@ -2,6 +2,8 @@
 function(judge,trt,evaluation,alpha=0.05, group=TRUE,main=NULL,console=FALSE) {
 name.y <- paste(deparse(substitute(evaluation)))
 name.t <- paste(deparse(substitute(trt)))
+name.j <- paste(deparse(substitute(judge)))
+if(is.null(main))main<-paste(name.y,"~", name.j,"+",name.t)
 judge<-as.factor(judge)
 trt<-as.factor(trt)
 k <-unique(table(judge))
@@ -14,7 +16,7 @@ Means<- tapply.stat(x[,3],x[,2],stat="mean")  # change
 sds <-  tapply.stat(x[,3],x[,2],stat="sd")
 mi <-   tapply.stat(x[,3],x[,2],stat="min")
 ma <-   tapply.stat(x[,3],x[,2],stat="max")
-Means<-data.frame(Means,std.err=sds[,2]*sqrt(r),r,Min.=mi[,2],Max.=ma[,2])
+Means<-data.frame(Means,std=sds[,2],r,Min=mi[,2],Max=ma[,2])
 rownames(Means)<-Means[,1]
 Means<-Means[,-1]
 names(Means)[1] <- name.y

@@ -3,6 +3,8 @@ function(judge,trt,evaluation,alpha=0.05,group=TRUE,main=NULL,console=FALSE){
 name.x <- paste(deparse(substitute(judge)))
 name.y <- paste(deparse(substitute(evaluation)))
 name.t <- paste(deparse(substitute(trt)))
+name.j <- paste(deparse(substitute(judge)))
+if(is.null(main))main<-paste(name.y,"~", name.j,"+",name.t)
 datos <- data.frame(judge, trt, evaluation)
 matriz <- by(datos[,3], datos[,1:2], function(x) mean(x,na.rm=TRUE))
 matriz <-as.data.frame(matriz[,])
@@ -27,7 +29,7 @@ s<-array(0,m[2])
 for (j in 1:m[2]){
 s[j]<-sum(v[,j])
 }
-Means<-data.frame(Means,std.err=sds[,2]/sqrt(nn[,2]),r=nn[,2],Min.=mi[,2],Max.=ma[,2]) 
+Means<-data.frame(Means,std=sds[,2],r=nn[,2],Min=mi[,2],Max=ma[,2]) 
 names(Means)[1:2]<-c(name.t,name.y)
 means<-Means[,c(1:2,4)]
 rownames(Means)<-Means[,1]

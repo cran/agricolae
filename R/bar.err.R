@@ -1,15 +1,22 @@
 `bar.err` <-
-function(x,variation=c("SE","range"),horiz=FALSE, bar=TRUE,...) {
+function(x,variation=c("SE","SD","range"),horiz=FALSE, bar=TRUE,...) {
 variation<-match.arg(variation)
 y<-x[,1]
 names(y)<-rownames(x)
 if( variation=="SE" ) {
-nivel0<-y-x$"std.err"
-nivel1<-y+x$"std.err"
+names(x)-> nombre
+if(sum(nombre=="SE")==0) std.err<-x$"std"/sqrt(x$"r")
+else std.err<-x$"SE"
+nivel0<-y-std.err
+nivel1<-y+std.err
+}
+if( variation=="SD" ) {
+nivel0<-y-x$"std"
+nivel1<-y+x$"std"
 }
 if( variation=="range" ) {
-nivel0<-x$"Min."
-nivel1<-x$"Max."
+nivel0<-x$"Min"
+nivel1<-x$"Max"
 }
 n<-length(y)
 if (bar) {

@@ -3,7 +3,7 @@
 %- sturges.freq.
 \title{ Class intervals for a histogram, the rule of Sturges }
 \description{
-  if k=0 then classes: k = 1 + 3.33 log10 (N).
+  if k=0 then classes: k = 1 + log(n,2).
   if k > 0, fixed nclass.
 }
 \usage{

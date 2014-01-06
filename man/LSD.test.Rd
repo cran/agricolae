@@ -65,7 +65,7 @@ MSerror<-deviance(model)/df
 out <- LSD.test(yield,virus,df,MSerror, p.adj="bonferroni", group=FALSE)
 detach(sweetpotato)
 #stargraph
-# Variation range: Max. - Min.
+# Variation range: Max - Min
 bar.err(out$means,variation="range",ylim=c(0,44),bar=FALSE,col=0)
 
 #endgraph

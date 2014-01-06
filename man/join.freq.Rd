@@ -8,17 +8,15 @@
   ad the .frequencies of them.
  }
 \usage{
-join.freq(breaks, join)
+join.freq(histogram, join)
 }
 
 \arguments{
-  \item{breaks}{ Class intervals }
+  \item{histogram}{ Class graph.freq }
   \item{join}{ vector }
 }
 \value{
-  \item{breaks }{vector numeric}
-  \item{join }{numeric}
-
+  \item{histogram}{ Class graph.freq }
 }
 \author{ Felipe de Mendiburu }
  
@@ -29,22 +27,14 @@ join.freq(breaks, join)
 \examples{
 library(agricolae)
 data(natives)
-attach(natives)
-class<-sturges.freq(size)
-# information of the classes
-class
-breaks <- class$breaks
-# list classes
-intervals.freq(breaks)
-# Table frecuency
-h1<-hist(size,breaks,plot=FALSE)
-table.freq(h1)
-# Join classes 9 and 10 with little frequency.
-inter<-join.freq(breaks,9:10)
+# histogram
+h1<-graph.freq(natives$size,plot=FALSE)
+round(table.freq(h1),4)
+# Join classes  9, 10,11 and 12 with little frequency.
+h2<-join.freq(h1,9:12)
 # new table
-h2<-hist(size,breaks=inter,xlim=c(0,0.12),col="bisque")
-table.freq(h2)
-detach(natives)
+plot(h2,col="bisque",xlab="Size")
+round(summary(h2),4)
 }
 \keyword{ univar }% at least one, from doc/KEYWORDS
 
