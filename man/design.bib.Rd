@@ -24,12 +24,9 @@ design.bib(trt, k, serie = 2, seed = 0, kinds = "Super-Duper")
   "default" )
 }
 \value{
-
-  \item{trt }{vector, name of the treatments}
-  \item{k }{number, numeric}
-  \item{serie }{Numeric}
-  \item{seed }{Numeric}
-  \item{kinds}{ character }
+  \item{parameters }{list}
+  \item{statistics }{dataframe}
+  \item{book }{dataframe}
 }
 \references{ Design of Experiments. Robert O. Kuehl. 2nd ed., Duxbury, 2000 }
 \author{ Felipe de Mendiburu }
@@ -44,9 +41,9 @@ library(agricolae)
 # 4 treatments and k=3 size block
 trt<-c("A","B","C","D")
 k<-3
-bib <-design.bib(trt,k,serie=2,seed =41,kinds ="Super-Duper") # seed = 41
-print(bib$parameters)
-book<-bib$book
+outdesign<-design.bib(trt,k,serie=2,seed =41,kinds ="Super-Duper") # seed = 41
+print(outdesign$parameters)
+book<-outdesign$book
 plots <-as.numeric(book[,1])
 field <-as.character(book[,3])
 t(matrix(plots,c(3,4)))

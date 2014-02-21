@@ -26,10 +26,8 @@ design.graeco(trt1, trt2, serie = 2, seed = 0, kinds = "Super-Duper")
   "default" )
 }
 \value{
-  \item{trt1 }{vector, name of the treatments}
-  \item{trt2 }{vector, name of the treatments}  
-  \item{serie }{Numeric}
-  \item{seed }{Numeric}
+  \item{parameters }{list}
+  \item{book }{dataframe}
 }
 \references{ 
 1. Statistics for Experimenters Design, Innovation, and Discovery
@@ -49,7 +47,8 @@ Wiley Classics Library Edition published 1992.
 library(agricolae)
 T1<-c("a","b","c","d")
 T2<-c("v","w","x","y")
-graeco <-  design.graeco(T1,T2,serie=1)
+outdesign <- design.graeco(T1,T2,serie=1)
+graeco<-outdesign$book
 plots <-as.numeric(graeco[,1])
 trt <- paste(graeco[,4],graeco[,5])
 dim(plots)<-c(4,4)
@@ -59,7 +58,8 @@ print(t(trt))
 # 10 x 10
 T1 <- letters[1:10]
 T2 <- 1:10
-graeco <-  design.graeco(T1,T2,serie=2)
+outdesign <-  design.graeco(T1,T2,serie=2)
+graeco<-outdesign$book
 trt <- paste(graeco[,4],graeco[,5])
 dim(trt) <-c(10,10)
 print(t(trt))

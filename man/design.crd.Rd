@@ -25,12 +25,8 @@ design.crd(trt, r, serie = 2, seed = 0, kinds = "Super-Duper")
   "default" )
 }
 \value{
-
-  \item{trt }{vector, name of the treatments}
-  \item{r }{vector, numeric}
-  \item{r }{Numeric}
-  \item{serie }{Numeric}
-  \item{seed }{Numeric}
+  \item{parameters }{list}
+  \item{book }{dataframe}
 }
 \references{ Introduction to Experimental Statistics. 
 Ching Chun Li. McGraw-Hill Book Company, INC, New. York, 1964 }
@@ -46,12 +42,15 @@ library(agricolae)
 trt <-c("CIP-101","CIP-201","CIP-301","CIP-401","CIP-501")
 r <-c(4,3,5,4,3)
 # seed = 12543
-crd1 <-design.crd(trt,r,serie=2,2543,"Mersenne-Twister")
+outdesign1 <-design.crd(trt,r,serie=2,2543,"Mersenne-Twister")
+book1<-outdesign1
 # no seed
-crd2 <-design.crd(trt,r,serie=3)
+outdesign2 <-design.crd(trt,r,serie=3)
+print(outdesign2$parameters)
+book2<-outdesign2
 # write to hard disk
-# write.table(crd1,"crd.txt", row.names=FALSE, sep="\t")
-# file.show("crd1.txt")
+# write.table(book1,"crd.txt", row.names=FALSE, sep="\t")
+# file.show("crd.txt")
 }
 \keyword{ design }% at least one, from doc/KEYWORDS
 

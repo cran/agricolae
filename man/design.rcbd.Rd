@@ -25,13 +25,8 @@ design.rcbd(trt, r, serie = 2, seed = 0, kinds = "Super-Duper", first=FALSE)
   "default" )
 }
 \value{
-
-  \item{trt }{vector, name of the treatments}
-  \item{r }{vector, numeric}
-  \item{number }{Numeric}
-  \item{seed }{Numeric}
-  \item{kinds}{ character }
-  \item{first }{Logic}
+  \item{parameters }{list}
+  \item{book }{dataframe}
 }
 \references{ Introduction to Experimental Statistics. 
 Ching Chun Li. McGraw-Hill Book Company, INC, New. York, 1964 }
@@ -46,28 +41,15 @@ Ching Chun Li. McGraw-Hill Book Company, INC, New. York, 1964 }
 library(agricolae)
 # 5 treatments and 6 blocks
 trt<-c("A","B","C","D","E")
-rcbd <-design.rcbd(trt,6,serie=2,986,"Wichmann-Hill") # seed = 986
-rcbd # field book
+outdesign <-design.rcbd(trt,6,serie=2,986,"Wichmann-Hill") # seed = 986
+book <-outdesign$book # field book
 # write in hard disk
-# write.table(rcbd,"rcbd.txt", row.names=FALSE, sep="\t")
+# write.table(book,"rcbd.txt", row.names=FALSE, sep="\t")
 # file.show("rcbd.txt")
 # Plots in field model ZIGZAG
-plots <-as.numeric(rcbd[,1])
-block<- as.numeric(rcbd[,2])
-trt <-as.character(rcbd[,3])
-nplots<- length(plots)
-nblock<- nlevels(rcbd[,2])
-ntrt<- nlevels(rcbd[,3])
-indice<-1:nplots
-for (i in 1:nplots){
-if ( 2*floor(block[i]/2) == block[i])indice[i]<-2*block[i]*ntrt-i-ntrt+1
-}
-plots<-plots[indice]
-trt<-trt[indice]
-dim(plots)<-c(ntrt,nblock)
-dim(trt)<-c(ntrt,nblock)
-print(t(plots))
-print(t(trt))
+fieldbook <- zigzag(outdesign)
+print(t(matrix(fieldbook[,1],5,6)))
+print(t(matrix(fieldbook[,3],5,6)))
 }
 \keyword{ design }% at least one, from doc/KEYWORDS
 

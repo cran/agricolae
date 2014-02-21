@@ -5,6 +5,7 @@ design <- match.arg(design)
 if( design=="rcbd" | design=="crd") posicion <- 3
 else posicion <- 4
 serie<-serie; seed<-seed; kinds<-kinds; first<-first;
+
 # Process to trt to factorial
 ntr<-length(trt)
 fact<-NULL
@@ -37,6 +38,10 @@ fact[k]<-paste(tr0[i],j)
 if(design=="rcbd")plan<-design.rcbd(trt=fact, r, serie, seed, kinds, first )
 if(design=="crd")plan<-design.crd(trt=fact, r, serie, seed, kinds)
 if(design=="lsd")plan<-design.lsd(trt=fact, serie, seed, kinds, first )
+parameters<-plan$parameters
+parameters$applied<-parameters$design
+parameters$design<-"factorial"
+plan<-plan$book
 trt<-as.character(plan[,posicion])
 nplan<-nrow(plan)
 A<-rep(" ",nplan*ntr)
@@ -48,5 +53,6 @@ A[i,]<-unlist(strsplit(trt[i], " "))
 }
 A<-as.data.frame(A)
 book<-data.frame(plan[,1:(posicion-1)],A)
-return(book) }
-
+outdesign<-list(parameters=parameters,book=book)
+return(outdesign)
+}

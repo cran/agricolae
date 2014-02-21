@@ -4,7 +4,12 @@ function (trt1, trt2, r,serie=2,seed=0,kinds="Super-Duper",name="trt")
 number<-10
 if(serie>0) number<-10^serie
 ntr1 <- length(trt1)
-if(seed != 0) set.seed(seed,kinds)
+if (seed == 0) {
+genera<-runif(1)
+seed <-.Random.seed[3]
+}
+set.seed(seed,kinds)
+parameters<-list(design="dau",trt1=trt1,trt2=trt2,r=r,serie=serie,seed=seed,kinds=kinds)
 mtr1 <- sample(trt1, ntr1, replace = FALSE)
 block <- c(rep(1, ntr1))
 for (y in 2:r) {
@@ -28,5 +33,6 @@ book[book[,1]==i,2]<-sample(book[book[,1]==i,2],length(book[book[,1]==i,2]))
 book<-data.frame(plots,book)
 rownames(book)=1:nrow(book)
 names(book)[3]<-name
-return(book) }
-
+outdesign<-list(parameters=parameters,book=book)
+return(outdesign)
+}

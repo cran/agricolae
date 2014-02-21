@@ -10,7 +10,12 @@ cat("not implemented design ", r, "x", r, ", see help(design.graeco)\n")
 return()
 }
 }
-if (seed != 0) set.seed(seed, kinds)
+if (seed == 0) {
+genera<-runif(1)
+seed <-.Random.seed[3]
+}
+set.seed(seed,kinds)
+parameters<-list(design="graeco",trt1=trt1,trt2=trt2,r=r,serie=serie,seed=seed,kinds=kinds)
 col <- rep(gl(r, 1), r)
 fila <- gl(r, r)
 fila <- as.character(fila)
@@ -80,6 +85,6 @@ C1[, 4] <- as.factor(C1[, 4])
 C1[, 5] <- as.factor(C1[, 5])
 names(C1)[4] <- c(paste(deparse(substitute(trt1))))
 names(C1)[5] <- c(paste(deparse(substitute(trt2))))
-return(C1)
+outdesign<-list(parameters=parameters,book=C1)
+return(outdesign)
 }
-

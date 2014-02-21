@@ -28,15 +28,8 @@ seed = 0, kinds = "Super-Duper", first=FALSE)
   "default" )
 }
 \value{
-
-  \item{trt1}{vector, numeric}
-  \item{trt2}{vector, numeric}
-  \item{r }{vector, numeric}
-  \item{design}{character}
-  \item{serie }{Numeric}
-  \item{seed }{Numeric}
-  \item{kinds}{ character }
-  \item{first }{Logic}
+  \item{parameters }{list}
+  \item{book }{dataframe}
 }
 \references{ Statistical Procedures for Agricultural Research. 
 Kwanchai A. Gomez, Arturo A. Gomez. John Wiley & Sons, new York, 1984 }
@@ -52,8 +45,8 @@ library(agricolae)
 # 4 treatments and 5 blocks in split-plot
 t1<-c("A","B","C","D")
 t2<-c(1,2,3)
-book <-design.split(t1,t2,r=3,serie=2,seed=45,kinds ="Super-Duper")#seed=45
-book # field book
+outdesign <-design.split(t1,t2,r=3,serie=2,seed=45,kinds ="Super-Duper")#seed=45
+book<-outdesign$book# field book
 # write in hard disk
 # write.table(book,"book.txt", row.names=FALSE, sep="\t")
 # file.show("book.txt")

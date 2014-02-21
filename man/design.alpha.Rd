@@ -32,12 +32,10 @@ Number of treatment is equal to k*s
 
 }
 \value{
-  \item{trt }{vector, name of the treatments}
-  \item{k }{Constant, numeric}
-  \item{r}{ Constant, numeric }
-  \item{serie }{Constant, numeric}
-  \item{seed }{Constant, numeric}
-  \item{kinds}{ character }
+  \item{parameters }{list}
+  \item{statistics }{dataframe}
+  \item{sketch }{list}
+  \item{book }{dataframe}
 }
 \references{ 
  H.D. Patterson and E.R. Williams. Biometrika (1976) 
@@ -62,22 +60,23 @@ k<-3
 s<-t/k
 # replications r
 r <- 2
-book<- design.alpha(trt,k,r,serie=2)
-plots<-book$book[,1]
+outdesign<- design.alpha(trt,k,r,serie=2)
+book<-outdesign$book
+plots<-book[,1]
 dim(plots)<-c(k,s,r)
 for (i in 1:r) print(t(plots[,,i]))
-book$design
+outdesign$sketch
 # Example two 
 trt<-letters[1:12] 
 t <- length(trt)
 k<-3
 r<-3
 s<-t/k
-book<- design.alpha(trt,k,r,serie=2)
-plots<-book$book[,1]
+outdesign<- design.alpha(trt,k,r,serie=2)
+book<-outdesign$book
+plots<-book[,1]
 dim(plots)<-c(k,s,r)
 for (i in 1:r) print(t(plots[,,i]))
-book$design
-book$alpha
+outdesign$sketch
 }
 \keyword{ design }% __ONLY ONE__ keyword per line

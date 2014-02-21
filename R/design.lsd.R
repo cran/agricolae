@@ -4,7 +4,12 @@ function (trt,serie=2,seed=0,kinds="Super-Duper",first=FALSE)
 number<-10
 if(serie>0) number<-10^serie
 r <- length(trt)
-if(seed != 0) set.seed(seed,kinds)
+if (seed == 0) {
+genera<-runif(1)
+seed <-.Random.seed[3]
+}
+set.seed(seed,kinds)
+parameters<-list(design="lsd",trt=trt,r=r,serie=serie,seed=seed,kinds=kinds)
 a <- 1:(r * r)
 dim(a) <- c(r, r)
 for (i in 1:r) {
@@ -30,6 +35,7 @@ plots <- fila*number+(1:r)
 book <- data.frame(plots, row = as.factor(fila), col = as.factor(columna),
 		trat = as.factor(trat))
 names(book)[4] <- c(paste(deparse(substitute(trt))))
-return(book)
+outdesign<-list(parameters=parameters,book=book)
+return(outdesign)
 }
 

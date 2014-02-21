@@ -25,12 +25,8 @@ design.strip(trt1, trt2,r, serie = 2, seed = 0, kinds = "Super-Duper")
   "default" )
 }
 \value{
-
-  \item{trt1 }{vector, name of the row treatments}
-  \item{trt2 }{vector, name of the column treatments}  
-  \item{r }{ numeric}
-  \item{serie }{Numeric}
-  \item{seed }{Numeric}
+  \item{parameters }{list}
+  \item{book }{dataframe}
 }
 \references{ Statistical Procedures for Agricultural Research. 
 Kwanchai A. Gomez, Arturo A. Gomez. John Wiley & Sons, new York, 1984 }
@@ -47,8 +43,8 @@ library(agricolae)
 t1<-c("A","B","C","D")
 t2<-c(1,2,3)
 r<-3
-book <-design.strip(t1,t2,r, serie=2,seed=45,kinds ="Super-Duper") # seed = 45
-book # field book
+outdesign <-design.strip(t1,t2,r, serie=2,seed=45,kinds ="Super-Duper") # seed = 45
+book <-outdesign$book # field book
 # write in hard disk
 # write.table(book,"book.txt", row.names=FALSE, sep="\t")
 # file.show("book.txt")

@@ -5,8 +5,11 @@ number<-10
 if(serie>0) number<-10^serie
     name.trt <- c(paste(deparse(substitute(trt))))
     ntr <- length(trt)
-    if (seed != 0)
-        set.seed(seed, kinds)
+    if (seed == 0) {
+    genera<-runif(1)
+    seed <-.Random.seed[3]
+    }
+    set.seed(seed,kinds)
     s <- ntr/k
     if (ntr%%k!= 0)
         cat("\nThe size of the block is not appropriate", "\nthe number of treatments must be multiple of k (size block) \n")
@@ -56,6 +59,7 @@ if(serie>0) number<-10^serie
         }
         if (serie == "") {
             cat("\nhelp(design.alpha): to see the series of alpha generators\n")
+            stop
         }
         else {
             nf <- nrow(alpha)
@@ -88,8 +92,9 @@ if(serie>0) number<-10^serie
             cat("\nBlocks     :", s)
             cat("\nReplication:", r, "\n")
             cat("\nEfficiency factor\n(E )", E, "\n\n<<< Book >>>\n")
-			parameters<-data.frame(treatments= ntr,blockSize=k,blocks=s,r=r,Efficiency=E)
-			rownames(parameters)<-"values"			
+      parameters<-list(design="alpha",trt=trt,k=k,r=r,serie=serie,seed=seed,kinds=kinds)
+      statistics<-data.frame(treatments= ntr,blocks=s,Efficiency=E)
+			rownames(statistics)<-"values"
             for (m in 1:r) {
                 for (j in 1:s) {
                   aleatorio <- sample(1:k, k)
@@ -129,7 +134,8 @@ if(serie>0) number<-10^serie
             if ( r == 2) design<-list(rep1=t(tr[,,1]),rep2=t(tr[,,2]))
             if ( r == 3) design<-list(rep1=t(tr[,,1]),rep2=t(tr[,,2]),rep3=t(tr[,,3]))
             if ( r == 4) design<-list(rep1=t(tr[,,1]),rep2=t(tr[,,2]),rep3=t(tr[,,3]),rep4=t(tr[,,4]))
-            return(list(parameters=parameters, book=book, alpha=alpha, intermediate=intermediate, design=design))
+            outdesign<-list(parameters=parameters, statistics=statistics, sketch=design,book=book)
+            return(outdesign)
         }
     }
 }

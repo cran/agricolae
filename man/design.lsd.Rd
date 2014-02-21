@@ -24,11 +24,8 @@ design.lsd(trt, serie = 2, seed = 0, kinds = "Super-Duper",first=FALSE)
   "default" )
 }
 \value{
-  \item{trt }{Vector names of treatments}
-  \item{serie }{Numeric}
-  \item{seed }{Numeric}
-  \item{kinds}{ character }
-  \item{first }{Logic}
+  \item{parameters }{list}
+  \item{book }{dataframe}
 }
 \references{ Introduction to Experimental Statistics. 
 Ching Chun Li. McGraw-Hill Book Company, INC, New. York, 1969 }
@@ -42,8 +39,9 @@ Ching Chun Li. McGraw-Hill Book Company, INC, New. York, 1969 }
 \examples{
 library(agricolae)
 varieties<-c("perricholi","yungay","maria bonita","tomasa")
-lsd <-design.lsd(varieties,serie=2,seed=23)
-lsd # print field book.
+outdesign <-design.lsd(varieties,serie=2,seed=23)
+lsd <- outdesign$book 
+print(lsd) # field book.
 plots <-as.numeric(lsd[,1])
 trt <-as.character(lsd[,4])
 dim(plots)<-c(4,4)

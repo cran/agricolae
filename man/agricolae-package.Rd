@@ -8,13 +8,14 @@ Statistical Procedures for Agricultural Research
 \description{
 This package contains functionality for the Statistical Analysis of experimental
 designs applied specially for field experiments in agriculture and plant breeding.
+Original idea, support and data sets came from CIP (International Potato Center)
 }
 \details{
 \tabular{ll}{
 Package: \tab agricolae\cr
 Type: \tab Package\cr
-Version: \tab 1.1-7\cr
-Date: \tab 2014-1-06\cr
+Version: \tab 1.1-8\cr
+Date: \tab 2014-2-21\cr
 License: \tab GPL\cr
 }
 Planning of field experiments: lattice, factorial, RCBD, CRD, Latin Square, 

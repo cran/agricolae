@@ -11,9 +11,13 @@ if ((k*(r%/%k) != r )| (ntr >30) | (ntr<6) | (k > 10) | (r > 10) | (k==1) |(r==1
 cat("\nsee help(design.cyclic\n")
 return()
 }
+if (seed == 0) {
+genera<-runif(1)
+seed <-.Random.seed[3]
+}
+set.seed(seed,kinds)
+parameters<-list(design="cyclic",trt=trt,k=k,r=r,serie=serie,rowcol=rowcol,seed=seed,kinds=kinds)
 
-if (seed != 0)
-set.seed(seed, kinds)
 ultimo<-rbind(rep(2,10),c(3,rep(4,6),6,5,5), c(4,3,3,3,3,6,6,3,7,3),
 c(6,rep(5,4),3,3,5,4,8), c(5,6,6,6,6,5,5,4,6,6), c(4,4,4,4,rep(5,6)),
 c(2,4,8,7,8,8,6,8,8,9), c(4,4,5,6,4,4,7,5,7,6), c(3,7,8,8,7,8,8,10,8,8), 
@@ -138,5 +142,6 @@ nr<-sample(1:ntr, replace=FALSE)
     cat("\nReplication:", r, "\n")
     cat("\n")
 #    cat("\nEfficiency factor\n(E )", E, "\n\n<<< Book >>>\n")
-    return(list(design=design, book=book))
+outdesign<-list(parameters=parameters,sketch=design,book=book)
+return(outdesign)
 }

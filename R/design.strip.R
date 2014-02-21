@@ -4,7 +4,10 @@ number<-10
 if(serie>0) number<-10^serie
     n1<-length(trt1)
     n2<-length(trt2)
-    if (seed != 0) 
+    if (seed == 0) {
+    genera<-runif(1)
+    seed <-.Random.seed[3]
+    }
         set.seed(seed, kinds)
         a<-sample(trt1,n1)
         b<-sample(trt2,n2)
@@ -19,10 +22,11 @@ if(serie>0) number<-10^serie
         columna <- c(columna,a[gl(n1,n2)])
         block <- c(block,rep(i,n1*n2))
     }}
-    
+    parameters<-list(design="strip",trt1=trt1,trt2=trt2,r=r,serie=serie,seed=seed,kinds=kinds)
     plots <- block*number+1:(n1*n2)
     book <- data.frame(plots, block = as.factor(block), column=as.factor(columna),row = as.factor(fila))
     names(book)[3] <- c(paste(deparse(substitute(trt1))))
     names(book)[4] <- c(paste(deparse(substitute(trt2))))
-    return(book)
+    outdesign<-list(parameters=parameters,book=book)
+    return(outdesign)
 }

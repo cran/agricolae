@@ -4,7 +4,7 @@
 \title{ Design of experiments for a factorial }
 \description{
   It generates a design of blocks, randomize and latin square for combined n.
-  factors uses the methods of number generation in R.The seed is by 
+  factors uses the methods of number generation in R. The seed is by
   set.seed(seed, kinds).
 
 }
@@ -28,13 +28,8 @@ seed = 0, kinds = "Super-Duper",first=FALSE)
   "default" )
 }
 \value{
-  \item{trt }{vector, n levels to factors}
-  \item{r }{Numeric}
-  \item{serie}{Numeric}
-  \item{seed }{Numeric}
-  \item{design }{character}
-  \item{kinds}{character}
-  \item{first}{character}
+  \item{parameters }{list}
+  \item{book }{dataframe}
 }
 \references{ Introduction to Experimental Statistics. 
 Ching Chun Li. McGraw-Hill Book Company, INC, New. York, 1964 }
@@ -49,16 +44,19 @@ Ching Chun Li. McGraw-Hill Book Company, INC, New. York, 1964 }
 # factorial 3 x 2 with 3 blocks
 library(agricolae)
 trt<-c(3,2) # factorial 3x2
-rcbd <-design.ab(trt, r=3, serie=2)
-head(rcbd,10) # print of the field book
+outdesign <-design.ab(trt, r=3, serie=2)
+book<-outdesign$book
+head(book,10) # print of the field book
 # factorial 2 x 2 x 2 with 5 replications in completely randomized design.
 trt<-c(2,2,2)
-crd<-design.ab(trt, r=5, serie=2,design="crd")
-print(crd)
+outdesign<-design.ab(trt, r=5, serie=2,design="crd")
+book<-outdesign$book
+print(book)
 # factorial 3 x 3 in latin square design.
 trt <-c(3,3)
-lsd<-design.ab(trt, serie=2, design="lsd")
-print(lsd)
+outdesign<-design.ab(trt, serie=2, design="lsd")
+book<-outdesign$book
+print(book)
 }
 \keyword{ design }% at least one, from doc/KEYWORDS
 

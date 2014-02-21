@@ -27,11 +27,9 @@ design.cyclic(trt, k, r, serie = 2, rowcol = FALSE, seed = 0, kinds = "Super-Dup
   replication = i*k, "i" is value integer.
 }
 \value{
-  \item{trt }{vector, name of the treatments}
-  \item{k }{Constant, numeric}
-  \item{serie }{Constant, numeric}
-  \item{seed }{Constant, numeric}
-  \item{kinds}{ character }
+  \item{parameters }{list}
+  \item{sketch }{list}
+  \item{book }{dataframe}
 }
 \references{ Kuehl, Robert(2000), Design of Experiments. 2nd ed., Duxbury. 
 John, J.A. (1981) Efficient Cyclic Design. J. R. Statist. Soc. B, 43, No. 1, pp, 76-80.
@@ -46,15 +44,15 @@ John, J.A. (1981) Efficient Cyclic Design. J. R. Statist. Soc. B, 43, No. 1, pp,
 library(agricolae)
 trt<-letters[1:8]
 # block size = 2, replication = 6
-plan1 <- design.cyclic(trt,k=2, r=6,serie=2)
-names(plan1)
+outdesign1 <- design.cyclic(trt,k=2, r=6,serie=2)
+names(outdesign1)
 # groups 1,2,3
-plan1$design[[1]]
-plan1$design[[2]]
-plan1$design[[3]]
-plan1$book
+outdesign1$sketch[[1]]
+outdesign1$sketch[[2]]
+outdesign1$sketch[[3]]
+outdesign1$book
 # row-column design
-plan2 <- design.cyclic(trt,k=2, r=6, serie=2, rowcol=TRUE)
-plan2$design
+outdesign2<- design.cyclic(trt,k=2, r=6, serie=2, rowcol=TRUE)
+outdesign2$sketch
 }
 \keyword{ design  }

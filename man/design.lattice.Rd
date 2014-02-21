@@ -22,9 +22,10 @@ design.lattice(trt, r=3, serie = 2, seed = 0, kinds = "Super-Duper")
   "default" )
 }
 \value{
-  \item{k }{vector, numeric}
-  \item{number }{Numeric}
-  \item{seed }{Numeric}
+  \item{parameters }{list}
+  \item{statistics }{data frame}
+  \item{sketch }{list}
+  \item{book }{dataframe}
 }
 \references{ FIELD PLOT TECHNIQUE. Erwin L. LeCLERG. 2nd ed., 1962, 
  Burgess Publishing Company, Minnesota }
@@ -40,10 +41,10 @@ design.lattice(trt, r=3, serie = 2, seed = 0, kinds = "Super-Duper")
 library(agricolae)
 # triple lattice
 trt<-LETTERS[1:9]
-design.lattice(trt,r=3,serie=2) # triple lattice design ( 9 trt)
+outdesign<-design.lattice(trt,r=3,serie=2) # triple lattice design ( 9 trt)
 # simple lattice
 trt<-1:100
-plan<-design.lattice(trt,r=2,serie=3) # simple lattice design, 10x10 
+outdesign<-design.lattice(trt,r=2,serie=3) # simple lattice design, 10x10 
 }
 \keyword{ design }% at least one, from doc/KEYWORDS
 

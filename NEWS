@@ -1,0 +1,33 @@
+Changes in new version
+
+Version agricolae 1-1.8 (February 21, 2014)
+-------------------------------------------
+* zigzag(outdesign)
+The new function applied to designs: rcbd, lsd, graeco, split, strip, ab, alpha, bib, cyclic,
+lattice, dau. The outdesign is the output book the function design.###().
+The function zigzag change the order number plots in serpentine form.
+# Randomized complete design.
+trt<-LETTERS[1:5]
+outdesign<-design.rcbd(trt,r=4, serie=2)
+book<-outdesign$book
+> t(matrix(book[,1],5))
+     [,1] [,2] [,3] [,4] [,5]
+[1,]  101  102  103  104  105
+[2,]  201  202  203  204  205
+[3,]  301  302  303  304  305
+[4,]  401  402  403  404  405
+fieldbook <- zigzag(outdesign)
+> t(matrix(fieldbook[,1],5))
+     [,1] [,2] [,3] [,4] [,5]
+[1,]  101  102  103  104  105
+[2,]  205  204  203  202  201
+[3,]  301  302  303  304  305
+[4,]  405  404  403  402  401
+
+* Now, all design functions have two output objects: parameters and book, the parameters contain initial values that will allow reproduce the design and book contain field book.
+* The alpha and lattice designs have additionally two objects: statistics and 
+field sketches. 
+* BIB have the statistics with parameters and field book.
+* Cyclic have the stetches with parameters and field book.
+
+

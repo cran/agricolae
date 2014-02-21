@@ -6,12 +6,17 @@ ntr<-length(trt)
 k<-sqrt(ntr)
 if(r==2) type="simple"
 if(r==3) type="triple"
-if(seed != 0) set.seed(seed,kinds)
+if (seed == 0) {
+genera<-runif(1)
+seed <-.Random.seed[3]
+}
+set.seed(seed,kinds)
 cat("\nLattice design, ", type, " ",k,"x",k,"\n")
 E1 <- (ntr - 1) * (2 - 1)/((ntr - 1) * (2 - 1) + 2 * (k-1))
 E2 <- (ntr - 1) * (3 - 1)/((ntr - 1) * (3 - 1) + 3 * (k-1))
-parameters<-data.frame(treatmens=ntr,blockSize=k,blocks=k)
-rownames(parameters)<-"values"
+parameters<-list(design="lattice",type=type,trt=trt,r=r,serie=serie,seed=seed,kinds=kinds)
+statistics<-data.frame(treatmens=ntr,blockSize=k,blocks=k)
+rownames(statistics)<-"values"
 c1<-rep(0,k*k)
 dim(c1)<-c(k,k)
 c2<-c1
@@ -38,7 +43,7 @@ sqr<-gl(3,k*k)
 nb <- as.numeric(gl(k,k))
 block<-c(nb,nb+k,nb+2*k)
 # tercer cuadro
-latino<-as.character(design.lsd(1:k)[,4])
+latino<-as.character(design.lsd(1:k)$book[,4])
 Z<-as.numeric(t(c1))
 c3<-Z[order(latino)]
 dim(c3)<-c(k,k)
@@ -52,18 +57,18 @@ c3<-c3[s,]
 trt1<-c(as.numeric(t(c1)),as.numeric(t(c2)),as.numeric(t(c3)))
 Rep<-as.numeric(sqr)
 plots <- Rep*number+(1:ntr)
-plan<-data.frame(plots,r=factor(Rep),block=factor(block),trt=factor(trt[trt1]))
-C1<-trt[c1] ; dim(C1)<-dim(c1)
-C2<-trt[c2] ; dim(C2)<-dim(c2)
-C3<-trt[c3] ; dim(C3)<-dim(c3)
-if (type=="triple") {
-cat("\nEfficiency design ", E2,"\n")
-parameters<-data.frame(parameters,r=3,Efficiency=E2)
-return(list(parameters=parameters,square1=C1,square2=C2,square3=C3,plan=plan))
+book<-data.frame(plots,r=factor(Rep),block=factor(block),trt=factor(trt[trt1]))
+EF<-E2
+if(r ==2 ) {
+book<-subset(book,as.numeric(book[,2])<3)
+EF <-E1
 }
-if (type=="simple") {
-parameters<-data.frame(parameters,r=2,Efficiency=E1)
-cat("\nEfficiency design ", E1,"\n")
-return(list(parameters=parameters,square1=C1,square2=C2,plan=subset(plan,as.numeric(plan[,2])<3)))
-}
+cat("\nEfficiency factor\n(E )", EF, "\n\n<<< Book >>>\n")
+tr<-as.character(book[,4])
+dim(tr)<-c(k,k,r)
+if ( r == 2) design<-list(rep1=t(tr[,,1]),rep2=t(tr[,,2]))
+if ( r == 3) design<-list(rep1=t(tr[,,1]),rep2=t(tr[,,2]),rep3=t(tr[,,3]))
+statistics<-data.frame(statistics,Efficiency=EF)
+outdesign<-list(parameters=parameters, statistics=statistics, sketch=design,book=book)
+return(outdesign)
 }
