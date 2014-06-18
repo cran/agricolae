@@ -1,4 +1,4 @@
-`ojiva.freq` <-
+`ogive.freq` <-
 function(histogram,type="",xlab="",ylab="",axes="",las=1,...)
 {
 if(axes=="") ejes=TRUE

@@ -1,13 +1,13 @@
-\name{ojiva.freq}
-\alias{ojiva.freq}
-%- ojiva..freq.
-\title{ Plotting the ojiva from a histogram }
+\name{ogive.freq}
+\alias{ogive.freq}
+%- ogive.freq.
+\title{ Plotting the ogive from a histogram }
 \description{
   It plots the cumulative relative .frequencies with the intervals of classes
   defined in the histogram.
 }
 \usage{
-ojiva.freq(histogram,type="",xlab="",ylab="",axes="",las=1,...)
+ogive.freq(histogram,type="",xlab="",ylab="",axes="",las=1,...)
 }
 \arguments{
   \item{histogram}{ object created by the function hist() or graph.freq()}
@@ -32,8 +32,8 @@ ojiva.freq(histogram,type="",xlab="",ylab="",axes="",las=1,...)
 library(agricolae)
 data(growth)
 h<-graph.freq(growth$height,plot=FALSE)
-points<-ojiva.freq(h,col="red",frame=FALSE,
-xlab="Height", ylab="Accumulated relative frequency", main="ojiva")
+points<-ogive.freq(h,col="red",frame=FALSE,
+xlab="Height", ylab="Accumulated relative frequency", main="ogive")
 print(points)
 }
 \keyword{ aplot }% at least one, from doc/KEYWORDS

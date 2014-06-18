@@ -8,7 +8,7 @@
   The seed is by set.seed(seed, kinds).
 }
 \usage{
-design.lsd(trt, serie = 2, seed = 0, kinds = "Super-Duper",first=FALSE)
+design.lsd(trt, serie = 2, seed = 0, kinds = "Super-Duper",first=TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

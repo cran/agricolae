@@ -27,7 +27,7 @@ library(agricolae)
 trt<-letters[1:5]
 r<-4
 outdesign <- design.rcbd(trt,r,seed=9)
-fielbook <- zigzag(outdesign)
+fieldbook <- zigzag(outdesign)
 }
 \keyword{ manip }
 

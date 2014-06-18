@@ -1,4 +1,4 @@
-design.split<-function (trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),serie = 2, seed = 0, kinds = "Super-Duper",first=FALSE )
+design.split<-function (trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),serie = 2, seed = 0, kinds = "Super-Duper",first=TRUE )
 {
     n1<-length(trt1)
     n2<-length(trt2)

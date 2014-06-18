@@ -19,7 +19,7 @@ stat.freq(histogram)
 
 \seealso{\code{\link{polygon.freq}}, \code{\link{table.freq}}, \code{\link{graph.freq}},
 \code{\link{intervals.freq}}, \code{\link{sturges.freq}}, \code{\link{join.freq}},
-\code{\link{ojiva.freq}}, \code{\link{normal.freq} } }
+\code{\link{ogive.freq}}, \code{\link{normal.freq} } }
 
 \examples{
 library(agricolae)

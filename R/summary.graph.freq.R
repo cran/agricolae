@@ -19,7 +19,6 @@ acum<-z[i,6]
 z[i,7]<-z[i,6]/y1
 }
 colnames(z)<-c("Lower","Upper","Main","freq","relative","CF","RCF")
-rownames(z)<-rep(" ",x)
-return(z)
+invisible(z)
 }
 

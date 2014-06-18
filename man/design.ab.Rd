@@ -10,7 +10,7 @@
 }
 \usage{
 design.ab(trt, r, serie = 2, design=c("rcbd","crd","lsd"),
-seed = 0, kinds = "Super-Duper",first=FALSE)
+seed = 0, kinds = "Super-Duper",first=TRUE)
 }
 
 \arguments{

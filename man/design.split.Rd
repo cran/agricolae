@@ -9,7 +9,7 @@
 }
 \usage{
 design.split(trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),serie = 2,
-seed = 0, kinds = "Super-Duper", first=FALSE)
+seed = 0, kinds = "Super-Duper", first=TRUE)
 }
 
 \arguments{

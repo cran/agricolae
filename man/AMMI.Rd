@@ -5,37 +5,32 @@
 \description{
 Additive Main Effects and Multiplicative Interaction Models (AMMI) are widely used 
 to analyze main effects and genotype by environment (GEN, ENV) interactions in 
-multilocation variety trials. Furthermore, this function generates biplot, triplot 
+multilocation variety trials. Furthermore, this function generates data to biplot, triplot 
 graphs and analysis.
 }
 \usage{
-AMMI(ENV, GEN, REP, Y, MSE = 0, number=TRUE,graph="biplot",...)
+AMMI(ENV, GEN, REP, Y, MSE = 0,console=FALSE)
 }
 
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{ENV}{ Environment }
   \item{GEN}{ Genotype }
-  \item{REP}{ Replication  }
+  \item{REP}{ Replication }
   \item{Y}{ Response }
   \item{MSE}{ Mean Square Error }
-  \item{number}{ TRUE or FALSE }
-  \item{graph}{ "biplot" or "triplot" }
-  \item{\dots}{ plot graphics parameters }
+  \item{console}{ ouput TRUE or FALSE }
 }
 \details{
-  additional biplot.
+  additional graphics see help(plot.AMMI).
 }
 \value{
-
-  \item{ENV }{Factor}
-  \item{GEN }{Factor}
-  \item{REP }{Numeric}
-  \item{Y }{Numeric}
-  \item{MSE }{Numeric}
-  \item{number}{ TRUE or FALSE }
-  \item{graph}{ "biplot" or "triplot" }
-  \item{\dots}{ others parameters }
+  \item{ANOVA}{analysis of variance general}
+  \item{genXenv}{class by, genopyte and environment}
+  \item{analysis}{analysis of variance principal components}
+  \item{means}{average genotype and environment}
+  \item{biplot}{data to produce graphics}
+  \item{PC}{ class princomp }
 }
 \references{ 
 GGE Biplot Analysis: A graphical tool for breeder, geneticists, and agronomists.
@@ -45,37 +40,36 @@ Steel & Torry & Dickey. Third Edition 1997
  }
 \author{ F. de Mendiburu }
 
-\seealso{\code{\link{lineXtester}} }
+\seealso{\code{\link{lineXtester}},\code{\link{plot.AMMI}} }
 \examples{
 # Full replications
 library(agricolae)
-library(klaR)
+# triplot and influence genotype
+require(klaR) # type=2
+require(spdep) # type=3
 # Example 1
 data(plrv)
-#startgraph
+attach(plrv)
+model<- AMMI(Locality, Genotype, Rep, Yield, console=FALSE)
+model$ANOVA
+# see help(plot.AMMI)
+detach(plrv)
 # biplot
-model<- AMMI(plrv[,2], plrv[,1], plrv[,3], plrv[,5],graph="biplot")
-model<- AMMI(plrv[,2], plrv[,1], plrv[,3], plrv[,5],graph="biplot",number=FALSE)
-# triplot
-model<- AMMI(plrv[,2], plrv[,1], plrv[,3], plrv[,5],graph="triplot")
-model<- AMMI(plrv[,2], plrv[,1], plrv[,3], plrv[,5],graph="triplot",number=FALSE)
-#endgraph
+plot(model)
+# triplot PC 1,2,3 
+plot(model, type=2, number=TRUE)
+# biplot PC1 vs Yield 
+plot(model, first=0,second=1, number=TRUE)
 # Example 2
 data(CIC)
 data1<-CIC$comas[,c(1,6,7,17,18)]
 data2<-CIC$oxapampa[,c(1,6,7,19,20)]
 cic <- rbind(data1,data2)
 attach(cic)
-#startgraph
-par(cex=0.6)
-model<-AMMI(Locality, Genotype, Rep, relative,
-ylim=c(-1.5e-8,1.5e-8))
-#endgraph
-pc<- princomp(model$genXenv, cor = FALSE)
-pc$loadings
-summary(pc)
-model$biplot
+model<-AMMI(Locality, Genotype, Rep, relative)
 detach(cic)
+model$ANOVA
+plot(model,0,1,angle=20,ecol="brown")
 # Example 3
 # Only means. Mean square error is well-known.
 data(sinRepAmmi)
@@ -84,31 +78,17 @@ REP <- 3
 MSerror <- 93.24224
 #startgraph
 model<-AMMI(ENV, GEN, REP, YLD, MSerror)
-#endgraph
-pc<- princomp(model$genXenv, cor = FALSE)
+detach(sinRepAmmi)
+# print anova
+print(model$ANOVA,na.print = "")
+# Biplot with the one restored observed.
+plot(model,0,1,type=1)
+# with principal components model$PC is class "princomp" 
+pc<- model$PC
 pc$loadings
 summary(pc)
-model$biplot
-detach(sinRepAmmi)
-# Biplot with the one restored observed.
-rm(REP)
-bplot<-model$biplot[,1:4]
-attach(bplot)
-#startgraph
-par(cex=0.8)
-plot(YLD,PC1,cex=0.0,text(YLD,PC1,labels=row.names(bplot),col="blue"),
- main="AMMI BIPLOT",frame=TRUE)
-MEANS<-mean(YLD)
-abline(h=0,v= MEANS,lty=2,col="red")
-amb<-subset(bplot,type=="ENV")
-detach(bplot)
-attach(amb)
-s <- seq(length(YLD))
-arrows(MEANS, 0, 0.9*(YLD[s]-MEANS)+MEANS, 0.9*PC1[s], col= "brown",
-lwd=1.8,length=0.1)
-#endgraph
-detach(amb)
-# Principal components by means of the covariance 
+biplot(pc)
+# Principal components by means of the covariance similar AMMI
 # It is to compare results with AMMI
 cova<-cov(model$genXenv)
 values<-eigen(cova)

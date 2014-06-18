@@ -31,7 +31,11 @@ t1<-length(parameters$trt1)
 t2<-n/t1;
 book<-data.frame(nro,book[,3])
 }
-if(design=="rcbd" | design=="lsd" |design=="graeco" |design=="factorial" |design=="bib"){
+if(design=="bib") {
+t1<-outdesign$statistics$treatmeans
+nr<-1;  t2<-n/t1; nc<-1
+}
+if(design=="rcbd" | design=="lsd" |design=="graeco" |design=="factorial"){
 t1<-parameters$r
 nr<-1;  t2<-n/t1; nc<-1
 }

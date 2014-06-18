@@ -1,6 +1,6 @@
 `PBIB.test` <-
 		function (block, trt, replication, y, k, method=c("REML","ML","VC"),
-		test = c("lsd", "tukey"), alpha = 0.05, console=FALSE)
+		test = c("lsd", "tukey"), alpha = 0.05, console=FALSE,group=TRUE)
 {
 	test <- match.arg(test)
 	if (test == "lsd")
@@ -129,6 +129,15 @@
 		dvar<-sqrt(diag(DIA))
 	}
 # -------------------
+ntr0<-ncol(vartau)
+if(ntr0<ntr) {
+ntr<-ntr0
+n.rep<-na.omit(n.rep)
+std<-na.omit(std)
+mean.trt<-na.omit(mean.trt)
+mi<-na.omit(mi)
+ma<-na.omit(ma)
+}
 	vardif <- matrix(0, ntr, ntr)
 	for (i in 1:(ntr - 1)) {
 		for (j in (i + 1):ntr) {
@@ -199,7 +208,9 @@
 	}
 	tr.i <- comb[1, ]
 	tr.j <- comb[2, ]
-		groups <- order.group(trt = 1:ntr, tauIntra, n.rep, MSerror = NULL,
+groups<-NULL
+if(group){
+ 		groups <- order.group(trt = 1:ntr, tauIntra, n.rep, MSerror = NULL,
 				Tprob = NULL, std.err = dvar, parameter = 1,
 				snk, DFerror = glerror, alpha, sdtdif = 1, vartau,console=FALSE)
 		names(groups)[2] <- "mean.adj"
@@ -208,10 +219,11 @@
 		groups$trt<-indice[indices]
 		names(groups)[1] <- name.trt
 		groups<-groups[,1:3]
+}
 	cat("\n<<< to see the objects: means, comparison and groups. >>>\n\n")
 	comparison <- data.frame(Difference = dif, stderr = stdt,
 			pvalue = pvalue)
-	means <- data.frame(means = mean.trt,trt = 1:ntr,  mean.adj = as.numeric(tauIntra),
+means <- data.frame(means = mean.trt,trt = 1:ntr,  mean.adj = as.numeric(tauIntra),
 			SE = dvar, r = n.rep, std,Min=mi,Max=ma)
 	names(means)[1]<-name.y
 	rownames(comparison) <- paste(indice[tr.i], indice[tr.j], sep = " - ")

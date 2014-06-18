@@ -24,7 +24,7 @@ audpc(evaluation, dates, type = "absolute")
 }
 \value{
 
-  \item{evaluation }{data frame}
+  \item{evaluation }{data frame, matrix or numeric vector}
   \item{dates }{a numeric vector}
   \item{type }{text}
 }
@@ -33,8 +33,11 @@ audpc(evaluation, dates, type = "absolute")
 
 \examples{
 library(agricolae)
-# example 1
 dates<-c(14,21,28) # days
+# example 1: evaluation - vector
+evaluation<-c(40,80,90)
+audpc(evaluation,dates)
+# example 2: evaluation: dataframe nrow=1
 evaluation<-data.frame(E1=40,E2=80,E3=90) # percentages
 plot(dates,evaluation,type="h",ylim=c(0,100),col="red",axes=FALSE)
 title(cex.main=0.8,main="Absolute or Relative AUDPC\nTotal area = 100*(28-14)=1400")
@@ -54,7 +57,7 @@ lines(rbind(c(28,90),c(28,100)),lty=8,col="green")
 absolute<-audpc(evaluation,dates,type="absolute")
 print(absolute)
 rm(evaluation, dates, absolute)
-# example 2
+# example 3: evaluation dataframe nrow>1
 data(disease)
 dates<-c(1,2,3) # week
 evaluation<-disease[,c(4,5,6)]
@@ -62,7 +65,7 @@ evaluation<-disease[,c(4,5,6)]
 index <-audpc(evaluation, dates, type = "relative")
 # Correlation between the yield and audpc
 correlation(disease$yield, index, method="kendall")
-# example 3
+# example 4: days infile
 data(CIC)
 comas <- CIC$comas
 oxapampa <- CIC$oxapampa

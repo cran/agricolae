@@ -38,7 +38,7 @@ nclass=NULL,xlab="",ylab="",axes = "",las=1,...)
 
 \seealso{\code{\link{polygon.freq}}, \code{\link{table.freq}}, 
 \code{\link{stat.freq}},\code{\link{intervals.freq}},\code{\link{sturges.freq}},
-\code{\link{join.freq}},\code{\link{ojiva.freq}}, \code{\link{normal.freq} } }
+\code{\link{join.freq}},\code{\link{ogive.freq}}, \code{\link{normal.freq} } }
 
 \examples{
 
@@ -69,8 +69,8 @@ print(measures)
 # frequency table full
 round(table.freq(h),2)
 #startgraph
-# Ojiva
-ojiva.freq(h,col="red",type="b",ylab="Accumulated relative frequency",
+# ogive
+ogive.freq(h,col="red",type="b",ylab="Accumulated relative frequency",
 xlab="Variable")
 # only frequency polygon
 h<-graph.freq(limits,counts=frequencies,border=FALSE,col=NULL,xlab="  ",ylab="")

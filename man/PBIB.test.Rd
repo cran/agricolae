@@ -8,7 +8,7 @@
 }
 \usage{
 PBIB.test(block,trt,replication,y,k, method=c("REML","ML","VC"), 
-test = c("lsd","tukey"), alpha=0.05, console=FALSE)
+test = c("lsd","tukey"), alpha=0.05, console=FALSE, group=TRUE)
 }
 \arguments{
   \item{block}{ blocks }
@@ -20,6 +20,7 @@ test = c("lsd","tukey"), alpha=0.05, console=FALSE)
   \item{test}{ Comparison treatments }
   \item{alpha}{ Significant test }
   \item{console}{logical, print output }
+  \item{group}{logical, groups }
 }
 \details{
 Method of comparison treatment. 

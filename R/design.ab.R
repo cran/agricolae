@@ -1,6 +1,6 @@
 `design.ab` <-
 function(trt, r=NULL,serie=2,design=c("rcbd","crd","lsd"),seed=0,kinds="Super-Duper",
-first=FALSE ){
+first=TRUE ){
 design <- match.arg(design)
 if( design=="rcbd" | design=="crd") posicion <- 3
 else posicion <- 4

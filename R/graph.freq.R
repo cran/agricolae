@@ -73,7 +73,6 @@ suppressWarnings(warning(plot(x,y, type = "n", xlab=xlab,ylab=ylab,axes=FALSE,..
 axis(1,breaks,las=las)->ax; axis(2,las=las)->ay
 }
 else suppressWarnings(warning(plot(x,y, type = "n", xlab=xlab,ylab=ylab,axes=axes,...)))
-
 if (frequency==1) {
 for (j in 1:k) {
 suppressWarnings(warning(rect(breaks[j], 0, breaks[j + 1], counts[j], ...)))

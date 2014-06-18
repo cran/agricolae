@@ -1,5 +1,5 @@
 `design.lsd` <-
-function (trt,serie=2,seed=0,kinds="Super-Duper",first=FALSE)
+function (trt,serie=2,seed=0,kinds="Super-Duper",first=TRUE)
 {
 number<-10
 if(serie>0) number<-10^serie

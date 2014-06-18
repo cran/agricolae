@@ -1,5 +1,24 @@
 Changes in new version
 
+Version agricolae 1-1.9 (June 17, 2014)
+-------------------------------------------
+1. PBIB new parameter: group=TRUE
+PBIB.test(block,trt,replication,y,k, method=c("REML","ML","VC"), 
+test = c("lsd","tukey"), alpha=0.05, console=FALSE, group=TRUE)
+when you have many treatments to use group=FALSE.
+2. design.rcbd(..., continue=FALSE) 
+continue=TRUE or FALSE, continuous numbering of plot.
+3. Median.test. New function for multiple comparisons of treatments with Median.
+4. Now, AMMI function checks the mínimum number of environments and genotypes.
+Now use console=TRUE or FALSE to output in screen. the graphs are produced by 
+the plot function.
+5. plot.AMMI() or plot() functions generate plot of the AMMI with others principal components.
+type=1 (biplot), type=2 (triplot) and type=3 (influence genotype)
+6. Changed parameters by default "first = TRUE" in designs: rcbd, ab, split and lsd.
+7. Now vignettes in agricolae.
+8. change name ogive.freq by ojiva.freq, the parameters are same.
+9. AUDPC the evaluation parameter  now can be numeric vector. To see help(audpc)  
+
 Version agricolae 1-1.8 (February 21, 2014)
 -------------------------------------------
 * zigzag(outdesign)
