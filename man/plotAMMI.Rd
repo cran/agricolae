@@ -7,7 +7,7 @@
 }
 \usage{
 \method{plot}{AMMI}(x,first=1,second=2,third=3,type=1,number=FALSE,gcol=NULL,ecol=NULL,
-icol=NULL,angle=25,xlab=NULL,ylab=NULL,xlim=NULL,ylim=NULL,...)
+icol=NULL,angle=25,lwd=1.8,length=0.1,xlab=NULL,ylab=NULL,xlim=NULL,ylim=NULL,...)
 }
 \arguments{
   \item{x}{ object AMMI }
@@ -20,6 +20,8 @@ icol=NULL,angle=25,xlab=NULL,ylab=NULL,xlim=NULL,ylim=NULL,...)
   \item{ecol}{ environment color }
   \item{icol}{ influence color}
   \item{angle}{ angle from the shaft of the arrow to the edge of the arrow head }
+  \item{lwd}{ parameter line width in function arrow}
+  \item{length}{ parameter length in function arrow}
   \item{xlab}{ x labels}
   \item{ylab}{ y labels} 
   \item{xlim}{ x limites}

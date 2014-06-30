@@ -10,7 +10,8 @@
   from the joint variance analysis.
 }
 \usage{
-stability.par(data,rep,MSerror,alpha=0.1,main=NULL,cova = FALSE,name.cov=NULL,file.cov=0)
+stability.par(data,rep,MSerror,alpha=0.1,main=NULL,cova = FALSE,name.cov=NULL,
+file.cov=0,console=FALSE)
 }
 
 \arguments{
@@ -22,17 +23,13 @@ stability.par(data,rep,MSerror,alpha=0.1,main=NULL,cova = FALSE,name.cov=NULL,fi
   \item{cova}{ Covariable }
   \item{name.cov}{ Name covariable }
   \item{file.cov}{ Data covariable }
+  \item{console}{logical, print output }
 }
 
 \value{
-  \item{data}{ Numeric }
-  \item{rep}{ Constant numeric }
-  \item{MSerror}{ Constant numeric }
-  \item{alpha}{ Constant numeric }
-  \item{main}{ Text }
-  \item{cova}{ FALSE or TRUE }
-  \item{name.cov}{ Text }
-  \item{file.cov}{ Vector numeric }
+  \item{analysis}{ data.frame }
+  \item{statistics}{ data.frame }
+  \item{stability}{ data.frame }
 }
 \details{
 Stable 
@@ -78,12 +75,12 @@ V11 <-c(5.4, 5.2, 5.6, 4.6, 4.8, 5.7, 6.6, 6.8, 5.2, 4.8, 4.9, 5.4, 4.5,5.6,7.0,
 V12 <-c(8.6, 8.0, 9.2, 8.1, 8.3, 8.9, 8.6, 9.6, 9.5, 7.7, 7.6, 8.3, 6.6,9.5,9.0,9.0,8.5)
 data<-data.frame(V1,V2,V3,V4,V5,V6,V7,V8,V9,V10,V11,V12)
 rownames(data)<-LETTERS[1:17]
-stability.par(data, rep=4, MSerror=1.8, alpha=0.1, main="Genotype")
+stability.par(data, rep=4, MSerror=1.8, alpha=0.1, main="Genotype",console=TRUE)
 
 #example 2 covariable. precipitation
 precipitation<- c(1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000,2100)
 stability.par(data, rep=4, MSerror=1.8, alpha=0.1, main="Genotype",
- cova=TRUE, name.cov="Precipitation", file.cov=precipitation)
+ cova=TRUE, name.cov="Precipitation", file.cov=precipitation,console=TRUE)
 
 }
 \keyword{ models }% at least one, from doc/KEYWORDS

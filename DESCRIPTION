@@ -1,15 +1,15 @@
 Package: agricolae
 Type: Package
 Title: Statistical Procedures for Agricultural Research
-Version: 1.1-9
-Date: 2014-06-18
+Version: 1.2-0
+Date: 2014-06-30
 Author: Felipe de Mendiburu
 Maintainer: Felipe de Mendiburu <f.mendiburu@cgiar.org>
 Suggests: akima, klaR, MASS, nlme, cluster, spdep
 Description: Agricolae was presented in the thesis "A statistical analysis tool for agricultural research" to obtain the degree of Master on science, mention Systems Engineering, Faculty of Industrial and Systems Engineering, National Engineering University (UNI), Lima-Peru. Original idea, support and data sets came from CIP (International Potato Center). Agricolae offers extensive functionality on experimental design especially for agricultural and plant breeding experiments, which can also be useful for other purposes. It supports planning of lattice, Alpha, Cyclic, Complete Block, Latin Square, Graeco-Latin Squares, augmented block, factorial, split and strip plot designs. There are also various analysis facilities for experimental data, e.g. treatment comparison procedures and several non-parametric tests comparison, biodiversity indexes and consensus cluster.
 License: GPL
 URL: http://tarwi.lamolina.edu.pe/~fmendiburu
-Packaged: 2014-06-18 15:30:42 UTC; fdemendiburu
+Packaged: 2014-06-30 19:37:00 UTC; fdemendiburu
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2014-06-18 18:19:01
+Date/Publication: 2014-07-01 00:51:25

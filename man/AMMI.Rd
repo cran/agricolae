@@ -9,7 +9,7 @@ multilocation variety trials. Furthermore, this function generates data to biplo
 graphs and analysis.
 }
 \usage{
-AMMI(ENV, GEN, REP, Y, MSE = 0,console=FALSE)
+AMMI(ENV, GEN, REP, Y, MSE = 0,console=FALSE,PC=FALSE)
 }
 
 %- maybe also 'usage' for other objects documented here.
@@ -20,6 +20,7 @@ AMMI(ENV, GEN, REP, Y, MSE = 0,console=FALSE)
   \item{Y}{ Response }
   \item{MSE}{ Mean Square Error }
   \item{console}{ ouput TRUE or FALSE }
+  \item{PC}{ Principal components ouput TRUE or FALSE }
 }
 \details{
   additional graphics see help(plot.AMMI).
@@ -77,7 +78,7 @@ attach(sinRepAmmi)
 REP <- 3
 MSerror <- 93.24224
 #startgraph
-model<-AMMI(ENV, GEN, REP, YLD, MSerror)
+model<-AMMI(ENV, GEN, REP, YLD, MSerror,PC=TRUE)
 detach(sinRepAmmi)
 # print anova
 print(model$ANOVA,na.print = "")

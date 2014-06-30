@@ -1,5 +1,5 @@
 `simulation.model` <-
-function(model,file,categorical=NULL,k) {
+function(model,file,categorical=NULL,k,console=FALSE) {
 modelo<-model
 parte<-strsplit(model,"~")[[1]]
 model<-as.formula(model)
@@ -44,6 +44,7 @@ if(xx[j,3]>50) xx[j,5]<- "acceptable"
 if(xx[j,3]==50) xx[j,5]<- "uncertain"
 if(xx[j,3]<50) xx[j,5]<- "nonacceptable"
 }
+if(console){
 cat("\nSimulation of experiments\nUnder the normality assumption\n")
 cat(rep("-",16),"\n")
 cat("Proposed model:",modelo,"\n")
@@ -53,5 +54,8 @@ cat("Validation of the analysis of variancia for the proposed model\n")
 cat("Simulations:",k,"\n\n")
 print(xx)
 cat("---\n\n")
+}
+out<-list(model=ecuacion, simulation=xx)
+invisible(out)
 }
 

@@ -7,21 +7,21 @@
   re-sampling (permutation) process along with the values obtained by variance analysis.
 }
 \usage{
-resampling.model(model,data,k)
+resampling.model(model,data,k,console=FALSE)
 }
 
 \arguments{
   \item{model}{ model in R }
   \item{data}{ data for the study of the model }
   \item{k}{ number of re-samplings }
+  \item{console}{logical, print output }
 }
 
 \value{
-
-  \item{model}{ model }
-  \item{data}{ data frame }
-  \item{k}{ constant numeric }
-
+  \item{model}{ ouput linear model, lm}
+  \item{solution}{ anova resampling }
+  \item{acum}{ cumulative frequency }
+  \item{samples}{ samples number }
 }
 
 \references{
@@ -37,17 +37,17 @@ resampling.model(model,data,k)
 library(agricolae)
 data(clay)
 model<-"ralstonia ~ days"
-analysis<-resampling.model(model,clay,k=2)
+analysis<-resampling.model(model,clay,k=2,console=TRUE)
 
 #example 2 Analysis of variance: RCD
 data(sweetpotato)
 model<-"yield~virus"
-analysis<-resampling.model(model,sweetpotato,k=2)
+analysis<-resampling.model(model,sweetpotato,k=2,console=TRUE)
 
 #example 3 Simple linear regression
 data(Glycoalkaloids)
 model<-"HPLC ~ spectrophotometer"
-analysis<-resampling.model(model,Glycoalkaloids,k=2)
+analysis<-resampling.model(model,Glycoalkaloids,k=2,console=TRUE)
 
 #example 4 Factorial in RCD
 
@@ -55,7 +55,7 @@ data(potato)
 potato[,1]<-as.factor(potato[,1])
 potato[,2]<-as.factor(potato[,2])
 model<-"cutting~variety + date + variety:date"
-analysis<-resampling.model(model,potato,k=2)
+analysis<-resampling.model(model,potato,k=2,console=TRUE)
 
 }
 \keyword{ multivariate }% at least one, from doc/KEYWORDS

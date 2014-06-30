@@ -1,6 +1,6 @@
 `stability.par` <-
 function(data,rep,MSerror,alpha=0.1,main=NULL,cova=FALSE,
-name.cov=NULL,file.cov=0){
+name.cov=NULL,file.cov=0,console=FALSE){
 #-----------
 KK <- "Environmental index"
 y<-data
@@ -183,6 +183,7 @@ if( FSS[i] < F05 ) MMM[i] <- "ns"
 }
 
 #-------
+if(console){
 cat("\n","INTERACTIVE PROGRAM FOR CALCULATING SHUKLA'S STABILITY VARIANCE AND KANG'S")
 cat("\n","                       YIELD - STABILITY (YSi) STATISTICS")
 cat("\n",RR,"\n",KK," - covariate \n")
@@ -190,6 +191,7 @@ cat("\n","Analysis of Variance\n")
 #cat("\n")
 #cat("\n","Source         d.f.   Sum of Squares  Mean Squares         F  p.value")
 #cat("\n",rep("-",35))
+}
 fuentes<- c( "TOTAL       ","GENOTYPES", "ENVIRONMENTS","INTERACTION",
              "HETEROGENEITY" , "RESIDUAL","POOLED ERROR")
 gl <- c(A*M-1, A-1, M-1, (M - 1) * (A - 1), A - 1,(A - 1) * (M - 2),M * (A - 1) * (N - 1))
@@ -208,10 +210,12 @@ Z<-data.frame(gl,SC,CM,Fcal, resul)
 names(Z)<-c("d.f.","Sum of Squares","Mean Squares","F","p.value")
 rownames(Z)<- c( "TOTAL       ","GENOTYPES", "ENVIRONMENTS","INTERACTION",
 		"HETEROGENEITY" , "RESIDUAL","POOLED ERROR")
+Z[7,c(2,4)]<-" ";Z[1,c(3,4)]<-" ";
+if(console){
 cat("\n")
-Z[7,c(2,4)]<-" ";Z[1,c(3,4)]<-" "; 
 print(Z)
-
+}
+Z1<-Z # Analysis
 #Z<-as.matrix(Z)
 
 #Z[1,4:6]   <-" "
@@ -243,13 +247,15 @@ for ( j in 1: M) {
 W[i] <- W[i] + (y[i, j] - X1M[i] - X2M[j] + MM1) ^ 2 * N
 }
 }
-cat("\n","Genotype. Stability statistics\n")
 MV<-round(MV,6); SI<-round(SI,6); S<-round(S,6); W<-round(W,6);
 Z<-data.frame(MV, SI, NN, S,MMM,W)
 names(Z)<-c("Mean","Sigma-square",".","s-square",".","Ecovalence")
 rownames(Z)<-rownames(y)
-cat("\n")
+if(console){
+cat("\n","Genotype. Stability statistics\n\n")
 print(Z)
+}
+Z2<-Z # statistics
 Z<-as.matrix(Z)
 #for ( i in 1: A) {
 #cat("\n",i, "\t", Z[i,1],"\t", Z[i,2], Z[i,3], "\t",Z[i,4], Z[i,5],"\t", Z[i,6])
@@ -280,14 +286,14 @@ for ( i in 1: A) {
 GYY[i]<-""
 if( GYS[i] > MGYS ) GYY[i] <- "+"
 }
-
-cat("\n\nSignif. codes:  0 '**' 0.01 '*' 0.05 'ns' 1\n\n")
-
-cat("Simultaneous selection for yield and stability  (++)\n\n")
 names<-c("Yield","Rank","Adj.rank","Adjusted","Stab.var","Stab.rating","YSi","..." )
 Z<-data.frame(MV, R, MV1,GY,SI,F1,GYS,GYY)
 rownames(Z)<-rownames(y)
 names(Z)<-names
+Z3<-Z # stability
+if(console){
+cat("\n\nSignif. codes:  0 '**' 0.01 '*' 0.05 'ns' 1\n\n")
+cat("Simultaneous selection for yield and stability  (++)\n\n")
 print(Z)
 cat("\n","Yield Mean:", MES)
 cat("\n","YS    Mean:", MGYS)
@@ -297,5 +303,8 @@ cat("\n","+   selected genotype"                                            )
 cat("\n","++  Reference: Kang, M. S. 1993. Simultaneous selection for yield")
 cat("\n","and stability: Consequences for growers. Agron. J. 85:754-757."   )
 cat("\n")
+}
+out<-list(analysis=Z1,statistics =Z2,stability =Z3)
+invisible(out)
 }
 

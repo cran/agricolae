@@ -14,8 +14,8 @@ Original idea, support and data sets came from CIP (International Potato Center)
 \tabular{ll}{
 Package: \tab agricolae\cr
 Type: \tab Package\cr
-Version: \tab 1.1-9\cr
-Date: \tab 2014-06-18\cr
+Version: \tab 1.2-0\cr
+Date: \tab 2014-06-30\cr
 License: \tab GPL\cr
 }
 Planning of field experiments: lattice, factorial, RCBD, CRD, Latin Square, 

@@ -1,5 +1,5 @@
 `AMMI` <-
-function (ENV, GEN, REP, Y, MSE = 0,console=FALSE)
+function(ENV,GEN,REP,Y,MSE = 0,console=FALSE,PC=FALSE)
 {
     name.y <- paste(deparse(substitute(Y)))
     if(console)cat("\nANALYSIS AMMI: ", name.y, "\nClass level information\n")
@@ -52,11 +52,13 @@ function (ENV, GEN, REP, Y, MSE = 0,console=FALSE)
         xx[5, 3] <- MSE
         xx[5, 2] <- MSE * DFE
         xx[1, 4] <- NA
-        xx[3, 4] <- xx[3, 3]/MSE
-        xx[4, 4] <- xx[4, 3]/MSE
+        if(MSE>0) xx[3, 4] <- xx[3, 3]/MSE
+        if(MSE>0)xx[4, 4] <- xx[4, 3]/MSE
         xx[1, 5] <- NA
+        if(DFE >0){
         xx[3, 5] <- 1 - pf(xx[3, 4], xx[3, 1], DFE)
         xx[4, 5] <- 1 - pf(xx[4, 4], xx[4, 1], DFE)
+        }
         row.names(xx)[1] <- "ENV     "
         row.names(xx)[2] <- "REP(ENV)"
         if(console)cat("\nREP: ", REP)
@@ -130,8 +132,11 @@ function (ENV, GEN, REP, Y, MSE = 0,console=FALSE)
         acumula <- acumula + percent[i]
         acum[i] <- acum[i] + acumula
         MSAMMI[i] <- SS[i]/DFAMMI[i]
-        F.AMMI[i] <- round(MSAMMI[i]/MSE, 2)
+        if(MSE>0)F.AMMI[i] <- round(MSAMMI[i]/MSE, 2)
+        else F.AMMI[i] <-NA
+        if(DFE>0)
         PROBF[i] <- round(1 - pf(F.AMMI[i], DFAMMI[i], DFE), 4)
+        else PROBF[i]<-NA
     }
 	percent<-round(percent,1)
 	acum<-round(acum,1)
@@ -165,8 +170,8 @@ if( minimo <= 2) {
     cat("\nWarning. The analysis AMMI is not possible.")
     cat("\nThe number of environments and number of genotypes must be greater than 2\n")
     }
-pc<- princomp(OUTRES2, cor = FALSE)
-object<-list(ANOVA=mm,genXenv = OUTRES2, analysis = SSAMMI, means = MEDIAS, biplot = bplot,PC=pc)
+if(PC) PC<- princomp(OUTRES2, cor = FALSE)
+object<-list(ANOVA=mm,genXenv = OUTRES2, analysis = SSAMMI, means = MEDIAS, biplot = bplot,PC=PC)
 class(object)<-"AMMI"
 invisible(object)
 }

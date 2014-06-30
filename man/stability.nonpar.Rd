@@ -7,19 +7,18 @@
   environment for the stability analysis.
 }
 \usage{
-stability.nonpar(data, variable = NULL, ranking = FALSE)
+stability.nonpar(data, variable = NULL, ranking = FALSE, console=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{ First column the genotypes following environment  }
   \item{variable}{ Name of variable }
-  \item{ranking}{ print ranking }
+  \item{ranking}{logical, print ranking }
+  \item{console}{logical, print output }
 }
 \value{
-
-  \item{data }{Numeric}
-  \item{variable }{Character}
-  \item{ranking }{Logical}
+  \item{ranking}{ data.frame }
+  \item{statistics}{ data.frame }
 }
 \references{
 Haynes K G, Lambert D H, Christ B J, Weingartner D P, Douches D S,
@@ -34,7 +33,7 @@ American Journal Potato Research 75, pag 211-217.
 \examples{
 library(agricolae)
 data(haynes)
-stability.nonpar(haynes,"AUDPC",ranking=TRUE)
+stability.nonpar(haynes,"AUDPC",ranking=TRUE,console=TRUE)
 # Example 2
 data(CIC)
 data1<-CIC$comas[,c(1,6,7,17,18)]
@@ -45,8 +44,9 @@ means <- by(cic[,5], cic[,c(2,1)], function(x) mean(x,na.rm=TRUE))
 means <-as.data.frame(means[,])
 cic.mean<-data.frame(genotype=row.names(means),means)
 cic.mean<-delete.na(cic.mean,"greater")
-stability.nonpar(cic.mean)
-
+out<-stability.nonpar(cic.mean)
+out$ranking
+out$statistics
 }
 \keyword{ nonparametric }% at least one, from doc/KEYWORDS
 

@@ -1,5 +1,5 @@
 plot.AMMI<-function(x,first=1,second=2,third=3,type=1,number=FALSE,gcol=NULL,ecol=NULL,
-icol=NULL,angle=25,xlab=NULL,ylab=NULL,xlim=NULL,ylim=NULL,...)
+icol=NULL,angle=25,lwd=1.8,length=0.1,xlab=NULL,ylab=NULL,xlim=NULL,ylim=NULL,...)
 {
 first<-first+2
 second<-second+2
@@ -27,7 +27,7 @@ text(env[,first],env[,second],rownames(env),col=ecol)
 text(gen[,first],gen[,second],ngen,col=gcol)
 xmed<-mean(env[,first])
 ymed<-mean(env[,second])
-arrows(xmed,ymed,env[,first],0.9*env[,second],angle=angle,lty=20)
+arrows(xmed,ymed,env[,first],0.9*env[,second],angle=angle,lwd=lwd,length=length)
 abline(v=xmed,h=ymed)
 }
 if(type==2){

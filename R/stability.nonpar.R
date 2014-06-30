@@ -1,5 +1,5 @@
 `stability.nonpar` <-
-function(data, variable= NULL, ranking = FALSE)
+function(data, variable= NULL, ranking = FALSE,console=FALSE)
 {
 row.names(data)<-data[,1]
 data<-data[,-1]
@@ -61,7 +61,9 @@ suma.z2 <- sum(z2)
 mr<-rank(lineas)
 stat1 <- data.frame(lineas,mr,s1,z1,s2,z2)
 row.names(stat1)<-rnames
+names(stat1)<- c("Mean","Rank", "s1", "Z1", "s2", "Z2")
 stat2 <- data.frame(MEAN=Maudpc,es1,es2,vs1,vs2,chi.ind,chi.sum)
+if(console){
 cat("\n")
 cat("Nonparametric Method for Stability Analysis\n")
 cat("-------------------------------------------\n\n")
@@ -73,7 +75,6 @@ print(raudpc)
 cat("\n")
 }
 cat("Statistics...\n")
-names(stat1)<- c("Mean","Rank", "s1", "Z1", "s2", "Z2")
 print(round(stat1,2))
 cat("------------------------")
 cat("\nSum of Z1: ",suma.z1)
@@ -86,5 +87,8 @@ cat("individual Z1 or Z2 are compared to a Chi-square value of chi.ind.\n\n")
 print(stat2)
 cat("---\n")
 cat("expectation and variance: es1, es2, vs1, vs2\n")
+}
+out<-list(ranking=stat1,statistics =stat2)
+invisible(out)
 }
 

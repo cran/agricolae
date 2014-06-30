@@ -1,5 +1,14 @@
 Changes in new version
 
+Version agricolae 1-2.0 (June 30, 2014)
+-------------------------------------------
+1. AMMI: aditional parameters PC=FALSE or TRUE, output principal components, check error equal cero.
+2. plot.AMMI: graphic aditional parameters lwd = 1.8, length = 0.1 to arrow function 
+3. simulation.model: aditional parameter console=FALSE or TRUE, output in console
+4. resampling.model: aditional parameter console=FALSE or TRUE, output in console
+5. stability.par: aditional parameter console=FALSE or TRUE, output in console
+6. stability.nonpar: aditional parameter console=FALSE or TRUE, output in console
+
 Version agricolae 1-1.9 (June 17, 2014)
 -------------------------------------------
 1. PBIB new parameter: group=TRUE
