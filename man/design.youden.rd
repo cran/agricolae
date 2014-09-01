@@ -1,0 +1,59 @@
+\name{design.youden}
+\alias{design.youden}
+%- design.Youden.
+\title{ Incomplete Latin Square Design }
+\description{
+  Such designs are referred to as Youden squares since they were introduced
+  by Youden (1937) after Yates (1936) considered the special case of column
+  equal to number treatment minus 1. "Random" uses the methods of number
+  generation in R. The seed is by set.seed(seed, kinds).
+}
+\usage{
+design.youden(trt, r, serie = 2, seed = 0, kinds = "Super-Duper",first=TRUE)
+}
+%- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{trt}{ Treatments }
+  \item{r}{ Replications or number of columns }
+  \item{serie}{ number plot, 1: 11,12; 2: 101,102; 3: 1001,1002 }
+  \item{seed}{ seed }
+  \item{kinds}{ method for to randomize }
+  \item{first}{ TRUE or FALSE - randomize rep 1}
+}
+\details{
+  kinds <- c("Wichmann-Hill", "Marsaglia-Multicarry", "Super-Duper",
+  "Mersenne-Twister", "Knuth-TAOCP", "user-supplied",  "Knuth-TAOCP-2002",
+  "default" )
+}
+\value{
+  \item{parameters }{list}
+  \item{book }{dataframe}
+}
+\references{ Design and Analysis of experiment.
+Hinkelmann, Klaus and Kempthorne, Oscar. Wiley-Interscience.
+Copyright (2008) by John Wiley and Sons. Inc., Hoboken, new Yersy }
+\author{ Felipe de Mendiburu }
+
+\seealso{\code{\link{design.ab}}, \code{\link{design.alpha}},\code{\link{design.bib}}, 
+\code{\link{design.crd} }, \code{\link{design.cyclic} }, \code{\link{design.dau} },
+\code{\link{design.graeco}}, \code{\link{design.lattice}}, \code{\link{design.split}},
+\code{\link{design.rcbd}}, \code{\link{design.strip}}, \code{\link{design.lsd}} }
+
+\examples{
+library(agricolae)
+varieties<-c("perricholi","yungay","maria bonita","tomasa")
+outdesign <-design.youden(varieties,r=3,serie=2,seed=23)
+youden <- outdesign$book
+print(youden) # field book.
+plots <-as.numeric(youden[,1])
+trt <-as.character(youden[,4])
+dim(plots)<-c(3,4)
+dim(trt) <-c(3,4)
+print(t(plots))
+print(t(trt))
+# Write on hard disk.
+# write.table(youden,"youden.txt", row.names=FALSE, sep="\t")
+# file.show("youden.txt")
+}
+\keyword{ design }% at least one, from doc/KEYWORDS
+

@@ -2,6 +2,7 @@
 		function (block, trt, replication, y, k, method=c("REML","ML","VC"),
 		test = c("lsd", "tukey"), alpha = 0.05, console=FALSE,group=TRUE)
 {
+#------------------
 	test <- match.arg(test)
 	if (test == "lsd")
 		snk = 3
@@ -47,20 +48,21 @@
 	}
 # Use function lme #
 	if (method == "REML" | method == "ML") {
-		trt.adj <- as.factor(trt)
 
+if (requireNamespace("nlme", quietly = TRUE)) {
+		trt.adj <- as.factor(trt)
 		if (method == "REML"){
-			modlmer <- lme(y ~  0+trt.adj, random = ~1|replication/block.adj, method="REML")
-			model <- lme(y ~  trt.adj, random = ~1|replication/block.adj, method="REML")
+			modlmer <- nlme::lme(y ~  0+trt.adj, random = ~1|replication/block.adj, method="REML",na.action=na.omit)
+			model <- nlme::lme(y ~  trt.adj, random = ~1|replication/block.adj, method="REML",na.action=na.omit)
 		}
 		if (method == "ML"){
-			modlmer <- lme(y ~  0+trt.adj, random = ~1|replication/block.adj, method="ML")
-			model <- lme(y ~  trt.adj, random = ~1|replication/block.adj, method="ML")
+			modlmer <- nlme::lme(y ~  0+trt.adj, random = ~1|replication/block.adj, method="ML",na.action=na.omit)
+			model <- nlme::lme(y ~  trt.adj, random = ~1|replication/block.adj, method="ML",na.action=na.omit)
 		}
 		Afm<-anova(model)
 		VarRand<-matrix(rep(0,3),nrow=3)
-		VarRand[c(1,3),1]<- as.numeric(VarCorr(model)[4:5,1])
-		VarRand[2,1]<-as.numeric(VarCorr(model)[2,1])
+		VarRand[c(1,3),1]<- as.numeric(nlme::VarCorr(model)[4:5,1])
+		VarRand[2,1]<-as.numeric(nlme::VarCorr(model)[2,1])
 		CMerror<-as.numeric(VarRand[3,1])
 		VarRand<-data.frame(VarRand)
 		names(VarRand)<-"Variance"
@@ -71,11 +73,21 @@
 		ANOVA[1,3]<- ANOVA[2,3]*ANOVA[1,4]
     	ANOVA[,2]<-ANOVA[,1]*ANOVA[,3]
 		ANOVA[2,4:5]<-NA
- 	}
+ 
+		tauIntra<-nlme::fixef(modlmer)
+		vartau <- vcov(modlmer)
+		DIA<-as.matrix(vartau)
+		dvar<-sqrt(diag(DIA))
+}
+else {
+return("Please install nlme package for lme and VarCorr functions")
+}
+}
 #
 	b <- s * r
 	glt <- ntr - 1
 	if (method == "VC") {
+        if (requireNamespace("MASS", quietly = TRUE)) {
 		SCt<- anova(model)[2, 2]
 		Ee <- deviance(model)/glerror
 		Eb <- anova(model)[3, 3]
@@ -115,19 +127,15 @@
 		phi <- r * (Eb - Ee)/((r - 1) * Ee)
 		lambda <- 1/(r * k * (1/phi + 1) - k)
 		W <- t(N) %*% N - k * Ib - g * kronecker((Jr - Ir), Js)
-		inversa <- ginv(Ib - lambda * W)
+		inversa <- MASS::ginv(Ib - lambda * W)
 		tauIntra <- t(X) %*% y/r - lambda * N %*% inversa %*% c0
 		vartau <- (Ee/r) * (Iv + lambda * N %*% inversa %*% t(N))
 		dvar <- sqrt(diag(vartau))
 	}
-
-	# use function lmer #
-	if (method == "REML" | method == "ML") {
-		tauIntra<-fixef(modlmer)
-		vartau <- vcov(modlmer)
-		DIA<-as.matrix(vartau)
-		dvar<-sqrt(diag(DIA))
-	}
+else {
+return("Please install MASS package for ginv function")
+}
+}
 # -------------------
 ntr0<-ncol(vartau)
 if(ntr0<ntr) {

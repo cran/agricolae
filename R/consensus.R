@@ -6,7 +6,14 @@ function(data,distance=c("binary","euclidean","maximum","manhattan","canberra",
 t0<-Sys.time()
 distance <- match.arg(distance)
 method <- match.arg(method)
-if(distance=="gower") distancia<-daisy(data,metric=distance)
+if(distance=="gower") {
+if (requireNamespace("cluster", quietly = TRUE)) {
+distancia<-cluster::daisy(data,metric=distance)
+}
+else{
+return("Please install cluster package for calculate gower distance")
+}
+}
 else distancia<-dist(data,method=distance)
 nc<-ncol(data)
 nr<-nrow(data)

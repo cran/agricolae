@@ -11,7 +11,7 @@ hcut(consensus,h,group,col.text="blue",cex.text=1,...)
 }
 \arguments{
   \item{consensus}{ object consensus }
-  \item{h}{ numeric scalar or vector with heights where the tree should be cut. }
+  \item{h}{ numeric scalar or vector with heights where the tree should be cut.}
   \item{group}{ an integer scalar with the desired number of group }
   \item{col.text}{ color of number consensus }
   \item{cex.text}{ size of number consensus }
@@ -30,11 +30,10 @@ data(pamCIP)
 # only code
 rownames(pamCIP)<-substr(rownames(pamCIP),1,6)
 # groups of clusters
-output<-consensus(pamCIP,nboot=100)
-hcut(output,h=0.4,group=5,main="Group 5")
+# output<-consensus(pamCIP,nboot=100)
+# hcut(output,h=0.4,group=5,main="Group 5")
 # 
-hcut(output,h=0.4,group=8,type="t",edgePar = list(lty=1:2, col=2:1),main="group 8"
-,col.text="blue",cex.text=1)
+# hcut(output,h=0.4,group=8,type="t",edgePar=list(lty=1:2,col=2:1),main="group 8"
+# ,col.text="blue",cex.text=1)
 }
-
 \keyword{ cluster }

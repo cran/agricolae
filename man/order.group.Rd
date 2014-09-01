@@ -25,7 +25,7 @@ DFerror=NULL,alpha=NULL,sdtdif=NULL,vartau=NULL,console)
   \item{snk}{ Constante = 1 (Student Newman Keuls) }
   \item{DFerror}{ Degrees of freedom of the experimental error }
   \item{alpha}{ Level of risk for the test  } 
-  \item{sdtdif}{ standar deviation of difference in BIB  } 
+  \item{sdtdif}{ standard deviation of difference in BIB  }
   \item{vartau}{ matrix var-cov in PBIB  } 
   \item{console}{logical, print output }
 }

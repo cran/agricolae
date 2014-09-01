@@ -14,16 +14,16 @@ Original idea, support and data sets came from CIP (International Potato Center)
 \tabular{ll}{
 Package: \tab agricolae\cr
 Type: \tab Package\cr
-Version: \tab 1.2-0\cr
-Date: \tab 2014-06-30\cr
+Version: \tab 1.2-1\cr
+Date: \tab 2014-09-01\cr
 License: \tab GPL\cr
 }
-Planning of field experiments: lattice, factorial, RCBD, CRD, Latin Square, 
-Graeco, BIB, Alpha design, Cyclic, augmented block, split and strip plot 
-Designs. Comparison of multi-location trials: AMMI Stability (biplot, triplot),
-Comparison between treatments: LSD, Bonferroni and other p-adjust, HSD, Waller, 
-Student Newman Keuls SNK, Duncan, Scheffe; Non parametric tests: Kruskal, 
-Friedman, Durbin, Van Der Waerden, Median.
+Planning of field experiments: lattice, factorial, RCBD, CRD, Latin Square,
+Youden, Graeco, BIB, Alpha design, Cyclic, augmented block, split and strip plot
+Designs. Comparison of multi-location trials: AMMI, Index AMMI Stability
+(biplot, triplot), comparison between treatments: LSD, Bonferroni and
+other p-adjust, HSD, Waller, Student Newman Keuls SNK, Duncan, Scheffe;
+Non parametric tests: Kruskal, Friedman, Durbin, Van Der Waerden, Median.
 Analysis of genetic experiments: North Carolina designs, LinexTester, 
 Balanced Incomplete Block, Strip plot, Split-Plot, Partially Balanced Incomplete 
 Block, analysis Mother and baby trials (see data RioChillon).

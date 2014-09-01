@@ -1,5 +1,13 @@
 Changes in new version
 
+Version agricolae 1-2.1 (August 25, 2014)
+-------------------------------------------
+1. Move packages from Suggests to Imports
+2. AUDPS. The Area Under the Disease Progress Stairs.
+3. AMMI stability value (ASV) and Yield stability index (YSI)
+4. Design youden
+5. Now the PBIB.test function uses missing values.
+
 Version agricolae 1-2.0 (June 30, 2014)
 -------------------------------------------
 1. AMMI: aditional parameters PC=FALSE or TRUE, output principal components, check error equal cero.
@@ -18,7 +26,7 @@ when you have many treatments to use group=FALSE.
 2. design.rcbd(..., continue=FALSE) 
 continue=TRUE or FALSE, continuous numbering of plot.
 3. Median.test. New function for multiple comparisons of treatments with Median.
-4. Now, AMMI function checks the mínimum number of environments and genotypes.
+4. Now, AMMI function checks the minimum number of environments and genotypes.
 Now use console=TRUE or FALSE to output in screen. the graphs are produced by 
 the plot function.
 5. plot.AMMI() or plot() functions generate plot of the AMMI with others principal components.

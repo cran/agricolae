@@ -53,8 +53,6 @@ Wiley Classics Library Edition published 1992
 \seealso{\code{\link{BIB.test}}, \code{\link{design.alpha}} }
 \examples{
 require(agricolae)
-require(MASS) # method = VC in PBIB.test
-# require(nlme) # method = REML or LM in PBIB.test
 # alpha design 
 Genotype<-paste("geno",1:30,sep="")
 ntr<-length(Genotype)
@@ -70,18 +68,13 @@ y<-c(5,2,7,6,4,9,7,6,7,9,6,2,1,1,3,2,4,6,7,9,8,7,6,4,3,2,2,1,1,2,
      1,1,2,4,5,6,7,8,6,5,4,3,1,1,2,5,4,2,7,6,6,5,6,4,5,7,6,5,5,4)
 dbook<-data.frame(book$book,yield=y)
 rm(y,Genotype)
+# NOT RUN
 # analysis
-require(nlme) # method = REML or LM in PBIB.test
+# require(nlme) # method = REML or LM in PBIB.test and require(MASS) method=VC
 attach(dbook)
-model <- PBIB.test(block, Genotype, replication, yield, k=3, method="REML")
+model <- PBIB.test(block, Genotype, replication, yield, k=3, method="VC")
 detach(dbook)
-model$ANOVA
-model$method
-model$parameters
-model$Fstat
-head(model$comparison)
-model$means
-model$groups
-bar.group(model$groups,ylim=c(0,9), density=20, las=2)
+# model$ANOVA
+# bar.group(model$groups,ylim=c(0,9), density=20, las=2)
 }
 \keyword{ models }

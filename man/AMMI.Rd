@@ -1,6 +1,5 @@
 \name{AMMI}
 \alias{AMMI}
-%- AMMI.
 \title{ AMMI Analysis}
 \description{
 Additive Main Effects and Multiplicative Interaction Models (AMMI) are widely used 
@@ -12,7 +11,6 @@ graphs and analysis.
 AMMI(ENV, GEN, REP, Y, MSE = 0,console=FALSE,PC=FALSE)
 }
 
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{ENV}{ Environment }
   \item{GEN}{ Genotype }
@@ -34,10 +32,8 @@ AMMI(ENV, GEN, REP, Y, MSE = 0,console=FALSE,PC=FALSE)
   \item{PC}{ class princomp }
 }
 \references{ 
-GGE Biplot Analysis: A graphical tool for breeder, geneticists, and agronomists.
-Weikai Yan and Manjit S. Kang. www.crepress.com 2003,
-Principles and procedures of statistics: a biometrical approach
-Steel & Torry & Dickey. Third Edition 1997
+Crossa, J. 1990. Statistical analysis of multilocation trials.
+Advances in Agronomy 44:55-85
  }
 \author{ F. de Mendiburu }
 
@@ -45,9 +41,6 @@ Steel & Torry & Dickey. Third Edition 1997
 \examples{
 # Full replications
 library(agricolae)
-# triplot and influence genotype
-require(klaR) # type=2
-require(spdep) # type=3
 # Example 1
 data(plrv)
 attach(plrv)

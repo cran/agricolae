@@ -35,6 +35,10 @@ if(design=="bib") {
 t1<-outdesign$statistics$treatmeans
 nr<-1;  t2<-n/t1; nc<-1
 }
+if(design=="youden") {
+t2<-parameters$r
+nr<-1;  t1<-n/t2; nc<-1
+}
 if(design=="rcbd" | design=="lsd" |design=="graeco" |design=="factorial"){
 t1<-parameters$r
 nr<-1;  t2<-n/t1; nc<-1

@@ -37,10 +37,10 @@ The following document was developed to facilitate the use of agricolae package 
 
 \section{Introduction}
 
-The package \bf{agricolae} \rm offers a broad functionality in the design of experiments, especially for experiments in agriculture and improvements of plants, which can also be used for other purposes. It contains the following designs: lattice, alpha, cyclic, balanced incomplete block designs, complete randomized blocks, Latin, Graeco-Latin, augmented block designs, split plot and strip plot. It also has several procedures of experimental data analysis, such as the comparisons of treatments of Waller-Duncan, Bonferroni, Duncan, Student-Newman-Keuls, Scheffe, or the classic LSD and Tukey; and non-parametric comparisons, such as Kruskal-Wallis, Friedman, Durbin and Waerden, stability analysis, and other procedures applied in genetics, as well as procedures in biodiversity and descriptive statistics. reference \cite{b3}
+The package \bf{agricolae} \rm offers a broad functionality in the design of experiments, especially for experiments in agriculture and improvements of plants, which can also be used for other purposes. It contains the following designs: lattice, alpha, cyclic, balanced incomplete block designs, complete randomized blocks, Latin, Graeco-Latin, augmented block designs, split plot and strip plot. It also has several procedures of experimental data analysis, such as the comparisons of treatments of Waller-Duncan, Bonferroni, Duncan, Student-Newman-Keuls, Scheffe, or the classic LSD and Tukey; and non-parametric comparisons, such as Kruskal-Wallis, Friedman, Durbin, Median and Waerden, stability analysis, and other procedures applied in genetics, as well as procedures in biodiversity and descriptive statistics. reference \cite{b3}
 
 \subsection{Installation}
-The main program of \bf {R} \rm should be already installed in the platform of your computer \emph{(Windows, Linux or MAC)}. If it is not installed yet, you can download it from the R project \emph{(www.r-project.org)} of a repository CRAN.
+The main program of \bf {R} \rm should be already installed in the platform of your computer \emph{(Windows, Linux or MAC)}. If it is not installed yet, you can download it from the R project \emph{(www.r-project.org)} of a repository CRAN. Reference \cite{b10}
 
 \vspace{2mm}
 \texttt{> install.packages("agricolae")}
@@ -63,7 +63,6 @@ For a complete functionality, \bf{agricolae } \rm requires other packages.\\
 \bf{MASS: }\rm for the generalized inverse used in the function \emph{PBIB.test}\\
 \bf{nlme: }\rm for the methods REML and LM in \emph{PBIB.test}\\
 \bf{klaR: }\rm for the function \emph{triplot} used in the function \emph{AMMI}\\
-\bf{akima: }\rm for the use of the function \emph{interpp}  used in \emph{grid3p} for interpolation\\
 \bf{Cluster: }\rm for the use of the function \emph{consensus}\\
 \bf{spdep: }\rm for the between genotypes spatial relation in biplot of the function \emph{AMMI}
 \subsection{Use in \bf {R} \rm}
@@ -201,7 +200,7 @@ print(summary(h5))
 
 The package \bf{agricolae} \rm presents special functions for the creation of the field book for experimental designs. Due to the random generation, this package is quite used in agricultural research. 
 
-For this generation, certain parameters are required, as for example the name of each treatment, the number of repetitions, and others, according to the design refrerence\cite{b1,b6,b7,b8}. There are other parameters of random generation, as the seed to reproduce the same random generation or the generation method (See the reference manual of \bf{agricolae} \rm.
+For this generation, certain parameters are required, as for example the name of each treatment, the number of repetitions, and others, according to the design refrerences \cite{b1,b6,b7,b8}. There are other parameters of random generation, as the seed to reproduce the same random generation or the generation method (See the reference manual of \bf{agricolae} \rm.
 
 \em http://cran.at.r-project.org/web/packages/agricolae/agricolae.pdf\rm
 
@@ -290,6 +289,27 @@ print(t(matrix(paste(book4[,4], book4[,5]),c(4,4))))
 <<>>=
 book <- zigzag(outdesign)
 print(t(matrix(book[,1],c(4,4))),digit=0)
+@
+
+\subsection{Youden design}
+They require the names of the treatments of each factor of study and its parameters are:
+<<>>=
+str(design.youden)
+varieties<-c("perricholi","yungay","maria bonita","tomasa")
+outdesign <-design.youden(varieties,r=3,serie=2,seed=23)
+youden <- outdesign$book
+print(youden) # field book.
+plots <-as.numeric(youden[,1])
+trt <-as.character(youden[,4])
+dim(plots)<-c(3,4)
+dim(trt) <-c(3,4)
+print(t(plots))
+print(t(trt))
+@
+{\bf Serpentine enumeration:\rm }
+<<>>=
+book <- zigzag(outdesign)
+print(t(matrix(book[,1],c(3,4))),digit=0)
 @
 
 \subsection{Balanced Incomplete Block Designs}
@@ -689,8 +709,6 @@ The function \emph{PBIB.test}, reference \cite{b4}, can be used for the lattice 
 Consider the following case: Construct the alpha design with 30 treatments, 2 repetitions, and a block size equal to 3.
 
 <<>>= 
-library(MASS)
-library(nlme)
 # alpha design 
 Genotype<-paste("geno",1:30,sep="")
 r<-2
@@ -716,14 +734,13 @@ console=TRUE)
 detach(data)
 @
 \bf{The adjusted averages can be extracted from the modelPBIB.}\rm
-<<>>=
-head(modelPBIB$means)
-@
+
+head(modelPBIB\$means)
 
 \bf {The comparisons:}\rm 
-<<>>=
-head(modelPBIB$comparison)
-@
+
+head(modelPBIB\$comparison)
+
 The data on the adjusted averages and their variation can be illustrated see Figure ~\ref{fig:f6}. since the created object is very similar to the objects generated by the multiple comparisons.
 
 Analysis of balanced lattice 3x3, 9 treatments, 4 repetitions.\\
@@ -754,10 +771,15 @@ attach(A)
 modelLattice<-PBIB.test(block,trt,sqr,yield,k=3,console=TRUE)
 detach(A)
 @
-<<>>=
-modelLattice$means
-head(modelLattice$comparison)
-@
+
+\bf{The adjusted averages can be extracted from the modelLattice.}\rm
+
+print(modelLattice\$means)
+
+\bf {The comparisons:}\rm 
+
+head(modelLattice\$comparison)
+
 \subsection {Augmented Blocks}
 
 The function \emph{DAU.test} can be used for the analysis of the augmented block design.\\
@@ -958,7 +980,7 @@ In \bf {agricolae} \rm there are two methods for the study of stability and the 
 
 Use the parametric model, function \emph{stability.par}.
 
-Prepare a data table where the rows and the columns are the genotypes and the environments, respectively. The data should correspond to yield averages or to another measured variable. Determine the variance of the common error for all the environments and the number of repetitions that was evaluated for every genotype. If the repetitions are different, find a harmonious average that will represent the set. Finally, assign a name to each row that will represent the genotype. We will consider five environments in the following example:
+Prepare a data table where the rows and the columns are the genotypes and the environments, respectively. The data should correspond to yield averages or to another measured variable. Determine the variance of the common error for all the environments and the number of repetitions that was evaluated for every genotype. If the repetitions are different, find a harmonious average that will represent the set. Finally, assign a name to each row that will represent the genotype. Reference \cite{b5} We will consider five environments in the following example:
 <<>>=
 options(digit=2)
 v1 <- c(10.2,8.8,8.8,9.3,9.6,7.2,8.4,9.6,7.9,10,9.3,8.0,10.1,9.4,10.8,6.3,7.4)
@@ -990,7 +1012,7 @@ file.cov=altitude)
 @
 \subsection {Non-parametric Stability}
 For non-parametric stability, the function in 'agricolae' is stability.nonpar(). 
-The names of the genotypes should be included in the first column, and in the other columns, the response by environments.
+The names of the genotypes should be included in the first column, and in the other columns, the response by environments. Reference \cite{b12}
 
 \bf {Analysis}\rm
 <<>>=
@@ -1001,7 +1023,7 @@ output$statistics
 @
 
 \subsection {AMMI}
-The model AMMI uses the biplot constructed through the principal components generated by the interaction environment-genotype. If there is such interaction, the percentage of the two principal components would explain more than the 50\% of the total variation; in such case, the biplot would be a good alternative to study the interaction environment-genotype. Reference \cite{b12,b13}
+The model AMMI uses the biplot constructed through the principal components generated by the interaction environment-genotype. If there is such interaction, the percentage of the two principal components would explain more than the 50\% of the total variation; in such case, the biplot would be a good alternative to study the interaction environment-genotype. Reference \cite{b13}
 
 The data for AMMI should come from similar experiments conducted in different environments. Homogeneity of variance of the experimental error, produced in the different environments, is required. The analysis is done by combining the experiments.
 
@@ -1030,26 +1052,42 @@ model<-AMMI(ENV=environment, GEN=genotype, REP=4, Y=rdto, MSE=2, console=TRUE)
 pc <- model$analysis[, 1]
 pc12<-sum(pc[1:2])
 pc123<-sum(pc[1:3])
+rm(rdto,environment,genotype)
 @
 
 \begin{figure}[!hbtp]
 \begin{center}
 <<f5, fig=TRUE,width=6, height=2.2>>=
-require(klaR)
-par(mfrow=c(1,2),cex=0.8,mar=c(4,4,1,0))
+par(cex=0.8,mar=c(4,4,1,0))
 plot(model,type=1,las=1)
-plot(model,type=2,las=1)
 @
-\caption{Biplot and Triplot\label{fig:f5}}
+\caption{Biplot\label{fig:f5}}
 \end{center}
 \end{figure}
 In this case, the interaction is significant. The first two components explain \Sexpr{pc12} \%; then the biplot can provide information about the interaction genotype-environment. With the triplot, \Sexpr{pc123}\% would be explained.
 
-<<eval=FALSE>>=
-# Influence graphics genotype
-require(spdep)
-par(cex=0.5,mar=c(3,3,1,0))
+\bf To triplot require klaR package. in R execute:\rm
+
+plot(model,type=2,las=1)
+
+\bf To Influence graphics genotype require spdep package, in R execute:\rm
+
 plot(model,type=3,las=1)
+
+
+\subsection {AMMI index and yield stability}
+Calculate AMMI stability value (ASV) and Yield stability index (YSI). References \cite{b16,b14}
+
+<<>>=
+data(plrv)
+attach(plrv)
+model<- AMMI(Locality, Genotype, Rep, Yield, console=FALSE)
+detach(plrv)
+index<-index.AMMI(model)
+# Crops with improved stability according AMMI.
+print(index[order(index[,3]),])
+# Crops with better response and improved stability according AMMI.
+print(index[order(index[,4]),])
 @
 
 \section {Special functions}
@@ -1180,7 +1218,7 @@ output<-path.analysis(corr.x,corr.y)
 output
 @
 \subsection {Line X Tester}
-It corresponds to a crossbreeding analysis of a genetic design. The data should be organized in a table. Only four columns are required: repetition, females, males, and response. In case it corresponds to progenitors, the females or males field will only be filled with the corresponding one. See the heterosis data.
+It corresponds to a crossbreeding analysis of a genetic design. The data should be organized in a table. Only four columns are required: repetition, females, males, and response. In case it corresponds to progenitors, the females or males field will only be filled with the corresponding one. See the heterosis data. Reference \cite{b15}.
 
 \bf {Example with the heterosis data, locality 2.}\rm 
 
@@ -1370,22 +1408,41 @@ The area under the disease progress curve (AUDPC), see Figure ~\ref{fig:f10} cal
 days<-c(7,14,21,28,35,42)
 evaluation<-data.frame(E1=10,E2=40,E3=50,E4=70,E5=80,E6=90)
 print(evaluation)
-absolute <-audpc(evaluation,days)
-relative <-audpc(evaluation,days,"relative")
+absolute1 <-audpc(evaluation,days)
+relative1 <-round(audpc(evaluation,days,"relative"),2)
+@
+
+\subsection {AUDPS}
+
+The Area Under the Disease Progress Stairs (AUDPS), see Figure ~\ref{fig:f10}. A better estimate of disease progress is the area under the disease progress stairs (AUDPS). The AUDPS approach improves the estimation of disease progress by giving a weight closer to optimal to the first and last observations..
+<<>>=
+absolute2 <-audps(evaluation,days)
+relative2 <-round(audps(evaluation,days,"relative"),2)
 @
 \begin{figure}[!hbtp]
 \begin{center}
-<<f10, echo=FALSE, fig=TRUE, width=4, height=2>>=
-par(mar=c(3,3,1,0),cex=0.7)
+<<f10, echo=FALSE, fig=TRUE, width=8, height=2>>=
+par(mfrow=c(1,2),mar=c(3,3,1,0),cex=0.7)
 plot(days, evaluation,type="h",ylim=c(0,100),axes=F,col= colors()[42],xlab="Days", ylab="Evaluation")
 lines(days,evaluation,col= colors()[42])
 axis(1,days)
 axis(2,seq(0,100,20),las=2)
 rect(7,0,42,100)
-text(15,80,substitute(paste("Audpc Absolute =",A1),list(A1=absolute)))
-text(15,70,substitute(paste("Audpc Relative =",A2),list(A2=relative)))
+text(15,80,substitute(paste("Audpc Abs.=",A1),list(A1=absolute1)))
+text(15,70,substitute(paste("Audpc Rel.=",A2),list(A2=relative1)))
+x<-seq(3.5,45.5,7)
+evaluation<-c(evaluation,evaluation[6])
+plot(x, evaluation,type="s",ylim=c(0,100),axes=F,col= colors()[42],xlab="Days", ylab="Evaluation")
+points(x,evaluation,type="h",col= colors()[42])
+points(days,evaluation[-6],pch=16,col=4)
+text(days,5,days,col=4,cex=1)
+axis(1,x,pos=0)
+axis(2,seq(0,100,20),las=2)
+rect(3.5,0,45.5,100)
+text(13,80,substitute(paste("Audps Abs.=",A1),list(A1=absolute2)))
+text(13,70,substitute(paste("Audps Rel.=",A2),list(A2=relative2)))
 @
-\caption{AUDPC: Area under the curve\label{fig:f10}}
+\caption{Area under the curve (AUDPC) and Area under the Stairs (AUDPS)\label{fig:f10}}
 \end{center}
 \end{figure}
 
@@ -1484,18 +1541,19 @@ title="Description",lty=1,pch=c(3,19),col=c("black","red"))
 \begin{thebibliography}{11}
 \bibitem{b1}Cochran and Cox., 1992. \emph{Experimental Design}. Second edition. Wiley Classics Library Edition published. John Wiley \& Sons, INC.
 \bibitem{b2}Conover, W.J, 1999. \emph{Practical Nonparametrics Statistics}, John Wiley \& Sons, INC, New York.
+\bibitem{b13} Crossa, J. 1990. \emph{Statistical analysis of multilocation trials}. Advances in Agronomy 44:55-85.
 \bibitem{b3}De Mendiburu, Felipe, 2009. \emph{Una herramienta de an\'alisis estad\'istico para la investigaci\'on agr\'icola}, Universidad Nacional de Ingenier\'ia (UNI).
 \bibitem{b12}Haynes K G, Lambert D H, Christ B J, Weingartner D P, Douches D S, Backlund J E, Fry W and Stevenson W. 1998. \emph{Phenotypic stability of resistance to late blight in potato clones evaluated at eight sites in the United States American}, Journal Potato Research 75, pag 211-21.
 \bibitem{b4}Joshi, D.D., 1987. \emph{Linear Estimation and Design of Experiments}, WILEY EASTERN LIMITED, New Delhi, India.
 \bibitem{b5}Kang, M. S. 1993. \emph{Simultaneous Selection for Yield and Stability: Consequences for Growers}, Agron. J. 85:754-757.
 \bibitem{b6}Kuehl, Robert, 2000. \emph{Design of Experiments}, 2nd ed., Duxbury.
 \bibitem{b7}LeClerg, Erwin, 1962. \emph{Field Plot Technique}, Burgess Publishing Company.
-\bibitem{b14}Manjit S., Kang Hugh G., Gauch Jr. 1962. \emph{Field Plot Technique}, Burgess Publishing Company.
 \bibitem{b8}Montgomery, 2002. \emph{Dise\~no y An\'alisis de Experimentos}, 2nd Ed, WILEY.
 \bibitem{b9}Patterson, H.D. and Williams, E.R., 1976. \emph{A New Class of Resolvable Incomplete Block Designs}, Biometrika,Printed in Great Britain.
+\bibitem{b14} Purchase, J. L. 1997. \emph{Parametric analysis to describe genotyperenvironment interaction and yield stability in winter wheat}. Ph.D. Thesis, Department of Agronomy, Faculty of Agriculture of the University of the Free State, Bloemfontein, South Africa.
 \bibitem{b10}R Core Team, 2014. \emph{A language and environment for statistical computing}, R Foundation for Statistical Computing, Vienna, Austria. www.R-project.org
+\bibitem{b16} Sabaghnia N., Sabaghpour S.H. and Dehghani H. 2008.\emph{The use of an AMMI model and its parameters to analyse yield stability in multienvironment trials}.  Journal of Agricultural Science, 146, 571-581. f 2008 Cambridge University Press 571 doi:10.1017/S0021859608007831. Printed in the United Kingdom.
 \bibitem{b15}Singh R. K., Chaudhary B. D., 1979. \emph{Biometrical Methods in Quantitative Genetic Analysis}.Kalyani Publishers
 \bibitem{b11}Steel \& Torry \& Dickey, 1997. \emph{Principles and Procedures of Statistic a Biometrical Approach}. Third Edition. The Mc Graw Hill companies, Inc
-\bibitem{b13}Weikai Yan and Manjit S. Kang, 2003. \emph{GGE Biplot Analysis: A graphical tool for breeder, geneticists, and agronomists}. CRC Press. Printed in the United States of America.
 \end{thebibliography}
 \end{document}

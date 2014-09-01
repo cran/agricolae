@@ -39,10 +39,8 @@ Genotype <- sinRepAmmi$GEN
 Yield <- sinRepAmmi$YLD
 REP <- 3
 MSerror <- 93.24224
-#startgraph
 model<-AMMI(Environment, Genotype, REP, Yield, MSerror)
 plot(model)
 AMMI.contour(model,distance=0.7,shape=8,col="red",lwd=2,lty=5)
-#endgraph
 }
 \keyword{ aplot }% __ONLY ONE__ keyword per line
