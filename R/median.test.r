@@ -19,7 +19,7 @@ Tall<-O$statistic
 Pall<-O$p.value
 parameter<-O$parameter
 # All comparison
-comb <-combn(ntr,2)
+comb <-utils::combn(ntr,2)
 nn<-ncol(comb)
 Median<-rep(0,nn)
 Tstat<-rep(0,nn)

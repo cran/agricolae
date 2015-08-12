@@ -1,5 +1,13 @@
 Changes in new version
 
+Version agricolae 1-2.2 (August 12, 2015)
+-------------------------------------------
+1. Now in the frequency table shows the relative frequency as a percentage, the function is table.freq or 
+summary( graph.freq or hist object)
+2. The histogram class is added to graph.freq and it can use the package HistogramTools
+3. The function design.bib create optimal design, use function optBlock(algDesign)
+4. sketch option in design: rbcd, lsd, graeco, youden, bib
+
 Version agricolae 1-2.1 (August 25, 2014)
 -------------------------------------------
 1. Move packages from Suggests to Imports

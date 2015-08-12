@@ -50,19 +50,13 @@ T2<-c("v","w","x","y")
 outdesign <- design.graeco(T1,T2,serie=1)
 graeco<-outdesign$book
 plots <-as.numeric(graeco[,1])
-trt <- paste(graeco[,4],graeco[,5])
-dim(plots)<-c(4,4)
-dim(trt) <-c(4,4)
-print(t(plots))
-print(t(trt))
+print(outdesign$sketch)
+print(matrix(plots,byrow=TRUE,ncol=4))
 # 10 x 10
 T1 <- letters[1:10]
 T2 <- 1:10
 outdesign <-  design.graeco(T1,T2,serie=2)
-graeco<-outdesign$book
-trt <- paste(graeco[,4],graeco[,5])
-dim(trt) <-c(10,10)
-print(t(trt))
+print(outdesign$sketch)
 }
 \keyword{ design }
 

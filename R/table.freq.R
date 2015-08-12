@@ -13,12 +13,14 @@ z[i,1]<-zz[i]
 z[i,2]<-zz[i+1]
 z[i,3]<-xx[i]
 z[i,4]<-yy[i]
-z[i,5]<-yy[i]/y1
+z[i,5]<-round(yy[i]*100/y1,1)
 z[i,6]<-yy[i]+acum
 acum<-z[i,6]
-z[i,7]<-z[i,6]/y1
+z[i,7]<-round(z[i,6]*100/y1,1)
 }
-colnames(z)<-c("Lower","Upper","Main","freq","relative","CF","RCF")
+z[nrow(z),7]<-100
+colnames(z)<-c("Lower","Upper","Main","Frequency","Percentage","CF","CPF")
+z<-as.data.frame(z)
 invisible(z)
 }
 

@@ -1,6 +1,7 @@
 `design.bib` <-
-function (trt, k, serie = 2, seed = 0, kinds = "Super-Duper")
+function (trt, k, r=NULL, serie = 2, seed = 0, kinds = "Super-Duper", maxRep=20)
 {
+v<-length(trt)
 number<-10
 if(serie>0) number<-10^serie
     ntr <- length(trt)
@@ -9,7 +10,44 @@ if(serie>0) number<-10^serie
     seed <-.Random.seed[3]
     }
     set.seed(seed, kinds)
-    md<- t(combn(1:ntr, k))
+#----------
+# question r
+if(!is.null(r)){
+x<- r*(k-1)/(v-1)
+b<- v*r/k
+y<- ceiling(x)
+z<- ceiling(b)
+if(!(x==y & b==z)) {
+# change r
+r<-NULL
+for (i in 2:maxRep){
+x<- i*(k-1)/(v-1)
+b<- v*i/k
+y<- ceiling(x)
+z<- ceiling(b)
+if(x==y & b==z)r<-c(r,i)
+}
+if(!is.null(r) ) return(cat("\n Change r by ",paste(r, collapse = ", "),"...\n"))
+else return(cat("Other k <> ",k,"; 1<k<",v,"\n"))
+}
+}
+
+if(is.null(r)){
+for (i in 2:maxRep){
+x<- i*(k-1)/(v-1)
+b<- v*i/k
+y<- ceiling(x)
+z<- ceiling(b)
+if(x==y & b==z)r<-c(r,i)
+}
+r<-r[1]
+}
+b<- v*r/k
+if (requireNamespace("AlgDesign", quietly = TRUE)) {
+initial <- AlgDesign::optBlock(~., withinData = factor(1:v), blocksizes = rep(k,b))$row
+md <- matrix(initial, byrow = TRUE, ncol = k)
+}
+#----------
     b<-nrow(md)
     bp<-sample(1:b,b)
     md<- md[bp,]
@@ -37,7 +75,7 @@ cat("\nReplication:",r,"\n")
 cat("\nEfficiency factor",E,"\n\n<<< Book >>>\n")
 statistics<-data.frame(lambda= lambda,treatmeans=ntr,blockSize=k,blocks=b,r=r,Efficiency=E)
 rownames(statistics)<-"values"
-outdesign<-list(parameters=parameters,statistics=statistics,book=book)
+outdesign<-list(parameters=parameters,statistics=statistics,
+sketch=matrix(book[,3], byrow = TRUE, ncol = k),book=book)
 return(outdesign)
 }
-

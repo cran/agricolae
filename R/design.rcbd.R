@@ -28,6 +28,6 @@ start0<-10^serie
 if(serie==0) start0<-0
 book$plots<-start0+1:nrow(book)
 }
-outdesign<-list(parameters=parameters,book=book)
+outdesign<-list(parameters=parameters,sketch=matrix(book[,3], byrow = TRUE, ncol = ntr),book=book)
 return(outdesign)
 }

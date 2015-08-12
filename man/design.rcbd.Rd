@@ -50,8 +50,8 @@ book <-outdesign$book # field book
 # file.show("rcbd.txt")
 # Plots in field model ZIGZAG
 fieldbook <- zigzag(outdesign)
-print(t(matrix(fieldbook[,1],5,6)))
-print(t(matrix(fieldbook[,3],5,6)))
+print(outdesign$sketch)
+print(matrix(fieldbook[,1],byrow=TRUE,ncol=5))
 # continuous numbering of plot
 outdesign <-design.rcbd(trt,6,serie=0,continue=TRUE)
 head(outdesign$book)

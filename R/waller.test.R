@@ -78,7 +78,7 @@
 statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror,F.Value=Fc,CriticalDifference=MSD)	
 	}                                                                                                    
 	if (!group) {                                                                                        
-		comb <-combn(ntr,2)                                                                                  
+		comb <-utils::combn(ntr,2)                                                                                  
 		nn<-ncol(comb)                                                                                       
 		dif<-rep(0,nn)                                                                                       
 		MSD1<-rep(0,nn)                                                                                      

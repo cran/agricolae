@@ -75,7 +75,7 @@
 	if (!group) {
 		Omeans<-order(means[,1],decreasing = TRUE)
 		Ordindex<-order(Omeans)
-		comb <-combn(ntr,2)
+		comb <-utils::combn(ntr,2)
 		nn<-ncol(comb)
 		dif<-rep(0,nn)
 		DIF<-dif

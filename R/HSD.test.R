@@ -67,7 +67,7 @@ statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror,HSD=HSD, r.harmonic=nr)
 	groups <- data.frame(groups[,1:3])
 	}
 	else {
-		comb <-combn(ntr,2)
+		comb <-utils::combn(ntr,2)
 		nn<-ncol(comb)
 		dif<-rep(0,nn)
 		sig<-NULL

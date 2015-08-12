@@ -40,6 +40,6 @@ plots <- fila*number+(1:r)
 book <- data.frame(plots, row = as.factor(fila), col = as.factor(columna),
 		trat = as.factor(trat))
 names(book)[4] <- c(paste(deparse(substitute(trt))))
-outdesign<-list(parameters=parameters,book=book)
+outdesign<-list(parameters=parameters,sketch=matrix(book[,4], byrow = TRUE, ncol = r),book=book)
 return(outdesign)
 }

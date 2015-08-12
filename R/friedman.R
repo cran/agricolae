@@ -83,7 +83,7 @@ comparison=NULL
 statistics<-data.frame(Chisq=T1.aj,p.chisq=p.value,F=T2.aj,p.F=PF,LSD)
 }
 if (!group) {
-comb <-combn(ntr,2)
+comb <-utils::combn(ntr,2)
 nn<-ncol(comb)
 dif<-rep(0,nn)
 pvalue<-rep(0,nn)

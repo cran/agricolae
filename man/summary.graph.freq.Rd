@@ -16,7 +16,13 @@
   \item{\dots}{ other parameters of graphic}
 }
 \value{
-  \item{object }{Object by graph.freq()}
+  \item{Lower }{Lower limit class}
+  \item{Upper }{Upper limit class}
+  \item{Main }{class point}
+  \item{Frequency }{Frequency}
+  \item{Percentage }{Percentage frequency}
+  \item{CF }{Cumulative frequency}
+  \item{CPF }{Cumulative Percentage frequency}
 }
 \author{ Felipe de Mendiburu }
 
@@ -28,8 +34,8 @@ library(agricolae)
 data(growth)
 attach(growth)
 h2<-graph.freq(height,plot=FALSE)
-summary(h2)
 detach(growth)
+print(summary(h2),row.names=FALSE)
 }
 \keyword{ distribution }% at least one, from doc/KEYWORDS
 

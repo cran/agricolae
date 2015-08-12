@@ -86,5 +86,6 @@ for (j in 1:k) {
 suppressWarnings(warning(rect(breaks[j], 0, breaks[j + 1], density[j], ...)))
 }}
 }
+class(histogram)<-c("graph.freq","histogram")
     invisible(histogram)
 }

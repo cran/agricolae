@@ -139,7 +139,7 @@
 	if (!group) {
 		Omeans<-order(mean.adj,decreasing = TRUE)
 		Ordindex<-order(Omeans)
-		comb <- combn(ntr, 2)
+		comb <- utils::combn(ntr, 2)
 		nn <- ncol(comb)
 		dif <- rep(0, nn)
 		sig <- rep(" ",nn)

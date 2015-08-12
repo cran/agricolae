@@ -42,15 +42,13 @@ Copyright (2008) by John Wiley and Sons. Inc., Hoboken, new Yersy }
 \examples{
 library(agricolae)
 varieties<-c("perricholi","yungay","maria bonita","tomasa")
-outdesign <-design.youden(varieties,r=3,serie=2,seed=23)
+r<-3
+outdesign <-design.youden(varieties,r,serie=2,seed=23)
 youden <- outdesign$book
-print(youden) # field book.
+print(outdesign$sketch)
 plots <-as.numeric(youden[,1])
-trt <-as.character(youden[,4])
-dim(plots)<-c(3,4)
-dim(trt) <-c(3,4)
-print(t(plots))
-print(t(trt))
+print(matrix(plots,byrow=TRUE,ncol=r))
+print(youden) # field book.
 # Write on hard disk.
 # write.table(youden,"youden.txt", row.names=FALSE, sep="\t")
 # file.show("youden.txt")

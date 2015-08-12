@@ -85,6 +85,6 @@ C1[, 4] <- as.factor(C1[, 4])
 C1[, 5] <- as.factor(C1[, 5])
 names(C1)[4] <- c(paste(deparse(substitute(trt1))))
 names(C1)[5] <- c(paste(deparse(substitute(trt2))))
-outdesign<-list(parameters=parameters,book=C1)
+outdesign<-list(parameters=parameters,sketch=matrix(paste(C1[,4], C1[,5]), byrow = TRUE, ncol = r),book=C1)
 return(outdesign)
 }

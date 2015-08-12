@@ -194,7 +194,7 @@ ma<-na.omit(ma)
 	statistics<-data.frame(Efficiency=E,Mean=Mean,CV=CV)
 	rownames(parameters)<-" "
 	rownames(statistics)<-" "
-	comb <- combn(ntr, 2)
+	comb <- utils::combn(ntr, 2)
 	nn <- ncol(comb)
 	dif <- rep(0, nn)
 	stdt <- rep(0, nn)
