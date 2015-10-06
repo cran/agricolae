@@ -10,7 +10,7 @@
   The function is only for squares of the odd numbers and even numbers (4, 8, 10 and 12)
 }
 \usage{
-design.graeco(trt1, trt2, serie = 2, seed = 0, kinds = "Super-Duper")
+design.graeco(trt1, trt2, serie = 2, seed = 0, kinds = "Super-Duper",randomization=TRUE)
 }
 
 \arguments{
@@ -19,6 +19,7 @@ design.graeco(trt1, trt2, serie = 2, seed = 0, kinds = "Super-Duper")
   \item{serie}{ number plot, 1: 11,12; 2: 101,102; 3: 1001,1002 }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
+  \item{randomization}{ TRUE or FALSE - randomize}
 }
 \details{
   kinds <- c("Wichmann-Hill", "Marsaglia-Multicarry", "Super-Duper",

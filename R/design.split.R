@@ -1,4 +1,5 @@
-design.split<-function (trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),serie = 2, seed = 0, kinds = "Super-Duper",first=TRUE )
+design.split<-function (trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),serie = 2, seed = 0, kinds = "Super-Duper",
+first=TRUE,randomization=TRUE )
 {
     n1<-length(trt1)
     n2<-length(trt2)
@@ -10,15 +11,15 @@ design.split<-function (trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),serie = 
     design <- match.arg(design)
     number<-10^serie +1
     if (design == "crd") {
-        plan<-design.crd(trt1,r,serie, seed, kinds)
+        plan<-design.crd(trt1,r,serie, seed, kinds,randomization)
         k<-3
         }
     if (design == "rcbd"){
-        plan<-design.rcbd(trt1,r,serie, seed, kinds, first)
+        plan<-design.rcbd(trt1,r,serie, seed, kinds, first,randomization)
         k<-3
         }
     if (design == "lsd") {
-        plan<-design.lsd(trt1,serie, seed, kinds, first)
+        plan<-design.lsd(trt1,serie, seed, kinds, first,randomization)
         r<-n1
         k<-4
         }
@@ -37,7 +38,12 @@ names(B)[j]<-names(parameters)[i]
 }
 nplot<-nrow(book)
 d<-NULL
+if(randomization){
 for(i in 1:nplot)d<-rbind(d,sample(trt2,n2))
+}
+else{
+d<-rbind(d,trt2[1:n2])
+}
 aa<-data.frame(book,trt2=d[,1])
 for(j in 2:n2) aa<-rbind(aa,data.frame(book,trt2=d[,j]))
 aa<-aa[order(aa[,1]),]

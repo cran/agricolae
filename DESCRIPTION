@@ -1,15 +1,15 @@
 Package: agricolae
 Type: Package
 Title: Statistical Procedures for Agricultural Research
-Version: 1.2-2
-Date: 2015-08-12
+Version: 1.2-3
+Date: 2015-10-06
 Author: Felipe de Mendiburu
 Maintainer: Felipe de Mendiburu <f.mendiburu@cgiar.org>
-Imports: klaR, MASS, nlme, cluster, spdep, AlgDesign, utils
-Description: Agricolae was presented in the thesis "A statistical analysis tool for agricultural research" to obtain the degree of Master on science, mention Systems Engineering, Faculty of Industrial and Systems Engineering, National Engineering University (UNI), Lima-Peru. Original idea, support and data sets came from CIP (International Potato Center). Agricolae offers extensive functionality on experimental design especially for agricultural and plant breeding experiments, which can also be useful for other purposes. It supports planning of lattice, Alpha, Cyclic, Complete Block, Latin Square, Graeco-Latin Squares, augmented block, factorial, split and strip plot designs. There are also various analysis facilities for experimental data, e.g. treatment comparison procedures and several non-parametric tests comparison, biodiversity indexes and consensus cluster.
+Imports: klaR, MASS, nlme, cluster, spdep, AlgDesign, graphics
+Description: Original idea was presented in the thesis "A statistical analysis tool for agricultural research" to obtain the degree of Master on science, National Engineering University (UNI), Lima-Peru. Some experimental data for the examples come from the CIP and others research. Agricolae offers extensive functionality on experimental design especially for agricultural and plant breeding experiments, which can also be useful for other purposes. It supports planning of lattice, Alpha, Cyclic, Complete Block, Latin Square, Graeco-Latin Squares, augmented block, factorial, split and strip plot designs. There are also various analysis facilities for experimental data, e.g. treatment comparison procedures and several non-parametric tests comparison, biodiversity indexes and consensus cluster.
 License: GPL
 URL: http://tarwi.lamolina.edu.pe/~fmendiburu
 NeedsCompilation: no
-Packaged: 2015-08-13 15:13:11 UTC; fdemendiburu
+Packaged: 2015-10-06 18:52:33 UTC; fdemendiburu
 Repository: CRAN
-Date/Publication: 2015-08-13 19:55:35
+Date/Publication: 2015-10-06 22:46:23

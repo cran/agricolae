@@ -8,7 +8,7 @@
   The seed is by set.seed(seed, kinds).
 }
 \usage{
-design.lsd(trt, serie = 2, seed = 0, kinds = "Super-Duper",first=TRUE)
+design.lsd(trt, serie = 2, seed = 0, kinds = "Super-Duper",first=TRUE,randomization=TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -17,6 +17,7 @@ design.lsd(trt, serie = 2, seed = 0, kinds = "Super-Duper",first=TRUE)
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
   \item{first}{ TRUE or FALSE - randomize rep 1}
+  \item{randomization}{ TRUE or FALSE - randomize}
 }
 \details{
   kinds <- c("Wichmann-Hill", "Marsaglia-Multicarry", "Super-Duper",

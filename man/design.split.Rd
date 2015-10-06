@@ -9,7 +9,7 @@
 }
 \usage{
 design.split(trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),serie = 2,
-seed = 0, kinds = "Super-Duper", first=TRUE)
+seed = 0, kinds = "Super-Duper", first=TRUE,randomization=TRUE)
 }
 
 \arguments{
@@ -21,6 +21,7 @@ seed = 0, kinds = "Super-Duper", first=TRUE)
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
   \item{first}{ TRUE or FALSE - randomize rep 1}
+  \item{randomization}{ TRUE or FALSE - randomize}
 }
 \details{
   kinds <- c("Wichmann-Hill", "Marsaglia-Multicarry", "Super-Duper",

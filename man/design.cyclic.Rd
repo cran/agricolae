@@ -9,7 +9,8 @@
   replications <= 10. 
 }
 \usage{
-design.cyclic(trt, k, r, serie = 2, rowcol = FALSE, seed = 0, kinds = "Super-Duper")
+design.cyclic(trt, k, r, serie = 2, rowcol = FALSE, seed = 0, kinds = "Super-Duper"
+,randomization=TRUE)
 }
 \arguments{
   \item{trt}{ vector treatments }
@@ -19,6 +20,7 @@ design.cyclic(trt, k, r, serie = 2, rowcol = FALSE, seed = 0, kinds = "Super-Dup
   \item{rowcol}{ TRUE: row-column design }
   \item{seed}{ init seed random }
   \item{kinds}{ random method }
+  \item{randomization}{ TRUE or FALSE - randomize}
 }
 \details{
   Number o treatment 6 to 30.

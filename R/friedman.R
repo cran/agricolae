@@ -101,7 +101,7 @@ j<-comb[2,k]
 #}
 dif[k]<-s[comb[1,k]]-s[comb[2,k]]
 sdtdif<- sqrt(2*(m[1]*A1-t(s)%*%s)/DFerror)
-pvalue[k]<- 2*round(1-pt(abs(dif[k])/sdtdif,DFerror),6)
+pvalue[k]<- round(2*(1-pt(abs(dif[k])/sdtdif,DFerror)),4)
 LSD[k]<-round(Tprob*sdtdif,2)
 LCL[k] <- dif[k] - LSD[k]
 UCL[k] <- dif[k] + LSD[k]
@@ -121,9 +121,10 @@ statistics<-data.frame(Chisq=T1.aj,p.chisq=p.value,F=T2.aj,p.F=PF)
 groups=NULL
 # output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,3])
 }
-parameters<-data.frame(Df=ntr-1,ntr = ntr, t.value=Tprob)
+parameters<-data.frame(Df=ntr-1,ntr = ntr, t.value=Tprob,alpha=alpha,test="Friedman",name.t=name.t)
 rownames(parameters)<-" "
 rownames(statistics)<-" "
+Means<-data.frame(rankSum=means[,2],Means)
 output<-list(statistics=statistics,parameters=parameters, 
 		means=Means,comparison=comparison,groups=groups)
 invisible(output)

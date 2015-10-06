@@ -10,7 +10,7 @@
 }
 \usage{
 design.ab(trt, r, serie = 2, design=c("rcbd","crd","lsd"),
-seed = 0, kinds = "Super-Duper",first=TRUE)
+seed = 0, kinds = "Super-Duper",first=TRUE,randomization=TRUE)
 }
 
 \arguments{
@@ -21,6 +21,7 @@ seed = 0, kinds = "Super-Duper",first=TRUE)
   \item{seed}{ Seed }
   \item{kinds}{ Method for to randomize }
   \item{first}{ TRUE or FALSE - randomize rep 1}
+  \item{randomization}{ TRUE or FALSE - randomize}
 }
 \details{
   kinds <- c("Wichmann-Hill", "Marsaglia-Multicarry", "Super-Duper",

@@ -1,5 +1,5 @@
 `design.graeco` <-
-function (trt1, trt2, serie = 2, seed = 0, kinds = "Super-Duper")
+function (trt1, trt2, serie = 2, seed = 0, kinds = "Super-Duper",randomization=TRUE)
 {
 number<-10
 if(serie>0) number<-10^serie
@@ -15,7 +15,7 @@ genera<-runif(1)
 seed <-.Random.seed[3]
 }
 set.seed(seed,kinds)
-parameters<-list(design="graeco",trt1=trt1,trt2=trt2,r=r,serie=serie,seed=seed,kinds=kinds)
+parameters<-list(design="graeco",trt1=trt1,trt2=trt2,r=r,serie=serie,seed=seed,kinds=kinds,randomization)
 col <- rep(gl(r, 1), r)
 fila <- gl(r, r)
 fila <- as.character(fila)
@@ -41,8 +41,10 @@ c1<-c(1,12,6,7,5,4,10,11,9,8,2,3,2,11,5,8,6,3,9,12,10,7,1,4,3,10,8,5,7,2,12,9,11
 c2<-c(1,2,3,4,9,10,11,12,5,6,7,8,2,1,4,3,10,9,12,11,6,5,8,7,3,4,1,2,11,12,9,10,7,8,5,6,4,3,2,1,12,11,10,9,8,7,6,5,5,6,7,8,1,2,3,4,9,10,11,12,6,5,8,7,2,1,4,3,10,9,12,11,7,8,5,6,3,4,1,2,11,1,9,10,8,7,6,5,4,3,2,1,12,11,10,9,9,10,11,12,5,6,7,8,1,2,3,4,10,9,12,11,6,5,8,7,2,1,4,3,11,12,9,10,7,8,5,6,3,4,1,2,12,11,10,9,8,7,6,5,4,3,2,1)
 
 }
-t1 <- sample(trt1, r, replace = FALSE)
-t2 <- sample(trt2, r, replace = FALSE)
+t1<-trt1
+if(randomization)t1 <- sample(trt1, r, replace = FALSE)
+t2<-trt2
+if(randomization)t2 <- sample(trt2, r, replace = FALSE)
 t1 <- t1[c1]
 t2 <- t2[c2]
 C1 <- data.frame(C1[, 1:3], t1,t2)
@@ -62,9 +64,11 @@ k <- i + j - r - 1
 a[i, j] <- k
 }
 }
-m <- sample(trt1, r)
+m<-trt1
+if(randomization)m <- sample(trt1, r)
 C1 <- data.frame(C1, m[a])
-m <- sample(trt2, r)
+m<-trt2
+if(randomization)m <- sample(trt2, r)
 C2 <- data.frame(C2, m[a])
 ntr <- length(trt1)
 C1 <- data.frame(C1, B = 0)

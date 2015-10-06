@@ -118,7 +118,8 @@
 			pvalue[k] <- 2 * (1 - pt(abs(dif[k])/sdtdif[k], DFerror))
 		}
 		if (p.adj != "none")
-			pvalue <- round(p.adjust(pvalue, p.adj), 6)
+			pvalue <- p.adjust(pvalue, p.adj)
+		pvalue <- round(pvalue,4)
 		LCL1 <- dif - Tprob * sdtdif
 		UCL1 <- dif + Tprob * sdtdif
 		for (k in 1:nn) {
@@ -141,7 +142,9 @@
 		groups <- NULL
 		statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror)
 	}
-		parameters<-data.frame(Df=DFerror,ntr = ntr, t.value=Tprob)
+		test<-"Fisher-LSD"
+		if(p.adj!="none")test<-p.adj
+		parameters<-data.frame(Df=DFerror,ntr = ntr, t.value=Tprob,alpha=alpha,test=test,name.t=name.t)
 		if(p.adj!="none") names(parameters)[3]<-p.adj
 		rownames(parameters)<-" "
 		rownames(statistics)<-" "

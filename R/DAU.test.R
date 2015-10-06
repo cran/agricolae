@@ -171,9 +171,9 @@ if(!group){
 		dif[k] <- r.trt[i, 5] - r.trt[j, 5]
 		tc <- abs(dif[k])/sqrt(V[i,j])
     if (method == "lsd")
-    pvalue[k] <- 2 * round(1 - pt(tc, glerror), 6)
+    pvalue[k] <- 2 * round(1 - pt(tc, glerror), 4)
     if (method == "tukey")
-    pvalue[k] <- round(1 - ptukey(tc*sqrt(2), ntr, glerror), 6)
+    pvalue[k] <- round(1 - ptukey(tc*sqrt(2), ntr, glerror), 4)
 	sig[k]<-" "
 	if (pvalue[k] <= 0.001) sig[k]<-"***"
 	else  if (pvalue[k] <= 0.01) sig[k]<-"**"
@@ -204,7 +204,7 @@ if(!group){
     rownames(means)<- means[,1]
     means<-means[,-1]
 	parameters<-data.frame(treatments=ntr,Controls=comunes,
-	Augmented=ntr-comunes,blocks=b)
+	Augmented=ntr-comunes,blocks=b,alpha=alpha,test="DAU")
 	statistics<-data.frame(Mean=mean.yy,CV=CV)
 	rownames(parameters)<-" "
 	rownames(statistics)<-" "

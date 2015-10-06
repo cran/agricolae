@@ -24,6 +24,10 @@ nx<-abs(i-j)+1
 if (nx==1) nx=2
 if(snk ==1 ) Tprob <- qtukey(p=1-alpha,nmeans=nx, df=DFerror)
 if(snk ==2 ) Tprob <- qtukey(p=(1-alpha)^(nx-1),nmeans=nx, df=DFerror)
+if(snk ==7 ) {
+  if(nx <= n-2) Tprob<- qtukey(p=(1-alpha)^(nx/n),nx,df=DFerror)
+  if(nx > n-2) Tprob<- qtukey(p=(1-alpha),nx,df=DFerror)
+}
 if (!is.null(vartau))  {
 ii0<-w[i, 1]
 jj0<-w[j, 1]
@@ -52,6 +56,11 @@ nx<-abs(v-cambio)+1
 if(nx == 1)  nx=2
 if(snk ==1 ) Tprob <- qtukey(p=1-alpha,nmeans=nx, df=DFerror)
 if(snk ==2 ) Tprob <- qtukey(p=(1-alpha)^(nx-1),nmeans=nx, df=DFerror)
+if(snk ==7 ) {
+  if(nx <= n-2) Tprob<- qtukey(p=(1-alpha)^(nx/n),nx,df=DFerror)
+  if(nx > n-2) Tprob<- qtukey(p=(1-alpha),nx,df=DFerror)
+}
+
 if (!is.null(vartau))  {
 ii0<-w[i, 1]
 jj0<-w[j, 1]

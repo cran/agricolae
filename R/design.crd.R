@@ -1,5 +1,5 @@
 `design.crd` <-
-function(trt,r,serie=2,seed=0,kinds="Super-Duper")
+function(trt,r,serie=2,seed=0,kinds="Super-Duper",randomization=TRUE)
 {
 number<-0
 if(serie>0) number<-10^serie
@@ -14,9 +14,10 @@ genera<-runif(1)
 seed <-.Random.seed[3]
 }
 set.seed(seed,kinds)
-parameters<-list(design="crd",trt=trt,r=r,serie=serie,seed=seed,kinds=kinds)
+parameters<-list(design="crd",trt=trt,r=r,serie=serie,seed=seed,kinds=kinds,randomization)
 for (i in 2:tr) y <- c(y, rep(TR[i], r[i]))
-	trat <- sample(y, length(y), replace = FALSE)
+trat<-y
+if(randomization)trat <- sample(y, length(y), replace = FALSE)
 	plots <- number+1:length(trat)
 	dca<-data.frame(plots, trat)
 	dca[,1]<-as.numeric(dca[,1])

@@ -7,7 +7,7 @@
   the 4 series formulated by Patterson and Williams.
   }
 \usage{
-design.alpha(trt, k, r, serie = 2, seed = 0, kinds = "Super-Duper")
+design.alpha(trt, k, r, serie = 2, seed = 0, kinds = "Super-Duper",randomization=TRUE)
 }
 \arguments{
   \item{trt}{ Treatments}
@@ -16,6 +16,7 @@ design.alpha(trt, k, r, serie = 2, seed = 0, kinds = "Super-Duper")
   \item{serie}{ number plot, 1: 11,12; 2: 101,102; 3: 1001,1002 }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
+  \item{randomization}{ TRUE or FALSE - randomize}
 }
 \details{
 

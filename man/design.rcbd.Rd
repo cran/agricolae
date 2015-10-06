@@ -9,7 +9,7 @@
 }
 \usage{
 design.rcbd(trt, r, serie = 2, seed = 0, kinds = "Super-Duper", first=TRUE,
-continue=FALSE )
+continue=FALSE,randomization=TRUE )
 }
 
 \arguments{
@@ -20,6 +20,7 @@ continue=FALSE )
   \item{kinds}{ method for to randomize }
   \item{first}{ TRUE or FALSE - randomize rep 1}
   \item{continue}{ TRUE or FALSE, continuous numbering of plot}
+  \item{randomization}{ TRUE or FALSE - randomize}
 }
 \details{
   kinds <- c("Wichmann-Hill", "Marsaglia-Multicarry", "Super-Duper",

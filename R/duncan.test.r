@@ -96,7 +96,7 @@
 			nx<-abs(i-j)+1
 			odif[k] <- abs(Ordindex[i]- Ordindex[j])+1
 #sdtdif<-sqrt(MSerror * (1/means[i,4] + 1/means[j,4]))
-			pvalue[k]<- round((1-ptukey(DIF[k]/sdtdif,odif[k],DFerror))^1/(odif[k]-1),6)
+			pvalue[k]<- round(1-ptukey(DIF[k]/sdtdif,odif[k],DFerror)^(1/(odif[k]-1)),4)
 			LCL[k] <- dif[k] - DUNCAN[odif[k]-1]
 			UCL[k] <- dif[k] + DUNCAN[odif[k]-1]
 			sig[k]<-" "
@@ -114,7 +114,7 @@
 		groups=NULL
 #		output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,4],std.err=means[,3])
 	}
-		parameters<-data.frame(Df=DFerror,ntr = ntr)
+	parameters<-data.frame(Df=DFerror,ntr = ntr,alpha=alpha,test="Duncan",name.t=name.t)
 	statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror)
 	Duncan<-data.frame(Table=Tprob,CriticalRange=DUNCAN)
 	rownames(parameters)<-" "

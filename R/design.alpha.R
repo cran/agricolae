@@ -1,5 +1,5 @@
 `design.alpha` <-
-function (trt, k, r, serie = 2, seed = 0, kinds = "Super-Duper")
+function (trt, k, r, serie = 2, seed = 0, kinds = "Super-Duper",randomization=TRUE)
 {
 number<-10
 if(serie>0) number<-10^serie
@@ -97,18 +97,21 @@ if(serie>0) number<-10^serie
 			rownames(statistics)<-"values"
             for (m in 1:r) {
                 for (j in 1:s) {
-                  aleatorio <- sample(1:k, k)
+                aleatorio <- 1:k
+                if(randomization) aleatorio <- sample(1:k, k)
                   cc[, j, m] <- cc[aleatorio, j, m]  # randomize block in rep
                 }
             }
             for (m in 1:r) {
-                aleatorio <- sample(1:s, s)
+                aleatorio <- 1:s
+                if(randomization)aleatorio <- sample(1:s, s)
                 cc[, , m] <- cc[, aleatorio, m]  # randomize col in rep
             }
             cc<-cc+1
             block <- gl(s, k)
             md <- as.numeric(cc[, , 1])
-            bp <- sample(1:ntr, ntr)    # 
+            bp <- 1:ntr
+            if(randomization) bp <- sample(1:ntr, ntr)    # 
             trt <- trt[bp]              # randomize treatments
             mtr <- trt[md]              # assign to plot
             book <- data.frame(block = as.factor(block), trt = as.factor(mtr),

@@ -1,6 +1,6 @@
 `design.ab` <-
 function(trt, r=NULL,serie=2,design=c("rcbd","crd","lsd"),seed=0,kinds="Super-Duper",
-first=TRUE ){
+first=TRUE,randomization=TRUE ){
 design <- match.arg(design)
 if( design=="rcbd" | design=="crd") posicion <- 3
 else posicion <- 4
@@ -35,9 +35,9 @@ fact[k]<-paste(tr0[i],j)
 }
 }
 #------------------------------
-if(design=="rcbd")plan<-design.rcbd(trt=fact, r, serie, seed, kinds, first )
-if(design=="crd")plan<-design.crd(trt=fact, r, serie, seed, kinds)
-if(design=="lsd")plan<-design.lsd(trt=fact, serie, seed, kinds, first )
+if(design=="rcbd")plan<-design.rcbd(trt=fact, r, serie, seed, kinds, first,randomization )
+if(design=="crd")plan<-design.crd(trt=fact, r, serie, seed, kinds,randomization)
+if(design=="lsd")plan<-design.lsd(trt=fact, serie, seed, kinds, first,randomization )
 parameters<-plan$parameters
 parameters$applied<-parameters$design
 parameters$design<-"factorial"

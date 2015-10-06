@@ -8,7 +8,7 @@
   The seed is by set.seed(seed, kinds).
 }
 \usage{
-design.strip(trt1, trt2,r, serie = 2, seed = 0, kinds = "Super-Duper")
+design.strip(trt1, trt2,r, serie = 2, seed = 0, kinds = "Super-Duper",randomization=TRUE)
 }
 
 \arguments{
@@ -18,6 +18,7 @@ design.strip(trt1, trt2,r, serie = 2, seed = 0, kinds = "Super-Duper")
   \item{serie}{ number plot, 1: 11,12; 2: 101,102; 3: 1001,1002 }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
+  \item{randomization}{ TRUE or FALSE - randomize}
 }
 \details{
   kinds <- c("Wichmann-Hill", "Marsaglia-Multicarry", "Super-Duper",

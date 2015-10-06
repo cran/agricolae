@@ -1,5 +1,5 @@
 `design.lattice` <-
-function(trt,r=3,serie=2,seed=0,kinds="Super-Duper") {
+function(trt,r=3,serie=2,seed=0,kinds="Super-Duper",randomization=TRUE) {
 number<-10
 if(serie>0) number<-10^serie
 ntr<-length(trt)
@@ -30,7 +30,8 @@ c2<-t(c1)
 # randomiza cada cuadro
 nt<-k*k
 t<-1:nt
-s<-sample(t,nt)
+s<-t
+if(randomization)s<-sample(t,nt)
 for (a in 1:k) {
 for (b in 1:k) {
 c1[a,b]<-s[c1[a,b]]
@@ -48,11 +49,14 @@ Z<-as.numeric(t(c1))
 c3<-Z[order(latino)]
 dim(c3)<-c(k,k)
 c3<-t(c3)
-s<-sample(1:k,k,replace=FALSE)
+s<-1:k
+if(randomization)s<-sample(1:k,k,replace=FALSE)
 c1<-c1[s,]
-s<-sample(1:k,k,replace=FALSE)
+s<-1:k
+if(randomization)s<-sample(1:k,k,replace=FALSE)
 c2<-c2[s,]
-s<-sample(1:k,k,replace=FALSE)
+s<-1:k
+if(randomization)s<-sample(1:k,k,replace=FALSE)
 c3<-c3[s,]
 trt1<-c(as.numeric(t(c1)),as.numeric(t(c2)),as.numeric(t(c3)))
 Rep<-as.numeric(sqr)

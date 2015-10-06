@@ -9,7 +9,7 @@ import(nlme)
 import(spdep)
 import(AlgDesign)
 import(utils)
-importFrom("graphics", "abline", "arrows", "axis", "barplot", "legend",
+importFrom("graphics", "layout", "abline", "arrows", "axis", "barplot", "legend",
      "lines", "plot", "points", "rect", "segments", "text")
      importFrom("stats", "AIC", "BIC", "anova", "aov", "as.dendrogram",
      "as.dist", "as.formula", "chisq.test", "coef", "cutree",
@@ -19,4 +19,3 @@ importFrom("graphics", "abline", "arrows", "axis", "barplot", "legend",
      "pt", "ptukey", "qchisq", "qf", "qnorm", "qt", "qtukey",
      "quantile", "residuals", "rnorm", "runif", "sd", "var",
      "vcov")
-

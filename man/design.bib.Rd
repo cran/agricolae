@@ -8,7 +8,8 @@
   The seed is by set.seed(seed, kinds).
 }
 \usage{
-design.bib(trt, k, r=NULL, serie = 2, seed = 0, kinds = "Super-Duper",maxRep=20)
+design.bib(trt, k, r=NULL, serie = 2, seed = 0, kinds = "Super-Duper",
+maxRep=20,randomization=TRUE)
 }
 
 \arguments{
@@ -19,6 +20,7 @@ design.bib(trt, k, r=NULL, serie = 2, seed = 0, kinds = "Super-Duper",maxRep=20)
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
   \item{maxRep}{ repetition maximum }
+  \item{randomization}{ TRUE or FALSE - randomize}
 }
 \details{
 The package AlgDesign is necessary.

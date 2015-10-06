@@ -46,6 +46,7 @@ else  if (pvalue[k] <= 0.01) sig[k]<-"**"
 else  if (pvalue[k] <= 0.05) sig[k]<-"*"
 else  if (pvalue[k] <= 0.1) sig[k]<-"."
 }
+pvalue<-round(pvalue,4)
 tr.i <- medians[comb[1, ],1]
 tr.j <- medians[comb[2, ],1]
 comparison<-data.frame(Median = Median,"Chisq"=Tstat, pvalue=pvalue,"sig"=sig)
@@ -57,7 +58,7 @@ cat("\nMedian =",M0,"\n\n")
 print(comparison)
 }
 statistics<-data.frame(Chisq=Tall,p.chisq=Pall,Median=M0)
-parameters<-data.frame(Df=parameter,ntr = ntr)
+parameters<-data.frame(Df=parameter,ntr = ntr,test="Median")
 rownames(parameters)<-" "
 rownames(statistics)<-" "
 output<-list(statistics=statistics,parameters=parameters,Medians=medians,

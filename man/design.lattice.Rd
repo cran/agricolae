@@ -6,7 +6,7 @@
   SIMPLE and TRIPLE lattice designs. It randomizes treatments in k x k lattice.
 }
 \usage{
-design.lattice(trt, r=3, serie = 2, seed = 0, kinds = "Super-Duper")
+design.lattice(trt, r=3, serie = 2, seed = 0, kinds = "Super-Duper",randomization=TRUE)
 }
 
 \arguments{
@@ -15,6 +15,7 @@ design.lattice(trt, r=3, serie = 2, seed = 0, kinds = "Super-Duper")
   \item{serie}{ number plot, 1: 11,12; 2: 101,102; 3: 1001,1002 }
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
+  \item{randomization}{ TRUE or FALSE - randomize}
 }
 \details{
    kinds <- c("Wichmann-Hill", "Marsaglia-Multicarry", "Super-Duper",

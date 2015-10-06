@@ -1,5 +1,5 @@
 `design.youden` <-
-function (trt,r,serie=2,seed=0,kinds="Super-Duper",first=TRUE)
+function (trt,r,serie=2,seed=0,kinds="Super-Duper",first=TRUE,randomization=TRUE)
 {
 number<-10
 if(serie>0) number<-10^serie
@@ -17,14 +17,17 @@ i<-c(j:t)
 if(j>1) i<-c(i,1:(j-1))
 a[,j]<-i
 }
-m<-sample(1:t,t)
+m<-1:t
+if(randomization)m<-sample(1:t,t)
 M<-m[a]
 a<-trt[M]
 dim(a)<-c(t,r)
 # Randomize row and column
-m<-sample(1:r,r)
+m<-1:r
+if(randomization)m<-sample(1:r,r)
 a[,m]-> a
-m<-c(1,sample(2:t,t-1))
+m<-1:t
+if(randomization)m<-c(1,sample(2:t,t-1))
 a<-a[m,]
 if (!first) {
 	m<-order(a[1,])

@@ -110,7 +110,7 @@ statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror,F.Value=Fc, r.harmonic=nr
 		groups=NULL
 #		output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,4],std.err=means[,3])               
 	}                                                                                                    
-	parameters<-data.frame(Df=DFerror,ntr = ntr, K=K,Waller=Tprob)
+	parameters<-data.frame(Df=DFerror,ntr = ntr, K=K,Waller=Tprob,name.t=name.t)
 	rownames(parameters)<-" "
 	rownames(statistics)<-" "
 	rownames(means)<-means[,1]

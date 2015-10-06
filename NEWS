@@ -1,5 +1,15 @@
 Changes in new version
 
+Version agricolae 1-2.3 (October 6, 2015)
+-------------------------------------------
+1. REGW.test(). New function for multiple comparisons of treatments. 
+(Ryan, Einot and Gabriel and Welsch)
+2. diffograph(). New function: Mean-mean scatter plot, test: Bonferroni, Fisher, Duncan, Student-Newman-Keul 
+Tukey, Kruskall-Wallis, Friedman and Waerden test.
+3. Changes in all comparison means, add parameters to facility function diffograph.
+4. Added randomization parameter (TRUE or FALSE) in all design function.
+5. Update Tutorial
+
 Version agricolae 1-2.2 (August 12, 2015)
 -------------------------------------------
 1. Now in the frequency table shows the relative frequency as a percentage, the function is table.freq or 

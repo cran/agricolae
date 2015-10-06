@@ -97,7 +97,7 @@ j<-comb[2,kk]
 #comb[2,kk]<-i
 #}
 dif[kk]<-y[comb[1,kk]]-y[comb[2,kk]]
-pvalue[kk]<- 2*round(1-pt(abs(dif[kk])/sdtdif,gl2),6)
+pvalue[kk]<- 2*round(1-pt(abs(dif[kk])/sdtdif,gl2),4)
 sig[kk]<-" "
 if (pvalue[kk] <= 0.001) sig[kk]<-"***"
 else  if (pvalue[kk] <= 0.01) sig[kk]<-"**"
@@ -114,7 +114,7 @@ groups=NULL
 }
 #output<-data.frame(means,M="",N=r)
 #
-parameters<-data.frame(lambda=lambda,treatments=ntr,blockSize=k,blocks=b,r=r)
+parameters<-data.frame(lambda=lambda,treatments=ntr,blockSize=k,blocks=b,r=r,alpha=alpha,test="Durbin",name.t=name.t)
 statistics<-data.frame(chisq.value=s, p.value=prob, t.value=Tprob,LSD=LSD)
 	rownames(parameters)<-" "
 	rownames(statistics)<-" "

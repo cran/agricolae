@@ -86,7 +86,7 @@ j<-comb[2,k]
 #}
 dif[k]<-means[i,2]-means[j,2]
 sdtdif<- sqrt(S*((N-1-T1)/(N-ntr))*(1/means[i,4]+1/means[j,4])) # change
-pvalue[k]<- 2*round(1-pt(abs(dif[k])/sdtdif,DFerror),6)
+pvalue[k]<- round(2*(1-pt(abs(dif[k])/sdtdif,DFerror)),4)
 LSD <- Tprob*sdtdif
 LCL[k] <- dif[k] - LSD
 UCL[k] <- dif[k] + LSD
@@ -106,7 +106,8 @@ statistics<-data.frame(Chisq=T1,p.chisq=p.chisq)
 groups=NULL
 #output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,4]) # change
 }
-parameters<-data.frame(Df=ntr-1,ntr = ntr, t.value=Tprob)
+Means<-data.frame(normlScore=means[,2],Means)
+parameters<-data.frame(Df=ntr-1,ntr = ntr, t.value=Tprob,alpha=alpha,test="Waerden",name.t=name.t)
 rownames(parameters)<-" "
 rownames(statistics)<-" "
 output<-list(statistics=statistics,parameters=parameters, 

@@ -81,7 +81,7 @@
 #}
 			dif[k]<-means[i,2]-means[j,2]
 			sdtdif<-sqrt(MSerror * (1/means[i,4] + 1/means[j,4]))
-			pvalue[k]<- round(1-pf(abs(dif[k])^2/((ntr-1)*sdtdif^2),ntr-1,DFerror),6)
+			pvalue[k]<- round(1-pf(abs(dif[k])^2/((ntr-1)*sdtdif^2),ntr-1,DFerror),4)
 			
 			LCL[k] <- dif[k] - sqrt(Tprob*(ntr-1))*sdtdif
 			UCL[k] <- dif[k] + sqrt(Tprob*(ntr-1))*sdtdif
@@ -101,7 +101,7 @@
 #		output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,4],std.err=means[,3])
 	}
 	statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror,CriticalDifference=scheffe)
-	parameters<-data.frame(Df=DFerror,ntr = ntr, F=Fprob,Scheffe=Tprob)
+	parameters<-data.frame(Df=DFerror,ntr = ntr, F=Fprob,Scheffe=Tprob,alpha=alpha,test="Scheffe",name.t=name.t)
 	rownames(parameters)<-" "
 	rownames(statistics)<-" "
 	rownames(means)<-means[,1]

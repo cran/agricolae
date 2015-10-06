@@ -117,7 +117,7 @@
 	cat("\nBlocks     :", b)
 	cat("\nReplication:", r, "\n")
 	cat("\nEfficiency factor", E, "\n\n<<< Book >>>\n")}
-	parameters<-data.frame(lambda= lambda,treatmeans=ntr,blockSize=k,blocks=b,r=r)
+	parameters<-data.frame(lambda= lambda,treatmeans=ntr,blockSize=k,blocks=b,r=r,alpha=alpha,test="BIB")
 	statistics<-data.frame(Mean=Mean,Efficiency=E,CV=CV)
 	rownames(parameters)<-" "
 	rownames(statistics)<-" "
@@ -155,19 +155,19 @@
 			dif[k] <- mean.adj[i] - mean.adj[j]
 			if (test == "lsd")
 				pvalue[k] <- 2 * round(1 - pt(abs(dif[k])/sdtdif,
-								DFerror), 6)
+								DFerror), 4)
 			if (test == "tukey")
 				pvalue[k] <- round(1 - ptukey(abs(dif[k]) /sdtdif,
-								ntr, DFerror), 6)
+								ntr, DFerror), 4)
 			if (test == "snk"){
 				odif[k] <- abs(Ordindex[i]- Ordindex[j])+1
 				pvalue[k] <- round(1 - ptukey(abs(dif[k]) /sdtdif,
-								odif[k], DFerror), 6)
+								odif[k], DFerror), 4)
 			}
 			if (test == "duncan"){
 				nx<-abs(i-j)+1
 				odif[k] <- abs(Ordindex[i]- Ordindex[j])+1
-				pvalue[k]<- round((1-ptukey(abs(dif[k])/sdtdif,odif[k],DFerror))^1/(odif[k]-1),6)
+				pvalue[k]<- round(1-(ptukey(abs(dif[k])/sdtdif,odif[k],DFerror))^(1/(odif[k]-1)),4)
 			}
 			sig[k]<-" "
 			if (pvalue[k] <= 0.001) sig[k]<-"***"

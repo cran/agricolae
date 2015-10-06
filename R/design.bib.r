@@ -1,5 +1,5 @@
 `design.bib` <-
-function (trt, k, r=NULL, serie = 2, seed = 0, kinds = "Super-Duper", maxRep=20)
+function (trt, k, r=NULL, serie = 2, seed = 0, kinds = "Super-Duper", maxRep=20,randomization=TRUE)
 {
 v<-length(trt)
 number<-10
@@ -49,10 +49,12 @@ md <- matrix(initial, byrow = TRUE, ncol = k)
 }
 #----------
     b<-nrow(md)
-    bp<-sample(1:b,b)
+    bp<-1:b
+    if(randomization)bp<-sample(1:b,b)
     md<- md[bp,]
     for (i in 1:b) {
-    bi<-sample(1:k,k)
+    bi<-1:k
+    if(randomization)bi<-sample(1:k,k)
     md[i,]<- md[i,bi]
     }
 mtr<-trt[t(md)]

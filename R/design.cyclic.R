@@ -1,5 +1,5 @@
 `design.cyclic` <-
-function (trt, k, r, serie = 2, rowcol=FALSE, seed = 0, kinds = "Super-Duper")
+function (trt, k, r, serie = 2, rowcol=FALSE, seed = 0, kinds = "Super-Duper",randomization=TRUE)
 {
 number<-10
 if(serie>0) number<-10^serie
@@ -106,12 +106,14 @@ if(nj>1)  inicio <- inicial[irep,]
 # randomize the elements from block, only if it is not row-col 
 if( !rowcol) {
     for( i in 1:ntr) {
-    nr<-sample(1:k, replace=FALSE)
+    nr<-1:k
+    if(randomization)nr<-sample(1:k, replace=FALSE)
     c1[i,]<-c1[i,nr]
     }}
 # randomize los bloques
 #    nr<-sample(1:ntr, replace=FALSE)
-nr<-sample(1:ntr, replace=FALSE)
+    nr<-1:ntr
+    if(randomization)nr<-sample(1:ntr, replace=FALSE)
     c1<-c1[nr,]
     c1<-t(c1)
     c1 <- as.numeric(c1) +1

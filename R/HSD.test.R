@@ -83,7 +83,7 @@ statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror,HSD=HSD, r.harmonic=nr)
 #}
 			dif[k]<-means[i,2]-means[j,2]
 			sdtdif<-sqrt(MSerror * (1/means[i,4] + 1/means[j,4]))
-			pvalue[k]<- round(1-ptukey(abs(dif[k])*sqrt(2)/sdtdif,ntr,DFerror),6)
+			pvalue[k]<- round(1-ptukey(abs(dif[k])*sqrt(2)/sdtdif,ntr,DFerror),4)
 			
 			LCL[k] <- dif[k] - Tprob*sdtdif/sqrt(2)
 			UCL[k] <- dif[k] + Tprob*sdtdif/sqrt(2)
@@ -102,8 +102,7 @@ statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror,HSD=HSD, r.harmonic=nr)
 		groups=NULL
 		#groups<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,4],std.err=means[,3])
 	}
-	parameters<-data.frame(Df=DFerror,ntr = ntr, StudentizedRange=Tprob)
-	
+	parameters<-data.frame(Df=DFerror,ntr = ntr, StudentizedRange=Tprob,alpha=alpha,test="Tukey",name.t=name.t)
 	rownames(parameters)<-" "
 	rownames(statistics)<-" "
 rownames(means)<-means[,1]

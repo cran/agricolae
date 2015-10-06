@@ -1,5 +1,5 @@
 `design.lsd` <-
-function (trt,serie=2,seed=0,kinds="Super-Duper",first=TRUE)
+function (trt,serie=2,seed=0,kinds="Super-Duper",first=TRUE,randomization=TRUE)
 {
 number<-10
 if(serie>0) number<-10^serie
@@ -9,7 +9,7 @@ genera<-runif(1)
 seed <-.Random.seed[3]
 }
 set.seed(seed,kinds)
-parameters<-list(design="lsd",trt=trt,r=r,serie=serie,seed=seed,kinds=kinds)
+parameters<-list(design="lsd",trt=trt,r=r,serie=serie,seed=seed,kinds=kinds,randomization)
 a <- 1:(r * r)
 dim(a) <- c(r, r)
 for (i in 1:r) {
@@ -20,12 +20,14 @@ k <- i + j - r - 1
 a[i, j] <- k
 }
 }
-m<-sample(2:r,r-1)
+m<-2:r
+if(randomization)m<-sample(2:r,r-1)
 a<-a[,c(1,m)]
+if(randomization){
 if (first) {
 	m<-sample(1:r,r)
 	a<-a[m,]
-}
+}}
 trat<-trt[a]
 columna <- rep(gl(r, 1), r)
 fila <- gl(r, r)

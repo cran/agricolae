@@ -105,10 +105,11 @@ j <- comb[2, k]
 dif[k] <- means[i, 2] - means[j, 2]
 # S * ((N - 1 - H)/(N - ntr))
 sdtdif[k] <- sqrt(MSerror * (1/means[i,3] + 1/means[j, 3]))
-pvalue[k] <- 2 * round(1 - pt(abs(dif[k])/sdtdif[k],DFerror), 6)
+pvalue[k] <- 2*(1 - pt(abs(dif[k])/sdtdif[k],DFerror))
 }
 if (p.adj != "none") 
-pvalue <- round(p.adjust(pvalue, p.adj), 6)
+pvalue <- p.adjust(pvalue, p.adj)
+pvalue <- round(pvalue,4)
 LCL <- dif - Tprob * sdtdif
 UCL <- dif + Tprob * sdtdif
 sig <- rep(" ", nn)
@@ -132,10 +133,11 @@ statistics<-data.frame(Chisq=H,p.chisq=p.chisq)
 groups=NULL
 ranks=means
 }
-parameters<-data.frame(Df=ntr-1,ntr = ntr, t.value=Tprob)
+Means<-data.frame(rank=ranks[,2],Means)
+parameters<-data.frame(Df=ntr-1,ntr = ntr, t.value=Tprob,alpha=alpha,test="Kruskal-Wallis",name.t=name.t)
 rownames(parameters)<-" "
 rownames(statistics)<-" "
 output<-list(statistics=statistics,parameters=parameters, 
-means=Means,rankMeans=ranks,comparison=comparison,groups=groups)    
+means=Means,comparison=comparison,groups=groups)    
 invisible(output)
 }

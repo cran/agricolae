@@ -7,7 +7,8 @@
   other treatments (new) are replicated once.
 }
 \usage{
-design.dau(trt1, trt2, r, serie = 2, seed = 0, kinds = "Super-Duper", name="trt")
+design.dau(trt1, trt2, r, serie = 2, seed = 0, kinds = "Super-Duper", name="trt"
+,randomization=TRUE)
 }
 
 \arguments{
@@ -18,6 +19,7 @@ design.dau(trt1, trt2, r, serie = 2, seed = 0, kinds = "Super-Duper", name="trt"
   \item{seed}{ seed }
   \item{kinds}{ method for to randomize }
   \item{name}{ name of treatments}
+  \item{randomization}{ TRUE or FALSE - randomize}
 }
 \details{
   kinds <- c("Wichmann-Hill", "Marsaglia-Multicarry", "Super-Duper",
