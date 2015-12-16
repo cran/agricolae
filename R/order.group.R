@@ -22,12 +22,21 @@ if (chequeo > n) break
 for(i in j:n) {
 nx<-abs(i-j)+1
 if (nx==1) nx=2
-if(snk ==1 ) Tprob <- qtukey(p=1-alpha,nmeans=nx, df=DFerror)
-if(snk ==2 ) Tprob <- qtukey(p=(1-alpha)^(nx-1),nmeans=nx, df=DFerror)
+if(snk ==1 ) p <- 1 - alpha
+if(snk ==2 ) p <- (1-alpha)^(nx-1)
 if(snk ==7 ) {
-  if(nx <= n-2) Tprob<- qtukey(p=(1-alpha)^(nx/n),nx,df=DFerror)
-  if(nx > n-2) Tprob<- qtukey(p=(1-alpha),nx,df=DFerror)
+  if(nx <= n-2) p <- (1-alpha)^(nx/n)
+  if(nx > n-2) p <- (1-alpha)
 }
+tryCatch {
+	# It is possible that the native R qtukey function does not converge. (for nmeans big)
+	# If so, "Tprob" will be NaN, so does "minimo", and "s" will be NA
+	# This will lead to an error in the "if(s)" statement
+	# -> We want to fail faster than that.
+	Tprob <- qtukey(p=p, nmeans=nx, df=DFerror),
+	warning = function(w) {stop(paste("The qtukey function has not converged with p=",p,", nmeans = ",nx," and df = ", DFerror))}
+}
+
 if (!is.null(vartau))  {
 ii0<-w[i, 1]
 jj0<-w[j, 1]
