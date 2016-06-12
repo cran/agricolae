@@ -1,5 +1,5 @@
-`SNK.test` <-
-		function (y, trt, DFerror, MSerror, alpha=0.05, group=TRUE,main = NULL,console=FALSE)
+SNK.test <-
+function (y, trt, DFerror, MSerror, alpha=0.05, group=TRUE,main = NULL,console=FALSE)
 {
 	name.y <- paste(deparse(substitute(y)))
 	name.t <- paste(deparse(substitute(trt)))
@@ -121,4 +121,3 @@
 			means=means,comparison=comparison,groups=groups)	
 	invisible(output)
 }
-

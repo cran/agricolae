@@ -1,4 +1,4 @@
-`simulation.model` <-
+simulation.model <-
 function(model,file,categorical=NULL,k,console=FALSE) {
 modelo<-model
 parte<-strsplit(model,"~")[[1]]
@@ -58,4 +58,3 @@ cat("---\n\n")
 out<-list(model=ecuacion, simulation=xx)
 invisible(out)
 }
-

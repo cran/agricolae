@@ -1,4 +1,5 @@
-zigzag<-function(outdesign){
+zigzag <-
+function(outdesign){
 parameters <- outdesign$parameters
 design <- parameters$design
 book<-outdesign$book
@@ -72,4 +73,3 @@ plots<-fieldbook[x,nc]
 fieldbook[,nc]<-plots
 return(fieldbook)
 }
-

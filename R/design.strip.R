@@ -1,4 +1,5 @@
-design.strip<-function (trt1, trt2,r, serie = 2, seed = 0, kinds = "Super-Duper",randomization=TRUE)
+design.strip <-
+function (trt1, trt2,r, serie = 2, seed = 0, kinds = "Super-Duper",randomization=TRUE)
 {
 number<-10
 if(serie>0) number<-10^serie

@@ -78,13 +78,11 @@ bar.group(out$groups,horiz=FALSE,ylim=c(0,45),density=8,col="red",
 main="Groups",las=1)
 #endgraph
 # Old version HSD.test()
-attach(sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
 Fc<-anova(model)["virus",4]
-out <- waller.test(yield, virus, df, MSerror, Fc, group=TRUE)
+out <- with(sweetpotato,waller.test(yield, virus, df, MSerror, Fc, group=TRUE))
 print(out$mean)
-detach(sweetpotato)
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS
 

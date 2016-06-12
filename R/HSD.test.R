@@ -1,4 +1,4 @@
-`HSD.test` <-
+HSD.test <-
 function (y, trt, DFerror, MSerror, alpha=0.05, group=TRUE,main = NULL,console=FALSE)
 {
 	name.y <- paste(deparse(substitute(y)))
@@ -112,5 +112,3 @@ means<-means[,-1]
 	
 	invisible(output)
 }
-
-

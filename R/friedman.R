@@ -1,4 +1,4 @@
-`friedman` <-
+friedman <-
 function(judge,trt,evaluation,alpha=0.05,group=TRUE,main=NULL,console=FALSE){
 name.x <- paste(deparse(substitute(judge)))
 name.y <- paste(deparse(substitute(evaluation)))

@@ -1,4 +1,4 @@
-`design.crd` <-
+design.crd <-
 function(trt,r,serie=2,seed=0,kinds="Super-Duper",randomization=TRUE)
 {
 number<-0
@@ -33,4 +33,3 @@ names(book)[3]<-c(paste(deparse(substitute(trt))))
 outdesign<-list(parameters=parameters,book=book)
 return(outdesign)
 }
-

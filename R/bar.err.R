@@ -1,4 +1,4 @@
-`bar.err` <-
+bar.err <-
 function(x,variation=c("SE","SD","range"),horiz=FALSE, bar=TRUE,...) {
 variation<-match.arg(variation)
 y<-x[,1]
@@ -42,4 +42,3 @@ text( cex=1,indice[i],nivel1[i],"---")
 }
 invisible(list(index=indice,means=y))
 }
-

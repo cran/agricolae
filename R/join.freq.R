@@ -1,4 +1,4 @@
-`join.freq` <-
+join.freq <-
 function(histogram,join){
 classes<-histogram$breaks
 frec<-histogram$counts
@@ -9,4 +9,3 @@ frec<-frec[-join]
 h<-graph.freq(classes,counts=frec,plot=FALSE)
 return(h)
 }
-

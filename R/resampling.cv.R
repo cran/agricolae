@@ -1,4 +1,4 @@
-`resampling.cv` <-
+resampling.cv <-
 function(A,size,npoints) {
 nc.A<-ncol(A)
 orden<-1:nc.A
@@ -30,4 +30,3 @@ tabla.cv <- data.frame(marcador=marcador,CV)
 modelo<-lm(CV ~ I(1/marcador))
 return(list(model=modelo,table.cv=tabla.cv))
 }
-

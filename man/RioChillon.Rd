@@ -39,13 +39,9 @@ data(RioChillon)
 model<-aov(yield ~ block + clon, RioChillon$mother)
 anova(model)
 cv.model(model)
-attach(RioChillon$mother)
-comparison<-LSD.test(yield,clon, 18, 4.922, group=TRUE)
-detach(RioChillon$mother)
+comparison<-with(RioChillon$mother,LSD.test(yield,clon, 18, 4.922, group=TRUE))
 # Second analysis the babies Trial.
-attach(RioChillon$babies)
-comparison<-friedman(farmer,clon, yield, group=TRUE)
-detach(RioChillon$babies)
+comparison<-with(RioChillon$babies,friedman(farmer,clon, yield, group=TRUE))
 # Third
 # The researcher makes use of data from both mother and baby trials and thereby obtains
 # information on suitability of new technologies or cultivars

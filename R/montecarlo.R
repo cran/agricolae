@@ -1,4 +1,4 @@
-`montecarlo` <-
+montecarlo <-
 function(data, k, ...) {
 if (is.list(data)) {
 f <- data$counts
@@ -57,4 +57,3 @@ w<-w[order(w[,1]),3]
 }
 return(w)
 }
-

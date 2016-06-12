@@ -1,4 +1,4 @@
-`design.rcbd` <-
+design.rcbd <-
 function (trt, r,serie=2,seed=0,kinds="Super-Duper",first=TRUE,continue=FALSE,randomization=TRUE )
 {
 number<-10

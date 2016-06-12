@@ -1,4 +1,5 @@
-design.split<-function (trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),serie = 2, seed = 0, kinds = "Super-Duper",
+design.split <-
+function (trt1, trt2,r=NULL, design=c("rcbd","crd","lsd"),serie = 2, seed = 0, kinds = "Super-Duper",
 first=TRUE,randomization=TRUE )
 {
     n1<-length(trt1)

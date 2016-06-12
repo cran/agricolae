@@ -36,9 +36,7 @@ sp.plot(block, pplot, splot, Y)
 \examples{
 library(agricolae)
 data(plots)
-attach(plots)
-model<-sp.plot(block,A,B,yield)
-detach(plots)
+model<-with(plots,sp.plot(block,A,B,yield))
 # with aov
 plots[,1]<-as.factor(plots[,1])
 AOV <- aov(yield ~ block + A*B + Error(block/A),data=plots)

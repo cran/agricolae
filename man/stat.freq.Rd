@@ -24,9 +24,7 @@ stat.freq(histogram)
 \examples{
 library(agricolae)
 data(growth)
-attach(growth)
-grouped<-hist(height,plot=FALSE)
-detach(growth)
+grouped<-with(growth,hist(height,plot=FALSE))
 measures<-stat.freq(grouped)
 print(measures)
 

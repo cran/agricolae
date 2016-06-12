@@ -1,4 +1,4 @@
-`order.group` <-
+order.group <-
 function(trt,means,N,MSerror,Tprob,std.err,parameter=1, snk=0, DFerror=NULL,alpha=NULL,sdtdif=NULL,vartau=NULL,console ) {
 replications <- N
 #N<-rep(1/mean(1/N),length(means))

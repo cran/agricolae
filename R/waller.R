@@ -1,4 +1,4 @@
-`waller` <-
+waller <-
 function(K,q,f,Fc) {
 a0<-1
 b0<-20
@@ -25,4 +25,3 @@ if ( abs(b0-a0) <= 5.0e-4 ) break
 }
 return(round(t,3))
 }
-

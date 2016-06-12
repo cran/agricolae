@@ -53,12 +53,10 @@ comparison <- duncan.test(model,"virus",
 main="Yield of sweetpotato. Dealt with different virus")
 duncan.test(model,"virus",alpha=0.01,console=TRUE)
 # version old duncan.test()
-attach(sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
-comparison <- duncan.test(yield,virus,df,MSerror, group=TRUE)
+comparison <- with(sweetpotato,duncan.test(yield,virus,df,MSerror, group=TRUE))
 print(comparison$groups)
-detach(sweetpotato)
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS
 

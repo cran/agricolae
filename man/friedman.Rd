@@ -39,10 +39,9 @@ friedman(judge,trt,evaluation,alpha=0.05,group=TRUE,main=NULL,console=FALSE)
 \examples{
 library(agricolae)
 data(grass)
-attach(grass)
-out<-friedman(judge,trt, evaluation,alpha=0.05, group=TRUE,console=TRUE,
-main="Data of the book of Conover")
-detach(grass)
+
+out<-with(grass,friedman(judge,trt, evaluation,alpha=0.05, group=TRUE,console=TRUE,
+main="Data of the book of Conover"))
 #startgraph
 bar.group(out$groups,density=3,border="red",col="blue",ylim=c(0,45))
 #endgraph

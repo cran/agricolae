@@ -1,4 +1,4 @@
-`AMMI` <-
+AMMI <-
 function(ENV,GEN,REP,Y,MSE = 0,console=FALSE,PC=FALSE)
 {
     name.y <- paste(deparse(substitute(Y)))

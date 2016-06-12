@@ -48,9 +48,7 @@ University of the Free State, Bloemfontein, South Africa.
 library(agricolae)
 # Index AMMI
 data(plrv)
-attach(plrv)
-model<- AMMI(Locality, Genotype, Rep, Yield, console=FALSE)
-detach(plrv)
+model<- with(plrv,AMMI(Locality, Genotype, Rep, Yield, console=FALSE))
 Idx<-index.AMMI(model)
 names(Idx)
 # Crops with improved stability according AMMI.

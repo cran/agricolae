@@ -1,4 +1,4 @@
-`index.bio` <-
+index.bio <-
 function (data, method = c("Margalef","Simpson.Dom", "Simpson.Div", "Berger.Parker",
 "McIntosh","Shannon"),level = 95, nboot = 100, console=TRUE)
 {
@@ -37,4 +37,3 @@ function (data, method = c("Margalef","Simpson.Dom", "Simpson.Div", "Berger.Park
 if ( length(x) > 1) return(data.frame(row.names = NULL,method=method,index=index,confidence=level,lic=lic,lsc=lsc,nboot=nboot))
 else return("Error data < 2")
 }
-

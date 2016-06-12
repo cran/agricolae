@@ -1,4 +1,4 @@
-`design.ab` <-
+design.ab <-
 function(trt, r=NULL,serie=2,design=c("rcbd","crd","lsd"),seed=0,kinds="Super-Duper",
 first=TRUE,randomization=TRUE ){
 design <- match.arg(design)

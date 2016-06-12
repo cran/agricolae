@@ -46,9 +46,7 @@ potato[,1]<-as.factor(potato[,1])
 model<-lm(cutting ~ date + variety,potato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
-attach(potato)
-analysis<-nonadditivity(cutting, date, variety, df, MSerror)
-detach(potato)
+analysis<-with(potato,nonadditivity(cutting, date, variety, df, MSerror))
 }
 \keyword{ models  }% at least one, from doc/KEYWORDS
 

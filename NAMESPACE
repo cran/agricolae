@@ -19,3 +19,4 @@ importFrom("graphics", "layout", "abline", "arrows", "axis", "barplot", "legend"
      "pt", "ptukey", "qchisq", "qf", "qnorm", "qt", "qtukey",
      "quantile", "residuals", "rnorm", "runif", "sd", "var",
      "vcov")
+     

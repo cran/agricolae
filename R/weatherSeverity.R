@@ -1,4 +1,3 @@
-# additional function
 weatherSeverity <-
 function(weather,severity,dates,EmergDate,EndEpidDate,NoReadingsH,RHthreshold)
 {

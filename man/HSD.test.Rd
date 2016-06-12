@@ -57,14 +57,11 @@ bar.group(out$groups,ylim=c(0,45),density=4,border="blue")
 #endgraph
 out<-HSD.test(model,"virus", group=FALSE)
 means<-out$means
-
 # Old version HSD.test()
-attach(sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
-HSD.test(yield,virus,df,MSerror, group=TRUE,console=TRUE,
-main="Yield of sweetpotato. Dealt with different virus")
-detach(sweetpotato)
+with(sweetpotato,HSD.test(yield,virus,df,MSerror, group=TRUE,console=TRUE,
+main="Yield of sweetpotato. Dealt with different virus"))
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS
 

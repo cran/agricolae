@@ -9,11 +9,12 @@
   Graph CV for plot size and shape.
 }
 \usage{
-index.smith(data, ...)
+index.smith(data, PLOT=TRUE,...)
 }
 
 \arguments{
   \item{data}{ dataframe or matrix }
+  \item{PLOT}{ graphics, TRUE or FALSE }
  \item{\dots}{ Parameters of the plot() }
 }
 \details{

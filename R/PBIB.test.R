@@ -1,5 +1,5 @@
-`PBIB.test` <-
-  function (block, trt, replication, y, k, method=c("REML","ML","VC"),
+PBIB.test <-
+function (block, trt, replication, y, k, method=c("REML","ML","VC"),
             test = c("lsd", "tukey"), alpha = 0.05, console=FALSE,group=TRUE)
   {
     #------------------

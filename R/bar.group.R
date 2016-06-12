@@ -1,4 +1,4 @@
-`bar.group` <-
+bar.group <-
 function(x,horiz=FALSE, ...) {
 y<-x[,2]
 names(y)<-x[,1]
@@ -12,4 +12,3 @@ else text(indice[i],y[i]+tope,nivel[i])
 }
 invisible(list(index=indice,means=y))
 }
-

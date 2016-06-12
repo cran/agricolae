@@ -1,4 +1,4 @@
-`stability.nonpar` <-
+stability.nonpar <-
 function(data, variable= NULL, ranking = FALSE,console=FALSE)
 {
 row.names(data)<-data[,1]
@@ -91,4 +91,3 @@ cat("expectation and variance: es1, es2, vs1, vs2\n")
 out<-list(ranking=stat1,statistics =stat2)
 invisible(out)
 }
-

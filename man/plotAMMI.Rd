@@ -46,9 +46,7 @@ help(graphneigh) package=spdep
 \examples{
 library(agricolae)
 data(plrv)
-attach(plrv)
-model<- AMMI(Locality, Genotype, Rep, Yield)
-detach(plrv)
+model<- with(plrv,AMMI(Locality, Genotype, Rep, Yield))
 # biplot PC2 vs PC1
 plot(model)
 ## plot PC1 vs Yield

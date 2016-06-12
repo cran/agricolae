@@ -1,4 +1,5 @@
-Median.test<- function(y,trt,correct=TRUE,simulate.p.value = FALSE,console=TRUE){
+Median.test <-
+function(y,trt,correct=TRUE,simulate.p.value = FALSE,console=TRUE){
 name.y <- paste(deparse(substitute(y)))
 name.t <- paste(deparse(substitute(trt)))
 main<-paste(name.y,"~", name.t)
@@ -65,4 +66,3 @@ output<-list(statistics=statistics,parameters=parameters,Medians=medians,
 comparison=comparison,data=junto)
 invisible(output)
 }
-

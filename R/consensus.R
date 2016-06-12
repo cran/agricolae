@@ -1,4 +1,4 @@
-`consensus` <-
+consensus <-
 function(data,distance=c("binary","euclidean","maximum","manhattan","canberra",
 "minkowski","gower"),method=c("complete","ward","single","average","mcquitty","median",
 "centroid"),nboot=500,duplicate=TRUE,cex.text=1,col.text="red", ...)

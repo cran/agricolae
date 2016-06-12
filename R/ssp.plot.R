@@ -1,4 +1,4 @@
-`ssp.plot` <-
+ssp.plot <-
 function(block, pplot, splot, ssplot, Y)
 {
 name.y <- paste(deparse(substitute(Y)))
@@ -64,5 +64,3 @@ cat("\ncv(a) =",round(sqrt(Ea)*100/medy,1),"%,",
 output<-list(anva=W, gl.a=gl.a,gl.b=gl.b,gl.c=gl.c,Ea=Ea,Eb=Eb,Ec=Ec)
 invisible(output)
 }
-
-

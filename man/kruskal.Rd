@@ -7,7 +7,7 @@
  by default are alpha = 0.05.
 }
 \usage{
-kruskal(y, trt, alpha = 0.05, p.adj=c("none","holm", 
+kruskal(y, trt, alpha = 0.05, p.adj=c("none","holm","hommel", 
 "hochberg", "bonferroni", "BH", "BY", "fdr"), group=TRUE, main = NULL,console=FALSE)
 }
 \arguments{
@@ -21,7 +21,7 @@ kruskal(y, trt, alpha = 0.05, p.adj=c("none","holm",
 }
 \details{
   For equal or different repetition.
-  p.adj = "holm", "hochberg", "bonferroni", "BH", "BY", "fdr".
+  p.adj = "holm", "hommel", "hochberg", "bonferroni", "BH", "BY", "fdr".
   see p.adjust()
   p-adj ="none" is t-student.
   p-adj ="hommel" is not applied in this test.
@@ -42,11 +42,9 @@ kruskal(y, trt, alpha = 0.05, p.adj=c("none","holm",
 \examples{
 library(agricolae)
 data(corn)
-attach(corn)
 str(corn)
-comparison<-kruskal(observation,method,group=TRUE, main="corn")
-comparison<-kruskal(observation,method,p.adj="bon",group=FALSE, main="corn")
-detach(corn)
+comparison<-with(corn,kruskal(observation,method,group=TRUE, main="corn"))
+comparison<-with(corn,kruskal(observation,method,p.adj="bon",group=FALSE, main="corn"))
 }
 \keyword{ nonparametric }% at least one, from doc/KEYWORDS
 

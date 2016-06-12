@@ -32,16 +32,14 @@ normal.freq(histogram, frequency=1, ...)
 \examples{
 library(agricolae)
 data(growth)
-attach(growth)
 #startgraph
-h1<-hist(height,col="green",xlim=c(6,14))
+h1<-with(growth,hist(height,col="green",xlim=c(6,14)))
 normal.freq(h1,col="blue")
 #endgraph
 #startgraph
-h2<-graph.freq(height,col="yellow",xlim=c(6,14),frequency=2)
-normal.freq(h2,.frequency=2)
+h2<-with(growth,graph.freq(height,col="yellow",xlim=c(6,14),frequency=2))
+normal.freq(h2,frequency=2)
 #endgraph
-detach(growth)
 }
 \keyword{ aplot }% at least one, from doc/KEYWORDS
 

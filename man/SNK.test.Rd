@@ -55,12 +55,10 @@ comparison <- SNK.test(model,"virus",
 main="Yield of sweetpotato. Dealt with different virus")
 SNK.test(model,"virus", group=FALSE)
 # version old SNK.test()
-attach(sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
-comparison <- SNK.test(yield,virus,df,MSerror, group=TRUE)
+comparison <- with(sweetpotato,SNK.test(yield,virus,df,MSerror, group=TRUE))
 print(comparison$groups)
-detach(sweetpotato)
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS
 

@@ -1,4 +1,4 @@
-`carolina` <-
+carolina <-
 function(model,data) {
 if(model==1) {
 # Observe la estructura de los datos carolina1
@@ -87,4 +87,3 @@ output<-list(model=model,var.mi=var.mi,var.m=var.m, var.A=var.A, var.D=var.D)
 return(output)
 }
 }
-

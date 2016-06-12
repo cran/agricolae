@@ -1,4 +1,4 @@
-`lineXtester` <-
+lineXtester <-
 function(replications,lines,testers,y)
 {
 name.y <- deparse(substitute(y))
@@ -133,4 +133,3 @@ cat("\nContributions of testers:",c2)
 cat("\nContributions of lxt    :",c3,"\n")
 return(modelo1)
 }
-

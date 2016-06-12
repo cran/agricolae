@@ -1,4 +1,4 @@
-`tapply.stat` <-
+tapply.stat <-
 function (y, x, stat = "mean")
 {
 k<-0
@@ -70,4 +70,3 @@ numerico[k]<-i
     rownames(junto)<-1:(nrow(junto))
     return(junto)
 }
-

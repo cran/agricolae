@@ -38,10 +38,8 @@ The data consist of k samples of posibly unequal sample size.
 library(agricolae)
 # example 1
 data(corn)
-attach(corn)
-comparison<-Median.test(observation,method)
+comparison<-with(corn,Median.test(observation,method))
 comparison
-detach(corn)
 # example 2
 trt<-c(rep(1,9),rep(2,10),rep(3,7),rep(4,8))
 y<-c(83,91,94,89,89,96,91,92,90,91,90,81,83,84,83,88,91,89,84,101,100,91,93,

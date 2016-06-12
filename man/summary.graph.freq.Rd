@@ -32,9 +32,7 @@
 \examples{
 library(agricolae)
 data(growth)
-attach(growth)
-h2<-graph.freq(height,plot=FALSE)
-detach(growth)
+h2<-with(growth,graph.freq(height,plot=FALSE))
 print(summary(h2),row.names=FALSE)
 }
 \keyword{ distribution }% at least one, from doc/KEYWORDS

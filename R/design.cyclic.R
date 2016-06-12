@@ -1,4 +1,4 @@
-`design.cyclic` <-
+design.cyclic <-
 function (trt, k, r, serie = 2, rowcol=FALSE, seed = 0, kinds = "Super-Duper",randomization=TRUE)
 {
 number<-10

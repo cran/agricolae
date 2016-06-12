@@ -1,4 +1,4 @@
-`stat.freq` <-
+stat.freq <-
 function(histogram) {
 xx <- histogram$mids
 yy <- histogram$counts
@@ -52,4 +52,3 @@ Moda<-cbind(clases,mode)
 lista<-list(variance=variancia,mean=media,median=mediana,mode=Moda)
 return(lista)
 }
-

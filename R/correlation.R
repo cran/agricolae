@@ -1,5 +1,5 @@
-`correlation` <-
-function (x, y = NULL, method = c("pearson","kendall","spearman"), alternative = "two.sided")
+correlation <-
+function (x, y = NULL, method = c("pearson","kendall","spearman","lin"), alternative = "two.sided")
 {
 x1<-x
 y1<-y
@@ -43,6 +43,18 @@ if(alternative == "less" ) cat("less than 0")
 if(alternative == "greater") cat("greater than 0")
 cat("\nsample estimates:\nrho\n",coef,"\n")
 #list(S=t,p.value=pvalue,rho=coef)
+}
+if(method=="lin") {
+gl<-nn-2
+cat("\nLin's concordance index\n\n")
+cat("data:",name.xy,"\n")
+cat("t =",stat,", df =",gl,", p-value =",pvalue,"\n")
+cat("alternative hypothesis: true rho is ")
+if(alternative == "two.sided" ) cat("not equal to 0")
+if(alternative == "less" ) cat("less than 0")
+if(alternative == "greater") cat("greater than 0")
+cat("\nsample estimates:\ncor\n",coef,"\n")
+#list(t=t,df=gl,p.value=pvalue,rho=coef)
 }
 if(method=="kendall"){
 cat("\nKendall's rank correlation tau\n\n")
@@ -105,8 +117,8 @@ cat("\nsample estimates:\ntau\n",coef,"\n")
     pvalue <- round(pvalue, 4)
     n1<-unique(c(nn))
     if(length(n1)==1)nn<-n1
-cat("\nCorrelation Analysis\n\nMethod     :",method)
-cat("\nAlternative:",alternative,"\n\n")
+#cat("\nCorrelation Analysis\n\nMethod     :",method)
+#cat("\nAlternative:",alternative,"\n\n")
     lista <- list(correlation = estimate, pvalue = pvalue,
         n.obs = nn)
     return(lista)
@@ -143,8 +155,8 @@ pvalue[i,j]<-corr$pvalue
 names(method)=""
 estimate<-round(estimate,2)
 diag(pvalue)<-1
-cat("\nCorrelation Analysis\n\nMethod     :",method)
-cat("\nAlternative:",alternative,"\n\n")
+#cat("\nCorrelation Analysis\n\nMethod     :",method)
+#cat("\nAlternative:",alternative,"\n\n")
 n1<-unique(c(nn))
 if(length(n1)==1)nn<-n1
 lista<-list(correlation=estimate,pvalue=pvalue, n.obs=nn)
@@ -152,4 +164,3 @@ return(lista)
 #-------------
 }
 }
-

@@ -1,4 +1,4 @@
-`durbin.test` <-
+durbin.test <-
 function(judge,trt,evaluation,alpha=0.05, group=TRUE,main=NULL,console=FALSE) {
 name.y <- paste(deparse(substitute(evaluation)))
 name.t <- paste(deparse(substitute(trt)))

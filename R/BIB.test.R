@@ -1,5 +1,5 @@
-`BIB.test` <-
-		function (block, trt, y, test = c("lsd","tukey","duncan","waller","snk"), alpha = 0.05, group = TRUE,console=FALSE)
+BIB.test <-
+function (block, trt, y, test = c("lsd","tukey","duncan","waller","snk"), alpha = 0.05, group = TRUE,console=FALSE)
 {
 	test<-match.arg(test)
 	block.unadj <- as.factor(block)

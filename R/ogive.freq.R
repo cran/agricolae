@@ -1,4 +1,4 @@
-`ogive.freq` <-
+ogive.freq <-
 function(histogram,type="",xlab="",ylab="",axes="",las=1,...)
 {
 if(axes=="") ejes=TRUE
@@ -31,5 +31,3 @@ if(xlab=="")xlab<-"x"
 names(table)[1]<-xlab
 return(table)
 }
-
-

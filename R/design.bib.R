@@ -1,4 +1,4 @@
-`design.bib` <-
+design.bib <-
 function (trt, k, r=NULL, serie = 2, seed = 0, kinds = "Super-Duper", maxRep=20,randomization=TRUE)
 {
 v<-length(trt)

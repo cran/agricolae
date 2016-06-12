@@ -30,9 +30,7 @@ reg.homog(trt, x, y)
 \examples{
 library(agricolae)
 data(frijol)
-attach(frijol)
-evaluation<-reg.homog(technology,index,production)
-detach(frijol)
+evaluation<-with(frijol,reg.homog(technology,index,production))
 # Example 2. Applied Regression Analysis a Research tools
 # 1988. John O.Rawlings. Wadsworth & brooks/cole Advanced Books
 # & Software. Pacific Grove. Califonia.

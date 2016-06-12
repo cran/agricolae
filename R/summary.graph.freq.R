@@ -1,4 +1,4 @@
-`summary.graph.freq` <-
+summary.graph.freq <-
 function(object,...){
 xx<-object$mids
 yy<-object$counts
@@ -23,4 +23,3 @@ colnames(z)<-c("Lower","Upper","Main","Frequency","Percentage","CF","CPF")
 z<-as.data.frame(z)
 return(z)
 }
-

@@ -1,4 +1,4 @@
-`cv.similarity` <-
+cv.similarity <-
 function(A) {
 nc<-ncol(A)
 nf <- nrow(A)
@@ -17,4 +17,3 @@ suma[ik]<- sii/npar # chequear el numero de posibilidades
 cv<-sd(suma,na.rm=TRUE)*100/mean(suma,na.rm=TRUE)
 return(cv)
 }
-

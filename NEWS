@@ -1,5 +1,13 @@
 Changes in new version
 
+Version agricolae 1-2.4 (June 12, 2016)
+-------------------------------------------
+1. Add suggests packages: RANN and rgeos to plot AMMI
+2. Concordance index in correlation function(), additional arg (method="lin").
+3. New function orderPvalue(). Grouping the treatments in a comparison with p.value minimum value (alpha)
+4. Test LSD.test and kruskal the adjust P.value (holm, hommel, hochberg, bonferroni, BH, BY, fdr). 
+The comparison in pairs and groups give similar results.
+
 Version agricolae 1-2.3 (October 6, 2015)
 -------------------------------------------
 1. REGW.test(). New function for multiple comparisons of treatments. 

@@ -1,4 +1,4 @@
-`sturges.freq` <-
+sturges.freq <-
 function (x,k=0) 
 {
     n <- length(x)
@@ -22,4 +22,3 @@ function (x,k=0)
             classes = k, interval = tic, breaks = clases)
     return(lista)
 }
-

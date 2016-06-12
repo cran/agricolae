@@ -1,4 +1,4 @@
-`vark` <-
+vark <-
 function(x, y)
     {
         ties.x <- rle(sort(x))$lengths
@@ -15,4 +15,3 @@ function(x, y)
         v3 <- t1/(2 * n * (n - 1))
         v1 + v2 + v3
     }
-

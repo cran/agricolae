@@ -1,4 +1,4 @@
-`design.alpha` <-
+design.alpha <-
 function (trt, k, r, serie = 2, seed = 0, kinds = "Super-Duper",randomization=TRUE)
 {
 number<-10
@@ -142,4 +142,3 @@ if(serie>0) number<-10^serie
         }
     }
 }
-

@@ -1,4 +1,4 @@
-`design.lsd` <-
+design.lsd <-
 function (trt,serie=2,seed=0,kinds="Super-Duper",first=TRUE,randomization=TRUE)
 {
 number<-10
@@ -40,4 +40,3 @@ names(book)[4] <- c(paste(deparse(substitute(trt))))
 outdesign<-list(parameters=parameters,sketch=matrix(book[,4], byrow = TRUE, ncol = r),book=book)
 return(outdesign)
 }
-

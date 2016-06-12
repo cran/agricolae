@@ -1,4 +1,4 @@
-`audpc` <-
+audpc <-
 function(evaluation, dates, type = "absolute") {
 if(!(is.matrix(evaluation) | is.data.frame(evaluation))){
 evaluation<-rbind(evaluation)
@@ -20,4 +20,3 @@ return(audpc)
 }
 else cat("Error: type is 'absolute' or 'relative'\n\n")
 }
-

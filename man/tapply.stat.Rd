@@ -29,22 +29,17 @@ library(agricolae)
 # case of 1 single factor
 data(sweetpotato)
 tapply.stat(sweetpotato[,2],sweetpotato[,1],mean)
-attach(sweetpotato)
-tapply.stat(yield,virus,sd)
-tapply.stat(yield,virus,function(x) max(x)-min(x))
-tapply.stat(yield,virus,function(x) quantile(x,0.75,6)-quantile(x,0.25,6))
-detach(sweetpotato)
+with(sweetpotato,tapply.stat(yield,virus,sd))
+with(sweetpotato,tapply.stat(yield,virus,function(x) max(x)-min(x)))
+with(sweetpotato,tapply.stat(yield,virus,
+function(x) quantile(x,0.75,6)-quantile(x,0.25,6)))
 # other case
 data(cotton)
-attach(cotton)
-tapply.stat(yield,cotton[,c(1,3,4)],mean)
-tapply.stat(yield,cotton[,c(1,4)],max)
-detach(cotton)
+with(cotton,tapply.stat(yield,cotton[,c(1,3,4)],mean))
+with(cotton,tapply.stat(yield,cotton[,c(1,4)],max))
 # Height of pijuayo
 data(growth)
-attach(growth)
-tapply.stat(height, growth[,2:1], function(x) mean(x,na.rm=TRUE))
-detach(growth)
+with(growth,tapply.stat(height, growth[,2:1], function(x) mean(x,na.rm=TRUE)))
 }
 \keyword{ univar }% at least one, from doc/KEYWORDS
 

@@ -1,4 +1,4 @@
-`similarity` <-
+similarity <-
 function(A) {
 nc<-ncol(A)
 nf <- nrow(A)
@@ -17,4 +17,3 @@ matriz[k2,k1]<- sii/npar # chequear el numero de posibilidades
 distance<-as.dist(matriz)
 return(distance)
 }
-

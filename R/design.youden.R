@@ -1,4 +1,4 @@
-`design.youden` <-
+design.youden <-
 function (trt,r,serie=2,seed=0,kinds="Super-Duper",first=TRUE,randomization=TRUE)
 {
 number<-10

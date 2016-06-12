@@ -45,7 +45,6 @@ output:
 Biometrical Methods in Quantitative Genetic Analysis, Singh, Chaudhary. 1979.
 Hierarchial and factorial mating designs for quantitative genetic analysis in tetrasomic potato. R. Ortis; A.Golmirzaie. Theor Appl Genet (2002) 104:675-679 }
 \author{ Felipe de Mendiburu }
-
 \seealso{\code{\link{AMMI} } }
 \examples{
 # see structure line by testers
@@ -53,16 +52,11 @@ library(agricolae)
 # example 1
 data(heterosis)
 site1<-subset(heterosis,heterosis[,1]==1)
-attach(site1)
-output1<-lineXtester(Replication, Female, Male, v2)
-detach(site1)
+output1<-with(site1,lineXtester(Replication, Female, Male, v2))
 # example 2
 data(LxT)
 str(LxT)
-attach(LxT)
-output2<-lineXtester(replication, line, tester, yield)
-detach(LxT)
-
+output2<-with(LxT,lineXtester(replication, line, tester, yield))
 }
 \keyword{ models }% at least one, from doc/KEYWORDS
 

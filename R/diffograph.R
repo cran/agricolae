@@ -1,4 +1,5 @@
-diffograph <-function (x, main=NULL,color1="red",color2="blue",color3="black",
+diffograph <-
+function (x, main=NULL,color1="red",color2="blue",color3="black",
 cex.axis=0.8,las=1,pch=20,bty="l",cex=0.8,lwd=1,xlab="",ylab="",...)
 {
   Ax<-x$means[,1]

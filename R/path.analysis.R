@@ -1,4 +1,4 @@
-`path.analysis` <-
+path.analysis <-
 function(corr.x,corr.y) {
 if (ncol(corr.y)>1)corr.y<-t(corr.y)
 Direct<-solve(corr.x,corr.y)
@@ -17,4 +17,3 @@ cat("\nResidual Effect^2 = ",Residual,"\n")
 output<-list(Coeff=Coeff,Residual=as.numeric(Residual))
 invisible(output)
 }
-

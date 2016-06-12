@@ -64,7 +64,7 @@ For a complete functionality, \bf{agricolae } \rm requires other packages.\\
 \bf{nlme: }\rm for the methods REML and LM in \emph{PBIB.test}\\
 \bf{klaR: }\rm for the function \emph{triplot} used in the function \emph{AMMI}\\
 \bf{Cluster: }\rm for the use of the function \emph{consensus}\\
-\bf{spdep: }\rm for the between genotypes spatial relation in biplot of the function \emph{AMMI}
+\bf{spdep: }\rm for the between genotypes spatial relation in biplot of the function \emph{AMMI}\\
 \bf{algDesign: }\rm for the balanced incomplete block design\emph{design.bib}
 \subsection{Use in \bf {R} \rm}
 Since \bf{agricolae } \rm is a package of functions, these are operational when they are called directly from the console of \bf {R} \rm and are integrated to all the base functions of \bf {R} \rm.
@@ -565,12 +565,18 @@ Signif. codes:
 <<>>=
 print(outLSD)
 @
-\subsection{Bonferroni}
-With the function \emph{LSD.test} we can make adjustments to the probabilities found, as for example the adjustment by Bonferroni.
+
+\subsection{holm, hommel, hochberg, bonferroni, BH, BY, fdr}
+With the function \emph{LSD.test} we can make adjustments to the probabilities found, as for example the adjustment by Bonferroni, holm.
 
 <<>>=
 LSD.test(model, "virus", group=F, p.adj= "bon",console=TRUE)
+out<-LSD.test(model, "virus", group=TRUE, p.adj= "holm")
+print(out$group)
+out<-LSD.test(model, "virus", group=FALSE, p.adj= "holm")
+print(out$comparison)
 @
+
 Other comparison tests can be applied, such as \emph{duncan, Student-Newman-Keuls, tukey and waller-duncan}\\
 
 For \emph{Duncan}, use the function \emph{duncan.test}; for \emph{Student-Newman-Keuls}, the function \emph{SNK.test}; for \emph{Tukey}, the function HSD.test(); for \emph{Scheffe}, the function \emph{scheffe.test}; and for \emph{Waller-Duncan}, the function \emph{waller.test}. The parameters are the same. \emph{Waller} also requires the value of F-calculated of the ANOVA treatments. If the model is used as a parameter, this is no longer necessary.
@@ -842,12 +848,19 @@ str(kruskal)
 @
 \bf {Analysis}\rm
 <<>>=
-attach(corn)
-outKruskal<-kruskal(observation,method,group=TRUE, main="corn", console=TRUE)
-detach(corn)
+outKruskal<-with(corn,kruskal(observation,method,group=TRUE, main="corn", console=TRUE))
 @
 The object output has the same structure of the comparisons see Figure ~\ref{fig:f8}.
 
+\subsection {Kruskal-Wallis: adjust P-values}
+
+To see p.adjust.methods()
+<<>>=
+out<-with(corn,kruskal(observation,method,group=TRUE, main="corn", p.adj="holm"))
+print(out$group)
+out<-with(corn,kruskal(observation,method,group=FALSE, main="corn", p.adj="holm"))
+print(out$comparison)
+@
 \subsection {Friedman}
 <<>>=
 str(friedman)
@@ -918,7 +931,7 @@ out$statistics
 
 \section {Graphics of the multiple comparison}
 
-The results of a comparison can be graphically seen with the functions \emph{bar.group} and \emph{bar.err}.
+The results of a comparison can be graphically seen with the functions \emph{bar.group}, \emph{bar.err} and \emph{diffograph}.
 
 \subsection{bar.group}
 

@@ -1,4 +1,4 @@
-`DAU.test` <-
+DAU.test <-
 function (block, trt, y, method = c("lsd","tukey"),alpha=0.05,group=TRUE,console=FALSE)
 {
     method<-match.arg(method)
@@ -212,5 +212,3 @@ if(!group){
 	comparison=comparison,groups=groups,SE.difference=SE.dif,vartau = V)
 	invisible(output)
 }
-
-

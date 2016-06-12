@@ -1,4 +1,4 @@
-`order.stat` <-
+order.stat <-
 function(treatment,means,minimum,console) {
 n<-length(means)
 z<-data.frame(treatment,means)
@@ -50,4 +50,3 @@ if(console)cat(M[i],"\t",trt[i],"\t",means[i],"\n")
 output<-data.frame(trt,means,M)
 return(output)
 }
-

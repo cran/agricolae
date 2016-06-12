@@ -7,7 +7,7 @@
   The level by alpha default is 0.05. Returns p-values adjusted using one of several methods
 }
 \usage{
-LSD.test(y, trt, DFerror, MSerror, alpha = 0.05, p.adj=c("none","holm", 
+LSD.test(y, trt, DFerror, MSerror, alpha = 0.05, p.adj=c("none","holm","hommel", 
 "hochberg", "bonferroni", "BH", "BY", "fdr"), group=TRUE, main = NULL,console=FALSE)
 }
 
@@ -24,7 +24,7 @@ LSD.test(y, trt, DFerror, MSerror, alpha = 0.05, p.adj=c("none","holm",
 }  
 \details{
   For equal or different repetition.
-  p.adj = "holm", "hochberg", "bonferroni", "BH", "BY", "fdr".
+  p.adj = "holm", "hommel", "hochberg", "bonferroni", "BH", "BY", "fdr".
   see p.adjust()
   p-adj ="none" is t-student.
   p-adj ="hommel" is not applied in this test.
@@ -59,18 +59,15 @@ out <- LSD.test(model,"virus", p.adj="bonferroni")
 bar.group(out$groups,ylim=c(0,45),density=4,border="blue")
 #endgraph
 # Old version LSD.test()
-attach(sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
-out <- LSD.test(yield,virus,df,MSerror, p.adj="bonferroni", group=FALSE)
-detach(sweetpotato)
+out <- with(sweetpotato,LSD.test(yield,virus,df,MSerror, p.adj="bonferroni", 
+group=FALSE))
 #stargraph
 # Variation range: Max - Min
 bar.err(out$means,variation="range",ylim=c(0,44),bar=FALSE,col=0)
-
 #endgraph
 LSD.test(model,"virus",p.adj="bon",console=TRUE)
-
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS
 

@@ -1,4 +1,4 @@
-`waerden.test` <-
+waerden.test <-
 function(y, trt,alpha=0.05,group=TRUE,main=NULL,console=FALSE) {
 name.y <- paste(deparse(substitute(y)))
 name.t <- paste(deparse(substitute(trt)))
@@ -114,4 +114,3 @@ output<-list(statistics=statistics,parameters=parameters,
 		means=Means,comparison=comparison,groups=groups)
     invisible(output)
 }
-

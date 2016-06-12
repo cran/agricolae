@@ -1,4 +1,4 @@
-`nonadditivity` <-
+nonadditivity <-
 function (y,factor1, factor2, df, MSerror)
 {
 name.y <- paste(deparse(substitute(y)))
@@ -60,4 +60,3 @@ print(anva)
 output <- list(P=P, Q=Q, anva=anva)
 return(output)
 }
-

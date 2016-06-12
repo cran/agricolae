@@ -1,4 +1,4 @@
-`polygon.freq` <-
+polygon.freq <-
 function(histogram,frequency=1, ...){
 xx<-histogram$mids
 zz<-histogram$breaks
@@ -13,4 +13,3 @@ yy<-c(0,yy,0)
 lines(xx,yy, ...)
 abline(h=0)
 }
-

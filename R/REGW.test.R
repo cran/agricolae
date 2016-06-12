@@ -1,5 +1,5 @@
-`REGW.test` <-
-		function (y, trt, DFerror, MSerror, alpha=0.05, group=TRUE,main = NULL,console=FALSE)
+REGW.test <-
+function (y, trt, DFerror, MSerror, alpha=0.05, group=TRUE,main = NULL,console=FALSE)
 {
 	name.y <- paste(deparse(substitute(y)))
 	name.t <- paste(deparse(substitute(trt)))

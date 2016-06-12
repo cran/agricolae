@@ -1,4 +1,4 @@
-`graph.freq` <-
+graph.freq <-
 function (x, breaks=NULL,counts=NULL,frequency=1, plot=TRUE, nclass=NULL,xlab="",ylab="",axes="",las=1,...)
 {
 if(axes=="") ejes=TRUE

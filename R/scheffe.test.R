@@ -1,5 +1,5 @@
-`scheffe.test` <-
-		function (y, trt, DFerror, MSerror, Fc, alpha=0.05, group=TRUE,main = NULL,console=FALSE)
+scheffe.test <-
+function (y, trt, DFerror, MSerror, Fc, alpha=0.05, group=TRUE,main = NULL,console=FALSE)
 {
 	name.y <- paste(deparse(substitute(y)))
 	name.t <- paste(deparse(substitute(trt)))

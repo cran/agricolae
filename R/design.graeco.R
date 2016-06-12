@@ -1,4 +1,4 @@
-`design.graeco` <-
+design.graeco <-
 function (trt1, trt2, serie = 2, seed = 0, kinds = "Super-Duper",randomization=TRUE)
 {
 number<-10

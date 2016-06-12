@@ -1,4 +1,5 @@
-plot.AMMI<-function(x,first=1,second=2,third=3,type=1,number=FALSE,gcol=NULL,ecol=NULL,
+plot.AMMI <-
+function(x,first=1,second=2,third=3,type=1,number=FALSE,gcol=NULL,ecol=NULL,
 icol=NULL,angle=25,lwd=1.8,length=0.1,xlab=NULL,ylab=NULL,xlim=NULL,ylim=NULL,...)
 {
 first<-first+2

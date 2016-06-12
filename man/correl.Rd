@@ -30,11 +30,9 @@ correl(x, y, method = "pearson",alternative="two.sided")
 \examples{
 library(agricolae)
 data(soil)
-attach(soil)
-correl(pH,clay,method="kendall")
-correl(pH,clay,method="spearman")
-correl(pH,clay,method="pearson")
-detach(soil)
+with(soil,correl(pH,clay,method="kendall"))
+with(soil,correl(pH,clay,method="spearman"))
+with(soil,correl(pH,clay,method="pearson"))
 }
 \keyword{ multivariate }% at least one, from doc/KEYWORDS
 

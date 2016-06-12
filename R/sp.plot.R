@@ -1,4 +1,4 @@
-`sp.plot` <-
+sp.plot <-
 function(block, pplot, splot, Y)
 {
 name.y <- paste(deparse(substitute(Y)))
@@ -49,5 +49,3 @@ cat("\ncv(a) =",round(sqrt(Ea)*100/medy,1),"%,",
 output<-list(anva=W, gl.a=gl.a,gl.b=gl.b,Ea=Ea,Eb=Eb)
 invisible(output)
 }
-
-

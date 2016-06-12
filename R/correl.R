@@ -1,4 +1,4 @@
-`correl` <-
+correl <-
 function(x,y,method = "pearson", alternative = "two.sided"){
 n<-length(x)
 if(method=="kendall"){
@@ -26,6 +26,20 @@ if(alternative == "two.sided" ) pvalue<-2*(1-pt(abs(stat),gl))
 if(alternative == "less" ) pvalue<-pt(abs(stat),gl)
 if(alternative == "greater") pvalue<-1-pt(abs(stat),gl)
 }
+if (method =="lin") {
+mx<-mean(x)
+my<-mean(y)
+sumx<-(sum(x^2)-sum(x)^2/n)/n
+sumy<-(sum(y^2)-sum(y)^2/n)/n
+sumxy<-(sum(x*y)-sum(x)*sum(y)/n)/n
+r<-sumxy/sqrt(sumx*sumy)
+rho<-2*sumxy/(sumx+sumy+(mx-my)^2)
+gl<-n-2
+sdlin<-sqrt((1/gl)*((1-r^2)*rho^2*(1-rho^2)/r^2+2*rho^3*(1-rho)*(mx-my)^2/(r*sqrt(sumx*sumy))-rho^4*(mx-my)^4/(2*sumx*sumy*r^2)))
+stat<-rho/sdlin
+if(alternative == "two.sided" ) pvalue<-2*(1-pt(abs(stat),gl))
+if(alternative == "less" ) pvalue<-pt(abs(stat),gl)
+if(alternative == "greater") pvalue<-1-pt(abs(stat),gl)
+}
 list(stat=stat,rho=rho,pvalue=pvalue)
 }
-

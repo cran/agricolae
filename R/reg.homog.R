@@ -1,4 +1,4 @@
-`reg.homog` <-
+reg.homog <-
 function(trt,x,y) {
 sumx<-function(x)(nrow(x)-1)*var(x)
 datos<-data.frame(trt,x,y)
@@ -41,4 +41,3 @@ cat("Criterion                  : ", resp,"\n\n")
 output<-list(regressions=n.trt,residual=A,Difference=B,DF.homgeneity=gl.trt,DF.Residual=gl.r,F.value=f.cal,P.value=p.value,Criterion=resp)
 return(output)
 }
-

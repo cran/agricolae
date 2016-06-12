@@ -1,4 +1,4 @@
-`design.dau` <-
+design.dau <-
 function (trt1, trt2, r,serie=2,seed=0,kinds="Super-Duper",name="trt",randomization=TRUE)
 {
 number<-10

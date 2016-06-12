@@ -43,11 +43,9 @@ Advances in Agronomy 44:55-85
 library(agricolae)
 # Example 1
 data(plrv)
-attach(plrv)
-model<- AMMI(Locality, Genotype, Rep, Yield, console=FALSE)
+model<- with(plrv,AMMI(Locality, Genotype, Rep, Yield, console=FALSE))
 model$ANOVA
 # see help(plot.AMMI)
-detach(plrv)
 # biplot
 plot(model)
 # triplot PC 1,2,3 
@@ -59,20 +57,16 @@ data(CIC)
 data1<-CIC$comas[,c(1,6,7,17,18)]
 data2<-CIC$oxapampa[,c(1,6,7,19,20)]
 cic <- rbind(data1,data2)
-attach(cic)
-model<-AMMI(Locality, Genotype, Rep, relative)
-detach(cic)
+model<-with(cic,AMMI(Locality, Genotype, Rep, relative))
 model$ANOVA
 plot(model,0,1,angle=20,ecol="brown")
 # Example 3
 # Only means. Mean square error is well-known.
 data(sinRepAmmi)
-attach(sinRepAmmi)
 REP <- 3
 MSerror <- 93.24224
 #startgraph
-model<-AMMI(ENV, GEN, REP, YLD, MSerror,PC=TRUE)
-detach(sinRepAmmi)
+model<-with(sinRepAmmi,AMMI(ENV, GEN, REP, YLD, MSerror,PC=TRUE))
 # print anova
 print(model$ANOVA,na.print = "")
 # Biplot with the one restored observed.

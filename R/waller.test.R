@@ -1,5 +1,5 @@
-`waller.test` <-                                                                                     
-		function (y, trt, DFerror, MSerror, Fc, K = 100, group=TRUE,main = NULL,console=FALSE)                             
+waller.test <-
+function (y, trt, DFerror, MSerror, Fc, K = 100, group=TRUE,main = NULL,console=FALSE)                             
 {                                                                                                    
 	name.y <- paste(deparse(substitute(y)))                                                          
 	name.t <- paste(deparse(substitute(trt)))
@@ -118,4 +118,4 @@ statistics<-data.frame(Mean=Mean,CV=CV,MSerror=MSerror,F.Value=Fc, r.harmonic=nr
 	output<-list(statistics=statistics,parameters=parameters, 
 			means=means,comparison=comparison,groups=groups)
 	invisible(output)                                                                                    
-}                                                                                                    
+}

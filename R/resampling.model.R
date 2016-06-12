@@ -1,4 +1,4 @@
-`resampling.model` <-
+resampling.model <-
 function(model,data,k,console=FALSE) {
 modelo<-model
 parte<-strsplit(model,"~")[[1]]
@@ -43,4 +43,3 @@ cat("---\n\n")
 out<-list(model=resample, solution=xx,acum=cuenta,samples=k)
 invisible(out)
 }
-

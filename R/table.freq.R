@@ -1,4 +1,4 @@
-`table.freq` <-
+table.freq <-
 function(object){
 xx<-object$mids
 yy<-object$counts
@@ -23,4 +23,3 @@ colnames(z)<-c("Lower","Upper","Main","Frequency","Percentage","CF","CPF")
 z<-as.data.frame(z)
 invisible(z)
 }
-

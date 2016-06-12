@@ -13,8 +13,8 @@ designs applied specially for field experiments in agriculture and plant breedin
 \tabular{ll}{
 Package: \tab agricolae\cr
 Type: \tab Package\cr
-Version: \tab 1.2-3\cr
-Date: \tab 2015-10-06\cr
+Version: \tab 1.2-4\cr
+Date: \tab 2016-06-12\cr
 License: \tab GPL\cr
 }
 Planning of field experiments: lattice, factorial, RCBD, CRD, Latin Square,

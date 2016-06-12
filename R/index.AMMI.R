@@ -1,4 +1,5 @@
-index.AMMI<-function(model)
+index.AMMI <-
+function(model)
 {
 A<-model$biplot[,1:4]
 A<-A[A[,1]=="GEN",-c(1,2)]

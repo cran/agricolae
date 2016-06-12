@@ -52,13 +52,11 @@ model<-aov(yield~virus, data=sweetpotato)
 comparison <- scheffe.test(model,"virus", group=TRUE,console=TRUE,
 main="Yield of sweetpotato\nDealt with different virus")
 # Old version scheffe.test()
-attach(sweetpotato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
 Fc<-anova(model)["virus",4]
-comparison <- scheffe.test(yield, virus, df, MSerror, Fc, group=TRUE, 
-main="Yield of sweetpotato. Dealt with different virus")
-detach(sweetpotato)
+comparison <- with(sweetpotato,scheffe.test(yield, virus, df, MSerror, 
+Fc, group=TRUE,main="Yield of sweetpotato. Dealt with different virus"))
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS
 

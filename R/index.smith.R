@@ -1,5 +1,5 @@
-`index.smith` <-
-function(data,...) {
+index.smith <-
+function(data,PLOT=TRUE,...) {
 A<-as.matrix(data)
 n<-nrow(A)
 m<-ncol(A)
@@ -52,8 +52,9 @@ model <- lm(CV ~ I(log(x)))
 coeff <- coef(model)
 size<-1:max(x)
 cv<- coeff[1]+coeff[2]*log(size)
+if(PLOT){
 plot(size,cv,...)
 points(x,CV)
-return(list(model=model,uniformity=uniformity))
 }
-
+invisible(list(model=model,uniformity=uniformity))
+}

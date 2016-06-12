@@ -1,4 +1,4 @@
-`AMMI.contour` <-
+AMMI.contour <-
 function(model,distance,shape,...)
 {
 G<- subset(model$biplot,model$biplot$type=="GEN")
@@ -21,4 +21,3 @@ cat("\nGenotype out:",length(GEN.out),"\n\n")
 distance<-data.frame(row.names=row.names(G),distance=d)
 return(list("GENOTYPE IN"=GEN.in, "GENOTYPE OUT"=GEN.out,Distance=distance))
 }
-

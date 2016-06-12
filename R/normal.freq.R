@@ -1,4 +1,4 @@
-`normal.freq` <-
+normal.freq <-
 function (histogram,frequency=1, ...)
 {
 xx <- histogram$mids
@@ -22,4 +22,3 @@ if(frequency==3)yy<-histogram$density
     lines(x, y, ...)
     abline(h = 0)
 }
-

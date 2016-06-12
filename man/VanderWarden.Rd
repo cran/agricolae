@@ -38,15 +38,11 @@ The data consist of k samples of posibly unequal sample size.
 library(agricolae)
 # example 1
 data(corn)
-attach(corn)
-comparison<-waerden.test(observation,method,group=TRUE)
-comparison<-waerden.test(observation,method,group=FALSE)
-detach(corn)
+comparison<-with(corn,waerden.test(observation,method,group=TRUE))
+comparison<-with(corn,waerden.test(observation,method,group=FALSE))
 # example 2
 data(sweetpotato)
-attach(sweetpotato)
-comparison<-waerden.test(yield,virus,alpha=0.01,group=TRUE)
-detach(sweetpotato)
+comparison<-with(sweetpotato,waerden.test(yield,virus,alpha=0.01,group=TRUE))
 }
 
 \keyword{ nonparametric }% at least one, from doc/KEYWORDS
