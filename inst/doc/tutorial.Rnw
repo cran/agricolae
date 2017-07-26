@@ -4,7 +4,15 @@
 \usepackage{float}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \usepackage[left=3cm,top=3cm,bottom=3.5cm,right=3cm]{geometry}	% For easy management of document margins
+\usepackage{times}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage[english]{babel}
+\usepackage{xspace}
+\usepackage{Sweave}
+\usepackage{mathptm}
 \parindent 0em
+\bibliographystyle{humannat}
 <<agricolae,include=FALSE,echo=FALSE>>=
 options(keep.source = TRUE, width = 60)
 qp <- packageDescription("agricolae")
@@ -17,13 +25,12 @@ agricolae tutorial (Version \Sexpr{qp$Version})}
 
 \begin{document}
 
+\SweaveOpts{concordance=TRUE}
+
 \maketitle
 
-\tableofcontents
-\newpage
-\listoffigures
 \setcounter{footnote}{1} \footnotetext{Profesor Principal del Departamento Academico de Estad\'istica e Inform\'atica de la Facultad de Econom\'ia y Planificaci\'on. Universidad Nacional Agraria La Molina-PERU}
-\newpage
+
 \setlength{\parskip}{4pt} % Space between paragraphs
 
 <<echo=FALSE>>=
@@ -37,10 +44,10 @@ The following document was developed to facilitate the use of agricolae package 
 
 \section{Introduction}
 
-The package \bf{agricolae} \rm offers a broad functionality in the design of experiments, especially for experiments in agriculture and improvements of plants, which can also be used for other purposes. It contains the following designs: lattice, alpha, cyclic, balanced incomplete block designs, complete randomized blocks, Latin, Graeco-Latin, augmented block designs, split plot and strip plot. It also has several procedures of experimental data analysis, such as the comparisons of treatments of Waller-Duncan, Bonferroni, Duncan, Student-Newman-Keuls, Scheffe, or the classic LSD and Tukey; and non-parametric comparisons, such as Kruskal-Wallis, Friedman, Durbin, Median and Waerden, stability analysis, and other procedures applied in genetics, as well as procedures in biodiversity and descriptive statistics. reference \cite{b3}
+The package \bf{agricolae} \rm offers a broad functionality in the design of experiments, especially for experiments in agriculture and improvements of plants, which can also be used for other purposes. It contains the following designs: lattice, alpha, cyclic, balanced incomplete block designs, complete randomized blocks, Latin, Graeco-Latin, augmented block designs, split plot and strip plot. It also has several procedures of experimental data analysis, such as the comparisons of treatments of Waller-Duncan, Bonferroni, Duncan, Student-Newman-Keuls, Scheffe, Ryan, Einot and Gabriel and Welsch multiple range test or the classic LSD and Tukey; and non-parametric comparisons, such as Kruskal-Wallis, Friedman, Durbin, Median and Waerden, stability analysis, and other procedures applied in genetics, as well as procedures in biodiversity and descriptive statistics, \citet{Mend:2009}
 
 \subsection{Installation}
-The main program of \bf {R} \rm should be already installed in the platform of your computer \emph{(Windows, Linux or MAC)}. If it is not installed yet, you can download it from the R project \emph{(www.r-project.org)} of a repository CRAN. Reference \cite{b10}
+The main program of \bf {R} \rm should be already installed in the platform of your computer \emph{(Windows, Linux or MAC)}. If it is not installed yet, you can download it from the R project \emph{(www.r-project.org)} of a repository CRAN, \citet{Rcore:2017}.
 
 \vspace{2mm}
 \texttt{> install.packages("agricolae")}
@@ -101,7 +108,7 @@ head(A)
 \section{Descriptive statistics}
 The package \bf{agricolae } \rm provides some complementary functions to the \bf {R} \rm program, specifically for the management of the histogram and function  \emph{hist}.
 \subsection{Histogram}
-The histogram is constructed with the function \emph{graph.freq} and is associated to other functions: \emph{polygon.freq, table.freq, stat.freq}. See Figures: ~\ref{fig:f1}, ~\ref{fig:f2} and ~\ref{fig:f3}  for more details. 
+The histogram is constructed with the function \emph{graph.freq} and is associated to other functions: \emph{polygon.freq, table.freq, stat.freq}. See Figures: \ref{fig:f1}, \ref{fig:f2} and \ref{fig:f3}  for more details. 
 
 Example.  Data generated in \bf {R} \rm. (students' weight).
 <<>>=
@@ -201,7 +208,7 @@ print(summary(h5),row.names=FALSE)
 
 The package \bf{agricolae} \rm presents special functions for the creation of the field book for experimental designs. Due to the random generation, this package is quite used in agricultural research. 
 
-For this generation, certain parameters are required, as for example the name of each treatment, the number of repetitions, and others, according to the design references \cite{b1,b6,b7,b8}. There are other parameters of random generation, as the seed to reproduce the same random generation or the generation method (See the reference manual of \bf{agricolae} \rm.
+For this generation, certain parameters are required, as for example the name of each treatment, the number of repetitions, and others, according to the design,  \citet{CochCox:1992}; \citet{kueh:2000}; \citet{LeCl:1992}; \citet{Mont:2002}. There are other parameters of random generation, as the seed to reproduce the same random generation or the generation method (See the reference manual of \bf{agricolae} \rm.
 
 \em http://cran.at.r-project.org/web/packages/agricolae/agricolae.pdf\rm
 
@@ -381,7 +388,7 @@ t(X[,,2])
 t(X[,,3])
 @
 \subsection {Alpha designs}
-These designs are generated by the alpha arrangements reference \cite{b9}. They are similar to the lattice designs, but the tables are rectangular, with s blocks x k treatments. The number of treatments should be equal to s*k and all the experimental units, r*s*k and its parameters are:
+These designs are generated by the alpha arrangements, \citet{PattWill:1976}. They are similar to the lattice designs, but the tables are rectangular, with s blocks x k treatments. The number of treatments should be equal to s*k and all the experimental units, r*s*k and its parameters are:
 
 <<>>=
 str(design.alpha)
@@ -449,7 +456,7 @@ q <- c(q,paste(book10$trt2[3*(i-1)+1],book10$trt2[3*(i-1)+2], book10$trt2[3*(i-1
 <<>>=
 print(t(matrix(p,c(4,3))))
 @
-\bf{Ind sub plots (split plot)}\rm
+\bf{In sub plots (split plot)}\rm
 <<>>=
 print(t(matrix(q,c(4,3))))
 @
@@ -463,6 +470,7 @@ These designs are used when there are two types of treatments (factors) and are 
 <<>>= 
 str(design.strip)
 @
+\newpage
 \bf{Aplication}\rm
 <<>>=
 trt1<-c("A","B","C","D")
@@ -478,7 +486,9 @@ print(B1)
 print(B2)
 print(B3)
 @
-\bf{Serpentine enumeration:}\rm
+\newpage
+{\bf Serpentine enumeration:}
+
 <<>>=
 book <- zigzag(outdesign)
 head(book)
@@ -488,7 +498,7 @@ t(X[,,2])
 t(X[,,3])
 @
 \subsection {Factorial}
-The full factorial of n factors applied to an experimental design (CRD, RCBD and LSD) is common and this procedure in \bf{agricolae} \rm applies the factorial to one of these three designs and its parameters are:
+The full factorial of n factors applied to an experimental design (CRD, RCBD and LSD) is common and this procedure in {\bf agricolae} applies the factorial to one of these three designs and its parameters are:
 <<>>= 
 str(design.ab)
 @
@@ -504,7 +514,7 @@ outdesign <-design.ab(trt, r=3, serie=2)
 book12 <- outdesign$book
 head(book12) # print of the field book
 @
-\bf{Serpentine enumeration:}\rm
+{\bf Serpentine enumeration:}
 
 <<>>=
 book <- zigzag(outdesign)
@@ -522,11 +532,11 @@ head(crd$book)
 
 \section{Multiple comparisons}
 
-For the analyses, the following functions of \bf{agricolae} \rm are used: \emph{LSD.test,  HSD.test, duncan.test, scheffe.test,  waller.test, SNK.test, REGW.test} reference \cite{b11, b17} and \emph{durbin.test, kruskal, friedman,  waerden.test and Median.test} reference \cite{b2}.
+For the analyses, the following functions of {\bf agricolae} are used: {\emph LSD.test,  HSD.test, duncan.test, scheffe.test,  waller.test, SNK.test, REGW.test}, \citet{SteeTorrDick:1997}; \citet{Hsu:1996} and {\emph durbin.test, kruskal, friedman,  waerden.test and Median.test}, \citet{Cono:1999}.
 
 For every statistical analysis, the data should be organized in columns. For the demonstration, the \bf{agricolae} \rm database will be used.
 
-The \emph{sweetpotato} data correspond to a completely random experiment in field with plots of 50 sweet potato plants, subjected to the virus effect and to a control without virus (See the reference manual of the package).
+The {\emph sweetpotato} data correspond to a completely random experiment in field with plots of 50 sweet potato plants, subjected to the virus effect and to a control without virus (See the reference manual of the package).
 
 <<>>=
 data(sweetpotato)
@@ -536,7 +546,7 @@ attach(sweetpotato)
 mean(yield)
 detach(sweetpotato)
 @
-\bf{Model parameters: Degrees of freedom and variance of the error:\rm 
+{\bf Model parameters: Degrees of freedom and variance of the error:} 
 <<>>=
 df<-df.residual(model)
 MSerror<-deviance(model)/df
@@ -544,14 +554,14 @@ MSerror<-deviance(model)/df
 
 \subsection{The Least Significant Difference (LSD)}
 
-It includes the multiple comparison through the method of the minimum significant difference (Least Significant Difference), reference \cite{b11}.
+It includes the multiple comparison through the method of the minimum significant difference (Least Significant Difference), \citet{SteeTorrDick:1997}.
 
 <<>>=
 # comparison <- LSD.test(yield,virus,df,MSerror)
 LSD.test(model, "virus",console=TRUE)
 @
 
-In the function \emph{LSD.test}, the multiple comparison was carried out. In order to obtain the probabilities of the comparisons, it should be indicated that groups are not required; thus:
+In the function {\emph LSD.test}, the multiple comparison was carried out. In order to obtain the probabilities of the comparisons, it should be indicated that groups are not required; thus:
 
 <<>>=
 # comparison <- LSD.test(yield, virus,df, MSerror, group=F)
@@ -579,17 +589,17 @@ print(out$comparison)
 
 Other comparison tests can be applied, such as \emph{duncan, Student-Newman-Keuls, tukey and waller-duncan}\\
 
-For \emph{Duncan}, use the function \emph{duncan.test}; for \emph{Student-Newman-Keuls}, the function \emph{SNK.test}; for \emph{Tukey}, the function HSD.test(); for \emph{Scheffe}, the function \emph{scheffe.test}; and for \emph{Waller-Duncan}, the function \emph{waller.test}. The parameters are the same. \emph{Waller} also requires the value of F-calculated of the ANOVA treatments. If the model is used as a parameter, this is no longer necessary.
+For {\emphDuncan}, use the function {\emph duncan.test}; for {\emph Student-Newman-Keuls}, the function {\emph SNK.test}; for {\emph Tukey}, the function HSD.test(); for \emph{Scheffe}, the function \emph{scheffe.test}; and for {\emph Waller-Duncan}, the function \emph{waller.test}. The parameters are the same. {\emph Waller} also requires the value of F-calculated of the ANOVA treatments. If the model is used as a parameter, this is no longer necessary.
 
 \subsection{Duncan's New Multiple-Range Test}
 
-It corresponds to the Duncan's Test reference \cite{b11}.
+It corresponds to the Duncan's Test, \citet{SteeTorrDick:1997}.
 <<>>=
 duncan.test(model, "virus",console=TRUE)
 @
 \subsection{Student-Newman-Keuls}
 
-Student, Newman and Keuls helped to improve the Newman-Keuls test of 1939, which was known as the Keuls method reference \cite{b11}
+Student, Newman and Keuls helped to improve the Newman-Keuls test of 1939, which was known as the Keuls method,  \citet{SteeTorrDick:1997}.
 
 <<>>=
 # SNK.test(model, "virus", alpha=0.05,console=TRUE)
@@ -597,7 +607,7 @@ SNK.test(model, "virus", group=FALSE,console=TRUE)
 @
 \subsection{Ryan, Einot and Gabriel and Welsch}
 
-Multiple range tests for all pairwise comparisons, to obtain a confident inequalities multiple range tests. Reference \cite{b17}
+Multiple range tests for all pairwise comparisons, to obtain a confident inequalities multiple range tests, \cite t{Hsu:1996}.
 
 <<>>=
 # REGW.test(model, "virus", alpha=0.05,console=TRUE)
@@ -606,7 +616,7 @@ REGW.test(model, "virus", group=FALSE,console=TRUE)
 
 \subsection{Tukey's W Procedure (HSD)}
 
-This studentized range test, created by Tukey in 1953, is known as the Tukey's HSD (Honestly Significant Differences) Test reference \cite{b11}
+This studentized range test, created by Tukey in 1953, is known as the Tukey's HSD (Honestly Significant Differences), \citet{SteeTorrDick:1997}.
 
 <<>>=
 outHSD<- HSD.test(model, "virus",console=TRUE)
@@ -615,7 +625,7 @@ outHSD
 
 \subsection{Waller-Duncan's Bayesian K-Ratio T-Test}
 
-In 1975, Duncan continued the multiple comparison procedures, introducing the criterion of minimizing both experimental errors; for this, he used the Bayes' theorem, obtaining one new test called Waller-Duncan reference \cite{b11}
+In 1975, Duncan continued the multiple comparison procedures, introducing the criterion of minimizing both experimental errors; for this, he used the Bayes' theorem, obtaining one new test called Waller-Duncan, \citet{SteeTorrDick:1997}.
 
 <<>>=
 # variance analysis:
@@ -641,7 +651,7 @@ outWaller$statistics
 @
 \subsection {Scheffe's Test}
 
-This method, created by Scheffe in 1959, is very general for all the possible contrasts and their confidence intervals. The confidence intervals for the averages are very broad, resulting in a very conservative test for the comparison between treatment averages reference \cite{b11}
+This method, created by Scheffe in 1959, is very general for all the possible contrasts and their confidence intervals. The confidence intervals for the averages are very broad, resulting in a very conservative test for the comparison between treatment averages, \citet{SteeTorrDick:1997}.
 
 <<>>=
 # analysis of variance: 
@@ -660,7 +670,8 @@ In a factorial combined effects of the treatments. Comparetive tests: \emph{LSD,
 # modelABC <-aov (y ~ A * B * C, data)
 # compare <-LSD.test (modelABC, c ("A", "B", "C"),console=TRUE)
 @
-\bf {The comparison is the combination of A:B:C.} \rm \\
+{\bf The comparison is the combination of A:B:C.}
+
 Data RCBD design with a factorial clone x nitrogen. The response variable yield. 
 
 <<>>=
@@ -676,6 +687,9 @@ nitrogen <-rep (gl (3, 1, labels = c ("n1", "n2", "n3")), 12)
 A <-data.frame (block, clone, nitrogen, yield)
 head (A)
 outAOV <-aov (yield ~ block + clone * nitrogen, data = A)
+@
+\newpage
+<<>>=
 anova (outAOV)
 outFactorial <-LSD.test (outAOV, c("clone", "nitrogen"), 
 main = "Yield ~ block + nitrogen + clone + clone:nitrogen",console=TRUE)
@@ -691,7 +705,7 @@ title(main="average and range\nclon:nitrogen")
 
 \subsection {Analysis of Balanced Incomplete Blocks}
 
-This analysis can come from balanced or partially balanced designs. The function \emph{BIB.test} is for balanced designs, and \emph{BIB.test}, for partially balanced designs. In the following example, the \bf{agricolae} \rm data will be used, reference \cite{b4}.
+This analysis can come from balanced or partially balanced designs. The function {\emph BIB.test} is for balanced designs, and {\emph BIB.test}, for partially balanced designs. In the following example, the {\bf agricolae} data will be used, \citet{Josh:1987}.
 
 <<>>= 
 #Example linear estimation and design of experiments. (Joshi)
@@ -703,7 +717,7 @@ y<-c(69,54,50,77,65,38,72,45,54,63,60,39,70,65,54,65,68,67,57,60,62,
 59,65,63,75,62,61,59,55,56)
 BIB.test(block, variety, y,console=TRUE)
 @
-\bf {function (block, trt, y, test = c("lsd", "tukey", "duncan",  "waller", "snk"), alpha = 0.05, group = TRUE)} \rm LSD, Tukey Duncan, Waller-Duncan and SNK, can be used. The probabilities of the comparison can also be obtained. It should only be indicated: group=FALSE, thus:
+{\bf function (block, trt, y, test = c("lsd", "tukey", "duncan",  "waller", "snk"), alpha = 0.05, group = TRUE)} LSD, Tukey Duncan, Waller-Duncan and SNK, can be used. The probabilities of the comparison can also be obtained. It should only be indicated: group=FALSE, thus:
 <<>>=
 out <-BIB.test(block, trt=variety, y, test="tukey", group=FALSE, console=TRUE)
 names(out)
@@ -716,7 +730,7 @@ bar.err:  out\$means
 
 \subsection {Partially Balanced Incomplete Blocks}
 
-The function \emph{PBIB.test}, reference \cite{b4}, can be used for the lattice and alpha designs. 
+The function \emph{PBIB.test} \citet{Josh:1987}, can be used for the lattice and alpha designs. 
 
 Consider the following case: Construct the alpha design with 30 treatments, 2 repetitions, and a block size equal to 3.
 
@@ -745,15 +759,15 @@ modelPBIB <- PBIB.test(block, Genotype, replication, yield, k=3, group=TRUE,
 console=TRUE)
 detach(data)
 @
-\bf{The adjusted averages can be extracted from the modelPBIB.}\rm
+{\bf The adjusted averages can be extracted from the modelPBIB.}
 
 head(modelPBIB\$means)
 
-\bf {The comparisons:}\rm 
+{\bf The comparisons:} 
 
 head(modelPBIB\$comparison)
 
-The data on the adjusted averages and their variation can be illustrated see Figure ~\ref{fig:f6}. since the created object is very similar to the objects generated by the multiple comparisons.
+The data on the adjusted averages and their variation can be illustrated see Figure \ref{fig:f6}. since the created object is very similar to the objects generated by the multiple comparisons.
 
 Analysis of balanced lattice 3x3, 9 treatments, 4 repetitions.\\
 
@@ -823,7 +837,9 @@ head(modelDAU$comparison,8)
 @
 \section {Non-parametric comparisons}
 
-The functions for non-parametric multiple comparisons included in \bf{agricolae} \rm are: \emph{kruskal, waerden.test, friedman and durbin.test}, reference \cite{b2}.
+The functions for non-parametric multiple comparisons included in \bf{agricolae} \rm are: \emph{kruskal, waerden.test, friedman and durbin.test}, \citet{Cono:1999}.
+
+The post hoc nonparametrics tests (kruskal, friedman, durbin and waerden) are using the criterium Fisher's least significant difference (LSD).
 
 The function \emph{kruskal} is used for N samples (N>2), populations or data coming from a completely random experiment (populations = treatments).
 
@@ -833,7 +849,7 @@ The function \emph{friedman} is used for organoleptic evaluations of different p
 
 The function \emph{durbin.test} for the analysis of balanced incomplete block designs is very used for sampling tests, where the judges only evaluate a part of the treatments.
 
-Montgomery book data, reference \cite{b8}.
+Montgomery book data, \citet{Mont:2002}.
 Included in the \bf{agricolae} \rm package
 
 <<>>=
@@ -850,7 +866,7 @@ str(kruskal)
 <<>>=
 outKruskal<-with(corn,kruskal(observation,method,group=TRUE, main="corn", console=TRUE))
 @
-The object output has the same structure of the comparisons see Figure ~\ref{fig:f8}.
+The object output has the same structure of the comparisons see Figure \ref{fig:f8}.
 
 \subsection {Kruskal-Wallis: adjust P-values}
 
@@ -896,7 +912,7 @@ out<-waerden.test(yield,virus,group=F,console=TRUE)
 detach(sweetpotato)
 @
 \subsection {Median test}
-A nonparametric test for several independent samples. The median test is designed to examine whether several samples came from populations having the sam median, reference \cite{b2}.
+A nonparametric test for several independent samples. The median test is designed to examine whether several samples came from populations having the same median, \citet{Cono:1999}.
 <<>>=
 str(Median.test)
 @
@@ -944,13 +960,13 @@ example:
 # bar.group (out $ group)
 str(bar.group)
 @
-The found object of one comparison is the entry for these functions, see Figure ~\ref{fig:f4}. 
+The found object of one comparison is the entry for these functions, see Figure \ref{fig:f4}. 
 The objects outHSD and outWaller are used in the following exercise:\\
 outHSD, for the functions \emph{bar.group} and \emph{bar.err}\\
 outWaller, for the function \emph{bar.err}
 
 \subsection{bar.err}
-A function to plot horizontal or vertical bar, where the variation of the error is expressed in every treatments. The function applies to all functions comparison treatments. Each object must use the means object previously generated by the comparison function, see Figure ~\ref{fig:f4}
+A function to plot horizontal or vertical bar, where the variation of the error is expressed in every treatments. The function applies to all functions comparison treatments. Each object must use the means object previously generated by the comparison function, see Figure \ref{fig:f4}
 <<>>=
 # model <-aov (yield ~ fertilizer, data = field) 
 # out <-LSD.test (model, "fertilizer", group = TRUE) 
@@ -995,7 +1011,7 @@ bar.group(modelLattice$group,ylim=c(0,55),density=10,las=1)
 @
 
 \subsection{diffograph}
-It plots bars of the averages of treatments to compare. It uses the objects generated by a procedure of comparison like LSD (Fisher), duncan, Tukey (HSD), Student Newman Keul (SNK), Scheffe, Ryan, Einot and Gabriel and Welsch (REGW), Kruskal Wallis, Friedman and Waerden. Reference \cite{b17}, see Figure ~\ref{fig:f5}
+It plots bars of the averages of treatments to compare. It uses the objects generated by a procedure of comparison like LSD (Fisher), duncan, Tukey (HSD), Student Newman Keul (SNK), Scheffe, Ryan, Einot and Gabriel and Welsch (REGW), Kruskal Wallis, Friedman and Waerden, \citet{Hsu:1996}, see Figure \ref{fig:f5}.
 
 \begin{figure}[!hbtp]
 \begin{center}
@@ -1014,13 +1030,13 @@ diffograph(x,cex.axis=0.9,xlab="Yield",ylab="Yield",cex=0.9)
 \end{figure}
 
 \section {Stability Analysis}
-In \bf {agricolae} \rm there are two methods for the study of stability and the AMMI model. These are: a parametric model for a simultaneous selection in yield and stability "SHUKLA'S STABILITY VARIANCE AND KANG'S", reference \cite{b5} and a non-parametric method of Haynes, based on the data range.
+In \bf {agricolae} \rm there are two methods for the study of stability and the AMMI model. These are: a parametric model for a simultaneous selection in yield and stability "SHUKLA'S STABILITY VARIANCE AND KANG'S",  \citet{Kang:1993} and a non-parametric method of Haynes, based on the data range.
 
 \subsection {Parametric Stability}
 
 Use the parametric model, function \emph{stability.par}.
 
-Prepare a data table where the rows and the columns are the genotypes and the environments, respectively. The data should correspond to yield averages or to another measured variable. Determine the variance of the common error for all the environments and the number of repetitions that was evaluated for every genotype. If the repetitions are different, find a harmonious average that will represent the set. Finally, assign a name to each row that will represent the genotype. Reference \cite{b5} We will consider five environments in the following example:
+Prepare a data table where the rows and the columns are the genotypes and the environments, respectively. The data should correspond to yield averages or to another measured variable. Determine the variance of the common error for all the environments and the number of repetitions that was evaluated for every genotype. If the repetitions are different, find a harmonious average that will represent the set. Finally, assign a name to each row that will represent the genotype, \citet{Kang:1993}. We will consider five environments in the following example:
 <<>>=
 options(digit=2)
 v1 <- c(10.2,8.8,8.8,9.3,9.6,7.2,8.4,9.6,7.9,10,9.3,8.0,10.1,9.4,10.8,6.3,7.4)
@@ -1052,7 +1068,7 @@ file.cov=altitude)
 @
 \subsection {Non-parametric Stability}
 For non-parametric stability, the function in 'agricolae' is stability.nonpar(). 
-The names of the genotypes should be included in the first column, and in the other columns, the response by environments. Reference \cite{b12}
+The names of the genotypes should be included in the first column, and in the other columns, the response by environments, \citet{HaynLambChriWeinDoucBackSecoFryStev:1998}.
 
 \bf {Analysis}\rm
 <<>>=
@@ -1063,7 +1079,7 @@ output$statistics
 @
 
 \subsection {AMMI}
-The model AMMI uses the biplot constructed through the principal components generated by the interaction environment-genotype. If there is such interaction, the percentage of the two principal components would explain more than the 50\% of the total variation; in such case, the biplot would be a good alternative to study the interaction environment-genotype. Reference \cite{b13}
+The model AMMI uses the biplot constructed through the principal components generated by the interaction environment-genotype. If there is such interaction, the percentage of the two principal components would explain more than the 50\% of the total variation; in such case, the biplot would be a good alternative to study the interaction environment-genotype, \citet{Cros:1990}.
 
 The data for AMMI should come from similar experiments conducted in different environments. Homogeneity of variance of the experimental error, produced in the different environments, is required. The analysis is done by combining the experiments.
 
@@ -1071,21 +1087,21 @@ The data can be organized in columns, thus: environment, genotype, repetition, a
 
 The data can also be the averages of the genotypes in each environment, but it is necessary to consider a harmonious average for the repetitions and a common variance of the error. The data should be organized in columns: environment, genotype, and variable.
 
-When performing AMMI, this generates the Biplot, Triplot and Influence graphics, see Figures ~\ref{fig:f6}
+When performing AMMI, this generates the Biplot, Triplot and Influence graphics, see Figures \ref{fig:f6}
 
 For the application, we consider the data used in the example of parametric stability (study):
-
-\bf {AMMI structure}\rm
+  
+  \bf {AMMI structure}\rm
 <<>>=
-str(AMMI)
+  str(AMMI)
 @
-\bf {plot.AMMI structure, plot()}\rm
+  \bf {plot.AMMI structure, plot()}\rm
 <<>>=
-str(plot.AMMI)
+  str(plot.AMMI)
 @
-\bf {type: 1=biplot, 2= triplot 3=influence genotype} \rm
+  \bf {type: 1=biplot, 2= triplot 3=influence genotype} \rm
 <<>>=
-rdto <- c(study[,1], study[,2], study[,3], study[,4], study[,5])
+  rdto <- c(study[,1], study[,2], study[,3], study[,4], study[,5])
 environment <- gl(5,17)
 genotype <- rep(rownames(study),5)
 model<-AMMI(ENV=environment, GEN=genotype, REP=4, Y=rdto, MSE=2, console=TRUE)
@@ -1094,14 +1110,14 @@ pc12<-sum(pc[1:2])
 pc123<-sum(pc[1:3])
 rm(rdto,environment,genotype)
 @
-
-\begin{figure}[!hbtp]
+  
+  \begin{figure}[!hbtp]
 \begin{center}
 <<f6, fig=TRUE,width=6, height=2.2>>=
-par(cex=0.8,mar=c(4,4,1,0))
+  par(cex=0.8,mar=c(4,4,1,0))
 plot(model,type=1,las=1)
 @
-\caption{Biplot\label{fig:f5}}
+  \caption{Biplot\label{fig:f5}}
 \end{center}
 \end{figure}
 In this case, the interaction is significant. The first two components explain \Sexpr{pc12} \%; then the biplot can provide information about the interaction genotype-environment. With the triplot, \Sexpr{pc123}\% would be explained.
@@ -1114,9 +1130,8 @@ plot(model,type=2,las=1)
 
 plot(model,type=3,las=1)
 
-
 \subsection {AMMI index and yield stability}
-Calculate AMMI stability value (ASV) and Yield stability index (YSI). References \cite{b16,b14}
+Calculate AMMI stability value (ASV) and Yield stability index (YSI), \citet{SabaDehg:2017}; \citet{Purc:1997}.
 
 <<>>=
 data(plrv)
@@ -1137,7 +1152,7 @@ Consensus is the degree or similarity of the vertexes of a tree regarding its br
 
 The data correspond to a table, with the name of the individuals and the variables in the rows and columns respectively. For the demonstration, we will use the "pamCIP" data of 'agricolae', which correspond to molecular markers of 43 entries of a germplasm bank (rows) and 107 markers (columns).
 
-The program identifies duplicates in the rows and can operate in both cases. The result is a dendrogram, in which the consensus percentage is included, see Figure ~\ref{fig:f7}.
+The program identifies duplicates in the rows and can operate in both cases. The result is a dendrogram, in which the consensus percentage is included, see Figure \ref{fig:f7}.
 
 \begin{figure}[!hbtp]
 \begin{center}
@@ -1150,7 +1165,7 @@ output<-consensus(pamCIP,distance="binary", method="complete", nboot=5)
 \caption{Dendrogram, production by consensus\label{fig:f7}}
 \end{center}
 \end{figure}
-When the dendrogram is complex, it is convenient to extract part of it with the function hcut(), see Figure ~\ref{fig:f8}.
+When the dendrogram is complex, it is convenient to extract part of it with the function hcut(), see Figure \ref{fig:f8}.
 
 \begin{figure}[!hbtp]
 \begin{center}
@@ -1184,7 +1199,7 @@ text(data[,3],data[,4],data[,5],col="blue",cex=1)
 \subsection {Montecarlo}
 It is a method for generating random numbers of an unknown distribution. It uses a data set and, through the cumulative behavior of its relative frequency, generates the possible random values that follow the data distribution. These new numbers are used in some simulation process.
 
-The probability density of the original and simulated data can be compared, see Figure ~\ref{fig:f9}.
+The probability density of the original and simulated data can be compared, see Figure \ref{fig:f9}.
 <<>>=
 data(soil)
 # set.seed(9473)
@@ -1258,7 +1273,7 @@ output<-path.analysis(corr.x,corr.y)
 output
 @
 \subsection {Line X Tester}
-It corresponds to a crossbreeding analysis of a genetic design. The data should be organized in a table. Only four columns are required: repetition, females, males, and response. In case it corresponds to progenitors, the females or males field will only be filled with the corresponding one. See the heterosis data. Reference \cite{b15}.
+It corresponds to a crossbreeding analysis of a genetic design. The data should be organized in a table. Only four columns are required: repetition, females, males, and response. In case it corresponds to progenitors, the females or males field will only be filled with the corresponding one. See the heterosis data, \citet{SingChau:1979}.
 
 \bf {Example with the heterosis data, locality 2.}\rm 
 
@@ -1302,7 +1317,7 @@ detach(site2)
 \subsection {Soil Uniformity}
 The Smith index is an indicator of the uniformity, used to determine the parcel size for research purposes. The data correspond to a matrix or table that contains the response per basic unit, a number of n rows x m columns, and a total of n*m basic units.
 
-For the test, we will use the rice file. The graphic is a result with the adjustment of a model for the plot size and the coefficient of variation, see Figure ~\ref{fig:f10}.
+For the test, we will use the rice file. The graphic is a result with the adjustment of a model for the plot size and the coefficient of variation, see Figure \ref{fig:f10}.
 \begin{figure}[h]
 \begin{center}
 <<f10, fig=TRUE, width=4, height=2>>=
@@ -1443,7 +1458,7 @@ print(W.D)
 
 \subsection {AUDPC}
 
-The area under the disease progress curve (AUDPC), see Figure ~\ref{fig:f10} calculates the absolute and relative progress of the disease. It is required to measure the disease in percentage terms during several dates, preferably equidistantly.
+The area under the disease progress curve (AUDPC), see Figure \ref{fig:f10} calculates the absolute and relative progress of the disease. It is required to measure the disease in percentage terms during several dates, preferably equidistantly.
 <<>>=
 days<-c(7,14,21,28,35,42)
 evaluation<-data.frame(E1=10,E2=40,E3=50,E4=70,E5=80,E6=90)
@@ -1454,7 +1469,7 @@ relative1 <-round(audpc(evaluation,days,"relative"),2)
 
 \subsection {AUDPS}
 
-The Area Under the Disease Progress Stairs (AUDPS), see Figure ~\ref{fig:f11}. A better estimate of disease progress is the area under the disease progress stairs (AUDPS). The AUDPS approach improves the estimation of disease progress by giving a weight closer to optimal to the first and last observations..
+The Area Under the Disease Progress Stairs (AUDPS), see Figure \ref{fig:f11}. A better estimate of disease progress is the area under the disease progress stairs (AUDPS). The AUDPS approach improves the estimation of disease progress by giving a weight closer to optimal to the first and last observations..
 <<>>=
 absolute2 <-audps(evaluation,days)
 relative2 <-round(audps(evaluation,days,"relative"),2)
@@ -1508,7 +1523,7 @@ According to the results, the model is additive because the p.value 0.35 is grea
  
 \subsection {LATEBLIGHT}
 
-LATEBLIGHT is a mathematical model that simulates the effect of weather, host growth and resistance, and fungicide use on asexual development and growth of Phytophthora infestans on potato foliage, see Figure ~\ref{fig:f12}
+LATEBLIGHT is a mathematical model that simulates the effect of weather, host growth and resistance, and fungicide use on asexual development and growth of Phytophthora infestans on potato foliage, see Figure \ref{fig:f12}
 
 LATEBLIGHT Version LB2004 was created in October 2004 (Andrade-Piedra et al., 2005a, b and c), based on the C-version written by B.E. Ticknor ('BET 21191 modification of cbm8d29.c'), reported by Doster et al. (1990) and described in detail by Fry et al. (1991) (This version is referred as LB1990 by Andrade-Piedra et al. [2005a]). The first version of LATEBLIGHT was developed by Bruhn and Fry (1981) and described in detail by Bruhn et al. (1980).
 <<>>=
@@ -1577,24 +1592,114 @@ legend("topleft",c("Disease progress curves","Weather-Severity"),
 title="Description",lty=1,pch=c(3,19),col=c("black","red"))
 @
 
-\addcontentsline{toc}{section}{Bibliography}
-\begin{thebibliography}{11}
-\bibitem{b1}Cochran and Cox., 1992. \emph{Experimental Design}. Second edition. Wiley Classics Library Edition published. John Wiley \& Sons, INC.
-\bibitem{b2}Conover, W.J, 1999. \emph{Practical Nonparametrics Statistics}, John Wiley \& Sons, INC, New York.
-\bibitem{b13} Crossa, J. 1990. \emph{Statistical analysis of multilocation trials}. Advances in Agronomy 44:55-85.
-\bibitem{b3}De Mendiburu, Felipe, 2009. \emph{Una herramienta de an\'alisis estad\'istico para la investigaci\'on agr\'icola}, Universidad Nacional de Ingenier\'ia (UNI).
-\bibitem{b12}Haynes K. G., Lambert D. H., Christ B. J., Weingartner D. P., Douches D. S., Backlund J. E., Fry W. and Stevenson W. 1998. \emph{Phenotypic stability of resistance to late blight in potato clones evaluated at eight sites in the United States American}, Journal Potato Research 75, pag 211-21.
-\bibitem{b17}Hsu J. C., 1996. \emph{Multiple Comparison, theory and methods}. First Edition. CRC Press reprint 1999. Printed in the United States of America.
-\bibitem{b4}Joshi, D.D., 1987. \emph{Linear Estimation and Design of Experiments}, WILEY EASTERN LIMITED, New Delhi, India.
-\bibitem{b5}Kang, M. S. 1993. \emph{Simultaneous Selection for Yield and Stability: Consequences for Growers}, Agron. J. 85:754-757.
-\bibitem{b6}Kuehl, Robert, 2000. \emph{Design of Experiments}, 2nd ed., Duxbury.
-\bibitem{b7}LeClerg, Erwin, 1962. \emph{Field Plot Technique}, Burgess Publishing Company.
-\bibitem{b8}Montgomery, 2002. \emph{Dise\~no y An\'alisis de Experimentos}, 2nd Ed, WILEY.
-\bibitem{b9}Patterson, H.D. and Williams, E.R., 1976. \emph{A New Class of Resolvable Incomplete Block Designs}, Biometrika,Printed in Great Britain.
-\bibitem{b14} Purchase, J. L. 1997. \emph{Parametric analysis to describe genotyperenvironment interaction and yield stability in winter wheat}. Ph.D. Thesis, Department of Agronomy, Faculty of Agriculture of the University of the Free State, Bloemfontein, South Africa.
-\bibitem{b10}R Core Team, 2014. \emph{A language and environment for statistical computing}, R Foundation for Statistical Computing, Vienna, Austria. www.R-project.org
-\bibitem{b16} Sabaghnia N., Sabaghpour S.H. and Dehghani H. 2008.\emph{The use of an AMMI model and its parameters to analyse yield stability in multienvironment trials}.  Journal of Agricultural Science, 146, 571-581. f 2008 Cambridge University Press 571 doi:10.1017/S0021859608007831. Printed in the United Kingdom.
-\bibitem{b15}Singh R. K., Chaudhary B. D., 1979. \emph{Biometrical Methods in Quantitative Genetic Analysis}.Kalyani Publishers
-\bibitem{b11}Steel \& Torry \& Dickey, 1997. \emph{Principles and Procedures of Statistic a Biometrical Approach}. Third Edition. The Mc Graw Hill companies, Inc
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Cochran and Cox}{Cochran and Cox}{1957}]{CochCox:1992}
+Gertrude M. and W. G. Cochran. (1992).
+\newblock {\emph{Experimental designs}}
+\newblock Wiley, New York.
+
+\bibitem[\protect\citeauthoryear{Conover}{Conover}{1999}]{Cono:1999} 
+Conover, W.J (1999).
+\newblock {\emph Practical Nonparametrics Statistics}}
+\newblock John Wiley \& Sons, INC, New York.
+
+\bibitem[\protect\citeauthoryear{Crossa}{Crossa}{1990}]{Cros:1990}
+Crossa, J. (1990).
+\newblock {\emph Statistical analysis of multilocation trials}}
+\newblock Advances in Agronomy 
+\newblock 44:55-85.
+
+\bibitem[\protect\citeauthoryear{De Mendiburu}{De Mendiburu}{2009}]{Mend:2009}
+De Mendiburu, . (2009).
+\newblock {\emph Una herramienta de an\'alisis estad\'istico para la investigaci\'on agr\'icola}}}
+\newblock Universidad Nacional de Ingenier\'ia (UNI).
+
+\bibitem[\protect\citeauthoryear{Haynes and Lambert and Christ and Weingartner and Douches and Backlund and Secor and Fry  and Stevenson}{Haynes and Lambert and Christ and Weingartner and Douches and Backlund and Secor and Fry  and Stevenson}{1998}]{HaynLambChriWeinDoucBackSecoFryStev:1998}
+Haynes, K.G. and Lambert, D.H. and Christ, B.J. and Weingartner, D.P. and Douches, D.S. and Backlund, J.E. and Secor, G. and Fry, W. and Stevenson, W. (1998).
+\newblock 75 
+\newblock 5 
+\newblock 211--217 
+\newblock Springer.
+
+\bibitem[\protect\citeauthoryear{Hsu}{Hsu}{1996}]{Hsu:1996} 
+Hsu, J. (1996).
+\newblock {\emph Multiple comparisons: theory and methods}
+\newblock CRC Press 
+\newblock Printed in the United States of America.
+}
+
+\bibitem[\protect\citeauthoryear{Joshi}{Joshi}{1987}]{Josh:1987}
+Joshi, D.D.(1987).
+\newblock {\emph {Linear estimation and design of experiments}}
+\newblock WILEY EASTERN LIMITED
+\newblock New Delhi, India.
+
+\bibitem[\protect\citeauthoryear{Kang}{Kang}{1993}]{Kang:1993}
+Kang, M.S. (1993).
+\newblock {\emph {Simultaneous Selection for Yield and Stability: Consequences for Growers}}
+\newblock Agron. J.
+\newblock 85:754-757.  
+
+\bibitem[\protect\citeauthoryear{Kang}{Kang}{1993}]{Kang:1993}
+Kang, M.S. (1993).
+\newblock {\emph {Simultaneous Selection for Yield and Stability: Consequences for Growers}}
+\newblock Agron. J.
+\newblock 85:754-757.
+
+\bibitem[\protect\citeauthoryear{kueh}{kueh}{2000}]{kueh:2000} 
+Kuehl, R.O. (2000).
+\newblock {\emph {Designs of experiments: statistical principles of research design and analysis}}
+\newblock Duxbury Press.
+
+\bibitem[\protect\citeauthoryear{LeClerg}{LeClerg}{1992}]{LeCl:1992} 
+LeClerg, E. (1962).
+\newblock {\emph {Field Plot Technique}}
+\newblock Burgess Publishing Company.
+
+\bibitem[\protect\citeauthoryear{Montgomery}{Montgomery}{2002}]{Mont:2002} 
+Montgomery, D.C. (2002).
+\newblock {\emph {Design and Analysis of Experiments}}
+\newblock John Wiley and Sons.
+
+\bibitem[\protect\citeauthoryear{Patterson and Williams}{Patterson and Williams}{1976}]{PattWill:1976} 
+Patterson, H.D. and E.R. Williams, (1976).
+\newblock {\emph {Design and Analysis of Experiments}}
+\newblock {\emph{Biometrika}}
+\newblock Printed in Great Britain.
+
+\bibitem[\protect\citeauthoryear{Purchase}{Purchase}{1997}]{Purc:1997} 
+Purchase, J. L. (1997).
+\newblock {\emph {Parametric analysis to describe genotype environment interaction and yield stability in winter wheat}}
+\newblock Department of Agronomy, Faculty of Agriculture of the University of the Free State
+\newblock Bloemfontein, South Africa.
+
+\bibitem[\protect\citeauthoryear{R Core Team}{R Core Team}{2017}]{Rcore:2017} 
+R Core Team (2017).
+\newblock {\emph {A language and environment for statistical computing}}
+\newblock {\emph {R Foundation for Statistical Computing}}
+\newblock Department of Agronomy, Faculty of Agriculture of the University of the Free State
+\newblock Vienna, Austria. www.R-project.org.
+
+\bibitem[\protect\citeauthoryear{Sabaghnia and Sabaghpour and Dehghani}{Sabaghnia and Sabaghpour and Dehghani}{2008}]{SabaDehg:2017} 
+Sabaghnia N. and S.H.Sabaghpour and H. Dehghani (2008).
+\newblock {\emph {The use of an AMMI model and its parameters to analyse yield stability in multienvironment trials}}
+\newblock {\emph {Journal of Agricultural Science}}
+\newblock Department of Agronomy, Faculty of Agriculture of the University of the Free State
+\newblock Cambridge University Press 571 doi:10.1017/S0021859608007831 
+\newblock Printed in the United Kingdom
+\newblock 146, 571-581.
+
+\bibitem[\protect\citeauthoryear{Singh and Chaudhary}{Singh and Chaudhary}{1979}]{SingChau:1979} 
+Singh R.K. and B.D. Chaudhary (1979).
+\newblock {\emph {Biometrical Methods in Quantitative Genetic Analysis}}
+\newblock Kalyani Publishers.
+
+\bibitem[\protect\citeauthoryear{Steel and Torry and Dickey}{Steel and Torry and Dickey}{1997}]{SteeTorrDick:1997} 
+Steel and Torry and Dickey, (1997).
+\newblock {\emph {Principles and Procedures of Statistic a Biometrical Approach}}
+\newblock Third Edition 
+\newblock The Mc Graw Hill companies, Inc.
+}
 \end{thebibliography}
 \end{document}

@@ -41,7 +41,7 @@ cex.axis=0.8,las=1,pch=20,bty="l",cex=0.8,lwd=1,xlab="",ylab="",...)
   rxy<-range(c(x1,x2,y1,y2))
   par(mar=c(4,4,2,2))
   if(is.null(main))main=paste(names(x$means)[1],"Comparisons for",name.t)
-  Az<-data.frame(name=nombre,value=Ax)
+  Az<-cbind(name=nombre,value=Ax)
   Az<-Az[order(Az[,2]),]
   rownames(Az)<-Az[,2]
   impar<-seq(1,n,2)

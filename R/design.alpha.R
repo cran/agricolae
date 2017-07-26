@@ -83,11 +83,11 @@ if(serie>0) number<-10^serie
                 cc[j, , ] <- cc[j, , ] + (j - 1) * s
             }
             intermediate <-cc
-            cat("\nalpha design (0,1) - Serie ", serie, "\n")
+            cat("\nAlpha Design (0,1) - Serie ", serie, "\n")
             E <- (ntr - 1) * (r - 1)/((ntr - 1) * (r - 1) + r *
                 (s - 1))
-            cat("\nParameters Alpha design\n=======================")
-            cat("\ntreatmeans :", ntr)
+            cat("\nParameters Alpha Design\n=======================")
+            cat("\nTreatmeans :", ntr)
             cat("\nBlock size :", k)
             cat("\nBlocks     :", s)
             cat("\nReplication:", r, "\n")

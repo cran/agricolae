@@ -13,8 +13,8 @@ designs applied specially for field experiments in agriculture and plant breedin
 \tabular{ll}{
 Package: \tab agricolae\cr
 Type: \tab Package\cr
-Version: \tab 1.2-4\cr
-Date: \tab 2016-06-12\cr
+Version: \tab 1.2-5\cr
+Date: \tab 2017-07-22\cr
 License: \tab GPL\cr
 }
 Planning of field experiments: lattice, factorial, RCBD, CRD, Latin Square,
@@ -37,7 +37,7 @@ Statistical Engineer
 Master in Systems Engineering
 Professor of Applied Statistics
 
-Maintainer: Felipe de Mendiburu <f.mendiburu@cgiar.org>
+Maintainer: Felipe de Mendiburu <fmendiburu@lamolina.edu.pe>
 }
 \references{
 

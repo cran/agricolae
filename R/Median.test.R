@@ -54,7 +54,7 @@ comparison<-data.frame(Median = Median,"Chisq"=Tstat, pvalue=pvalue,"sig"=sig)
 rownames(comparison)<-paste(tr.i,tr.j,sep=" and ")
 if(console){
 cat("\nThe Median Test for",main,"\n")
-cat("\nChi-square =", Tall,"  DF =", parameter,"  P.value", Pall)
+cat("\nChi Square =", Tall,"  DF =", parameter,"  P.Value", Pall)
 cat("\nMedian =",M0,"\n\n")
 print(comparison)
 }

@@ -8,7 +8,7 @@
 }
 \usage{
 consensus(data,distance=c("binary","euclidean","maximum","manhattan",
-"canberra", "minkowski", "gower"),method=c("complete","ward","single","average",
+"canberra", "minkowski", "gower","chisq"),method=c("complete","ward","single","average",
 "mcquitty","median", "centroid"),nboot=500,duplicate=TRUE,cex.text=1, 
 col.text="red", ...)
 }
@@ -23,7 +23,7 @@ col.text="red", ...)
   \item{\dots}{ parameters of the plot dendrogram }
 }
 \details{
-  distance: "euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski", "gower".
+  distance: "euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski", "gower", "chisq".
   Method: "ward", "single", "complete", "average", "mcquitty", "median", "centroid".
   see functions: dist(), hclust() and daisy() of cluster.
 }

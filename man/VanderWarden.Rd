@@ -17,9 +17,9 @@ waerden.test(y, trt, alpha=0.05, group=TRUE, main=NULL,console=FALSE)
   \item{console}{logical, print output }
 }
 \details{
-
-The data consist of k samples of posibly unequal sample size.
-
+The data consist of k samples of posibly unequal sample size.\cr
+The post hoc test is using the criterium Fisher's least \cr
+significant difference (LSD).
 }
 \value{
 

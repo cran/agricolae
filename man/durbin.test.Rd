@@ -20,6 +20,9 @@ main = NULL, console=FALSE)
   \item{main}{ Title }
   \item{console}{logical, print output }
 }
+\details{
+The post hoc test is using the criterium Fisher's least significant difference.
+}
 \value{
   \item{juege }{Vector, numeric}
   \item{trt }{Vector, numeric}

@@ -25,22 +25,23 @@ test = c("lsd","tukey"), alpha=0.05, console=FALSE, group=TRUE)
 \details{
 Method of comparison treatment. 
 lsd: least significant difference.
-tukey: Honestly significant differente.
+tukey: Honestly significant difference.
 Estimate: specifies the estimation method for the covariance parameters.
 The REML is the default method. The REML specification performs residual (restricted) maximum likelihood, and 
 The ML specification performs maximum likelihood, and 
 the VC specifications apply only to variance component models. 
 }
 \value{
-  \item{block}{ Vector, consecutive numbers by replication }
-  \item{trt}{ Vector numeric or character }
-  \item{replication}{ Vector }  
-  \item{y}{ numeric vector}
-  \item{k}{ numeric constant }    
-  \item{method}{ Character: REML, ML and VC }
-  \item{test}{ Character: comparison methods lsd and tukey}
-  \item{alpha}{ Numeric }
-  \item{group}{ Logic} 
+  \item{ANOVA}{ analysis of variance }
+  \item{method}{ estimation method: REML, ML and VC}
+  \item{parameters}{ treatments, block Size, blocks, replication, alpha signification and test comparison }  
+  \item{statistics}{ efficiency, coefficient of variation}
+  \item{model}{ object: estimation model }    
+  \item{Fstat}{ criterion AIC and BIC}
+  \item{comparison}{ data.frame treatments comparison}
+  \item{means}{ data.frame means of treatments }
+  \item{groups}{ significant treatment groups} 
+  \item{vartau}{ matrix of variance and covariance}   
 }
 \references{
 1. Iterative Analysis of Generalizad Lattice Designs.

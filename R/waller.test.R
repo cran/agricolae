@@ -50,8 +50,8 @@ function (y, trt, DFerror, MSerror, Fc, K = 100, group=TRUE,main = NULL,console=
 	if(console){
 	cat("\nStudy:", main)                                                                            
 	cat("\n\nWaller-Duncan K-ratio t Test for",name.y,"\n")                                          
-	cat("\nThis test minimizes the Bayes risk under additive")                                       
-	cat("\nloss and certain other assumptions.\n") }                                                  
+	cat("\nThis test minimizes the Bayes risk under additive loss")                                       
+	cat("\and certain other assumptions.\n") }                                                  
 	xtabla<-data.frame("......"=nvalor)                                                                  
 	row.names(xtabla)<-nfila                                                                             
 	if(console){print(xtabla)                                                                                        

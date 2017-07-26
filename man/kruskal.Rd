@@ -20,11 +20,12 @@ kruskal(y, trt, alpha = 0.05, p.adj=c("none","holm","hommel",
   \item{console}{logical, print output }
 }
 \details{
-  For equal or different repetition.
-  p.adj = "holm", "hommel", "hochberg", "bonferroni", "BH", "BY", "fdr".
-  see p.adjust()
-  p-adj ="none" is t-student.
-  p-adj ="hommel" is not applied in this test.
+  For equal or different repetition.\cr
+  The post hoc test is using the criterium Fisher's least significant difference.\cr
+  p.adj = "holm", "hommel", "hochberg", "bonferroni", "BH", "BY", "fdr". \cr
+  See p.adjust()
+  p-adj = "none" is t-student.\cr
+  p-adj = "hommel" is not applied in this test.
 }
 \value{
   \item{y}{ vector numeric }

@@ -49,7 +49,7 @@ function (y, trt, DFerror, MSerror, Fc, alpha=0.05, group=TRUE,main = NULL,conso
 	cat("\nMean Square Error  :",MSerror,"\n\n")
 	cat(paste(name.t,",",sep="")," means\n\n")
 	print(data.frame(row.names = means[,1], means[,-1]))
-	cat("\nalpha:",alpha,"; Df Error:",DFerror,"\n")
+	cat("\nAlpha:",alpha,"; DF Error:",DFerror,"\n")
 	cat("Critical Value of F:", Fprob,"\n")
 	}
 	scheffe <- Tprob*sqrt(2*MSerror/nr)

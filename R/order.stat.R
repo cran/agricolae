@@ -1,8 +1,8 @@
 order.stat <-
-function(treatment,means,minimum,console) {
+function(treatment,means,minimum,console=TRUE) {
 n<-length(means)
 z<-data.frame(treatment,means)
-letras<-c(letters[1:26],LETTERS[1:26])
+letras<-c(letters[1:26],LETTERS[1:26],1:9,c(".","+","-","*","/","#","$","%","&","^","[","]",":","@",";"))
 # ordena tratamientos
 w<-z[order(z[,2],decreasing=TRUE),]
 M<-rep("",n)
@@ -48,5 +48,5 @@ for(i in 1:n){
 if(console)cat(M[i],"\t",trt[i],"\t",means[i],"\n")
 }
 output<-data.frame(trt,means,M)
-return(output)
+invisible(output)
 }

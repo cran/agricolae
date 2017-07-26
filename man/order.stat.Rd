@@ -7,7 +7,7 @@
   compared with a minimal difference of meaning.
 }
 \usage{
-order.stat(treatment, means, minimum,console)
+order.stat(treatment, means, minimum,console=TRUE)
 }
 
 \arguments{
@@ -32,7 +32,7 @@ library(agricolae)
 treatments <- c("A","B","C","D","E","F")
 means<-c(2,5,3,7,9,5)
 minimum.diff <- 2
-groups<-order.stat(treatments,means,minimum.diff,console=TRUE)
+groups<-order.stat(treatments,means,minimum.diff)
 
 }
 \keyword{ manip }% at least one, from doc/KEYWORDS

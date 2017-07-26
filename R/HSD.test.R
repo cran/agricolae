@@ -47,7 +47,7 @@ function (y, trt, DFerror, MSerror, alpha=0.05, group=TRUE,main = NULL,console=F
 	cat("\nMean Square Error: ",MSerror,"\n\n")
 	cat(paste(name.t,",",sep="")," means\n\n")
 	print(data.frame(row.names = means[,1], means[,-1]))
-	cat("\nalpha:",alpha,"; Df Error:",DFerror,"\n")
+	cat("\nAlpha:",alpha,"; DF Error:",DFerror,"\n")
 	cat("Critical Value of Studentized Range:", Tprob,"\n")
 	}
 	HSD <- Tprob * sqrt(MSerror/nr)

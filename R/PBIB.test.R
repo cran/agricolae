@@ -183,7 +183,7 @@ function (block, trt, replication, y, k, method=c("REML","ML","VC"),
     E <- (ntr - 1) * (r - 1)/((ntr - 1) * (r - 1) + r * (s-1))
     if(console){
       print(ANOVA)
-      cat("\ncoefficient of variation:", round(CV,1), "%\n")
+      cat("\nCoefficient of variation:", round(CV,1), "%\n")
       cat(name.y, "Means:", media, "\n")
       cat("\nParameters PBIB\n")
       print(design)
@@ -235,7 +235,7 @@ function (block, trt, replication, y, k, method=c("REML","ML","VC"),
                         SE = dvar, r = n.rep, std,Min=mi,Max=ma)
     names(means)[1]<-name.y
     rownames(comparison) <- paste(indice[tr.i], indice[tr.j], sep = " - ")
-    output<-list(ANOVA=ANOVA,method=nMethod,parameters=parameters,statistics=statistics ,
+    output<-list(ANOVA=ANOVA,method=nMethod,parameters=parameters,statistics=statistics ,model=model,
                  Fstat=Fstat, comparison = comparison, means = means, groups = groups, vartau = vartau)
     invisible(output)
   }

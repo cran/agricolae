@@ -36,7 +36,7 @@ cat("\nStudy:",main)
 cat("\nVan der Waerden (Normal Scores) test's\n")
 cat("\nValue :", T1)
 cat("\nPvalue:", p.chisq)
-cat("\nDegrees of freedom: ", ntr - 1,"\n\n")
+cat("\nDegrees of Freedom: ", ntr - 1,"\n\n")
 cat(paste(name.t,",",sep="")," means of the normal score\n\n")
 print(data.frame(row.names = means[,1], means[,-1]))
 }
@@ -48,7 +48,9 @@ nr <- unique(means[,4]) # change
 nr1<-nr
 Tprob<-qt(1-alpha/2,DFerror)
 if (group) {
-if(console){cat("\nt-Student:", Tprob)
+if(console){
+cat("\nPost Hoc Analysis\n") 
+cat("\nt-Student:", Tprob)
 cat("\nAlpha    :",alpha)}
     if (length(nr1) == 1) {
         LSD <- Tprob * sqrt(2 * MSerror/nr)
@@ -107,6 +109,7 @@ groups=NULL
 #output<-data.frame(trt= means[,1],means= means[,2],M="",N=means[,4]) # change
 }
 Means<-data.frame(normlScore=means[,2],Means)
+Means<-Means[,c(2,1,3:6)]
 parameters<-data.frame(Df=ntr-1,ntr = ntr, t.value=Tprob,alpha=alpha,test="Waerden",name.t=name.t)
 rownames(parameters)<-" "
 rownames(statistics)<-" "

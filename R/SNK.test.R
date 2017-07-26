@@ -57,7 +57,7 @@ function (y, trt, DFerror, MSerror, alpha=0.05, group=TRUE,main = NULL,console=F
 	SNK <- Tprob * sdtdif
 	names(SNK)<-2:ntr
 	if(console){
-	cat("\nalpha:",alpha,"; Df Error:",DFerror,"\n")
+	cat("\nAlpha:",alpha,"; DF Error:",DFerror,"\n")
 	cat("\nCritical Range\n")
 	print(SNK)}
 	if (length(nr) > 1) {

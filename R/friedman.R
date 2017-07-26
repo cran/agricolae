@@ -62,23 +62,25 @@ p.noadj<-1-pchisq(T1,m[2]-1)
 PF<-1-pf(T2.aj, ntr-1, (ntr-1)*(nr-1) )
 if(console){
 cat("\nAdjusted for ties")
-cat("\nValue:",T1.aj)
-cat("\nPvalue chisq :",p.value)
-cat("\nF value :",T2.aj)
-cat("\nPvalue F:",PF)
-cat("\n\nAlpha     :",alpha)
-cat("\nt-Student :",Tprob)
+cat("\nCritical Value:",T1.aj)
+cat("\nP.Value Chisq:",p.value)
+cat("\nF Value:",T2.aj)
+cat("\nP.Value F:",PF,"\n")
+cat("\nPost Hoc Analysis")
+cat("\n\nAlpha:",alpha)
+cat("\nt-Student:",Tprob)
 }
 #...............
 #cat("\nReplication:\t",nr)
 if (group) {
 if(console){
-cat("\nLSD       :",LSD)
+cat("\nLSD:",LSD)
 cat("\n\nMeans with the same letter are not significantly different.")
-cat("\nGroupTreatment and Sum of the ranks\n")}
+cat("\nGroup Treatment and Sum of the ranks\n")}
 s<-as.numeric(s)
 groups<-order.stat(name,s,LSD,console=console)
 names(groups)[2]<-"Sum of ranks"
+names(groups)[1]<-name.t
 comparison=NULL
 statistics<-data.frame(Chisq=T1.aj,p.chisq=p.value,F=T2.aj,p.F=PF,LSD)
 }
@@ -125,6 +127,7 @@ parameters<-data.frame(Df=ntr-1,ntr = ntr, t.value=Tprob,alpha=alpha,test="Fried
 rownames(parameters)<-" "
 rownames(statistics)<-" "
 Means<-data.frame(rankSum=means[,2],Means)
+Means<-Means[,c(2,1,3:6)]
 output<-list(statistics=statistics,parameters=parameters, 
 		means=Means,comparison=comparison,groups=groups)
 invisible(output)

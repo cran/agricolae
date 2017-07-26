@@ -24,14 +24,13 @@ audps(evaluation, dates, type = "absolute")
      AUDPS= sum( rectangle area by interval in times evaluation ) see example.
 }
 \value{
-
   \item{evaluation }{data frame, matrix or numeric vector}
   \item{dates }{a numeric vector}
   \item{type }{text}
 }
-\references{ Ivan Simko and Hans-Peter Piepho (2011).The Area Under the Disease 
-Progress Stairs: Calculation, Advantage, and Application. Analytical and Theoretical 
-Plant Pathology  }
+\references{ Ivan Simko, and Hans-Peter Piepho, (2012). The area under the disease 
+progress stairs: Calculation, advantage, and application. Phytopathology 102:381- 389.
+ }
 \author{ Felipe de Mendiburu }
 
 \examples{

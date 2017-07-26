@@ -1,5 +1,6 @@
 correl <-
 function(x,y,method = "pearson", alternative = "two.sided"){
+x<-1.0*x;y<-1.0*y
 n<-length(x)
 if(method=="kendall"){
 corr<-kendall(x,y)

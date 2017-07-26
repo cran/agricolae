@@ -41,7 +41,22 @@ function (y, trt, DFerror, MSerror, alpha=0.05, group=TRUE,main = NULL,console=F
 	names(means)[1]<-name.y
 #   row.names(means)<-means[,1]
 	ntr<-nrow(means)
-	Tprob <- qtukey((1-alpha)^(1:(ntr-1)),2:ntr, DFerror)
+	Tprob<-NULL
+    k<-0
+    for(i in 2:ntr){
+    k<-k+1
+    x <- suppressWarnings(warning(qtukey((1-alpha)^(i-1), i, DFerror)))
+    if(x=="NaN")break
+    else Tprob[k]<-x
+}
+if(k<(ntr-1)){
+  for(i in k:(ntr-1)){
+    f <- Vectorize(function(x)ptukey(x,i+1,DFerror)-(1-alpha)^i)
+    Tprob[i]<-uniroot(f, c(0,100))$root
+   }
+}
+Tprob<-as.numeric(Tprob)
+#	Tprob <- qtukey((1-alpha)^(1:(ntr-1)),2:ntr, DFerror)
 	nr <- unique(nn[,2])
 	
 #"Critical Value of Studentized Range")
@@ -58,7 +73,7 @@ function (y, trt, DFerror, MSerror, alpha=0.05, group=TRUE,main = NULL,console=F
 	}
 	DUNCAN <- Tprob * sdtdif
 	names(DUNCAN)<-2:ntr
-	if(console){cat("\nalpha:",alpha,"; Df Error:",DFerror,"\n")
+	if(console){cat("\nAlpha:",alpha,"; DF Error:",DFerror,"\n")
 	cat("\nCritical Range\n")
 	print(DUNCAN)}
 	if (length(nr) > 1) {

@@ -72,14 +72,12 @@ function (y, trt, DFerror, MSerror, alpha = 0.05, p.adj = c("none","holm","homme
       cat(paste(name.t, ",", sep = ""), " means and individual (",
           (1 - alpha) * 100, "%) CI\n\n")
       print(data.frame(row.names = means[, 1], means[, -1]))
-      cat("\nalpha:", alpha, "; Df Error:", DFerror)
+      cat("\nAlpha:", alpha, "; DF Error:", DFerror)
       cat("\nCritical Value of t:", Tprob, "\n")
     }
     
     if (group) {
       if (p.adj == "none")Tprob <- qt(1 - alpha/2, DFerror)
-      if(console){cat("\nt-Student:", Tprob)
-        cat("\nAlpha    :", alpha)}
       if (length(nr) == 1 & (p.adj =="bonferroni" | p.adj =="none")) {
         LSD <- Tprob * sqrt(2 * MSerror/nr)
         if(console)cat("\nLeast Significant Difference", LSD)

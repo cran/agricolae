@@ -73,8 +73,10 @@ text(env[,first],env[,second],rownames(env),col=ecol)
 text(gen[,first],gen[,second],ngen,col=gcol)
 coords<-as.matrix(gen[,c(first,second)])
 tri<-spdep::tri2nb(coords)
-relative <- spdep::graph2nb(spdep::soi.graph(tri,coords))
-plot(relative,coords,add=TRUE,col=icol,cex=0.1)
+relative <- spdep::graph2nb(relativeneigh(coords), sym=TRUE)
+plot(relative, coords, add=TRUE,col=icol,cex=0.1)
+#relative <- spdep::graph2nb(spdep::soi.graph(tri,coords))
+#plot(relative,coords,add=TRUE,col=icol,cex=0.1)
 }
 else {
 return("Please install the package spdep to plot the spatial relationship")

@@ -22,6 +22,11 @@ friedman(judge,trt,evaluation,alpha=0.05,group=TRUE,main=NULL,console=FALSE)
   \item{console}{logical, print output }
 }  
 
+\details{
+The post hoc friedman test is using the criterium Fisher's least 
+significant difference (LSD)
+}
+
 \value{
 
   \item{judge }{Vector}

@@ -38,16 +38,18 @@ function (y, trt, alpha = 0.05, p.adj = c("none", "holm", "hommel", "hochberg",
     if(console){
       cat("\nStudy:", main)
       cat("\nKruskal-Wallis test's\nTies or no Ties\n")
-      cat("\nValue:", H)
-      cat("\ndegrees of freedom:", ntr - 1)
-      cat("\nPvalue chisq  :", p.chisq, "\n\n")
+      cat("\nCritical Value:", H)
+      cat("\nDegrees of freedom:", ntr - 1)
+      cat("\nPvalue Chisq  :", p.chisq, "\n\n")
     }
     DFerror <- N - ntr
     Tprob <- qt(1 - alpha/2, DFerror)
     MSerror <- S * ((N - 1 - H)/(N - ntr))
     means[, 2] <- means[, 2]/means[, 3]
     if(console){cat(paste(name.t, ",", sep = ""), " means of the ranks\n\n")
-      print(data.frame(row.names = means[, 1], means[, -1]))}
+      print(data.frame(row.names = means[, 1], means[, -1]))
+       cat("\nPost Hoc Analysis\n")       
+      }
     if (p.adj != "none") {
       if(console)cat("\nP value adjustment method:", p.adj)
       a <- 1e-06
@@ -68,7 +70,8 @@ function (y, trt, alpha = 0.05, p.adj = c("none", "holm", "hommel", "hochberg",
     nr <- unique(means[, 3])
     if (group) {
       if (p.adj == "none")Tprob <- qt(1 - alpha/2, DFerror)
-      if(console){cat("\nt-Student:", Tprob)
+      if(console){
+      cat("\nt-Student:", Tprob)
         cat("\nAlpha    :", alpha)}
       if (length(nr) == 1 & (p.adj =="bonferroni" | p.adj =="none")) {
         LSD <- Tprob * sqrt(2 * MSerror/nr)
@@ -144,6 +147,7 @@ function (y, trt, alpha = 0.05, p.adj = c("none", "holm", "hommel", "hochberg",
     }
     ranks=means
     Means<-data.frame(rank=ranks[,2],Means)
+    Means<-Means[,c(2,1,3:6)]
     parameters<-data.frame(Df=ntr-1,ntr = ntr, t.value=Tprob,alpha=alpha,test="Kruskal-Wallis",name.t=name.t)
     rownames(parameters)<-" "
     rownames(statistics)<-" "

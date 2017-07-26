@@ -3,8 +3,26 @@ function(trt,means,N,MSerror,Tprob,std.err,parameter=1, snk=0, DFerror=NULL,alph
 replications <- N
 #N<-rep(1/mean(1/N),length(means))
 n<-length(means)
+if(snk==2){
+pDuncan<-NULL
+k<-0
+for(i in 2:n){
+  k<-k+1
+  x <- suppressWarnings(warning(qtukey((1-alpha)^(i-1), i, DFerror)))
+  if(x=="NaN")break
+  else pDuncan[k]<-x
+}
+if(k<(n-1)){
+  for(i in k:(n-1)){
+    f <- Vectorize(function(x)ptukey(x,i+1,DFerror)-(1-alpha)^i)
+    pDuncan[i]<-uniroot(f, c(0,100))$root 
+  }
+}
+pDuncan<-as.numeric(pDuncan)
+}
+
 z<-data.frame(trt,means,N=N,std.err,replications)
-letras<-c(letters[1:26],LETTERS[1:26],1:9)
+letras<-c(letters[1:26],LETTERS[1:26],1:9,c(".","+","-","*","/","#","$","%","&","^","[","]",":","@",";"))
 # ordena tratamientos
 w<-z[order(z[,2],decreasing = TRUE), ]
 M<-rep("",n)
@@ -23,7 +41,11 @@ for(i in j:n) {
 nx<-abs(i-j)+1
 if (nx==1) nx=2
 if(snk ==1 ) Tprob <- qtukey(p=1-alpha,nmeans=nx, df=DFerror)
-if(snk ==2 ) Tprob <- qtukey(p=(1-alpha)^(nx-1),nmeans=nx, df=DFerror)
+if(snk ==2 ) {
+#Tprob <- qtukey(p=(1-alpha)^(nx-1),nmeans=nx, df=DFerror)
+Tprob<-pDuncan[nx-1]
+}
+#
 if(snk ==7 ) {
   if(nx <= n-2) Tprob<- qtukey(p=(1-alpha)^(nx/n),nx,df=DFerror)
   if(nx > n-2) Tprob<- qtukey(p=(1-alpha),nx,df=DFerror)
@@ -55,7 +77,11 @@ for( v in ja:cambio) {
 nx<-abs(v-cambio)+1
 if(nx == 1)  nx=2
 if(snk ==1 ) Tprob <- qtukey(p=1-alpha,nmeans=nx, df=DFerror)
-if(snk ==2 ) Tprob <- qtukey(p=(1-alpha)^(nx-1),nmeans=nx, df=DFerror)
+if(snk ==2 ) {
+#Tprob <- qtukey(p=(1-alpha)^(nx-1),nmeans=nx, df=DFerror)
+Tprob<-pDuncan[nx-1]
+}
+
 if(snk ==7 ) {
   if(nx <= n-2) Tprob<- qtukey(p=(1-alpha)^(nx/n),nx,df=DFerror)
   if(nx > n-2) Tprob<- qtukey(p=(1-alpha),nx,df=DFerror)

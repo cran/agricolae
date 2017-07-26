@@ -1,5 +1,13 @@
 Changes in new version
 
+Version agricolae 1-2.5 (July 20, 2017)
+-------------------------------------------
+1. Add model object in output PBIB.test function.
+2. procedure duncan.test is better, the limitations in convergence were corrected.
+3. The influence in AMMI (type=3) is relative neighbor graph as a sub-graph.
+4. The post hoc nonparametrics tests (kruskal, friedman, durbin and waerden) 
+are using the criterium Fisher's least significant difference (LSD)
+
 Version agricolae 1-2.4 (June 12, 2016)
 -------------------------------------------
 1. Add suggests packages: RANN and rgeos to plot AMMI
@@ -13,7 +21,7 @@ Version agricolae 1-2.3 (October 6, 2015)
 1. REGW.test(). New function for multiple comparisons of treatments. 
 (Ryan, Einot and Gabriel and Welsch)
 2. diffograph(). New function: Mean-mean scatter plot, test: Bonferroni, Fisher, Duncan, Student-Newman-Keul 
-Tukey, Kruskall-Wallis, Friedman and Waerden test.
+Tukey, Kruskal-Wallis, Friedman and Waerden test.
 3. Changes in all comparison means, add parameters to facility function diffograph.
 4. Added randomization parameter (TRUE or FALSE) in all design function.
 5. Update Tutorial
