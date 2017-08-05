@@ -4,15 +4,8 @@
 \usepackage{float}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \usepackage[left=3cm,top=3cm,bottom=3.5cm,right=3cm]{geometry}	% For easy management of document margins
-\usepackage{times}
-\usepackage{hyperref}
-\usepackage{natbib}
-\usepackage[english]{babel}
-\usepackage{xspace}
-\usepackage{Sweave}
-\usepackage{mathptm}
 \parindent 0em
-\bibliographystyle{humannat}
+\usepackage{natbib}
 <<agricolae,include=FALSE,echo=FALSE>>=
 options(keep.source = TRUE, width = 60)
 qp <- packageDescription("agricolae")
@@ -208,7 +201,7 @@ print(summary(h5),row.names=FALSE)
 
 The package \bf{agricolae} \rm presents special functions for the creation of the field book for experimental designs. Due to the random generation, this package is quite used in agricultural research. 
 
-For this generation, certain parameters are required, as for example the name of each treatment, the number of repetitions, and others, according to the design,  \citet{CochCox:1992}; \citet{kueh:2000}; \citet{LeCl:1992}; \citet{Mont:2002}. There are other parameters of random generation, as the seed to reproduce the same random generation or the generation method (See the reference manual of \bf{agricolae} \rm.
+For this generation, certain parameters are required, as for example the name of each treatment, the number of repetitions, and others, according to the design,  \citet{CochCox:1992}; \citet{kueh:2000}; \citet{LeClLeonErwiWarrAndre:1962}; \citet{Mont:2002}. There are other parameters of random generation, as the seed to reproduce the same random generation or the generation method (See the reference manual of \bf{agricolae} \rm.
 
 \em http://cran.at.r-project.org/web/packages/agricolae/agricolae.pdf\rm
 
@@ -435,10 +428,13 @@ head(book)
 For augmented ompletely randomized design, use the function design.crd(). 
 
 \subsection {Split plot designs}
-These designs have two factors, one is applied in plots and is defined as A in a randomized complete block design; and a second factor, which is applied in the subplots of each plot applied at random. The function design.split() permits to find the experimental plan for this design and its parameters are:
+These designs have two factors, one is applied in plots and is defined as \bf {trt1} \rm in a randomized complete block design; and a second factor as  \bf {trt2} \rm, which is applied in the subplots of each plot applied at random. The function design.split() permits to find the experimental plan for this design and its parameters are:
+
 <<>>=
 str(design.split)
+
 @
+
 \bf{Aplication}\rm
 
 <<>>=
@@ -470,7 +466,7 @@ These designs are used when there are two types of treatments (factors) and are 
 <<>>= 
 str(design.strip)
 @
-\newpage
+
 \bf{Aplication}\rm
 <<>>=
 trt1<-c("A","B","C","D")
@@ -589,7 +585,7 @@ print(out$comparison)
 
 Other comparison tests can be applied, such as \emph{duncan, Student-Newman-Keuls, tukey and waller-duncan}\\
 
-For {\emphDuncan}, use the function {\emph duncan.test}; for {\emph Student-Newman-Keuls}, the function {\emph SNK.test}; for {\emph Tukey}, the function HSD.test(); for \emph{Scheffe}, the function \emph{scheffe.test}; and for {\emph Waller-Duncan}, the function \emph{waller.test}. The parameters are the same. {\emph Waller} also requires the value of F-calculated of the ANOVA treatments. If the model is used as a parameter, this is no longer necessary.
+For \emph {Duncan}, use the function \emph {duncan.test}; for \emph {Student-Newman-Keuls}, the function \emph {SNK.test}; for \emph {Tukey}, the function \emph {HSD.test}; for \emph {Scheffe}, the function \emph{scheffe.test} and for \emph {Waller-Duncan}, the function \emph {waller.test}. The arguments are the same. \emph {Waller} also requires the value of F-calculated of the ANOVA treatments. If the model is used as a parameter, this is no longer necessary.
 
 \subsection{Duncan's New Multiple-Range Test}
 
@@ -625,7 +621,7 @@ outHSD
 
 \subsection{Waller-Duncan's Bayesian K-Ratio T-Test}
 
-In 1975, Duncan continued the multiple comparison procedures, introducing the criterion of minimizing both experimental errors; for this, he used the Bayes' theorem, obtaining one new test called Waller-Duncan, \citet{SteeTorrDick:1997}.
+Duncan continued the multiple comparison procedures, introducing the criterion of minimizing both experimental errors; for this, he used the Bayes' theorem, obtaining one new test called Waller-Duncan, \citet{WallDunc:1969}; \citet{SteeTorrDick:1997}.
 
 <<>>=
 # variance analysis:
@@ -663,6 +659,7 @@ If you require the approximate probabilities of comparison, you can use the opti
 <<>>=
 outScheffe <- scheffe.test(model,"virus", group=FALSE, console=TRUE)
 @
+
 \subsection {Multiple comparison in factorial treatments}
 
 In a factorial combined effects of the treatments. Comparetive tests: \emph{LSD, HSD, Waller-Duncan, Duncan, Scheff\'e, SNK} can be applied.
@@ -708,18 +705,19 @@ title(main="average and range\nclon:nitrogen")
 This analysis can come from balanced or partially balanced designs. The function {\emph BIB.test} is for balanced designs, and {\emph BIB.test}, for partially balanced designs. In the following example, the {\bf agricolae} data will be used, \citet{Josh:1987}.
 
 <<>>= 
-#Example linear estimation and design of experiments. (Joshi)
-# Profesor de Estadistica, Institute of Social Sciences Agra, India
-# 6 variedades de trigo en 10 bloques de 3 parcelas cada una.
+# Example linear estimation and design of experiments. (Joshi)
+# Institute of Social Sciences Agra, India
+# 6 varieties of wheat in 10 blocks of 3 plots each.
 block<-gl(10,3)
 variety<-c(1,2,3,1,2,4,1,3,5,1,4,6,1,5,6,2,3,6,2,4,5,2,5,6,3,4,5,3, 4,6)
-y<-c(69,54,50,77,65,38,72,45,54,63,60,39,70,65,54,65,68,67,57,60,62, 
+Y<-c(69,54,50,77,65,38,72,45,54,63,60,39,70,65,54,65,68,67,57,60,62, 
 59,65,63,75,62,61,59,55,56)
-BIB.test(block, variety, y,console=TRUE)
+head(cbind(block,variety,Y))
+BIB.test(block, variety, Y,console=TRUE)
 @
-{\bf function (block, trt, y, test = c("lsd", "tukey", "duncan",  "waller", "snk"), alpha = 0.05, group = TRUE)} LSD, Tukey Duncan, Waller-Duncan and SNK, can be used. The probabilities of the comparison can also be obtained. It should only be indicated: group=FALSE, thus:
+{\bf function (block, trt, Y, test = c("lsd", "tukey", "duncan",  "waller", "snk"), alpha = 0.05, group = TRUE)} LSD, Tukey Duncan, Waller-Duncan and SNK, can be used. The probabilities of the comparison can also be obtained. It should only be indicated: group=FALSE, thus:
 <<>>=
-out <-BIB.test(block, trt=variety, y, test="tukey", group=FALSE, console=TRUE)
+out <-BIB.test(block, trt=variety, Y, test="tukey", group=FALSE, console=TRUE)
 names(out)
 rm(block,variety)
 @
@@ -894,7 +892,9 @@ detach(grass)
 A nonparametric test for several independent samples. Example applied with the sweet potato data in the \bf {agricolae} \rm basis.
 <<>>=
 str(waerden.test)
+
 @
+
 \bf {Analysis}\rm
 <<>>=
 rm(yield)
@@ -939,6 +939,7 @@ chemical<-c("A","B","D","A","C","E","C","D","G","A","F","G", "B","C","F",
 "B","E","G","D","E","F")
 toxic<-c(0.465,0.343,0.396,0.602,0.873,0.634,0.875,0.325,0.330, 0.423,0.987,0.426,
 0.652,1.142,0.989,0.536,0.409,0.309, 0.609,0.417,0.931)
+head(data.frame(days,chemical,toxic))
 out<-durbin.test(days,chemical,toxic,group=F,console=TRUE,
 main="Logarithm of the toxic dose")
 names(out)
@@ -1306,12 +1307,13 @@ They are 35 treatments (24, 8, 3) applied to three blocks.
 
 <<>>=
 rm(list=ls())
+options(digits = 2)
 data(heterosis)
+str(heterosis)
 site2<-subset(heterosis,heterosis[,1]==2)
 site2<-subset(site2[,c(2,5,6,8)],site2[,4]!="Control")
-attach(site2)
-output1<-lineXtester(Replication, Female, Male, v2)
-detach(site2)
+output1<-with(site2,lineXtester(Replication, Female, Male, v2))
+options(digits = 7)
 @
 
 \subsection {Soil Uniformity}
@@ -1323,7 +1325,7 @@ For the test, we will use the rice file. The graphic is a result with the adjust
 <<f10, fig=TRUE, width=4, height=2>>=
 par(mar=c(3,3,4,0),cex=0.7)
 data(rice)
-table<-index.smith(rice,pch=19, col="blue",
+table<-index.smith(rice, col="blue",
  main="Interaction between the CV and the plot size",type="l",xlab="Size")
 @
 \caption{Adjustment curve for the optimal size of plot\label{fig:f10}}
@@ -1592,114 +1594,116 @@ legend("topleft",c("Disease progress curves","Weather-Severity"),
 title="Description",lty=1,pch=c(3,19),col=c("black","red"))
 @
 
-\begin{thebibliography}{}
-
+\begin{thebibliography}{1}
 \bibitem[\protect\citeauthoryear{Cochran and Cox}{Cochran and Cox}{1957}]{CochCox:1992}
 Gertrude M. and W. G. Cochran. (1992).
-\newblock {\emph{Experimental designs}}
+\newblock \emph {Experimental designs}
 \newblock Wiley, New York.
 
 \bibitem[\protect\citeauthoryear{Conover}{Conover}{1999}]{Cono:1999} 
 Conover, W.J (1999).
-\newblock {\emph Practical Nonparametrics Statistics}}
+\newblock \emph {Practical Nonparametrics Statistics}
 \newblock John Wiley \& Sons, INC, New York.
 
 \bibitem[\protect\citeauthoryear{Crossa}{Crossa}{1990}]{Cros:1990}
 Crossa, J. (1990).
-\newblock {\emph Statistical analysis of multilocation trials}}
+\newblock \emph {Statistical analysis of multilocation trials}
 \newblock Advances in Agronomy 
 \newblock 44:55-85.
+\newblock Mexico D.F., Mexico.
 
 \bibitem[\protect\citeauthoryear{De Mendiburu}{De Mendiburu}{2009}]{Mend:2009}
-De Mendiburu, . (2009).
-\newblock {\emph Una herramienta de an\'alisis estad\'istico para la investigaci\'on agr\'icola}}}
+De Mendiburu, F. (2009).
+\newblock \emph {Una herramienta de an\'alisis estad\'istico para la investigaci\'on agr\'icola}
 \newblock Universidad Nacional de Ingenier\'ia (UNI).
+\newblock Lima, Peru.
 
 \bibitem[\protect\citeauthoryear{Haynes and Lambert and Christ and Weingartner and Douches and Backlund and Secor and Fry  and Stevenson}{Haynes and Lambert and Christ and Weingartner and Douches and Backlund and Secor and Fry  and Stevenson}{1998}]{HaynLambChriWeinDoucBackSecoFryStev:1998}
 Haynes, K.G. and Lambert, D.H. and Christ, B.J. and Weingartner, D.P. and Douches, D.S. and Backlund, J.E. and Secor, G. and Fry, W. and Stevenson, W. (1998).
+\newblock \emph {Phenotypic stability of resistance to late blight in potato clones evaluated at eight sites in the United Stated}
 \newblock 75 
 \newblock 5 
 \newblock 211--217 
 \newblock Springer.
 
-\bibitem[\protect\citeauthoryear{Hsu}{Hsu}{1996}]{Hsu:1996} 
+\bibitem[\protect\citeauthoryear{Hsu}{Hsu}{1996}]{Hsu:1996}
 Hsu, J. (1996).
-\newblock {\emph Multiple comparisons: theory and methods}
-\newblock CRC Press 
+\newblock \emph {Multiple comparisons: theory and methods}
+\newblock CRC Press.
 \newblock Printed in the United States of America.
-}
 
 \bibitem[\protect\citeauthoryear{Joshi}{Joshi}{1987}]{Josh:1987}
-Joshi, D.D.(1987).
-\newblock {\emph {Linear estimation and design of experiments}}
-\newblock WILEY EASTERN LIMITED
+Joshi, D.D. (1987).
+\newblock \emph {Linear estimation and design of experiments}
+\newblock Wiley Eastern Limited.
 \newblock New Delhi, India.
 
 \bibitem[\protect\citeauthoryear{Kang}{Kang}{1993}]{Kang:1993}
 Kang, M.S. (1993).
-\newblock {\emph {Simultaneous Selection for Yield and Stability: Consequences for Growers}}
-\newblock Agron. J.
-\newblock 85:754-757.  
-
-\bibitem[\protect\citeauthoryear{Kang}{Kang}{1993}]{Kang:1993}
-Kang, M.S. (1993).
-\newblock {\emph {Simultaneous Selection for Yield and Stability: Consequences for Growers}}
-\newblock Agron. J.
-\newblock 85:754-757.
+\newblock \emph {Simultaneous Selection for Yield and Stability: Consequences for Growers}
+\newblock Agronomy Journal.
+\newblock 85,3:754-757.
+\newblock American Society of Agronomy.
 
 \bibitem[\protect\citeauthoryear{kueh}{kueh}{2000}]{kueh:2000} 
 Kuehl, R.O. (2000).
-\newblock {\emph {Designs of experiments: statistical principles of research design and analysis}}
+\newblock \emph {Designs of experiments: statistical principles of research design and analysis}
 \newblock Duxbury Press.
 
-\bibitem[\protect\citeauthoryear{LeClerg}{LeClerg}{1992}]{LeCl:1992} 
-LeClerg, E. (1962).
-\newblock {\emph {Field Plot Technique}}
-\newblock Burgess Publishing Company.
+\bibitem[\protect\citeauthoryear{Le Clerg and Leonard and Erwin and Warren and Andrew}{Le Clerg and Leonard and Erwin and Warren and Andrew}{1992}]{LeClLeonErwiWarrAndre:1962} 
+Le Clerg, E.L. and Leonard, W.H. and Erwin, L. and Warren, H.L. and Andrew, G.C.
+\newblock \emph {Field Plot Technique}
+\newblock Burgess Publishing Company, Minneapolis, Minnesota.
 
 \bibitem[\protect\citeauthoryear{Montgomery}{Montgomery}{2002}]{Mont:2002} 
 Montgomery, D.C. (2002).
-\newblock {\emph {Design and Analysis of Experiments}}
+\newblock \emph {Design and Analysis of Experiments}
 \newblock John Wiley and Sons.
 
 \bibitem[\protect\citeauthoryear{Patterson and Williams}{Patterson and Williams}{1976}]{PattWill:1976} 
 Patterson, H.D. and E.R. Williams, (1976).
-\newblock {\emph {Design and Analysis of Experiments}}
-\newblock {\emph{Biometrika}}
+\newblock \emph {Design and Analysis of Experiments}
+\newblock \emph {Biometrika}
 \newblock Printed in Great Britain.
 
 \bibitem[\protect\citeauthoryear{Purchase}{Purchase}{1997}]{Purc:1997} 
 Purchase, J. L. (1997).
-\newblock {\emph {Parametric analysis to describe genotype environment interaction and yield stability in winter wheat}}
+\newblock \emph {Parametric analysis to describe genotype environment interaction and yield stability in winter wheat}
 \newblock Department of Agronomy, Faculty of Agriculture of the University of the Free State
 \newblock Bloemfontein, South Africa.
 
 \bibitem[\protect\citeauthoryear{R Core Team}{R Core Team}{2017}]{Rcore:2017} 
 R Core Team (2017).
-\newblock {\emph {A language and environment for statistical computing}}
-\newblock {\emph {R Foundation for Statistical Computing}}
-\newblock Department of Agronomy, Faculty of Agriculture of the University of the Free State
+\newblock \emph {A language and environment for statistical computing}
+\newblock \emph {R Foundation for Statistical Computing}
+\newblock Department of Agronomy, Faculty of Agriculture of the University of the Free State.
 \newblock Vienna, Austria. www.R-project.org.
 
-\bibitem[\protect\citeauthoryear{Sabaghnia and Sabaghpour and Dehghani}{Sabaghnia and Sabaghpour and Dehghani}{2008}]{SabaDehg:2017} 
+\bibitem[\protect\citeauthoryear{Sabaghnia and Sabaghpour and Dehghani}{Sabaghnia and Sabaghpour and Dehghani}{2008}]{SabaDehg:2008} 
 Sabaghnia N. and S.H.Sabaghpour and H. Dehghani (2008).
-\newblock {\emph {The use of an AMMI model and its parameters to analyse yield stability in multienvironment trials}}
-\newblock {\emph {Journal of Agricultural Science}}
-\newblock Department of Agronomy, Faculty of Agriculture of the University of the Free State
-\newblock Cambridge University Press 571 doi:10.1017/S0021859608007831 
-\newblock Printed in the United Kingdom
+\newblock \emph {The use of an AMMI model and its parameters to analyse yield stability in multienvironment trials}
+\newblock \emph {Journal of Agricultural Science}
+\newblock Department of Agronomy, Faculty of Agriculture of the University of the Free State.
+\newblock Cambridge University Press 571 doi:10.1017/S0021859608007831. 
+\newblock Printed in the United Kingdom.
 \newblock 146, 571-581.
 
 \bibitem[\protect\citeauthoryear{Singh and Chaudhary}{Singh and Chaudhary}{1979}]{SingChau:1979} 
 Singh R.K. and B.D. Chaudhary (1979).
-\newblock {\emph {Biometrical Methods in Quantitative Genetic Analysis}}
+\newblock \emph {Biometrical Methods in Quantitative Genetic Analysis}
 \newblock Kalyani Publishers.
 
 \bibitem[\protect\citeauthoryear{Steel and Torry and Dickey}{Steel and Torry and Dickey}{1997}]{SteeTorrDick:1997} 
 Steel and Torry and Dickey, (1997).
-\newblock {\emph {Principles and Procedures of Statistic a Biometrical Approach}}
-\newblock Third Edition 
+\newblock \emph {Principles and Procedures of Statistic a Biometrical Approach}
+\newblock Third Edition.
 \newblock The Mc Graw Hill companies, Inc.
-}
+
+\bibitem[\protect\citeauthoryear{Waller and Duncan}{Waller and Duncan}{1969}]{WallDunc:1969} 
+Waller R.A. and Duncan D.B. (1969).
+\newblock \emph {A Bayes Rule for the Symmetric Multiple Comparisons Problem}
+\newblock Journal of the American Statistical Association.
+\newblock 64, 328, 1484-1503. 
+
 \end{thebibliography}
 \end{document}

@@ -1,9 +1,9 @@
-6c28c4e3b5e5accbc7dbc637d7201f51 *DESCRIPTION
+b52e1cdd2f0238e396caa95931a3dc8d *DESCRIPTION
 7e3faa8f8a80a739b8b890de2b3bd923 *NAMESPACE
-b67e7bbf1c4568700c71000136237c3c *NEWS
+0fbfa4905e2d1c7fc00913a70cfe2480 *NEWS
 b58239bb9739e2cae28e6a301d7937a0 *R/AMMI.R
 fe71d1684201830f5b160901d583090c *R/AMMI.contour.R
-b0511d3ab47dea383ca63e1681174437 *R/BIB.test.R
+cc010204c18132e1daa3a72ec089face *R/BIB.test.R
 c854e1c7ce0ea1f0b04f03c5d00fe9f7 *R/DAU.test.R
 fe00001e080ce9890bc34d96ab1a22ee *R/HSD.test.R
 2f8b926cc6d28b1d651674a2e4a2b65c *R/LSD.test.R
@@ -84,7 +84,7 @@ e0758888afe1644ecf58b240de1ed8ba *R/tapply.stat.R
 2e39daa2705f9b65568cd7c8c395bd81 *R/vark.R
 e914c3dfa79bb5213de1ceec02c7dac6 *R/waerden.test.R
 9a8b86e7b02133a9d354678317e7ca17 *R/waller.R
-e28e5b49fd5cd47caa23baf8e55bdd6b *R/waller.test.R
+46dbf2bac658c2c938f8ffd39c1ee2ae *R/waller.test.R
 68864b1a131664e65945ca91003475e4 *R/weatherSeverity.R
 5c66943a997daf06255596bdb9c60f10 *R/zigzag.R
 46e0bd861aab2271b64ab55d02703db2 *build/vignette.rds
@@ -123,9 +123,9 @@ a102c656619de7908dcc5201257fe505 *data/rice.rda
 5abd97666b1a3f40d957ae48ce8da1f7 *data/sweetpotato.rda
 0c260e04a6d888daf0f99855667a214a *data/wilt.rda
 48e66c5b173cb1d6cd758ae54079c46d *data/yacon.rda
-4f63e16523960696d872f70ef92f429c *inst/doc/tutorial.R
-aa4c3c64b75ebde9f30c79bb9dd540a4 *inst/doc/tutorial.Rnw
-809ef3db9855c5f1847718d4dc9e59af *inst/doc/tutorial.pdf
+8fb94c8f3040028cc84a5d1e3cc4dccb *inst/doc/tutorial.R
+042f3fb9b31e6429f4a63a9ee64a89a0 *inst/doc/tutorial.Rnw
+8cd676c02ba90771a11cf2a32f8da31e *inst/doc/tutorial.pdf
 8860533aaab5520cf3529100f55f6187 *inst/external/severity.csv
 8ca1b77e68c92959eb509d6bc331fb0d *inst/external/weather.csv
 0ffb4ccf9c50e3b773575472fa29493d *man/AMMI.Rd
@@ -146,7 +146,7 @@ f2a2fc2e176bc6d26dd5400665a81a82 *man/REGW.test.Rd
 a68a55c00d3f4370868ff11827f9f451 *man/RioChillon.Rd
 d073e02fb60837d863fd64d2852c1692 *man/SNK.test.Rd
 8d03a2ad41c1586a5d37193db1d0223b *man/VanderWarden.Rd
-f6ee19a6d2e15dc958abca7d9bf7fe22 *man/agricolae-package.Rd
+3fd5c2627b0e32cf9f88eb01d7d105ca *man/agricolae-package.Rd
 6f22fe8db8b205f9411f2144e048663e *man/audpc.Rd
 9f612061fc9611c6f99f31691df11cdc *man/audps.Rd
 c28a4d13e81936cba62481a1cf1bb052 *man/bar.err.Rd
@@ -250,4 +250,4 @@ f65393b85fe84cadb46e079a5b3e719f *man/waller.test.Rd
 60509e2db335f9901840d28514a19168 *man/wilt.Rd
 010f8deecefba432ecc5a85132a947bf *man/yacon.Rd
 d81007b91d101240ce51a854e8b30ed2 *man/zigzag.Rd
-aa4c3c64b75ebde9f30c79bb9dd540a4 *vignettes/tutorial.Rnw
+042f3fb9b31e6429f4a63a9ee64a89a0 *vignettes/tutorial.Rnw

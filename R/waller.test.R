@@ -48,10 +48,10 @@ function (y, trt, DFerror, MSerror, Fc, K = 100, group=TRUE,main = NULL,console=
 			"Critical Value of Waller")                                                                          
 	nvalor<-c( K,  DFerror, MSerror, Fc, Tprob)                                                          
 	if(console){
-	cat("\nStudy:", main)                                                                            
-	cat("\n\nWaller-Duncan K-ratio t Test for",name.y,"\n")                                          
-	cat("\nThis test minimizes the Bayes risk under additive loss")                                       
-	cat("\and certain other assumptions.\n") }                                                  
+	cat("\nStudy:", main,"\n\n")                                                                            
+	cat("Waller-Duncan K-ratio t Test for",name.y,"\n\n")                                          
+	cat("This test minimizes the Bayes risk under additive loss and certain other assumptions\n")                              
+	}                                                  
 	xtabla<-data.frame("......"=nvalor)                                                                  
 	row.names(xtabla)<-nfila                                                                             
 	if(console){print(xtabla)                                                                                        

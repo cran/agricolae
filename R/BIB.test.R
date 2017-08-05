@@ -77,11 +77,11 @@ function (block, trt, y, test = c("lsd","tukey","duncan","waller","snk"), alpha 
 		K <- 650 - 16000 * alpha + 1e+05 * alpha^2
 		Tprob <- waller(K, ntr - 1, DFerror, Fvalue)
 		if(console){
-		cat("\nWaller-Duncan K-ratio")
-		cat("\nThis test minimizes the Bayes risk under additive")
-		cat("\nloss and certain other assumptions.\n")
-		cat("\nk Ratio    : ", K)
-		cat("\nMSD        :", Tprob * sdtdif)}
+		cat("\nWaller-Duncan K-ratio \n")
+		cat("This test minimizes the Bayes risk under additive \n")
+		cat("loss and certain other assumptions.\n\n")
+		cat("k Ratio    : ", K,"\n")
+		cat("MSD        :", Tprob * sdtdif)}
 	}
 	if (test == "snk") {
 		snk<-1

@@ -1,8 +1,8 @@
 Package: agricolae
 Type: Package
 Title: Statistical Procedures for Agricultural Research
-Version: 1.2-5
-Date: 2017-07-22
+Version: 1.2-6
+Date: 2017-08-04
 Author: Felipe de Mendiburu
 Maintainer: Felipe de Mendiburu <fmendiburu@lamolina.edu.pe>
 Imports: klaR, MASS, nlme, cluster, spdep, AlgDesign, graphics
@@ -11,7 +11,7 @@ Description: Original idea was presented in the thesis "A statistical analysis t
 License: GPL
 URL: http://tarwi.lamolina.edu.pe/~fmendiburu
 NeedsCompilation: no
-Packaged: 2017-07-23 02:39:29 UTC; Luis
+Packaged: 2017-08-04 17:31:21 UTC; Luis
 Depends: R (>= 2.10)
 Repository: CRAN
-Date/Publication: 2017-07-26 05:37:26 UTC
+Date/Publication: 2017-08-05 10:37:23 UTC
