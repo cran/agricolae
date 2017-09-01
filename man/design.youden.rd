@@ -28,8 +28,9 @@ design.youden(trt, r, serie = 2, seed = 0, kinds = "Super-Duper",first=TRUE
   "default" )
 }
 \value{
-  \item{parameters }{list}
-  \item{book }{dataframe}
+  \item{parameters}{Design parameters}
+  \item{sketch}{Design sketch}
+  \item{book}{Fieldbook}
 }
 \references{ Design and Analysis of experiment.
 Hinkelmann, Klaus and Kempthorne, Oscar. Wiley-Interscience.

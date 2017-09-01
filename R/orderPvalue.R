@@ -3,7 +3,8 @@ function (treatment, means, alpha, pvalue, console)
 {
   n <- length(means)
   z <- data.frame(treatment, means)
-  letras <- c(letters[1:26], LETTERS[1:26])
+  letras<-c(letters[1:26],LETTERS[1:26],1:9,
+  c(".","+","-","*","/","#","$","%","&","^","[","]",":","@",";"))
   w <- z[order(z[, 2], decreasing = TRUE), ]
   M<-rep("",n)
   k<-1
@@ -14,7 +15,7 @@ function (treatment, means, alpha, pvalue, console)
   cambio1<-0
   chequeo=0
   M[1]<-letras[k]
-  q<-as.numeric(rownames(w))
+  q <- as.numeric(rownames(w)) #Check
   while(j<n) {
     chequeo<-chequeo+1
     if (chequeo > n) break
@@ -45,11 +46,7 @@ function (treatment, means, alpha, pvalue, console)
   w<-data.frame(w,stat=M)
   trt <- as.character(w$treatment)
   means <- as.numeric(w$means)
-  output <- data.frame(trt, means, M)
-  output1<-cbind(trt,means)
-  rownames(output1)<-M
-  for (i in 1:n) {
-    if(console)cat(rownames(output1)[i], "\t", output1[i,1], "\t", means[i], "\n")
-  }
+  output <- data.frame(means, groups=M)
+  rownames(output)<-trt
   invisible(output)
 }

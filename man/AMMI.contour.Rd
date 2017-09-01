@@ -20,11 +20,10 @@ First, it is necessary to execute the AMMI function.
 It is only valid for the BIPLOT function but not for the TRIPLOT one.
 }
 \value{
-  \item{model}{ output AMMI }
-  \item{distance}{ Numeric >0 and <=1 }
-  \item{shape}{ Numeric  }
-}
+Genotypes within and outside the area.
 
+\item{distance}{Distance from genotype to origin (0,0) }
+}
 \author{ Felipe de Mendiburu }
 \note{ 
  Complement graphics AMMI 

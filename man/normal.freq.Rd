@@ -17,12 +17,6 @@ normal.freq(histogram, frequency=1, ...)
   \item{\dots}{ Other parameters of the function hist }
 }
 
-\value{
-  \item{Histogram }{object}
-  \item{frequency}{ numeric }  
-  \item{probability }{logic False or True}
-}
-
 \author{ Felipe de Mendiburu }
 
 \seealso{\code{\link{polygon.freq}}, \code{\link{table.freq}}, \code{\link{stat.freq}},

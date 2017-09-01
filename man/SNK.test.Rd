@@ -25,40 +25,40 @@ SNK.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL,console
   It is necessary first makes a analysis of variance.
 }
 \value{
-
-  \item{y }{class (aov or lm) or vector numeric}
-  \item{trt }{constant (only y=model) or vector alfanumeric}
-  \item{DFerror }{Numeric}
-  \item{MSerror }{Numeric}
-  \item{alpha }{Numeric}
-  \item{group}{ Logic}  
-  \item{main }{Text}
-
+  \item{statistics}{Statistics of the model}
+  \item{parameters}{Design parameters}
+  \item{snk}{Critical Range Table}
+  \item{means}{Statistical summary of the study variable}
+  \item{comparison}{Comparison between treatments}
+  \item{groups}{Formation of treatment groups}
 }
 \references{  
 1. Principles and procedures of statistics a biometrical approach
-   Steel & Torry & Dickey. Third Edition 1997
+   Steel & Torry & Dickey. Third Edition 1997\cr
 2. Multiple comparisons theory and methods. Departament of statistics 
    the Ohio State University. USA, 1996. Jason C. Hsu. Chapman Hall/CRC.
 }
 
 \author{ Felipe de Mendiburu }
-
-\seealso{\code{\link{LSD.test}}, \code{\link{waller.test} }, \code{\link{HSD.test} },
-\code{\link{duncan.test} } }
-
+\seealso{
+  \code{\link{BIB.test}}, \code{\link{DAU.test}}, \code{\link{duncan.test}},
+  \code{\link{durbin.test}}, \code{\link{friedman}}, \code{\link{HSD.test}},
+  \code{\link{kruskal}}, \code{\link{LSD.test}}, \code{\link{Median.test}}, 
+  \code{\link{PBIB.test}}, \code{\link{REGW.test}}, \code{\link{scheffe.test}},
+  \code{\link{waerden.test}}, \code{\link{waller.test}}, \code{\link{plot.group}}
+}
 \examples{
 library(agricolae)
 data(sweetpotato)
 model<-aov(yield~virus,data=sweetpotato)
-comparison <- SNK.test(model,"virus", 
+out <- SNK.test(model,"virus", console=TRUE, 
 main="Yield of sweetpotato. Dealt with different virus")
-SNK.test(model,"virus", group=FALSE)
+print(SNK.test(model,"virus", group=FALSE))
 # version old SNK.test()
 df<-df.residual(model)
 MSerror<-deviance(model)/df
-comparison <- with(sweetpotato,SNK.test(yield,virus,df,MSerror, group=TRUE))
-print(comparison$groups)
+out <- with(sweetpotato,SNK.test(yield,virus,df,MSerror, group=TRUE))
+print(out$groups)
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS
 

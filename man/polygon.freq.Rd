@@ -16,10 +16,6 @@ polygon.freq(histogram, frequency=1, ...)
   \item{\dots}{ Other parameters of the function hist }
 }
 
-\value{
-  \item{histogram }{Object}
-  \item{frecuency}{ 1=counts, 2=relative, 3=density }
-}
 \author{ Felipe de Mendiburu Delgado }
 
 \seealso{\code{\link{polygon.freq}}, \code{\link{table.freq}}, \code{\link{stat.freq}},

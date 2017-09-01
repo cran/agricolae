@@ -17,16 +17,11 @@ orderPvalue(treatment, means, alpha, pvalue, console)
   \item{pvalue}{ Matrix of probabilities to comparison }
   \item{console}{logical, print output }
 }
-
 \value{
-  \item{trt}{ Factor }
-  \item{means}{ Numeric }
-  \item{pvalue}{ matrix }
+The means and groups for treatments
 }
 
 \author{ Felipe de Mendiburu }
-
-\seealso{\code{\link{order.group} } , \code{\link{order.stat} }}
 
 \examples{
 library(agricolae)
@@ -37,8 +32,9 @@ pvalue<-matrix(1,nrow=3,ncol=3)
 pvalue[1,2]<-pvalue[2,1]<-0.03
 pvalue[1,3]<-pvalue[3,1]<-0.10
 pvalue[2,3]<-pvalue[3,2]<-0.06
-groups<-orderPvalue(treatments,means,alpha,pvalue,console=TRUE)
-
+out<-orderPvalue(treatments,means,alpha,pvalue,console=TRUE)
+barplot(out[,1],names.arg = row.names(out),col=colors()[84:87])
+legend("topright",as.character(out$groups),pch=15,col=colors()[84:87],box.col=0)
 }
 \keyword{ manip }% at least one, from doc/KEYWORDS
 

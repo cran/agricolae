@@ -22,7 +22,7 @@ agricolae tutorial (Version \Sexpr{qp$Version})}
 
 \maketitle
 
-\setcounter{footnote}{1} \footnotetext{Profesor Principal del Departamento Academico de Estad\'istica e Inform\'atica de la Facultad de Econom\'ia y Planificaci\'on. Universidad Nacional Agraria La Molina-PERU}
+\footnotemark\footnotetext{Profesor Principal del Departamento Academico de Estad\'istica e Inform\'atica de la Facultad de Econom\'ia y Planificaci\'on. Universidad Nacional Agraria La Molina-PERU}
 
 \setlength{\parskip}{4pt} % Space between paragraphs
 
@@ -37,7 +37,7 @@ The following document was developed to facilitate the use of agricolae package 
 
 \section{Introduction}
 
-The package \bf{agricolae} \rm offers a broad functionality in the design of experiments, especially for experiments in agriculture and improvements of plants, which can also be used for other purposes. It contains the following designs: lattice, alpha, cyclic, balanced incomplete block designs, complete randomized blocks, Latin, Graeco-Latin, augmented block designs, split plot and strip plot. It also has several procedures of experimental data analysis, such as the comparisons of treatments of Waller-Duncan, Bonferroni, Duncan, Student-Newman-Keuls, Scheffe, Ryan, Einot and Gabriel and Welsch multiple range test or the classic LSD and Tukey; and non-parametric comparisons, such as Kruskal-Wallis, Friedman, Durbin, Median and Waerden, stability analysis, and other procedures applied in genetics, as well as procedures in biodiversity and descriptive statistics, \citet{Mend:2009}
+The package {\bf agricolae} \rm offers a broad functionality in the design of experiments, especially for experiments in agriculture and improvements of plants, which can also be used for other purposes. It contains the following designs: lattice, alpha, cyclic, balanced incomplete block designs, complete randomized blocks, Latin, Graeco-Latin, augmented block designs, split plot and strip plot. It also has several procedures of experimental data analysis, such as the comparisons of treatments of Waller-Duncan, Bonferroni, Duncan, Student-Newman-Keuls, Scheffe, Ryan, Einot and Gabriel and Welsch multiple range test or the classic LSD and Tukey; and non-parametric comparisons, such as Kruskal-Wallis, Friedman, Durbin, Median and Waerden, stability analysis, and other procedures applied in genetics, as well as procedures in biodiversity and descriptive statistics, \citet{Mend:2009}
 
 \subsection{Installation}
 The main program of \bf {R} \rm should be already installed in the platform of your computer \emph{(Windows, Linux or MAC)}. If it is not installed yet, you can download it from the R project \emph{(www.r-project.org)} of a repository CRAN, \citet{Rcore:2017}.
@@ -58,40 +58,47 @@ help(package="agricolae")
 help(waller.test)
 @ 
 
-For a complete functionality, \bf{agricolae } \rm requires other packages.\\ 
+For a complete functionality, {\bf agricolae } \rm requires other packages
 
-\bf{MASS: }\rm for the generalized inverse used in the function \emph{PBIB.test}\\
-\bf{nlme: }\rm for the methods REML and LM in \emph{PBIB.test}\\
-\bf{klaR: }\rm for the function \emph{triplot} used in the function \emph{AMMI}\\
-\bf{Cluster: }\rm for the use of the function \emph{consensus}\\
-\bf{spdep: }\rm for the between genotypes spatial relation in biplot of the function \emph{AMMI}\\
-\bf{algDesign: }\rm for the balanced incomplete block design\emph{design.bib}
-\subsection{Use in \bf {R} \rm}
-Since \bf{agricolae } \rm is a package of functions, these are operational when they are called directly from the console of \bf {R} \rm and are integrated to all the base functions of \bf {R} \rm.
+{\bf MASS:} \rm for the generalized inverse used in the function \emph{PBIB.test}\\
+{\bf nlme:} \rm for the methods REML and LM in \emph{PBIB.test}\\
+{\bf klaR:} \rm for the function \emph{triplot} used in the function \emph{AMMI}\\
+{\bf Cluster:} \rm for the use of the function \emph{consensus}\\
+{\bf spdep:} \rm for the between genotypes spatial relation in biplot of the function \emph{AMMI}\\
+{\bf algDesign:} \rm for the balanced incomplete block design\emph{design.bib}
+
+\subsection{Use in {\bf R} \rm}
+Since {\bf agricolae } \rm is a package of functions, these are operational when they are called directly from the console of \bf {R} \rm and are integrated to all the base functions of \bf {R} \rm.
 The following orders are frequent: 
+
 <<>>=
 detach(package:agricolae) # detach package agricole
 library(agricolae) # Load the package to the memory
 designs<-apropos("design")
 print(designs[substr(designs,1,6)=="design"], row.names=FALSE)
 @
+
 \begin{verbatim}
 For the use of symbols that do not appear in the keyboard in Spanish, such as:
 
 ~, [, ], &, ^, |. <, >, {, }, \% or others, use the table ASCII code. 
 \end{verbatim}
+
 <<>>=
 library(agricolae) # Load the package to the memory: 
 @
+
 In order to continue with the command line, do not forget to close the open windows with any R order.
 For help: 
+
 \begin{verbatim}
 help(graph.freq)
 ? (graph.freq)
 str(normal.freq)
 example(join.freq)
 \end{verbatim}
-\subsection{Data set in \bf{agricolae } \rm}
+
+\subsection{Data set in {\bf agricolae } \rm}
 <<>>=
 A<-as.data.frame(data(package="agricolae")$results[,3:4])
 A[,2]<-paste(substr(A[,2],1,35),"..",sep=".")
@@ -99,26 +106,30 @@ head(A)
 @
 
 \section{Descriptive statistics}
-The package \bf{agricolae } \rm provides some complementary functions to the \bf {R} \rm program, specifically for the management of the histogram and function  \emph{hist}.
+The package {\bf agricolae } \rm provides some complementary functions to the \bf {R} \rm program, specifically for the management of the histogram and function  \emph{hist}.
+
 \subsection{Histogram}
 The histogram is constructed with the function \emph{graph.freq} and is associated to other functions: \emph{polygon.freq, table.freq, stat.freq}. See Figures: \ref{fig:f1}, \ref{fig:f2} and \ref{fig:f3}  for more details. 
 
-Example.  Data generated in \bf {R} \rm. (students' weight).
+Example.  Data generated in {\bf R} \rm. (students' weight).
+
 <<>>=
 weight<-c( 68, 53, 69.5, 55, 71, 63, 76.5, 65.5, 69, 75, 76, 57, 70.5, 71.5, 56, 81.5,
            69, 59, 67.5, 61, 68, 59.5, 56.5, 73, 61, 72.5, 71.5, 59.5, 74.5, 63)
 print(summary(weight)) 
 @
-\begin{figure}[h]
+\begin{figure}
 \begin{center}
-<<f1,fig=TRUE  ,width=6, height=1.7>>=
-par(mfrow=c(1,2),mar=c(4,3,0,1),cex=0.6)
-h1<- graph.freq(weight,col="yellow",frequency=1,las=2,xlab="h1") 
-h2<- graph.freq (weight, frequency =2, axes= FALSE,las=2,xlab="h2") 
-polygon.freq(h2, col="blue", lwd=2, frequency =2)
-TIC<- h2$breaks[2]- h2$breaks[1]
-axis(1,c(h2$mids[1]-TIC, h2$mids, h2$mids[6]+TIC ),cex=0.6)
-axis(2, cex=0.6,las=1) 
+
+<<f1,fig=TRUE  ,width=6, height=2>>=
+par(mfrow=c(1,2),mar=c(4,4,0,1),cex=0.6)
+h1<- graph.freq(weight,col=colors()[84],frequency=1,las=2,density=20,ylim=c(0,12),ylab="Frequency") 
+x<-h1$breaks
+h2<- plot(h1, frequency =2, axes= FALSE,ylim=c(0,0.4),xlab="weight",ylab="Relative (%)")
+polygon.freq(h2, col=colors()[84], lwd=2, frequency =2)
+axis(1,x,cex=0.6,las=2)
+y<-seq(0,0.4,0.1)
+axis(2, y,y*100,cex=0.6,las=1) 
 @
 \caption{Absolute and relative frequency with polygon.\label{fig:f1}} 
 \end{center}
@@ -133,14 +144,20 @@ stat.freq(h1)
 
 Frequency tables: Use \emph{table.freq}, \emph{stat.freq} and \emph{summary}
 
-The table.freq is equal to summary()\\
+The table.freq is equal to summary()
 
-Limits class: \bf {Lower and  Upper}\rm\\
-Class point: \bf {Main}\rm\\
-Frequency: \bf {Frequency}\rm\\
-Percentage frequency: \bf {Percentage}\rm\\
-Cumulative frequency: \bf {CF}\rm\\
-Cumulative percentage frequency: \bf {CPF}\rm
+Limits class: {\bf Lower and  Upper}\rm
+
+Class point: {\bf Main}\rm
+
+Frequency: {\bf Frequency}\rm
+
+Percentage frequency: {\bf Percentage}\rm
+
+Cumulative frequency: {\bf CF}\rm
+
+Cumulative percentage frequency: {\bf CPF}\rm
+
 <<>>=
 print(summary(h1),row.names=FALSE)
 @
@@ -153,13 +170,17 @@ intervals.freq(h1)
 join.freq(h1,1:3) -> h3
 print(summary(h3))
 @
-\begin{figure}[h]
+
+\begin{figure}
 \begin{center}
-<<f2,fig=TRUE  ,width=6, height=1.7>>=
-par(mfrow=c(1,2),mar=c(4,3,0,1),cex=0.6)
-plot(h3, frequency=2,col="magenta",ylim=c(0,0.6))
-normal.freq(h3,frequency=2,col="green")
-ogive.freq(h3,col="blue")
+<<f2,fig=TRUE  ,width=6, height=2>>=
+par(mfrow=c(1,2),mar=c(4,4,0,1),cex=0.8)
+plot(h3, frequency=2,col=colors()[84],ylim=c(0,0.6),axes=FALSE,xlab="weight",ylab="%",border=0)
+y<-seq(0,0.6,0.2)
+axis(2,y,y*100,las=2)
+axis(1,h3$breaks)
+normal.freq(h3,frequency=2,col=colors()[90])
+ogive.freq(h3,col=colors()[84],xlab="weight")
 @
 \caption{Join frequency and relative frequency with normal and Ogive.\label{fig:f2}}
 \end{center}
@@ -176,7 +197,7 @@ The \emph{hist} and \emph{graph.freq} have the same characteristics, only f2 all
 40-50 (6)
 \end{verbatim}
 
-\begin{figure}[h]
+\begin{figure}
 \begin{center}
 <<f3,fig=TRUE,  width=6, height=1.7>>=
 par(mfrow=c(1,2),mar=c(4,3,2,1),cex=0.6)
@@ -199,45 +220,44 @@ print(summary(h5),row.names=FALSE)
 
 \section{Experiment designs}
 
-The package \bf{agricolae} \rm presents special functions for the creation of the field book for experimental designs. Due to the random generation, this package is quite used in agricultural research. 
+The package {\bf agricolae} \rm presents special functions for the creation of the field book for experimental designs. Due to the random generation, this package is quite used in agricultural research. 
 
-For this generation, certain parameters are required, as for example the name of each treatment, the number of repetitions, and others, according to the design,  \citet{CochCox:1992}; \citet{kueh:2000}; \citet{LeClLeonErwiWarrAndre:1962}; \citet{Mont:2002}. There are other parameters of random generation, as the seed to reproduce the same random generation or the generation method (See the reference manual of \bf{agricolae} \rm.
+For this generation, certain parameters are required, as for example the name of each treatment, the number of repetitions, and others, according to the design,  \citet{CochCox:1992}; \citet{kueh:2000}; \citet{LeClLeonErwiWarrAndre:1962}; \citet{Mont:2002}. There are other parameters of random generation, as the seed to reproduce the same random generation or the generation method (See the reference manual of {\bf agricolae} \rm.
 
 \em http://cran.at.r-project.org/web/packages/agricolae/agricolae.pdf\rm
 
-\bf{Important parameters in the generation of design:}
+{\bf Important parameters in the generation of design:}
 
-\bf{series: }\rm A constant that is used to set numerical tag blocks , eg number = 2, the labels will be : 101, 102, for the first row or block, 201, 202, for the following , in the case of completely randomized design, the numbering is sequencial.
+{\bf series: }\rm A constant that is used to set numerical tag blocks , eg number = 2, the labels will be : 101, 102, for the first row or block, 201, 202, for the following , in the case of completely randomized design, the numbering is sequencial.
 
-\bf{design: }\rm Some features of the design requested agricolae be applied specifically to design.ab(factorial) or design.split (split plot) and their possible values are: "rcbd", "crd" and "lsd".
+{\bf design: }\rm Some features of the design requested agricolae be applied specifically to design.ab(factorial) or design.split (split plot) and their possible values are: "rcbd", "crd" and "lsd".
 
-\bf{seed: }\rm The seed for the random generation  and its value is any real value, if the value is zero, it has no reproducible generation, in this case copy of value of the outdesign\$parameters.
+{\bf seed: }\rm The seed for the random generation  and its value is any real value, if the value is zero, it has no reproducible generation, in this case copy of value of the outdesign\$parameters.
 
-\bf{kinds: }\rm the random generation method, by default "Super-Duper".
+{\bf kinds: }\rm the random generation method, by default "Super-Duper".
 
-\bf{first: }\rm For some designs is not required random the first repetition, especially in the block design, if you want to switch to random, change to TRUE.
+{\bf first: }\rm For some designs is not required random the first repetition, especially in the block design, if you want to switch to random, change to TRUE.
 
-\bf{randomization: }\rm TRUE or FALSE. If false, randomization is not performed
+{\bf randomization: }\rm TRUE or FALSE. If false, randomization is not performed
 
-\bf{Output design:}
+{\bf Output design:}
 
-\bf{parameters: }\rm the input to generation design, include the seed to generation random, if seed=0, the program generate one value and it is possible reproduce the design.
+{\bf parameters: }\rm the input to generation design, include the seed to generation random, if seed=0, the program generate one value and it is possible reproduce the design.
 
-\bf{book: }\rm field book
+{\bf book: }\rm field book
 
-\bf{statistics: }\rm the information statistics the design for example efficiency index, number of treatments.
+{\bf statistics: }\rm the information statistics the design for example efficiency index, number of treatments.
 
-\bf{sketch: }\rm distribution of treatments in the field.
+{\bf sketch: }\rm distribution of treatments in the field.
 
-\bf{The enumeration of the plots}
+{\bf The enumeration of the plots}
 
 \rm zigzag is a function that allows you to place the numbering of the plots in the direction of serpentine: The zigzag is output generated by one design: blocks, Latin square, graeco, split plot, strip plot, into blocks factorial, balanced incomplete block, cyclic lattice, alpha and augmented blocks.
 
-\bf{fieldbook: }\rm output zigzag, contain field book.
+{\bf fieldbook: }\rm output zigzag, contain field book.
 
 \subsection{Completely randomized design}
-
-They only require the names of the treatments and the number of their repetitions and its parameters are:
+It generates completely a randomized design with equal or different repetition. "Random" uses the methods of number generation in R.The seed is by set.seed(seed, kinds). They only require the names of the treatments and the number of their repetitions and its parameters are:
 
 <<>>=
 str(design.crd)
@@ -251,7 +271,7 @@ head(book1)
 Excel:write.csv(book1,\bf"book1.csv"\rm,row.names=FALSE)
 
 \subsection{Randomized complete block design}
-They require the names of the treatments and the number of blocks and its parameters are:
+It generates field book and sketch to Randomized Complete Block Design. "Random" uses the methods of number generation in R.The seed is by set.seed(seed, kinds). They require the names of the treatments and the number of blocks and its parameters are:
 <<>>=
 str(design.rcbd)
 
@@ -264,7 +284,7 @@ print(outdesign$sketch)
 print(matrix(book2[,1],byrow = TRUE, ncol = 5))
 @
 \subsection{Latin square design}
-They require the names of the treatments and its parameters are:
+It generates Latin Square Design. "Random" uses the methods of number generation in R.The seed is by set.seed(seed, kinds). They require the names of the treatments and its parameters are:
 <<>>=
 str(design.lsd)
 trt <- c("A", "B", "C", "D")
@@ -278,7 +298,9 @@ print(matrix(book[,1],byrow = TRUE, ncol = 4))
 @
 
 \subsection{Graeco-Latin designs}
-They require the names of the treatments of each factor of study and its parameters are:
+A graeco - latin square is a KxK pattern that permits the study of k 
+treatments simultaneously with three different blocking variables, each 
+at k levels. The function is only for squares of the odd numbers and even numbers (4, 8, 10 and 12). They require the names of the treatments of each factor of study and its parameters are:
 <<>>=
 str(design.graeco)
 trt1 <- c("A", "B", "C", "D")
@@ -293,7 +315,10 @@ print(matrix(book[,1],byrow = TRUE, ncol = 4))
 @
 
 \subsection{Youden design}
-They require the names of the treatments of each factor of study and its parameters are:
+Such designs are referred to as Youden squares since they were introduced
+by Youden (1937) after Yates (1936) considered the special case of column
+equal to number treatment minus 1. "Random" uses the methods of number
+generation in R. The seed is by set.seed(seed, kinds). They require the names of the treatments of each factor of study and its parameters are:
 <<>>=
 str(design.youden)
 varieties<-c("perricholi","yungay","maria bonita","tomasa")
@@ -311,7 +336,7 @@ print(matrix(as.numeric(book[,1]),byrow = TRUE, ncol = r))
 @
 
 \subsection{Balanced Incomplete Block Designs}
-
+Creates Randomized Balanced Incomplete Block Design. "Random" uses the methods of number generation in R. The seed is by set.seed(seed, kinds).
 They require the names of the treatments and the size of the block and its parameters are:
 <<>>=
 str(design.bib)
@@ -328,7 +353,7 @@ outdesign$sketch
 @
 It can be observed that the treatments have four repetitions. The parameter lambda has three repetitions, which means that a couple of treatments are together on three occasions. For example, B and E are found in the blocks I, II and V.
 
-\bf{Serpentine enumeration:}\rm
+{\bf Serpentine enumeration:}\rm
 <<>>=
 book <- zigzag(outdesign)
 matrix(book[,1],byrow = TRUE, ncol = 4)
@@ -348,7 +373,7 @@ outdesign$sketch[[2]]
 @
 
 12 blocks of 4 treatments each have been generated.
-\bf{Serpentine enumeration:}\rm
+{\bf Serpentine enumeration:}\rm
 <<>>=
 book <- zigzag(outdesign)
 array(book$plots,c(3,6,2))->X
@@ -356,8 +381,7 @@ t(X[,,1])
 t(X[,,2])
 @
 \subsection{Lattice designs}
-
-They require a number of treatments of a perfect square; for example 9, 16, 25, 36, 49, etc. and its parameters are:
+SIMPLE and TRIPLE lattice designs. It randomizes treatments in k x k lattice. They require a number of treatments of a perfect square; for example 9, 16, 25, 36, 49, etc. and its parameters are:
 <<>>=
 str(design.lattice)
 @
@@ -372,7 +396,7 @@ outdesign$parameters
 outdesign$sketch
 head(book7)
 @
-\bf{Serpentine enumeration:}\rm
+{\bf Serpentine enumeration:}\rm
 <<>>=
 book <- zigzag(outdesign)
 array(book$plots,c(3,3,3)) -> X
@@ -381,7 +405,7 @@ t(X[,,2])
 t(X[,,3])
 @
 \subsection {Alpha designs}
-These designs are generated by the alpha arrangements, \citet{PattWill:1976}. They are similar to the lattice designs, but the tables are rectangular, with s blocks x k treatments. The number of treatments should be equal to s*k and all the experimental units, r*s*k and its parameters are:
+Generates an alpha designs starting from the alpha design fixing under  the  series formulated by Patterson and Williams. These designs are  generated by the alpha arrangements. They are similar to the lattice designs,  but the tables are rectangular s by k (with s blocks and k<s columns. The number of  treatments should be equal to s*k and all the experimental units r*s*k (r replications) and its parameters are:
 
 <<>>=
 str(design.alpha)
@@ -395,7 +419,7 @@ A<-array(book8[,1], c(3,5,2))
 t(A[,,1])
 t(A[,,2])
 @
-\bf{Serpentine enumeration:}\rm
+{\bf Serpentine enumeration:}\rm
 <<>>=
 book <- zigzag(outdesign)
 A<-array(book[,1], c(3,5,2))
@@ -403,7 +427,6 @@ t(A[,,1])
 t(A[,,2])
 @
 \subsection {Augmented block designs}
-
 These are designs for two types of treatments: the control treatments (common) and the increased treatments. The common treatments are applied in complete randomized blocks, and the increased treatments, at random. Each treatment should be applied in any block once only. It is understood that the common treatments are of a greater interest; the standard error of the difference is much smaller than when between two increased ones in different blocks. The function design.dau() achieves this purpose and its parameters are:
 
 <<>>=
@@ -413,16 +436,12 @@ trt1 <- c("A", "B", "C", "D")
 trt2 <- c("t","u","v","w","x","y","z")
 outdesign <- design.dau(trt1, trt2, r=5, seed=543, serie=2)
 book9 <- outdesign$book
-attach(book9)
-by(trt, block,as.character)
-detach(book9)
+with(book9,by(trt, block,as.character))
 @
-\bf{Serpentine enumeration:}\rm
+{\bf Serpentine enumeration:}\rm
 <<>>=
 book <- zigzag(outdesign)
-attach(book)
-by(plots, block, as.character)
-detach(book)
+with(book,by(plots, block, as.character))
 head(book)
 @
 For augmented ompletely randomized design, use the function design.crd(). 
@@ -435,7 +454,7 @@ str(design.split)
 
 @
 
-\bf{Aplication}\rm
+{\bf Aplication}\rm
 
 <<>>=
 trt1<-c("A","B","C","D")
@@ -448,15 +467,15 @@ q<-NULL
 for(i in 1:12) 
 q <- c(q,paste(book10$trt2[3*(i-1)+1],book10$trt2[3*(i-1)+2], book10$trt2[3*(i-1)+3]))
 @
-\bf{In plots:}\rm
+{\bf In plots:}\rm
 <<>>=
 print(t(matrix(p,c(4,3))))
 @
-\bf{In sub plots (split plot)}\rm
+{\bf In sub plots (split plot)}\rm
 <<>>=
 print(t(matrix(q,c(4,3))))
 @
-\bf{Serpentine enumeration:}\rm
+{\bf Serpentine enumeration:}\rm
 <<>>=
 book <- zigzag(outdesign)
 head(book,5)
@@ -467,7 +486,7 @@ These designs are used when there are two types of treatments (factors) and are 
 str(design.strip)
 @
 
-\bf{Aplication}\rm
+{\bf Aplication}\rm
 <<>>=
 trt1<-c("A","B","C","D")
 trt2<-c("a","b","c")
@@ -482,7 +501,7 @@ print(B1)
 print(B2)
 print(B3)
 @
-\newpage
+
 {\bf Serpentine enumeration:}
 
 <<>>=
@@ -530,7 +549,7 @@ head(crd$book)
 
 For the analyses, the following functions of {\bf agricolae} are used: {\emph LSD.test,  HSD.test, duncan.test, scheffe.test,  waller.test, SNK.test, REGW.test}, \citet{SteeTorrDick:1997}; \citet{Hsu:1996} and {\emph durbin.test, kruskal, friedman,  waerden.test and Median.test}, \citet{Cono:1999}.
 
-For every statistical analysis, the data should be organized in columns. For the demonstration, the \bf{agricolae} \rm database will be used.
+For every statistical analysis, the data should be organized in columns. For the demonstration, the {\bf agricolae} \rm database will be used.
 
 The {\emph sweetpotato} data correspond to a completely random experiment in field with plots of 50 sweet potato plants, subjected to the virus effect and to a control without virus (See the reference manual of the package).
 
@@ -538,11 +557,11 @@ The {\emph sweetpotato} data correspond to a completely random experiment in fie
 data(sweetpotato)
 model<-aov(yield~virus, data=sweetpotato)
 cv.model(model)
-attach(sweetpotato)
-mean(yield)
-detach(sweetpotato)
+with(sweetpotato,mean(yield))
 @
+
 {\bf Model parameters: Degrees of freedom and variance of the error:} 
+
 <<>>=
 df<-df.residual(model)
 MSerror<-deviance(model)/df
@@ -560,30 +579,31 @@ LSD.test(model, "virus",console=TRUE)
 In the function {\emph LSD.test}, the multiple comparison was carried out. In order to obtain the probabilities of the comparisons, it should be indicated that groups are not required; thus:
 
 <<>>=
-# comparison <- LSD.test(yield, virus,df, MSerror, group=F)
-outLSD <-LSD.test(model, "virus", group=F,console=TRUE)
+# comparison <- LSD.test(yield, virus,df, MSerror, group=FALSE)
+outLSD <-LSD.test(model, "virus", group=FALSE,console=TRUE)
 @
 
 Signif. codes:
 
-\bf {0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1}\rm
+{\bf 0 *** 0.001 ** 0.01 * 0.05 . 0.1 ' ' 1}\rm
 
 <<>>=
+options(digits=2)
 print(outLSD)
 @
 
 \subsection{holm, hommel, hochberg, bonferroni, BH, BY, fdr}
-With the function \emph{LSD.test} we can make adjustments to the probabilities found, as for example the adjustment by Bonferroni, holm.
+With the function \emph{LSD.test} we can make adjustments to the probabilities found, as for example the adjustment by Bonferroni, holm and other options see Adjust P-values for Multiple Comparisons, function p.adjust(stats), \citet{Rcore:2017}.
 
 <<>>=
-LSD.test(model, "virus", group=F, p.adj= "bon",console=TRUE)
+LSD.test(model, "virus", group=FALSE, p.adj= "bon",console=TRUE)
 out<-LSD.test(model, "virus", group=TRUE, p.adj= "holm")
 print(out$group)
 out<-LSD.test(model, "virus", group=FALSE, p.adj= "holm")
 print(out$comparison)
 @
 
-Other comparison tests can be applied, such as \emph{duncan, Student-Newman-Keuls, tukey and waller-duncan}\\
+Other comparison tests can be applied, such as \emph{duncan, Student-Newman-Keuls, tukey and waller-duncan}
 
 For \emph {Duncan}, use the function \emph {duncan.test}; for \emph {Student-Newman-Keuls}, the function \emph {SNK.test}; for \emph {Tukey}, the function \emph {HSD.test}; for \emph {Scheffe}, the function \emph{scheffe.test} and for \emph {Waller-Duncan}, the function \emph {waller.test}. The arguments are the same. \emph {Waller} also requires the value of F-calculated of the ANOVA treatments. If the model is used as a parameter, this is no longer necessary.
 
@@ -601,9 +621,10 @@ Student, Newman and Keuls helped to improve the Newman-Keuls test of 1939, which
 # SNK.test(model, "virus", alpha=0.05,console=TRUE)
 SNK.test(model, "virus", group=FALSE,console=TRUE)
 @
+
 \subsection{Ryan, Einot and Gabriel and Welsch}
 
-Multiple range tests for all pairwise comparisons, to obtain a confident inequalities multiple range tests, \cite t{Hsu:1996}.
+Multiple range tests for all pairwise comparisons, to obtain a confident inequalities multiple range tests, \citet{Hsu:1996}.
 
 <<>>=
 # REGW.test(model, "virus", alpha=0.05,console=TRUE)
@@ -626,9 +647,7 @@ Duncan continued the multiple comparison procedures, introducing the criterion o
 <<>>=
 # variance analysis:
 anova(model)
-attach(sweetpotato)
-waller.test(yield,virus,df,MSerror,Fc= 17.345, group=F,console=TRUE)
-detach(sweetpotato)
+with(sweetpotato,waller.test(yield,virus,df,MSerror,Fc= 17.345, group=FALSE,console=TRUE))
 @
 
 In another case with only invoking the model object: 
@@ -685,7 +704,7 @@ A <-data.frame (block, clone, nitrogen, yield)
 head (A)
 outAOV <-aov (yield ~ block + clone * nitrogen, data = A)
 @
-\newpage
+
 <<>>=
 anova (outAOV)
 outFactorial <-LSD.test (outAOV, c("clone", "nitrogen"), 
@@ -722,9 +741,9 @@ names(out)
 rm(block,variety)
 @
 
-\bf{bar.group: out\$groups\\
-bar.err:  out\$means
-}\rm
+{\bf bar.group:} out\$groups
+
+{\bf bar.err:}  out\$means
 
 \subsection {Partially Balanced Incomplete Blocks}
 
@@ -740,7 +759,7 @@ k<-3
 plan<-design.alpha(Genotype,k,r,seed=5)
 @
 
-The generated plan is plan\$book.\\
+The generated plan is plan\$book.
 Suppose that the corresponding observation to each experimental unit is:
 
 <<>>=
@@ -750,13 +769,10 @@ yield <-c(5,2,7,6,4,9,7,6,7,9,6,2,1,1,3,2,4,6,7,9,8,7,6,4,3,2,2,1,1,
 The data table is constructed for the analysis. In theory, it is presumed that a design is applied and the experiment is carried out; subsequently, the study variables are observed from each experimental unit.
 <<>>=
 data<-data.frame(plan$book,yield)
-rm(yield,Genotype)
 # The analysis: 
-attach(data)
-modelPBIB <- PBIB.test(block, Genotype, replication, yield, k=3, group=TRUE,
-console=TRUE)
-detach(data)
+modelPBIB <- with(data,PBIB.test(block, Genotype, replication, yield, k=3, group=TRUE, console=TRUE))
 @
+
 {\bf The adjusted averages can be extracted from the modelPBIB.}
 
 head(modelPBIB\$means)
@@ -765,11 +781,11 @@ head(modelPBIB\$means)
 
 head(modelPBIB\$comparison)
 
-The data on the adjusted averages and their variation can be illustrated see Figure \ref{fig:f6}. since the created object is very similar to the objects generated by the multiple comparisons.
+The data on the adjusted averages and their variation can be illustrated with the functions plot.group and bar.err. Since the created object is very similar to the objects generated by the multiple comparisons.
 
-Analysis of balanced lattice 3x3, 9 treatments, 4 repetitions.\\
+Analysis of balanced lattice 3x3, 9 treatments, 4 repetitions.
 
-Create the data in a text file: latice3x3.txt and read with R:\\
+Create the data in a text file: latice3x3.txt and read with R:
 
 \begin{tabular}
 {|r|r|r|r} \hline 
@@ -785,7 +801,8 @@ Create the data in a text file: latice3x3.txt and read with R:\\
 3     9   3 13.78 & 3     9   8 24.00  & 3     9   9 30.00 \\
 4    10   6 37.00 & 4    10   3 15.42  & 4    10   5 20.00 \\
 4    11   4 42.37 & 4    11   2 30.00  & 4    11   8 18.00 \\
-4    12   9 39.00 & 4    12   7 23.80  & 4    12   1 43.81 \\ \hline
+4    12   9 39.00 & 4    12   7 23.80  & 4    12   1 43.81 \\
+\hline
 \end{tabular}
 
 <<>>=
@@ -794,10 +811,10 @@ yield<-c(48.76,10.83,12.54,11.07,22,47.43,27.67,30,13.78,37,42.37,39,14.46,30.69
 22,42.8,28.28,50,24,24,15.42,30,23.8,19.68,31,23,41,12.9,49.95,25,45.57,30,20,18,43.81)
 sqr<-rep(gl(4,3),3)
 block<-rep(1:12,3)
-modelLattice<-PBIB.test(block,trt,sqr,yield,k=3,console=TRUE)
+modelLattice<-PBIB.test(block,trt,sqr,yield,k=3,console=TRUE, method="VC")
 @
 
-\bf{The adjusted averages can be extracted from the modelLattice.}\rm
+{\bf The adjusted averages can be extracted from the modelLattice.}\rm
 
 print(modelLattice\$means)
 
@@ -807,7 +824,7 @@ head(modelLattice\$comparison)
 
 \subsection {Augmented Blocks}
 
-The function \emph{DAU.test} can be used for the analysis of the augmented block design.\\
+The function \emph{DAU.test} can be used for the analysis of the augmented block design.
 The data should be organized in a table, containing the blocks, treatments, and the response.
 <<>>=
 block<-c(rep("I",7),rep("II",6),rep("III",7))
@@ -827,15 +844,17 @@ by(yield,block,as.character)
 \bf {Analysis:}\rm
 <<>>=
 modelDAU<- DAU.test(block,trt,yield,method="lsd",console=TRUE)
+options(digits = 2)
 modelDAU$means
 @
 <<>>=
-modelDAU<- DAU.test(block,trt,yield,method="lsd",group=F,console=FALSE)
+modelDAU<- DAU.test(block,trt,yield,method="lsd",group=FALSE,console=FALSE)
 head(modelDAU$comparison,8)
 @
+
 \section {Non-parametric comparisons}
 
-The functions for non-parametric multiple comparisons included in \bf{agricolae} \rm are: \emph{kruskal, waerden.test, friedman and durbin.test}, \citet{Cono:1999}.
+The functions for non-parametric multiple comparisons included in {\bf agricolae} \rm are: \emph{kruskal, waerden.test, friedman and durbin.test}, \citet{Cono:1999}. 
 
 The post hoc nonparametrics tests (kruskal, friedman, durbin and waerden) are using the criterium Fisher's least significant difference (LSD).
 
@@ -845,16 +864,18 @@ The function \emph{waerden.test}, similar to kruskal-wallis, uses a normal score
 
 The function \emph{friedman} is used for organoleptic evaluations of different products, made by judges (every judge evaluates all the products). It can also be used for the analysis of treatments of the randomized complete block design, where the response cannot be treated through the analysis of variance.
 
-The function \emph{durbin.test} for the analysis of balanced incomplete block designs is very used for sampling tests, where the judges only evaluate a part of the treatments.
+The function \emph{durbin.test} for the analysis of balanced incomplete block designs is very used for sampling tests, where the judges only evaluate a part of the treatments. 
+
+The function \emph{Median.test} for the analysis the distribution is approximate with chi-squared  ditribution with degree free number of groups minus one. In each comparison a table of 2x2 (pair of groups) and the criterion of greater or lesser value than the median of both are formed, the chi-square test is applied for the calculation of the probability of error that both are independent. This value is compared to the alpha level for group formation.
 
 Montgomery book data, \citet{Mont:2002}.
-Included in the \bf{agricolae} \rm package
+Included in the {\bf agricolae} \rm package 
 
 <<>>=
 data(corn)
 str(corn)
 @
-\bf {For the examples, the \bf{agricolae} \rm package data will be used} \rm
+\bf {For the examples, the {\bf agricolae} \rm package data will be used} \rm
 \subsection {Kruskal-Wallis}
 It makes the multiple comparison with Kruskal-Wallis. The parameters by default are alpha = 0.05.
 <<>>=
@@ -864,7 +885,7 @@ str(kruskal)
 <<>>=
 outKruskal<-with(corn,kruskal(observation,method,group=TRUE, main="corn", console=TRUE))
 @
-The object output has the same structure of the comparisons see Figure \ref{fig:f8}.
+The object output has the same structure of the comparisons see the functions plot.group(agricolae), bar.err(agricolae) and bar.group(agricolae).
 
 \subsection {Kruskal-Wallis: adjust P-values}
 
@@ -875,32 +896,28 @@ print(out$group)
 out<-with(corn,kruskal(observation,method,group=FALSE, main="corn", p.adj="holm"))
 print(out$comparison)
 @
+
 \subsection {Friedman}
+The data consist of b mutually independent k-variate random variables called b blocks. The random variable is in a block and is associated with treatment. It makes the multiple comparison of the Friedman test with or without ties. A first result is obtained by friedman.test of R.
 <<>>=
 str(friedman)
 @
 \bf {Analysis}\rm
 <<>>=
-rm(trt)
 data(grass)
-attach(grass)
-out<-friedman(judge,trt, evaluation,alpha=0.05, group=FALSE,
-main="Data of the book of Conover",console=TRUE)
-detach(grass)
+out<-with(grass,friedman(judge,trt, evaluation,alpha=0.05, group=FALSE,
+main="Data of the book of Conover",console=TRUE))
 @
 \subsection {Waerden}
 A nonparametric test for several independent samples. Example applied with the sweet potato data in the \bf {agricolae} \rm basis.
 <<>>=
 str(waerden.test)
-
 @
 
 \bf {Analysis}\rm
 <<>>=
-rm(yield)
 data(sweetpotato)
-attach(sweetpotato)
-outWaerden<-waerden.test(yield,virus,alpha=0.01,group=TRUE,console=TRUE)
+outWaerden<-with(sweetpotato,waerden.test(yield,virus,alpha=0.01,group=TRUE,console=TRUE))
 @
 The comparison probabilities are obtained with the parameter group = \bf {FALSE}\rm 
 <<>>=
@@ -908,24 +925,47 @@ names(outWaerden)
 @
 \bf {To see outWaerden\$comparison}\rm
 <<>>=
-out<-waerden.test(yield,virus,group=F,console=TRUE)
-detach(sweetpotato)
+out<-with(sweetpotato,waerden.test(yield,virus,group=FALSE,console=TRUE))
 @
+
 \subsection {Median test}
-A nonparametric test for several independent samples. The median test is designed to examine whether several samples came from populations having the same median, \citet{Cono:1999}.
+A nonparametric test for several independent samples. The median test is designed to examine whether several samples came from populations having the same median, \citet{Cono:1999}. See also Figure \ref{fig:f14}.
+
+In each comparison a table of 2x2 (pair of groups) and the criterion of greater or lesser value than the median of both are formed, the chi-square test is applied for the calculation of the probability of error that both are independent. This value is compared to the alpha level for group formation.
+
 <<>>=
 str(Median.test)
 @
-\bf {Analysis}\rm
+
+<<>>=
+str(Median.test)
+@
+
+{\bf Analysis}
+
 <<>>=
 data(sweetpotato)
-attach(sweetpotato)
-outMedian<-Median.test(yield,virus,console=TRUE)
-detach(sweetpotato)
+outMedian<-with(sweetpotato,Median.test(yield,virus,console=TRUE))
 names(outMedian)
 outMedian$statistics
-outMedian$Medians
+outMedian$medians
 @
+
+\begin{figure}
+\begin{center}
+
+<<f14, echo=TRUE, fig=TRUE, width=6, height=4>>=
+par(mfrow=c(2,2),mar=c(3,3,1,1),cex=0.8)
+# Graphics
+bar.group(outMedian$groups,ylim=c(0,50))
+bar.group(outMedian$groups,xlim=c(0,50),horiz = TRUE)
+plot(outMedian)
+plot(outMedian,variation="IQR",horiz = TRUE)
+@
+\caption{Grouping of treatments and its variation, Median method\label{fig:f14}}
+\end{center}
+\end{figure}
+
 \subsection {Durbin}
 \emph{durbin.test}; example: Myles Hollander (p. 311) Source: W. Moore and C.I. Bliss. (1942)
 A multiple comparison of the Durbin test for the balanced incomplete blocks for sensorial or categorical evaluation. It forms groups according to the demanded ones for level of significance (alpha); by default, 0.05.
@@ -940,7 +980,7 @@ chemical<-c("A","B","D","A","C","E","C","D","G","A","F","G", "B","C","F",
 toxic<-c(0.465,0.343,0.396,0.602,0.873,0.634,0.875,0.325,0.330, 0.423,0.987,0.426,
 0.652,1.142,0.989,0.536,0.409,0.309, 0.609,0.417,0.931)
 head(data.frame(days,chemical,toxic))
-out<-durbin.test(days,chemical,toxic,group=F,console=TRUE,
+out<-durbin.test(days,chemical,toxic,group=FALSE,console=TRUE,
 main="Logarithm of the toxic dose")
 names(out)
 out$statistics
@@ -961,10 +1001,8 @@ example:
 # bar.group (out $ group)
 str(bar.group)
 @
-The found object of one comparison is the entry for these functions, see Figure \ref{fig:f4}. 
-The objects outHSD and outWaller are used in the following exercise:\\
-outHSD, for the functions \emph{bar.group} and \emph{bar.err}\\
-outWaller, for the function \emph{bar.err}
+
+See Figure \ref{fig:f14}. The Median test with option group=TRUE (default) is used in the exercise.
 
 \subsection{bar.err}
 A function to plot horizontal or vertical bar, where the variation of the error is expressed in every treatments. The function applies to all functions comparison treatments. Each object must use the means object previously generated by the comparison function, see Figure \ref{fig:f4}
@@ -974,29 +1012,30 @@ A function to plot horizontal or vertical bar, where the variation of the error 
 # bar.err(out$means)
 str(bar.err)
 @
-\bf {variation} \rm
-SE: Standard error\\
-SD: standard deviation\\
-range: max-min)
+{\bf variation} 
 
-\begin{figure}[!hbtp]
+SE: Standard error
+
+SD: standard deviation
+
+range: max-min
+
+\begin{figure}
 \begin{center}
-<<f4, fig=TRUE,width=6, height=2>>=
-par(mfrow=c(1,2),mar=c(3,3,2,0),cex=0.7)
-c1<-colors()[480]; c2=colors()[65]; c3=colors()[15]; c4=colors()[140] 
-G1<-bar.group(outHSD$groups, ylim=c(0,45), main="Tukey\nG1",col=c1,las=1)
-# G2<-bar.group(outHSD$groups, horiz=T, xlim=c(0,45), main="Tukey\nG2",col=c2,las=1)
-# G3<-bar.err(outWaller$means, variation="range",ylim=c(0,45), col=c3,main="Range\nG3",las=1)
-G4<-bar.err(outWaller$means, horiz=T, xlim=c(0,45), col=c4, variation="SE",
-main="Standard error \nG4",las=1)
+<<f4, fig=TRUE,width=6, height=4>>=
+par(mfrow=c(2,2),mar=c(3,3,2,1),cex=0.7)
+c1<-colors()[480]; c2=colors()[65] 
+bar.err(outHSD$means, variation="range",ylim=c(0,50),col=c1,las=1)
+bar.err(outHSD$means, variation="IQR",horiz=TRUE, xlim=c(0,50),col=c2,las=1)
+plot(outHSD, variation="range",las=1)
+plot(outHSD, horiz=TRUE, variation="SD",las=1)
 @
-
 \caption{Comparison between treatments\label{fig:f4}}
 \end{center}
 \end{figure}
 
 <<eval=FALSE>>=
-par(mfrow=c(2,2),cex=0.7,mar=c(3.5,1.5,3,0))
+par(mfrow=c(2,2),cex=0.7,mar=c(3.5,1.5,3,1))
 C1<-bar.err(modelPBIB$means[1:7, ], ylim=c(0,9), col=0, main="C1", 
 variation="range",border=3,las=2)
 C2<-bar.err(modelPBIB$means[8:15,], ylim=c(0,9), col=0, main="C2", 
@@ -1011,10 +1050,29 @@ par(mar=c(2.5,2.5,1,0),cex=0.6)
 bar.group(modelLattice$group,ylim=c(0,55),density=10,las=1)
 @
 
-\subsection{diffograph}
-It plots bars of the averages of treatments to compare. It uses the objects generated by a procedure of comparison like LSD (Fisher), duncan, Tukey (HSD), Student Newman Keul (SNK), Scheffe, Ryan, Einot and Gabriel and Welsch (REGW), Kruskal Wallis, Friedman and Waerden, \citet{Hsu:1996}, see Figure \ref{fig:f5}.
+\subsection{plot.group}
+It plot groups and variation of the treatments to compare. It uses the objects generated by a procedure of comparison like LSD (Fisher), duncan, Tukey (HSD), Student Newman Keul (SNK), Scheffe, Waller-Duncan, Ryan, Einot and Gabriel and Welsch (REGW), Kruskal Wallis, Friedman, Median, Waerden and other tests like Durbin, DAU, BIB, PBIB. The variation types are  range (maximun and minimun), IQR (interquartile range), SD (standard deviation) and SE (standard error), see Figure \ref{fig:f13}.
 
-\begin{figure}[!hbtp]
+The function: plot.group() and their arguments are x (output of test),  variation = c("range", "IQR", "SE", "SD"), horiz (TRUE or FALSE), xlim, ylim and main are optional plot() parameters and others plot parameters.
+
+\begin{figure}
+\begin{center}
+<<f13, echo=TRUE, fig=TRUE, width=8, height=3>>=
+# model : yield ~ virus
+# Important group=TRUE
+par(mfrow=c(1,2),mar=c(3,3,1,1),cex=0.8)
+x<-duncan.test(model, "virus", group=TRUE)
+plot(x,las=1)
+plot(x,variation="IQR",horiz=TRUE,las=1)
+@
+\caption{Grouping of treatments and its variation, Duncan method\label{fig:f13}}
+\end{center}
+\end{figure}
+
+\subsection{diffograph}
+It plots bars of the averages of treatments to compare. It uses the objects generated by a procedure of comparison like LSD (Fisher), duncan, Tukey (HSD), Student Newman Keul (SNK), Scheffe, Ryan, Einot and Gabriel and Welsch (REGW), Kruskal Wallis, Friedman and Waerden, \citet{Hsu:1996}, see Figure \ref{fig:f5}
+
+\begin{figure}
 \begin{center}
 <<f5, fig=TRUE,width=6, height=5>>=
 # function (x, main = NULL, color1 = "red", color2 = "blue", 
@@ -1040,31 +1098,26 @@ Use the parametric model, function \emph{stability.par}.
 Prepare a data table where the rows and the columns are the genotypes and the environments, respectively. The data should correspond to yield averages or to another measured variable. Determine the variance of the common error for all the environments and the number of repetitions that was evaluated for every genotype. If the repetitions are different, find a harmonious average that will represent the set. Finally, assign a name to each row that will represent the genotype, \citet{Kang:1993}. We will consider five environments in the following example:
 <<>>=
 options(digit=2)
-v1 <- c(10.2,8.8,8.8,9.3,9.6,7.2,8.4,9.6,7.9,10,9.3,8.0,10.1,9.4,10.8,6.3,7.4)
-v2 <- c(7,7.8,7.0,6.9,7,8.3,7.4,6.5,6.8,7.9,7.3,6.8,8.1,7.1,7.1,6.4,4.1)
-v3 <- c(5.3,4.4,5.3,4.4,5.5,4.6,6.2,6.0,6.5,5.3,5.7,4.4,4.2,5.6,5.8,3.9,3.8)
-v4 <- c(7.8,5.9,7.3,5.9,7.8,6.3,7.9,7.5,7.6,5.4,5.6,7.8,6.5,8.1,7.5,5.0,5.4)
-v5 <- c(9,9.2,8.8,10.6,8.3,9.3,9.6,8.8,7.9, 9.1,7.7,9.5,9.4,9.4,10.3,8.8,8.7)
+f <- system.file("external/dataStb.csv", package="agricolae")
+dataStb<-read.csv(f)
+stability.par(dataStb, rep=4, MSerror=1.8, alpha=0.1, main="Genotype",console=TRUE)
 @
 For 17 genotypes, the identification is made by letters.
-<<>>=
-study <- data.frame(v1, v2, v3, v4, v5)
-rownames(study) <- LETTERS[1:17]
-@
 An error variance of 2 and 4 repetitions is assumed.
 
 \bf {Analysis}\rm
 <<>>=
-output <- stability.par(study, rep=4, MSerror=2)
+output <- stability.par(dataStb, rep=4, MSerror=2)
 names(output)
 print(output$stability)
 @
-The selected genotypes are: A, C, E, G, H, J, M, N and O. These genotypes have a higher yield and a lower variation. to see output\$analysis, the interaction is significant.
+The selected genotypes are: A, C, E, G, H, I, J and O. These genotypes have a higher yield and a lower variation. to see output\$analysis, the interaction is significant.
 
-If for example there is an environmental index, it can be added as a covariate. For this case, the altitude of the localities is included. 
+If for example there is an environmental index, it can be added as a covariate In the first five locations. For this case, the altitude of the localities is included. 
 <<>>=
+data5<-dataStb[,1:5]
 altitude<-c(1200, 1300, 800, 1600, 2400)
-stability <- stability.par(study,rep=4,MSerror=2, cova=TRUE, name.cov= "altitude",
+stability <- stability.par(data5,rep=4,MSerror=2, cova=TRUE, name.cov= "altitude",
 file.cov=altitude)
 @
 \subsection {Non-parametric Stability}
@@ -1073,7 +1126,7 @@ The names of the genotypes should be included in the first column, and in the ot
 
 \bf {Analysis}\rm
 <<>>=
-data <- data.frame(name=row.names(study), study)
+data <- data.frame(name=row.names(dataStb), dataStb)
 output<-stability.nonpar(data, "YIELD", ranking=TRUE)
 names(output)
 output$statistics
@@ -1088,7 +1141,7 @@ The data can be organized in columns, thus: environment, genotype, repetition, a
 
 The data can also be the averages of the genotypes in each environment, but it is necessary to consider a harmonious average for the repetitions and a common variance of the error. The data should be organized in columns: environment, genotype, and variable.
 
-When performing AMMI, this generates the Biplot, Triplot and Influence graphics, see Figures \ref{fig:f6}
+When performing AMMI, this generates the Biplot, Triplot and Influence graphics, see Figure \ref{fig:f6}.
 
 For the application, we consider the data used in the example of parametric stability (study):
   
@@ -1102,23 +1155,23 @@ For the application, we consider the data used in the example of parametric stab
 @
   \bf {type: 1=biplot, 2= triplot 3=influence genotype} \rm
 <<>>=
-  rdto <- c(study[,1], study[,2], study[,3], study[,4], study[,5])
-environment <- gl(5,17)
-genotype <- rep(rownames(study),5)
-model<-AMMI(ENV=environment, GEN=genotype, REP=4, Y=rdto, MSE=2, console=TRUE)
+data(plrv)
+model<-with(plrv,AMMI(Locality, Genotype, Rep, Yield, console=FALSE))
+names(model)
+model$ANOVA
+model$analysis
 pc <- model$analysis[, 1]
 pc12<-sum(pc[1:2])
 pc123<-sum(pc[1:3])
-rm(rdto,environment,genotype)
 @
   
-  \begin{figure}[!hbtp]
+\begin{figure}
 \begin{center}
-<<f6, fig=TRUE,width=6, height=2.2>>=
-  par(cex=0.8,mar=c(4,4,1,0))
-plot(model,type=1,las=1)
+<<f6, fig=TRUE,width=3, height=2,results=hide>>=
+par(cex=0.4,mar=c(4,4,1,2))
+plot(model,type=1,las=1,xlim=c(-5,6))
 @
-  \caption{Biplot\label{fig:f5}}
+\caption{Biplot\label{fig:f6}}
 \end{center}
 \end{figure}
 In this case, the interaction is significant. The first two components explain \Sexpr{pc12} \%; then the biplot can provide information about the interaction genotype-environment. With the triplot, \Sexpr{pc123}\% would be explained.
@@ -1127,18 +1180,27 @@ In this case, the interaction is significant. The first two components explain \
 
 plot(model,type=2,las=1)
 
-\bf To Influence graphics genotype require spdep package, in R execute:\rm
+{\bf To Influence graphics genotype require spdep package, in R execute:}\rm
 
-plot(model,type=3,las=1)
+plot(model,type=3). See Figure \ref{fig:f15}.
+
+\begin{figure}
+\begin{center}
+
+<<f15, fig=TRUE,width=3, height=2,results=hide>>=
+par(mar=c(4,4,1,2),cex=0.5)
+plot(model,type=3,number=TRUE,las=1,xlim=c(-5,6),bty="l")
+@
+\caption{Influence genotype\label{fig:f15}}
+\end{center}
+\end{figure}
 
 \subsection {AMMI index and yield stability}
-Calculate AMMI stability value (ASV) and Yield stability index (YSI), \citet{SabaDehg:2017}; \citet{Purc:1997}.
+Calculate AMMI stability value (ASV) and Yield stability index (YSI), \citet{SabaDehg:2008}; \citet{Purc:1997}.
 
 <<>>=
 data(plrv)
-attach(plrv)
-model<- AMMI(Locality, Genotype, Rep, Yield, console=FALSE)
-detach(plrv)
+model<- with(plrv,AMMI(Locality, Genotype, Rep, Yield, console=FALSE))
 index<-index.AMMI(model)
 # Crops with improved stability according AMMI.
 print(index[order(index[,3]),])
@@ -1155,10 +1217,10 @@ The data correspond to a table, with the name of the individuals and the variabl
 
 The program identifies duplicates in the rows and can operate in both cases. The result is a dendrogram, in which the consensus percentage is included, see Figure \ref{fig:f7}.
 
-\begin{figure}[!hbtp]
+\begin{figure}
 \begin{center}
 <<f7, fig=TRUE,width=5, height=2>>=
-par(cex=0.6,mar=c(3,3,2,0))
+par(cex=0.6,mar=c(3,3,2,1))
 data(pamCIP)
 rownames(pamCIP)<-substr(rownames(pamCIP),1,6)
 output<-consensus(pamCIP,distance="binary", method="complete", nboot=5)
@@ -1168,10 +1230,10 @@ output<-consensus(pamCIP,distance="binary", method="complete", nboot=5)
 \end{figure}
 When the dendrogram is complex, it is convenient to extract part of it with the function hcut(), see Figure \ref{fig:f8}.
 
-\begin{figure}[!hbtp]
+\begin{figure}
 \begin{center}
 <<f8, fig=TRUE,width=5, height=2>>=
-par(cex=0.6,mar=c(3,3,1.5,0))
+par(cex=0.6,mar=c(3,3,1.5,1))
 out1<- hcut(output,h=0.4,group=8,type="t",edgePar = list(lty=1:2, col=colors()[c(42,84)]),
 main="group 8" ,col.text="blue",cex.text=1,las=1)
 @
@@ -1207,11 +1269,11 @@ data(soil)
 simulated <- montecarlo(soil$pH,1000)
 h<-graph.freq(simulated,nclass=7,plot=FALSE)
 @
-\begin{figure}[!hbtp]
+\begin{figure}
 \begin{center}
 <<f9, fig=TRUE, width=4, height=1.5>>=
 par(mar=c(2,0,2,1),cex=0.6)
-plot(density(soil$pH),axes=F,main="pH density of the soil\ncon Ralstonia",xlab="",lwd=4)
+plot(density(soil$pH),axes=FALSE,main="pH density of the soil\ncon Ralstonia",xlab="",lwd=4)
 lines(density(simulated), col="blue", lty=4,lwd=4)
 axis(1,0:12)
 legend("topright",c("Original","Simulated"),lty=c(1,4),col=c("black", "blue"), lwd=4)
@@ -1320,10 +1382,10 @@ options(digits = 7)
 The Smith index is an indicator of the uniformity, used to determine the parcel size for research purposes. The data correspond to a matrix or table that contains the response per basic unit, a number of n rows x m columns, and a total of n*m basic units.
 
 For the test, we will use the rice file. The graphic is a result with the adjustment of a model for the plot size and the coefficient of variation, see Figure \ref{fig:f10}.
-\begin{figure}[h]
+\begin{figure}
 \begin{center}
 <<f10, fig=TRUE, width=4, height=2>>=
-par(mar=c(3,3,4,0),cex=0.7)
+par(mar=c(3,3,4,1),cex=0.7)
 data(rice)
 table<-index.smith(rice, col="blue",
  main="Interaction between the CV and the plot size",type="l",xlab="Size")
@@ -1357,10 +1419,7 @@ For its application, consider the soil data: data(soil)
 <<>>=
 data(soil)
 correlation(soil[,2:4],method="pearson")
-attach(soil)
-correlation(pH,soil[,3:4],method="pearson")
-correlation(pH,CaCO3,method="pearson")
-detach(soil)
+with(soil,correlation(pH,soil[,3:4],method="pearson"))
 @
 
 \subsection {tapply.stat()} 
@@ -1373,18 +1432,19 @@ max(yield)-min(yield) by farmer \rm
 
 <<>>=
 data(RioChillon)
-attach(RioChillon$babies)
-tapply.stat(yield,farmer,function(x) max(x)-min(x))
-detach(RioChillon$babies)
+with(RioChillon$babies,tapply.stat(yield,farmer,function(x) max(x)-min(x)))
 @
 It corresponds to the range of variation in the farmers' yield. 
 
 The function "tapply" can be used directly or with function. 
 
-If A is a table with columns 1,2 and 3 as category, and 5,6 and 7 as variables, then the following procedures are valid:\\ 
-tapply.stat(A[,5:7], A[,1:3],mean)\\
-tapply.stat(A[,5:7], A[,1:3],function(x) mean(x,na.rm=TRUE))\\
-tapply.stat(A[,c(7,6)], A[,1:2],function(x) sd(x)*100/mean(x))\\
+If A is a table with columns 1,2 and 3 as category, and 5,6 and 7 as variables, then the following procedures are valid:
+
+tapply.stat(A[,5:7], A[,1:3],mean)
+
+tapply.stat(A[,5:7], A[,1:3],function(x) mean(x,na.rm=TRUE))
+
+tapply.stat(A[,c(7,6)], A[,1:2],function(x) sd(x)*100/mean(x))
 
 \subsection {Coefficient of variation of an experiment}
 
@@ -1429,7 +1489,7 @@ for(i in 1:n) y[i,3]<-waller(K[i],q,f,Fc=8)
 \bf {Function of Waller to different value of parameters K and Fc} \rm
 The next procedure illustrates the function for different values of K with freedom degrees of 5 for the numerator and 15 for the denominator, and values of calculated F, equal to 2, 4, and 8.
 <<eval=FALSE>>=
-par(mar=c(3,3,4,0),cex=0.7)
+par(mar=c(3,3,4,1),cex=0.7)
 plot(K,y[,1],type="l",col="blue",ylab="waller",bty="l")
 lines(K,y[,2],type="l",col="brown",lty=2,lwd=2)
 lines(K,y[,3],type="l",col="green",lty=4,lwd=2)
@@ -1460,7 +1520,7 @@ print(W.D)
 
 \subsection {AUDPC}
 
-The area under the disease progress curve (AUDPC), see Figure \ref{fig:f10} calculates the absolute and relative progress of the disease. It is required to measure the disease in percentage terms during several dates, preferably equidistantly.
+The area under the disease progress curve (AUDPC), see Figure \ref{fig:f11} calculates the absolute and relative progress of the disease. It is required to measure the disease in percentage terms during several dates, preferably equidistantly.
 <<>>=
 days<-c(7,14,21,28,35,42)
 evaluation<-data.frame(E1=10,E2=40,E3=50,E4=70,E5=80,E6=90)
@@ -1476,11 +1536,11 @@ The Area Under the Disease Progress Stairs (AUDPS), see Figure \ref{fig:f11}. A 
 absolute2 <-audps(evaluation,days)
 relative2 <-round(audps(evaluation,days,"relative"),2)
 @
-\begin{figure}[!hbtp]
+\begin{figure}
 \begin{center}
 <<f11, echo=FALSE, fig=TRUE, width=8, height=2>>=
-par(mfrow=c(1,2),mar=c(3,3,1,0),cex=0.7)
-plot(days, evaluation,type="h",ylim=c(0,100),axes=F,col= colors()[42],xlab="Days", ylab="Evaluation")
+par(mfrow=c(1,2),mar=c(3,3,1,1),cex=0.7)
+plot(days, evaluation,type="h",ylim=c(0,100),axes=FALSE,col= colors()[42],xlab="Days", ylab="Evaluation")
 lines(days,evaluation,col= colors()[42])
 axis(1,days)
 axis(2,seq(0,100,20),las=2)
@@ -1489,7 +1549,7 @@ text(15,80,substitute(paste("Audpc Abs.=",A1),list(A1=absolute1)))
 text(15,70,substitute(paste("Audpc Rel.=",A2),list(A2=relative1)))
 x<-seq(3.5,45.5,7)
 evaluation<-c(evaluation,evaluation[6])
-plot(x, evaluation,type="s",ylim=c(0,100),axes=F,col= colors()[42],xlab="Days", ylab="Evaluation")
+plot(x, evaluation,type="s",ylim=c(0,100),axes=FALSE,col= colors()[42],xlab="Days", ylab="Evaluation")
 points(x,evaluation,type="h",col= colors()[42])
 points(days,evaluation[-6],pch=16,col=4)
 text(days,5,days,col=4,cex=1)
@@ -1517,18 +1577,17 @@ potato[,1]<-as.factor(potato[,1])
 model<-lm(cutting ~ date + variety,potato)
 df<-df.residual(model)
 MSerror<-deviance(model)/df
-attach(potato)
-analysis<-nonadditivity(cutting, date, variety, df, MSerror)
-detach(potato)
+analysis<-with(potato,nonadditivity(cutting, date, variety, df, MSerror))
 @
 According to the results, the model is additive because the p.value 0.35 is greater than 0.05.
- 
+
 \subsection {LATEBLIGHT}
 
 LATEBLIGHT is a mathematical model that simulates the effect of weather, host growth and resistance, and fungicide use on asexual development and growth of Phytophthora infestans on potato foliage, see Figure \ref{fig:f12}
 
 LATEBLIGHT Version LB2004 was created in October 2004 (Andrade-Piedra et al., 2005a, b and c), based on the C-version written by B.E. Ticknor ('BET 21191 modification of cbm8d29.c'), reported by Doster et al. (1990) and described in detail by Fry et al. (1991) (This version is referred as LB1990 by Andrade-Piedra et al. [2005a]). The first version of LATEBLIGHT was developed by Bruhn and Fry (1981) and described in detail by Bruhn et al. (1980).
 <<>>=
+options(digits=2)
 f <- system.file("external/weather.csv", package="agricolae")
 weather <- read.csv(f,header=FALSE)
 f <- system.file("external/severity.csv", package="agricolae")
@@ -1556,10 +1615,10 @@ Cultivar <- "NICOLA"
 ApplSys <- "NOFUNGICIDE"
 main<-"Cultivar: NICOLA"
 @
-\begin{figure}[h]
+\begin{figure}
 \begin{center}
 <<f12, fig=TRUE, width=4.5, height=2.5>>=
-par(mar=c(3,3,4,0),cex=0.7)
+par(mar=c(3,3,4,1),cex=0.7)
 #--------------------------
 model<-lateblight(WS, Cultivar,ApplSys, InocDate, LGR,IniSpor,SR,IE, 
 LP,MatTime='LATESEASON',InMicCol,main=main,type="l",xlim=c(65,95),lwd=1.5,
@@ -1585,7 +1644,7 @@ Min<-model$Gfile$MinObs
 Max<-model$Gfile$MaxObs
 @
 <<eval=FALSE>>=
-par(mar=c(3,2.5,1,0),cex=0.7)
+par(mar=c(3,2.5,1,1),cex=0.7)
 plot(x,y,type="l",xlim=c(65,95),lwd=1.5,xlab="Time (days after emergence)",
 ylab="Severity (Percentage)")
 points(w,z,col="red",cex=1,pch=19); npoints <- length(w)
@@ -1593,7 +1652,7 @@ for ( i in 1:npoints)segments(w[i],Min[i],w[i],Max[i],lwd=1.5,col="red")
 legend("topleft",c("Disease progress curves","Weather-Severity"),
 title="Description",lty=1,pch=c(3,19),col=c("black","red"))
 @
-
+ 
 \begin{thebibliography}{1}
 \bibitem[\protect\citeauthoryear{Cochran and Cox}{Cochran and Cox}{1957}]{CochCox:1992}
 Gertrude M. and W. G. Cochran. (1992).

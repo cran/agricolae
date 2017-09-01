@@ -12,7 +12,7 @@ stat.freq(histogram)
   \item{histogram}{ Object create by function hist() }
 }
 \value{
-  \item{histogram }{Object}
+  Statistics of grouped data.
 }
 
 \author{ Felipe de mendiburu }

@@ -22,12 +22,7 @@ nonadditivity(y, factor1, factor2, df, MSerror)
 Only two factor: Block and treatment or factor 1 and factor 2.
 }
 \value{
-  \item{y }{Numeric}
-  \item{factor1 }{alfanumeric}
-  \item{factor2 }{alfanumeric}
-  \item{df }{Numeric}
-  \item{MSerror }{Numeric}
-
+P, Q and non-additivity analysis of variance 
 }
 \references{ 
 1. Steel, R.; Torri,J; Dickey, D.(1997)

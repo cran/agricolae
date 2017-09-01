@@ -23,15 +23,12 @@ duncan.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL,cons
   It is necessary first makes a analysis of variance.
 }
 \value{
-
-  \item{y }{class (aov or lm) or vector numeric}
-  \item{trt }{constant (only y=model) or vector alfanumeric}
-  \item{DFerror }{Numeric}
-  \item{MSerror }{Numeric}
-  \item{alpha }{Numeric}
-  \item{group}{ Logic}  
-  \item{main }{Text}
-
+  \item{statistics}{Statistics of the model}
+  \item{parameters}{Design parameters}
+  \item{duncan}{Critical Range Table}
+  \item{means}{Statistical summary of the study variable}
+  \item{comparison}{Comparison between treatments}
+  \item{groups}{Formation of treatment groups}
 }
 \references{  
 1. Principles and procedures of statistics a biometrical approach
@@ -41,22 +38,28 @@ duncan.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL,cons
 }
 
 \author{ Felipe de Mendiburu }
-
-\seealso{\code{\link{LSD.test}}, \code{\link{waller.test} },
- \code{\link{HSD.test} }, \code{\link{SNK.test} } }
+\seealso{
+  \code{\link{BIB.test}}, \code{\link{DAU.test}}, \code{\link{durbin.test}}, 
+  \code{\link{friedman}}, \code{\link{HSD.test}}, \code{\link{kruskal}}, 
+  \code{\link{LSD.test}}, \code{\link{Median.test}}, \code{\link{PBIB.test}}, 
+  \code{\link{REGW.test}}, \code{\link{scheffe.test}}, \code{\link{SNK.test}},
+  \code{\link{waerden.test}}, \code{\link{waller.test}}, \code{\link{plot.group}}
+}
 
 \examples{
 library(agricolae)
 data(sweetpotato)
 model<-aov(yield~virus,data=sweetpotato)
-comparison <- duncan.test(model,"virus", 
+out <- duncan.test(model,"virus", 
 main="Yield of sweetpotato. Dealt with different virus")
+plot(out,variation="IQR")
 duncan.test(model,"virus",alpha=0.01,console=TRUE)
 # version old duncan.test()
 df<-df.residual(model)
 MSerror<-deviance(model)/df
-comparison <- with(sweetpotato,duncan.test(yield,virus,df,MSerror, group=TRUE))
-print(comparison$groups)
+out <- with(sweetpotato,duncan.test(yield,virus,df,MSerror, group=TRUE))
+plot(out,horiz=TRUE,las=1)
+print(out$groups)
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS
 

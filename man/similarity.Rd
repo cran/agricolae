@@ -13,7 +13,7 @@ similarity(A)
   \item{A}{ Matrix, data binary }
 }
 \value{
-  \item{A }{Numeric (0,1) }
+Distance matrix. Class = dist.
 }
 \author{ Felipe de Mendiburu }
 

@@ -1,5 +1,23 @@
 Changes in new version
 
+Version agricolae 1-2.7 (August 30, 2017)
+-------------------------------------------
+In the post.hoc tests, the grouping of treatments are formed according to 
+the probability of the difference between treatments and the alpha level.
+
+The affected functions were BIB.test, DAU.test, duncan.test, durbin.test, 
+friedman, HSD.test, kruskal, LSD.test, Median.test, PBIB.test, REGW.test, 
+scheffe.test, SNK. Test, waller.test and waerden.test. Now there is good 
+correspondence between the grouping and the pvalue.
+
+A new function (plot.group) is included in agricolae for the graphs of 
+treatment groups and their variation by range, interquartil range, 
+Standard deviation and standard error.
+
+The RANN package of suggestions was removed.
+
+Updated documentation. 
+
 Version agricolae 1-2.6 (August 4, 2017)
 -------------------------------------------
 Documentation check.

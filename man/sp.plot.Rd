@@ -22,10 +22,7 @@ sp.plot(block, pplot, splot, Y)
   factor, called the subplot factor, is assigned into subplots.
 }
 \value{
-  \item{block}{ vector, numeric or character }
-  \item{pplot}{ vector, numeric or character }
-  \item{splot}{ vector, numeric or character }
-  \item{Y}{ vector, numeric }
+ANOVA: Splip plot analysis
 }
 \references{ Statistical procedures for agricultural research.
  Kwanchai A. Gomez, Arturo A. Gomez. Second Edition. 1984.

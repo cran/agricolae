@@ -46,6 +46,6 @@ gl.b<-W[6,1]; Eb<-W[6,3]
 cat("\ncv(a) =",round(sqrt(Ea)*100/medy,1),"%,", 
 "cv(b) =",round(sqrt(Eb)*100/medy,1),"%,",
 "Mean =", medy,"\n\n")
-output<-list(anva=W, gl.a=gl.a,gl.b=gl.b,Ea=Ea,Eb=Eb)
+output<-list(ANOVA=W, gl.a=gl.a,gl.b=gl.b,Ea=Ea,Eb=Eb)
 invisible(output)
 }

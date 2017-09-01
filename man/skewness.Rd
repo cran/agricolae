@@ -14,8 +14,7 @@ skewness(x)
 }
 
 \value{
-
-  \item{x }{The skewness of x}
+The skewness of x.
 }
 
 \seealso{\code{\link{kurtosis} } }

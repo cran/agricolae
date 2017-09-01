@@ -23,10 +23,7 @@ audpc(evaluation, dates, type = "absolute")
      The evaluations can be at different interval.
 }
 \value{
-
-  \item{evaluation }{data frame, matrix or numeric vector}
-  \item{dates }{a numeric vector}
-  \item{type }{text}
+Vector with relative or absolute audpc.
 }
 \references{ Campbell, C. L., L. V. Madden. (1990): Introduction to Plant Disease Epidemiology. John Wiley & Sons, New York City. }
 \author{ Felipe de Mendiburu }

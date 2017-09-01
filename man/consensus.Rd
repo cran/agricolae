@@ -28,11 +28,9 @@ col.text="red", ...)
   see functions: dist(), hclust() and daisy() of cluster.
 }
 \value{
-  \item{data }{numerical, the rownames is necesary'}
-  \item{nboot}{integer}
-  \item{duplicate}{logical TRUE or FALSE}  
-  \item{cex.text}{size text on consensus}
-  \item{col.text}{color text on consensus}
+  \item{table.dend }{The groups and consensus percentage}
+  \item{dendrogram}{The class object is hclust, dendrogram plot}
+  \item{duplicate}{Homonymous elements}  
 }
 \references{ An Introduction to the Boostrap. Bradley Efron
 and Robert J. Tibshirani. 1993. Chapman and Hall/CRC }

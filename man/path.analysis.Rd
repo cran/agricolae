@@ -21,9 +21,7 @@ path.analysis(corr.x, corr.y)
   It is necessary first to calculate the correlations.
 }
 \value{
-
-  \item{corr.x}{ Numeric }
-  \item{corr.y}{ Numeric }
+Direct and indirect effects and residual Effect^2.
 }
 \references{ Biometrical Methods in Quantitative Genetic Analysis, Singh, Chaudhary. 1979 }
 \author{ Felipe de Mendiburu }

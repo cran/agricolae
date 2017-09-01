@@ -4,7 +4,7 @@
 \title{ Setting the last character of a chain  }
 \description{
   A special function for the group of treatments in the multiple comparison tests. 
-  Use order.group.
+  Use plot.group.
 }
 \usage{
 lastC(x)
@@ -14,11 +14,11 @@ lastC(x)
   \item{x}{ letters }
 }
 \value{
-  \item{x }{character}
+  \item{x }{Returns the last character of a string}
 }
 \author{ Felipe de Mendiburu }
 
-\seealso{\code{\link{order.group} } }
+\seealso{\code{\link{plot.group} } }
 
 \examples{
 library(agricolae)
@@ -27,5 +27,5 @@ lastC(x)
 # "a" "b" "b" "c" "d"
 
 }
-\keyword{ manip }% at least one, from doc/KEYWORDS
+\keyword{ manip }% /KEYWORDS
 

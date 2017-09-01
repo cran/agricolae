@@ -161,8 +161,8 @@ function(data,rep,MSerror,alpha=0.1,main=NULL,cova=FALSE,
       #cat("\n","Source         d.f.   Sum of Squares  Mean Squares         F  p.value")
       #cat("\n",rep("-",35))
     }
-    fuentes<- c( "TOTAL       ","GENOTYPES", "ENVIRONMENTS","INTERACTION",
-                 "HETEROGENEITY" , "RESIDUAL","POOLED ERROR")
+    fuentes<- c( "Total       ","Genotypes", "Environments","Interaction",
+                 "Heterogeneity" , "Residual","Pooled Error")
     gl <- c(A*M-1, A-1, M-1, (M - 1) * (A - 1), A - 1,(A - 1) * (M - 2),M * (A - 1) * (N - 1))
     SC <- round(c(SKT, SKV, SKM , SKVM ,SKH, SKMB),4)
     SC <- c(SC,0)
@@ -176,9 +176,8 @@ function(data,rep,MSerror,alpha=0.1,main=NULL,cova=FALSE,
     resul<-c(" ",DD,NNN,LL,HH,BB," ")
     
     Z<-data.frame(gl,SC,CM,Fcal, resul)
-    names(Z)<-c("d.f.","Sum of Squares","Mean Squares","F","p.value")
-    rownames(Z)<- c( "TOTAL       ","GENOTYPES", "ENVIRONMENTS","INTERACTION",
-                     "HETEROGENEITY" , "RESIDUAL","POOLED ERROR")
+    names(Z)<-c("Df","Sum Sq","Mean Sq","F value","Pr(>F)")
+    rownames(Z)<- fuentes
     Z[7,c(2,4)]<-" ";Z[1,c(3,4)]<-" ";
     if(console){
       cat("\n")

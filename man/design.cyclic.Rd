@@ -29,9 +29,9 @@ design.cyclic(trt, k, r, serie = 2, rowcol = FALSE, seed = 0, kinds = "Super-Dup
   replication = i*k, "i" is value integer.
 }
 \value{
-  \item{parameters }{list}
-  \item{sketch }{list}
-  \item{book }{dataframe}
+  \item{parameters}{Design parameters}
+  \item{sketch}{Design sketch}
+  \item{book}{Fieldbook}
 }
 \references{ Kuehl, Robert(2000), Design of Experiments. 2nd ed., Duxbury. 
 John, J.A. (1981) Efficient Cyclic Design. J. R. Statist. Soc. B, 43, No. 1, pp, 76-80.

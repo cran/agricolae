@@ -30,8 +30,8 @@ nclass=NULL,xlab="",ylab="",axes = "",las=1,...)
   \item{breaks}{ a vector giving the breakpoints between histogram cells }
   \item{counts}{ frequency and x is class intervals}
   \item{mids}{ center point in class }
-  \item{relative}{ frequency }
-  \item{density}{ Numeric }   
+  \item{relative}{ Relative frequency, height }
+  \item{density}{ Density frequency, height  } 
 }
 
 \author{ Felipe de Mendiburu }

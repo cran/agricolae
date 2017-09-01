@@ -10,36 +10,26 @@
 \usage{
 lineXtester(replications, lines, testers, y)
 }
-\details{
-output:
-  Standard Errors for combining ability effects.
-  Componentes geneticos.
-  Variancias.
-  Contribucion proporcional.
-  ANOVA with parents and crosses.
-  ANOVA for line X tester analysis.
-  ANOVA for line X tester analysis including parents.
-  GCA Effects.
-  Lines Effects.
-  Testers Effects.
-  Standard Errors for Combining Ability Effects.
-  Genetic Components.
-  Proportional contribution of lines, testers and their interactions.
-  to total variance.
-
-}
 \arguments{
   \item{replications}{ Replications}
   \item{lines}{ Lines }
   \item{testers}{ Testers }
   \item{y}{ Variable, response }
 }
-
+\details{
+ANOVA with parents and crosses \cr
+ANOVA for line X tester analysis \cr
+ANOVA for line X tester analysis including parents \cr
+GCA Effects: Lines Effects, Testers Effects and SCA Effects. \cr
+Standard Errors for Combining Ability Effects. \cr
+Genetic Components. \cr  
+...\cr
+Proportional contribution of lines, testers and their interactions to total variance 
+}
 \value{
-  \item{replications}{ vector, numeric}
-  \item{lines}{ vector, numeric }
-  \item{testers}{ vector, numeric }
-  \item{y}{ vector, numeric }
+return anova(formula = Y ~ Replications + Treatments).\cr
+where the Treatments contains parents, crosses and crosses vs Parents.\cr
+The crosses contains Lines, Testers and its interaction .
 }
 \references{ 
 Biometrical Methods in Quantitative Genetic Analysis, Singh, Chaudhary. 1979.

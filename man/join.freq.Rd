@@ -16,7 +16,7 @@ join.freq(histogram, join)
   \item{join}{ vector }
 }
 \value{
-  \item{histogram}{ Class graph.freq }
+ New histogram with union of classes.
 }
 \author{ Felipe de Mendiburu }
  

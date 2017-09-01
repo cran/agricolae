@@ -28,8 +28,9 @@ continue=FALSE,randomization=TRUE )
   "default" )
 }
 \value{
-  \item{parameters }{list}
-  \item{book }{dataframe}
+  \item{parameters}{Design parameters}
+  \item{sketch}{Design sketch}
+  \item{book}{Fieldbook}
 }
 \references{ Introduction to Experimental Statistics. 
 Ching Chun Li. McGraw-Hill Book Company, INC, New. York, 1964 }

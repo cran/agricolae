@@ -24,18 +24,23 @@ main = NULL, console=FALSE)
 The post hoc test is using the criterium Fisher's least significant difference.
 }
 \value{
-  \item{juege }{Vector, numeric}
-  \item{trt }{Vector, numeric}
-  \item{evaluation }{Vector, numeric}
-  \item{alpha }{Vector, numeric, default is 0.05}
-  \item{group}{ Logic }
-  \item{main}{text }
+  \item{statistics}{Statistics of the model}
+  \item{parameters}{Design parameters}
+  \item{means}{Statistical summary of the study variable}
+  \item{rank}{rank table of the study variable}
+  \item{comparison}{Comparison between treatments}
+  \item{groups}{Formation of treatment groups}
 }
 \references{ Practical Nonparametrics Statistics. W.J. Conover, 1999
 Nonparametric Statistical Methods. Myles Hollander and Douglas A. Wofe, 1999}
 \author{ Felipe de Mendiburu }
-
-\seealso{\code{\link{kruskal}}, \code{\link{friedman}},\code{\link{BIB.test}} }
+\seealso{
+  \code{\link{BIB.test}}, \code{\link{DAU.test}}, \code{\link{duncan.test}},
+  \code{\link{friedman}}, \code{\link{HSD.test}}, \code{\link{kruskal}}, 
+  \code{\link{LSD.test}}, \code{\link{Median.test}}, \code{\link{PBIB.test}}, 
+  \code{\link{REGW.test}}, \code{\link{scheffe.test}}, \code{\link{SNK.test}},
+  \code{\link{waerden.test}}, \code{\link{waller.test}}, \code{\link{plot.group}}
+}
 \examples{
 library(agricolae)
 # Example 1. Conover, pag 391
@@ -56,6 +61,7 @@ toxic<-c(0.465,0.343,0.396,0.602,0.873,0.634,0.875,0.325,0.330,0.423,0.987,
 0.426,0.652,1.142,0.989,0.536,0.409,0.309,0.609,0.417,0.931)
 out<-durbin.test(day,chemical,toxic,group=TRUE,console=TRUE,
 main="Logarithm of Toxic Dosages")
+plot(out)
 }
 \keyword{ nonparametric }% at least one, from doc/KEYWORDS
 

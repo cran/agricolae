@@ -18,7 +18,7 @@ hcut(consensus,h,group,col.text="blue",cex.text=1,...)
   \item{\dots}{ Other parameters of the function plot() in cut() } 
 }
 \value{
-  hcut returns a data.frame with group memberships and consensus tree.
+  hcut Returns a data frame with group memberships and consensus tree.
 }
 \author{ F. de Mendiburu }
 

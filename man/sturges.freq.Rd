@@ -15,8 +15,7 @@ sturges.freq(x,k=0)
   }
 
 \value{
-  \item{x }{Numeric}
-  \item{k }{Numeric}
+Statistics of sturges for a histogram.
 }
 \references{
   Reza A. Hoshmand. 1988. Statistical Methods for Agricultural Sciences,

@@ -19,9 +19,16 @@ reg.homog(trt, x, y)
   \item{y}{ dependent variable }
 }
 \value{
-  \item{trt}{ factor }
-  \item{x}{ numeric }
-  \item{y}{ numeric }
+list objects:\cr
+Number regressions.\cr
+Residual.\cr
+Difference of regression.\cr
+DF.homgeneity (homogenity degree free).\cr
+DF.Residual (degree free error).\cr
+F.value. Test statitics. \cr
+P.value. P Value (Significant\cr
+Criterion. conclusion\cr
+
 }
 \references{ Book in Spanish: Metodos estadisticos para la investigacion.
              Calzada Benza 1960 }

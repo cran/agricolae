@@ -16,11 +16,8 @@ carolina(model,data)
 model = 1,2 and 3 is I, II and III see carolina1,2 and 3.
 }
 \value{
-  \item{model}{ 1, 2 or 3 }
-  \item{data}{ in order}
-  \item{carolina 1 :}{ set, male, female, progeny, replication, response ... }
-  \item{carolina 2 :}{ set, male, female, replication, response ... }
-  \item{carolina 3 :}{ set, male, female, replication, response ... }
+  \item{model}{ model analysis (I, II or III) of caroline design }
+  and variance and additive variance of male, female and male.female interaction.
   }
 
 \references{ Biometrical Methods in Quantitative Genetic Analysis,

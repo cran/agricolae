@@ -29,12 +29,11 @@ waller: Waller-Duncan test.
 snk: Student-Newman-Keuls (SNK)
 }
 \value{
-  \item{block}{ Vector }
-  \item{trt}{ Vector }
-  \item{y}{ numeric vector}
-  \item{test}{ Character }
-  \item{alpha}{ Numeric }
-  \item{group}{ TRUE or FALSE }
+  \item{parameters}{Design parameters}
+  \item{statistics}{Statistics of the model}
+  \item{comparison}{Comparison between treatments}
+  \item{means}{Adjusted mean and statistics summary}
+  \item{groups}{Grouping of treatments}
 }
 \references{ Design of Experiments. Robert O. Kuehl. 2nd ed., Duxbury, 2000 
  Linear Estimation and Design of Experiments. D.D. Joshi. WILEY EASTERN LIMITED
@@ -42,7 +41,13 @@ snk: Student-Newman-Keuls (SNK)
  McGraw - Hill Book Company, Inc. New York. 1964 }
 
 \author{ F. de Mendiburu }
-\seealso{\code{\link{durbin.test}} }
+\seealso{
+  \code{\link{DAU.test}}, \code{\link{duncan.test}}, \code{\link{durbin.test}}, 
+  \code{\link{friedman}}, \code{\link{HSD.test}}, \code{\link{kruskal}}, 
+  \code{\link{LSD.test}}, \code{\link{Median.test}}, \code{\link{PBIB.test}}, 
+  \code{\link{REGW.test}}, \code{\link{scheffe.test}}, \code{\link{SNK.test}},
+  \code{\link{waerden.test}}, \code{\link{waller.test}}, \code{\link{plot.group}}
+}
 \examples{
 library(agricolae)
 # Example Design of Experiments. Robert O. Kuehl. 2da. Edicion. 2001

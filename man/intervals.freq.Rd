@@ -13,7 +13,7 @@ intervals.freq(x)
   \item{x}{ class graph.freq, histogram or numeric }
 }
 \value{
-  \item{classes}{ matrix numeric }
+It show interval classes.
 }
 \author{ Felipe de Mendiburu }
 \seealso{\code{\link{polygon.freq}}, \code{\link{table.freq}}, \code{\link{stat.freq}},

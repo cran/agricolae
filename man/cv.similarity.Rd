@@ -16,7 +16,7 @@ cv.similarity(A)
 }
 
 \value{
-  \item{A }{Data frame or matrix, numerics}
+Returns the coefficient of variation of the similarity model
 }
 \author{ Felipe de Mendiburu }
 

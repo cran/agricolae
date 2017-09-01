@@ -14,12 +14,10 @@ vark(x, y)
   \item{y}{ vector }
 }
 \details{
-  variance of K for Kendall's tau
+Script in C to R.
 }
 \value{
-
-  \item{x }{Numeric}
-  \item{y }{Numeric}
+variance of K for Kendall's tau
 }
 \references{Numerical Recipes in C. Second Edition. }
 \author{ Felipe de Mendiburu }

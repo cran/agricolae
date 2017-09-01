@@ -36,10 +36,10 @@ kinds <- c("Wichmann-Hill", "Marsaglia-Multicarry", "Super-Duper",
 "default" )
 }
 \value{
-  \item{parameters }{list}
-  \item{statistics }{dataframe}
-  \item{sketch }{matrix}
-  \item{book }{dataframe}
+  \item{parameters}{Design parameters}
+  \item{statistics }{Design statistics}
+  \item{sketch}{Design sketch}
+  \item{book}{Fieldbook}
 }
 \references{
 1. Experimental design. Cochran and Cox. Second edition.

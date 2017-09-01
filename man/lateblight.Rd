@@ -41,22 +41,22 @@ by Bruhn and Fry (1981) and described  in detail by Bruhn et al. (1980).
 \references{
 Andrade-Piedra, J. L., Hijmans, R. J., Forbes, G. A., Fry, W. E.,
 and Nelson, R. J. 2005a. Simulation of potato late blight in the Andes.
-I: Modification and parameterization of the LATEBLIGHT model. Phytopathology 95:1191-1199.
+I: Modification and parameterization of the LATEBLIGHT model. Phytopathology 95:1191-1199.\cr
 Andrade-Piedra, J. L., Hijmans, R. J., Juarez, H. S., Forbes,
 G. A., Shtienberg, D., and Fry, W. E. 2005b. Simulation of potato late blight
-in the Andes. II: Validation of the LATEBLIGHT model. Phytopathology 95:1200-1208.
+in the Andes. II: Validation of the LATEBLIGHT model. Phytopathology 95:1200-1208.\cr
 Andrade-Piedra, J. L., Forbes, G. A., Shtienberg, D., Grunwald, N. J.,
 Chacon, M. G., Taipe, M. V., Hijmans, R. J., and Fry, W. E. 2005c.
 Qualification of a plant disease simulation model: Performance of the LATEBLIGHT
-model across a broad range of environments. Phytopathology 95:1412-1422.
+model across a broad range of environments. Phytopathology 95:1412-1422.\cr
 Bruhn, J.A., Bruck, R.I., Fry, W.E., Arneson, P.A., and Keokosky, E.V. 1980.
 User's manual for LATEBLIGHT: a plant disease management game. Cornell University,
-Department of Plant Pathology, Ithaca, NY, USA. Mimeo 80-1.
+Department of Plant Pathology, Ithaca, NY, USA. Mimeo 80-1.\cr
 Bruhn, J.A., and Fry, W.E.  1981.  Analysis of potato late blight epidemiology
-by simulation modeling.  Phytopathology 71:612-616.
+by simulation modeling.  Phytopathology 71:612-616.\cr
 Doster, M. A., Milgroom, M. G., and Fry, W. E. 1990. Quantification of factors
 influencing potato late blight suppression and selection for metalaxyl resistance
-in Phytophthora infestans - A simulation approach. Phytopathology 80:1190-1198.
+in Phytophthora infestans - A simulation approach. Phytopathology 80:1190-1198.\cr
 Fry, W.E., Milgroom, M.G., Doster, M.A., Bruhn, J.A., and Bruck, R.I.  1991.
 LATEBLIGHT:  a plant disease management game - User Manual.  Version 3.1.
 Microsoft Windows Adaptation by B. E. Ticknor, and P. A. Arneson.  Ithaca,

@@ -26,7 +26,7 @@ var.m<- (anva["set:male","Mean Sq"] - anva["set:male:female","Mean Sq"])/(f*r*n)
 var.f<- (anva["set:male:female","Mean Sq"] - anva["set:replication:male:female","Mean Sq"])/(n*r)
 var.A<- 4*var.m
 var.D<- 4*var.f-4*var.m
-output<-list(model,var.m=var.m,var.f=var.f, var.A=var.A , var.D=var.D)
+output<-list(model=model,var.m=var.m,var.f=var.f, var.A=var.A , var.D=var.D)
 return(output)
 }
 if(model==2) {

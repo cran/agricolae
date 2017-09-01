@@ -38,13 +38,13 @@ anva <- anova(modelo.e)
 beta <-coef(modelo.e)[2]
 P <-  r*anva[1,2] / beta
 Q <- P/beta
-# 1 grado de libertad para la no-aditividad
+#one degree free for non-additivity
 Sna <-as.numeric(P^2/Q)
 if( r == 1) {
 sc<-sc-Sna
 df<-df-1
 }
-# Construccion del cuadro de no-additivity
+# Construction of the non-additivity table
 anva<-anova(modelo.e)
 anva["Residuals",1]<-df
 anva["Residuals",2]<-sc
@@ -57,6 +57,6 @@ cat(name.y,"\n")
 cat("\nP :", P)
 cat("\nQ :", Q,"\n\n")
 print(anva)
-output <- list(P=P, Q=Q, anva=anva)
+output <- list(P=P, Q=Q, ANOVA=anva)
 return(output)
 }

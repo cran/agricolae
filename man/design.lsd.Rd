@@ -25,8 +25,8 @@ design.lsd(trt, serie = 2, seed = 0, kinds = "Super-Duper",first=TRUE,randomizat
   "default" )
 }
 \value{
-  \item{parameters }{list}
-  \item{book }{dataframe}
+  \item{parameters}{Design parameters}
+  \item{book}{Fieldbook}
 }
 \references{ Introduction to Experimental Statistics. 
 Ching Chun Li. McGraw-Hill Book Company, INC, New. York, 1969 }

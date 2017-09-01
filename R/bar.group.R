@@ -1,17 +1,17 @@
 bar.group <-
 function(x,horiz=FALSE, ...) {
-y<-x[,2]
-names(y)<-x[,1]
-nivel<-x[,3]
+y<-x[,1]
+names(y)<-rownames(x)
+nivel<-x[,2]
 n<-length(y)
-indice<-barplot(y,horiz=horiz, ...)
+index<-barplot(y,horiz=horiz, ...)
 tope<-max(y)/10
 for ( i in 1:n) {
-if (horiz) text(y[i]+tope,indice[i],nivel[i])
+if (horiz) text(y[i]+tope,index[i],nivel[i])
 else {
-if (y[i]<0) text(indice[i],abs(tope),nivel[i])
-else text(indice[i],y[i]+tope,nivel[i])
+if (y[i]<0) text(index[i],abs(tope),nivel[i])
+else text(index[i],y[i]+tope,nivel[i])
 }
 }
-invisible(list(index=indice,means=y))
+invisible(list(x=index,height=y))
 }

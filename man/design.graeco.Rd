@@ -27,8 +27,8 @@ design.graeco(trt1, trt2, serie = 2, seed = 0, kinds = "Super-Duper",randomizati
   "default" )
 }
 \value{
-  \item{parameters }{list}
-  \item{book }{dataframe}
+  \item{parameters}{Design parameters}
+  \item{book}{Fieldbook}
 }
 \references{ 
 1. Statistics for Experimenters Design, Innovation, and Discovery

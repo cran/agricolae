@@ -32,16 +32,16 @@ The ML specification performs maximum likelihood, and
 the VC specifications apply only to variance component models. 
 }
 \value{
-  \item{ANOVA}{ analysis of variance }
-  \item{method}{ estimation method: REML, ML and VC}
-  \item{parameters}{ treatments, block Size, blocks, replication, alpha signification and test comparison }  
-  \item{statistics}{ efficiency, coefficient of variation}
-  \item{model}{ object: estimation model }    
-  \item{Fstat}{ criterion AIC and BIC}
-  \item{comparison}{ data.frame treatments comparison}
-  \item{means}{ data.frame means of treatments }
-  \item{groups}{ significant treatment groups} 
-  \item{vartau}{ matrix of variance and covariance}   
+  \item{ANOVA}{Analysis of variance }
+  \item{method}{Estimation method: REML, ML and VC}
+  \item{parameters}{Design parameters}  
+  \item{statistics}{Statistics of the model}
+  \item{model}{Object: estimation model }    
+  \item{Fstat}{Criterion AIC and BIC}
+  \item{comparison}{Comparison between treatments}
+  \item{means}{Statistical summary of the study variable}
+  \item{groups}{Formation of treatment groups} 
+  \item{vartau}{Variance-Covariance Matrix}   
 }
 \references{
 1. Iterative Analysis of Generalizad Lattice Designs.
@@ -51,11 +51,17 @@ the VC specifications apply only to variance component models.
 Wiley Classics Library Edition published 1992
 } 
 \author{ F. de Mendiburu }
-\seealso{\code{\link{BIB.test}}, \code{\link{design.alpha}} }
+\seealso{
+  \code{\link{BIB.test}}, \code{\link{DAU.test}}, \code{\link{duncan.test}},
+  \code{\link{durbin.test}}, \code{\link{friedman}}, \code{\link{HSD.test}},
+  \code{\link{kruskal}}, \code{\link{LSD.test}}, \code{\link{Median.test}}, 
+  \code{\link{REGW.test}}, \code{\link{scheffe.test}}, \code{\link{SNK.test}},
+  \code{\link{waerden.test}}, \code{\link{waller.test}}, \code{\link{plot.group}}
+}
 \examples{
 require(agricolae)
 # alpha design 
-Genotype<-paste("geno",1:30,sep="")
+Genotype<-c(paste("gen0",1:9,sep=""),paste("gen",10:30,sep=""))
 ntr<-length(Genotype)
 r<-2
 k<-3
@@ -74,6 +80,6 @@ rm(Genotype)
 # require(nlme) # method = REML or LM in PBIB.test and require(MASS) method=VC
 model <- with(dbook,PBIB.test(block, Genotype, replication, yield, k=3, method="VC"))
 # model$ANOVA
-# bar.group(model$groups,ylim=c(0,9), density=20, las=2)
+# plot(model,las=2)
 }
 \keyword{ models }

@@ -26,8 +26,8 @@ design.strip(trt1, trt2,r, serie = 2, seed = 0, kinds = "Super-Duper",randomizat
   "default" )
 }
 \value{
-  \item{parameters }{list}
-  \item{book }{dataframe}
+  \item{parameters}{Design parameters}
+  \item{book}{Fieldbook}
 }
 \references{ Statistical Procedures for Agricultural Research. 
 Kwanchai A. Gomez, Arturo A. Gomez. John Wiley & Sons, new York, 1984 }

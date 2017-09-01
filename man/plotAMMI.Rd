@@ -33,10 +33,15 @@ icol=NULL,angle=25,lwd=1.8,length=0.1,xlab=NULL,ylab=NULL,xlim=NULL,ylim=NULL,..
 type=1 produce graphs biplot.
 type=2 produce graphs triplot, the components are normalizad in scale 0-1.
 type=3 produce graphs on a 2d point set that are all subgraphs 
-of the Delaunay triangulation. The Gabriel graph is a subgraph of the delaunay 
-triangulation and has the relative neighbor graph as a sub-graph.
+of the Delaunay triangulation with relative neighbor graph.
 
-help(graphneigh) package=spdep
+The relative neighbor graph is defined by the relation, x and y are neighbors if
+
+\deqn{d(x,y) \le min(max(d(x,z),d(y,z))| z \in S)}{d(x,y) <= min(max(d(x,z),d(y,z))| z in S)}
+
+where d() is the distance, S is the set of BIPLOT points and z is an arbitrary point in S. 
+
+help(relativeneigh) package=spdep
 }
 
 \author{ Felipe de Mendiburu }

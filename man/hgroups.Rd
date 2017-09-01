@@ -13,7 +13,7 @@ hgroups(hmerge)
   \item{hmerge}{ The object is components of the hclust}
 }
 \value{
-  \item{data }{object merge of hcluster'}
+The merge clusters is printed.
 }
 \author{ F. de Mendiburu }
 

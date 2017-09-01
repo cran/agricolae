@@ -1,6 +1,6 @@
 kruskal <-
-function (y, trt, alpha = 0.05, p.adj = c("none", "holm", "hommel", "hochberg", 
-                                            "bonferroni", "BH", "BY", "fdr"), group = TRUE, main = NULL,console=FALSE) 
+  function (y, trt, alpha = 0.05, p.adj = c("none", "holm", "hommel", "hochberg", 
+    "bonferroni", "BH", "BY", "fdr"), group = TRUE, main = NULL,console=FALSE) 
   {
     name.y <- paste(deparse(substitute(y)))
     name.t <- paste(deparse(substitute(trt)))
@@ -8,12 +8,17 @@ function (y, trt, alpha = 0.05, p.adj = c("none", "holm", "hommel", "hochberg",
     p.adj <- match.arg(p.adj)
     junto <- subset(data.frame(y, trt), is.na(y) == FALSE)
     N <- nrow(junto)
+    medians<-tapply.stat(junto[,1],junto[,2],stat="median")
+    for(i in c(1,5,2:4)) {
+      x <- tapply.stat(junto[,1],junto[,2],function(x)quantile(x)[i])
+      medians<-cbind(medians,x[,2])
+    }
+    medians<-medians[,3:7]
+    names(medians)<-c("Min","Max","Q25","Q50","Q75")
     Means <- tapply.stat(junto[,1],junto[,2],stat="mean")  #change
     sds <-   tapply.stat(junto[,1],junto[,2], stat="sd")  #change
     nn <-   tapply.stat(junto[,1],junto[,2],stat="length") #change
-    mi<-tapply.stat(junto[,1],junto[,2],stat="min") # change
-    ma<-tapply.stat(junto[,1],junto[,2],stat="max") # change
-    Means<-data.frame(Means,std=sds[,2],r=nn[,2],Min=mi[,2],Max=ma[,2])    
+    Means<-data.frame(Means,std=sds[,2],r=nn[,2],medians)    
     rownames(Means)<-Means[,1]
     Means<-Means[,-1]
     names(Means)[1]<-name.y   
@@ -48,8 +53,8 @@ function (y, trt, alpha = 0.05, p.adj = c("none", "holm", "hommel", "hochberg",
     means[, 2] <- means[, 2]/means[, 3]
     if(console){cat(paste(name.t, ",", sep = ""), " means of the ranks\n\n")
       print(data.frame(row.names = means[, 1], means[, -1]))
-       cat("\nPost Hoc Analysis\n")       
-      }
+      cat("\nPost Hoc Analysis\n")       
+    }
     if (p.adj != "none") {
       if(console)cat("\nP value adjustment method:", p.adj)
       a <- 1e-06
@@ -68,22 +73,17 @@ function (y, trt, alpha = 0.05, p.adj = c("none", "holm", "hommel", "hochberg",
       Tprob <- qt(1 - x/2, DFerror)
     }
     nr <- unique(means[, 3])
-    if (group) {
-      if (p.adj == "none")Tprob <- qt(1 - alpha/2, DFerror)
-      if(console){
+    
+    if (group & console){
       cat("\nt-Student:", Tprob)
-        cat("\nAlpha    :", alpha)}
-      if (length(nr) == 1 & (p.adj =="bonferroni" | p.adj =="none")) {
-        LSD <- Tprob * sqrt(2 * MSerror/nr)
-        if(console)cat("\nLSD      :", LSD, "\n")
-        statistics<-data.frame(Chisq=H,p.chisq=p.chisq,LSD=LSD )
-      }}
-    if (!group | length(nr) != 1) {
-    if(console)cat("\nMinimum difference changes for each comparison\n")
-      statistics<-data.frame(Chisq=H,p.chisq=p.chisq)
-    }
-    if(console){cat("\nMeans with the same letter are not significantly different\n")
-      cat("\nGroups, Treatments and mean of the ranks\n")}
+      cat("\nAlpha    :", alpha)}
+
+    if (length(nr) == 1)  LSD <- Tprob * sqrt(2 * MSerror/nr)
+    statistics<-data.frame(Chisq=H,Df=ntr-1,p.chisq=p.chisq)
+    if ( group & length(nr) == 1 & console) cat("\nMinimum Significant Difference:",LSD,"\n")
+    if ( group & length(nr) != 1 & console) cat("\nGroups according to probability of treatment differences and alpha level.\n")
+    if ( length(nr) == 1) statistics<-data.frame(statistics,t.value=Tprob,MSD=LSD)
+    
     comb <- utils::combn(ntr, 2)
     nn <- ncol(comb)
     dif <- rep(0, nn)
@@ -116,7 +116,7 @@ function (y, trt, alpha = 0.05, p.adj = c("none", "holm", "hommel", "hochberg",
     tr.j <- means[comb[2, ], 1]
     LCL <- dif - Tprob * sdtdif
     UCL <- dif + Tprob * sdtdif
-    comparison <- data.frame(Difference = dif, pvalue = pvalue, "sig."=sig, LCL, UCL)
+    comparison <- data.frame(Difference = dif, pvalue = pvalue, "Signif."=sig, LCL, UCL)
     if (p.adj !="bonferroni" & p.adj !="none"){
       comparison<-comparison[,1:3]
       statistics<-data.frame(Chisq=H,p.chisq=p.chisq)
@@ -125,7 +125,7 @@ function (y, trt, alpha = 0.05, p.adj = c("none", "holm", "hommel", "hochberg",
     if (!group) {
       groups<-NULL
       if(console){
-        cat("\nComparison between treatments mean of the ranks\n\n")
+        cat("\nComparison between treatments mean of the ranks.\n\n")
         print(comparison)
       }
     }
@@ -143,15 +143,20 @@ function (y, trt, alpha = 0.05, p.adj = c("none", "holm", "hommel", "hochberg",
         }
       }
       groups <- orderPvalue(means[, 1], means[, 2],alpha, Q, console)
-      groups<-groups[,1:3]
+      names(groups)[1]<-name.y
+      if(console) {
+      cat("\nTreatments with the same letter are not significantly different.\n\n")
+      print(groups)
+      } 
     }
     ranks=means
     Means<-data.frame(rank=ranks[,2],Means)
-    Means<-Means[,c(2,1,3:6)]
-    parameters<-data.frame(Df=ntr-1,ntr = ntr, t.value=Tprob,alpha=alpha,test="Kruskal-Wallis",name.t=name.t)
+    Means<-Means[,c(2,1,3:9)]
+    parameters<-data.frame(test="Kruskal-Wallis",p.ajusted=p.adj,name.t=name.t,ntr = ntr,alpha=alpha)
     rownames(parameters)<-" "
     rownames(statistics)<-" "
     output<-list(statistics=statistics,parameters=parameters, 
                  means=Means,comparison=comparison,groups=groups)    
+    class(output)<-"group"
     invisible(output)
   }

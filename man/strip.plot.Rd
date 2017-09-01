@@ -24,10 +24,7 @@ strip.plot(BLOCK, COL, ROW, Y)
   two factors
 }
 \value{
-  \item{BLOCK}{ vector, numeric }
-  \item{COL}{ vector, numeric }
-  \item{ROW}{ vector, numeric }
-  \item{Y}{ vector, numeric }
+Data and analysis of the variance of the strip plot design. 
 }
 \references{ Statistical procedures for agricultural research.
  Kwanchai A. Gomez, Arturo A. Gomez. Second Edition. 1984.
@@ -44,48 +41,10 @@ market <- YIELD$y1da + YIELD$y2da
 non_market <- YIELD$y3da
 yield <- market + non_market
 model<-with(YIELD,strip.plot(block, clon, trt, yield))
-comparison<-with(YIELD,LSD.test(yield,clon,model$gl.a,model$Ea))
-comparison<-with(YIELD,LSD.test(yield,trt,model$gl.b,model$Eb))
-# simple effects
-A<-model$data
-a<-nlevels(A$clon)
-b<-nlevels(A$trt)
-r<-nlevels(A$block)
-Ea<-model$Ea; Eb<-model$Ec; Ec<-model$Ec;
-gla<-model$gl.a; glb<-model$gl.b; glc<-model$gl.c;
-B <-tapply.stat(A[,4],A[,2:3],mean)
-std<-tapply.stat(A[,4],A[,2:3],function(x) sd(x)/sqrt(length(x)))
-B<-data.frame(B[,1:2],yield=B[,3],std=std[,3])
-cmab<-(b-1)*Ec + Ea
-cmba<-(a-1)*Ec + Eb
-# order.group
-# Tukey
-ta <- qtukey(0.95,a,gla)
-tb <- qtukey(0.95,b,glb)
-tc <- qtukey(0.95,a*b,glc)
-tab<- ((b-1)*Ec*tc + Ea*ta)/cmab
-tba<- ((a-1)*Ec*tc + Eb*tb)/cmba
-# Comparison of clones by treatment
-groups<-by(B,B[,2], function(x) order.group(x$clon,x$yield,N=b*r, cmab,tab, 
-        std.err=x$std,parameter=0.5,console=FALSE))
-groups
-# Comparison of treatments by clon
-groups<-by(B,B[,1], function(x) order.group(x$trt,x$yield,N=a*r,cmba,tba, 
-        std.err=x$std,parameter=0.5,console=FALSE))
-groups
-# LSD t-student
-ta <- qt(0.975,gla)
-tb <- qt(0.975,glb)
-tc <- qt(0.975,glc)
-tab<- ((b-1)*Ec*tc + Ea*ta)/cmab
-tba<- ((a-1)*Ec*tc + Eb*tb)/cmba
-# Comparison of clones by treatment
-groups<-by(B,B[,2], function(x) order.group(x$clon,x$yield,N=b*r,cmab,tab, 
-        std.err=x$std,console=FALSE))
-groups
-# Comparison of treatments by clon
-groups<-by(B,B[,1], function(x) order.group(x$trt,x$yield,N=a*r,cmba,tba, 
-        std.err=x$std,console=FALSE))
-groups
+out1<-with(YIELD,LSD.test(yield,clon,model$gl.a,model$Ea))
+par(mar=c(3,8,1,1),cex=0.8)
+plot(out1,xlim=c(0,80),horiz=TRUE,las=1)
+out2<-with(YIELD,LSD.test(yield,trt,model$gl.b,model$Eb))
+plot(out2,xlim=c(0,80),horiz=TRUE,las=1)
 }
 \keyword{ models }% at least one, from doc/KEYWORDS

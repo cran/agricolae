@@ -27,8 +27,8 @@ index.smith(data, PLOT=TRUE,...)
  and b is the Smith' index of soil heterogeneity.
 }
 \value{
-  \item{data }{Numeric}
-  ...
+  \item{model}{function pattern of uniformity}
+  \item{uniformity}{Table of the soil uniformity}
 }
 \references{ Statistical Procedures for Agriculture Research. Second Edition.
 Kwanchai A. Gomez and Arturo A. Gomez. 1976. USA

@@ -23,10 +23,10 @@ design.lattice(trt, r=3, serie = 2, seed = 0, kinds = "Super-Duper",randomizatio
   "default" )
 }
 \value{
-  \item{parameters }{list}
-  \item{statistics }{data frame}
-  \item{sketch }{list}
-  \item{book }{dataframe}
+  \item{parameters}{Design parameters}
+  \item{statistics }{Design statistics}
+  \item{sketch}{Design sketch}
+  \item{book}{Fieldbook}
 }
 \references{ FIELD PLOT TECHNIQUE. Erwin L. LeCLERG. 2nd ed., 1962, 
  Burgess Publishing Company, Minnesota }

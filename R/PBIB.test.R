@@ -1,5 +1,5 @@
 PBIB.test <-
-function (block, trt, replication, y, k, method=c("REML","ML","VC"),
+  function (block, trt, replication, y, k, method=c("REML","ML","VC"),
             test = c("lsd", "tukey"), alpha = 0.05, console=FALSE,group=TRUE)
   {
     #------------------
@@ -19,6 +19,13 @@ function (block, trt, replication, y, k, method=c("REML","ML","VC"),
     block.adj <- as.factor(block)
     trt.adj <- as.factor(trt)
     replication <- as.factor(replication)
+    medians<-tapply.stat(y,trt,stat="median")
+    for(i in c(1,5,2:4)) {
+      x <- tapply.stat(y,trt,function(x)quantile(x)[i])
+      medians<-cbind(medians,x[,2])
+    }
+    medians<-medians[,3:7]
+    names(medians)<-c("Min","Max","Q25","Q50","Q75")    
     mean.trt <- as.matrix(by(y, trt, function(x) mean(x,na.rm=TRUE)))
     mi <- as.matrix(by(y, trt, function(x) min(x,na.rm=TRUE)))
     ma <- as.matrix(by(y, trt, function(x) max(x,na.rm=TRUE)))
@@ -190,7 +197,7 @@ function (block, trt, replication, y, k, method=c("REML","ML","VC"),
       cat("\nEfficiency factor", E, "\n")
       cat("\nComparison test", test, "\n")
     }
-    parameters<-data.frame(treatments=ntr,blockSize=k,blocks=s,r=r,alpha=alpha,test=paste("PBIB",test,sep="-"),name.t=name.t)
+    parameters<-data.frame(test=paste("PBIB",test,sep="-"),name.t=name.t,treatments=ntr,blockSize=k,blocks=s,r=r,alpha=alpha)
     statistics<-data.frame(Efficiency=E,Mean=Mean,CV=CV)
     rownames(parameters)<-" "
     rownames(statistics)<-" "
@@ -202,10 +209,6 @@ function (block, trt, replication, y, k, method=c("REML","ML","VC"),
     for (k in 1:nn) {
       i <- comb[1, k]
       j <- comb[2, k]
-      #		if (tauIntra[i] < tauIntra[j]) {
-      #			comb[1, k] <- j
-      #			comb[2, k] <- i
-      #		}
       dif[k]<- tauIntra[i] - tauIntra[j]
       stdt[k] <- sqrt(vartau[i, i] + vartau[j, j]- 2 * vartau[i,j])
       tc <- abs(dif[k])/stdt[k]
@@ -217,25 +220,43 @@ function (block, trt, replication, y, k, method=c("REML","ML","VC"),
     tr.i <- comb[1, ]
     tr.j <- comb[2, ]
     groups<-NULL
-    if(group){
-      groups <- order.group(trt = 1:ntr, tauIntra, n.rep, MSerror = NULL,
-                            Tprob = NULL, std.err = dvar, parameter = 1,
-                            snk, DFerror = glerror, alpha, sdtdif = 1, vartau,console=FALSE)
-      names(groups)[2] <- "mean.adj"
-      rownames(groups)<- groups$trt
-      indices<-as.numeric(as.character(groups$trt))
-      groups$trt<-indice[indices]
-      names(groups)[1] <- name.t
-      groups<-groups[,1:3]
-    }
+    #Treatment groups with probabilities 
+    if (group) {
+      # Matriz de probabilidades para segmentar grupos
+      Q<-matrix(1,ncol=ntr,nrow=ntr)
+      p<-pvalue
+      k<-0
+      for(i in 1:(ntr-1)){
+        for(j in (i+1):ntr){
+          k<-k+1
+          Q[i,j]<-p[k]
+          Q[j,i]<-p[k]
+        }
+      }
+      medias<-as.numeric(tauIntra)
+      groups <- orderPvalue(treatment = 1:ntr, means=medias,alpha, Q,console)
+            trat<-as.character(rownames(groups))
+            trat<-as.numeric(trat)
+            rownames(groups)<-rownames(mean.trt)[trat]
+            names(groups)[1]<-paste(name.y,".adj",sep="")
+      if(console) {
+      cat("\nTreatments with the same letter are not significantly different.\n\n")
+      print(groups)
+      } 
+      comparison<-NULL
+      }
     cat("\n<<< to see the objects: means, comparison and groups. >>>\n\n")
     comparison <- data.frame(Difference = dif, stderr = stdt,
                              pvalue = pvalue)
-    means <- data.frame(means = mean.trt,trt = 1:ntr,  mean.adj = as.numeric(tauIntra),
-                        SE = dvar, r = n.rep, std,Min=mi,Max=ma)
-    names(means)[1]<-name.y
+    means <- data.frame(means = mean.trt,  mean.adj = as.numeric(tauIntra),
+                        SE = dvar, r = n.rep, std,medians)
+    names(means)[1:2]<-c(name.y,paste(name.y,".adj",sep=""))
+	itrt<-as.character(groups[,1])
+	itrt<-as.numeric(itrt)
+	nomtrt<-rownames(means)[itrt]
     rownames(comparison) <- paste(indice[tr.i], indice[tr.j], sep = " - ")
     output<-list(ANOVA=ANOVA,method=nMethod,parameters=parameters,statistics=statistics ,model=model,
                  Fstat=Fstat, comparison = comparison, means = means, groups = groups, vartau = vartau)
+    class(output)<-"group"
     invisible(output)
   }

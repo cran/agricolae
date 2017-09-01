@@ -3,8 +3,12 @@
 %- design.dau.
 \title{ Augmented block design }
 \description{
-  In these designs, some treatments (checks) are replicate r times and
-  other treatments (new) are replicated once.
+These are designs for two types of treatments: the control treatments (common) 
+and the increased treatments. The common treatments are applied in complete 
+randomized blocks, and the increased treatments, at random. Each treatment 
+should be applied in any block once only. It is understood that the common 
+treatments are of a greater interest; the standard error of the difference 
+is much smaller than when between two increased ones in different blocks. 
 }
 \usage{
 design.dau(trt1, trt2, r, serie = 2, seed = 0, kinds = "Super-Duper", name="trt"
@@ -27,8 +31,8 @@ design.dau(trt1, trt2, r, serie = 2, seed = 0, kinds = "Super-Duper", name="trt"
   "default" )
 }
 \value{
-  \item{parameters }{list}
-  \item{book }{dataframe}
+  \item{parameters}{Design parameters}
+  \item{book}{Fieldbook}
 }
 \references{
 1. Augmented (or Hoonuiaku) Design. Federer, W.T. (1956), Hawaii Plr. rec., 55: 191-208.

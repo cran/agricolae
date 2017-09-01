@@ -17,8 +17,8 @@ stability.nonpar(data, variable = NULL, ranking = FALSE, console=FALSE)
   \item{console}{logical, print output }
 }
 \value{
-  \item{ranking}{ data.frame }
-  \item{statistics}{ data.frame }
+  \item{ranking}{ data frame }
+  \item{statistics}{ Statistical analysis chi square test }
 }
 \references{
 Haynes K G, Lambert D H, Christ B J, Weingartner D P, Douches D S,

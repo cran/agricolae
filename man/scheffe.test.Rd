@@ -26,14 +26,11 @@ console=FALSE )
 It is necessary first makes a analysis of variance.
 }
 \value{
-  \item{y }{class (aov or lm) or vector numeric}
-  \item{trt }{constant (only y=model) or vector alfanumeric}
-  \item{DFerror }{Numeric}
-  \item{MSerror }{Numeric}
-  \item{Fc }{Numeric}
-  \item{alpha }{Numeric}
-  \item{group}{ Logic }  
-  \item{main }{Text}
+  \item{statistics}{Statistics of the model}
+  \item{parameters}{Design parameters}
+  \item{means}{Statistical summary of the study variable}
+  \item{comparison}{Comparison between treatments}
+  \item{groups}{Formation of treatment groups}
 }
 \references{ 
 Robert O. Kuehl. 2nd ed. Design of experiments. Duxbury, copyright 2000.
@@ -41,10 +38,13 @@ Steel, R.; Torri,J; Dickey, D.(1997) Principles and Procedures of Statistics
 A Biometrical Approach. pp189
 }
 \author{ Felipe de Mendiburu}
-
-\seealso{\code{\link{HSD.test}}, \code{\link{LSD.test}}, \code{\link{SNK.test} }, 
-\code{\link{bar.err}}, \code{\link{bar.group}},\code{\link{duncan.test} } }
-
+\seealso{
+  \code{\link{BIB.test}}, \code{\link{DAU.test}}, \code{\link{duncan.test}},
+  \code{\link{durbin.test}}, \code{\link{friedman}}, \code{\link{HSD.test}},
+  \code{\link{kruskal}}, \code{\link{LSD.test}}, \code{\link{Median.test}}, 
+  \code{\link{PBIB.test}}, \code{\link{REGW.test}}, \code{\link{SNK.test}},
+  \code{\link{waerden.test}}, \code{\link{waller.test}}, \code{\link{plot.group}}
+}
 \examples{
 library(agricolae)
 data(sweetpotato)
@@ -55,8 +55,8 @@ main="Yield of sweetpotato\nDealt with different virus")
 df<-df.residual(model)
 MSerror<-deviance(model)/df
 Fc<-anova(model)["virus",4]
-comparison <- with(sweetpotato,scheffe.test(yield, virus, df, MSerror, 
-Fc, group=TRUE,main="Yield of sweetpotato. Dealt with different virus"))
+out <- with(sweetpotato,scheffe.test(yield, virus, df, MSerror, Fc))
+print(out)
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS
 

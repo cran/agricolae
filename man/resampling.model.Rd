@@ -18,10 +18,7 @@ resampling.model(model,data,k,console=FALSE)
 }
 
 \value{
-  \item{model}{ ouput linear model, lm}
-  \item{solution}{ anova resampling }
-  \item{acum}{ cumulative frequency }
-  \item{samples}{ samples number }
+Model solution with resampling.
 }
 
 \references{

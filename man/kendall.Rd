@@ -14,8 +14,7 @@ kendall(data1, data2)
 }
 
 \value{
-  \item{data1 }{Numeric}
-  \item{data2 }{Numeric}
+The correlation of data1, data2 vector with the statistical value and its probability
 }
 \references{ Numerical Recipes in C. Second Edition. Pag 634}
 \author{ Felipe de Mendiburu }

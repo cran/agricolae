@@ -15,6 +15,7 @@ table.freq(object)
   \item{object}{ Object by function graph.freq() }
 }
 \value{
+Frequency table.\cr
   \item{Lower }{Lower limit class}
   \item{Upper }{Upper limit class}
   \item{Main }{class point}

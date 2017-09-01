@@ -23,22 +23,16 @@ LSD.test(y, trt, DFerror, MSerror, alpha = 0.05, p.adj=c("none","holm","hommel",
   \item{console}{logical, print output }
 }  
 \details{
-  For equal or different repetition.
-  p.adj = "holm", "hommel", "hochberg", "bonferroni", "BH", "BY", "fdr".
-  see p.adjust()
+  For equal or different repetition.\cr
+  For the adjustment methods, see the function p.adjusted.\cr
   p-adj ="none" is t-student.
-  p-adj ="hommel" is not applied in this test.
 }
 \value{
- 
-  \item{y }{class (aov or lm) or vector numeric}
-  \item{trt }{constant (only y=model) or vector alfanumeric}
-  \item{DFerror }{Numeric}
-  \item{MSerror }{Numeric}
-  \item{alpha }{Numeric}
-  \item{p.adj}{ text, see p.adjust  }  
-  \item{group}{ Logic }
-  \item{main }{Numeric}
+  \item{statistics}{Statistics of the model}
+  \item{parameters}{Design parameters}
+  \item{means}{Statistical summary of the study variable}
+  \item{comparison}{Comparison between treatments}
+  \item{groups}{Formation of treatment groups}
 }
 \references{
      Steel, R.; Torri,J; Dickey, D.(1997)
@@ -46,28 +40,32 @@ LSD.test(y, trt, DFerror, MSerror, alpha = 0.05, p.adj=c("none","holm","hommel",
      A Biometrical Approach. pp178.
      }
 \author{ Felipe de Mendiburu }
-
-\seealso{\code{\link{HSD.test}}, \code{\link{waller.test}}, \code{\link{SNK.test} }, 
-\code{\link{bar.err}}, \code{\link{bar.group}},\code{\link{duncan.test} } }
-
+\seealso{
+  \code{\link{BIB.test}}, \code{\link{DAU.test}}, \code{\link{duncan.test}},
+  \code{\link{durbin.test}}, \code{\link{friedman}}, \code{\link{HSD.test}},
+  \code{\link{kruskal}}, \code{\link{Median.test}}, \code{\link{PBIB.test}}, 
+  \code{\link{REGW.test}}, \code{\link{scheffe.test}}, \code{\link{SNK.test}},
+  \code{\link{waerden.test}}, \code{\link{waller.test}}, \code{\link{plot.group}}
+}
 \examples{
 library(agricolae)
 data(sweetpotato)
 model<-aov(yield~virus, data=sweetpotato)
 out <- LSD.test(model,"virus", p.adj="bonferroni")
 #stargraph
-bar.group(out$groups,ylim=c(0,45),density=4,border="blue")
+# Variation range: max and min
+plot(out)
 #endgraph
 # Old version LSD.test()
 df<-df.residual(model)
 MSerror<-deviance(model)/df
-out <- with(sweetpotato,LSD.test(yield,virus,df,MSerror, p.adj="bonferroni", 
-group=FALSE))
+out <- with(sweetpotato,LSD.test(yield,virus,df,MSerror))
 #stargraph
-# Variation range: Max - Min
-bar.err(out$means,variation="range",ylim=c(0,44),bar=FALSE,col=0)
+# Variation interquartil range: Q75 and Q25
+plot(out,variation="IQR")
 #endgraph
-LSD.test(model,"virus",p.adj="bon",console=TRUE)
+out<-LSD.test(model,"virus",p.adj="hommel",console=TRUE)
+plot(out,variation="SD") # variation standard deviation
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS
 

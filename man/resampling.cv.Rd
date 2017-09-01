@@ -18,9 +18,8 @@ resampling.cv(A, size, npoints)
   \item{npoints}{ Number of points to consider the model }
 }
 \value{
-  \item{A }{Matrix of numerical values of (1,0) }
-  \item{size}{ constant numeric }
-  \item{npoints}{ numeric }
+lm(formula = CV ~ I(1/marker))\cr
+Table with variation coefficient by number of markers
 }
 
 \references{Efron, B., Tibshirani, R. (1993) An Introduction to the Boostrap. Chapman and Hall/CRC }

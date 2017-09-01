@@ -22,11 +22,7 @@ which roughly correspond for the two-level case to ALPHA levels of 0.1, 0.05,
 and 0.01. By default, the procedure uses the default value of 100. 
 }
 \value{
-  \item{K }{Numeric integer > 1, examples 50, 100, 500}
-  \item{q }{Numeric}
-  \item{f }{Numeric}
-  \item{Fc}{Numeric}
-  ...
+Waller value for the Waller and Duncan test.
 }
 \references{ 
 Waller, R. A. and Duncan, D. B. (1969).

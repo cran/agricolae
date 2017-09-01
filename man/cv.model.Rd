@@ -18,9 +18,8 @@ cv.model(x)
 sqrt(MSerror)*100/mean(x)
 }
 \value{
-
-  \item{x }{object }
-
+Returns the coefficient of variation of the experiment according 
+to the applied statistical model
 }
 \author{ Felipe de Mendiburu }
 

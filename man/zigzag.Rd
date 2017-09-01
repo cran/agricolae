@@ -14,7 +14,7 @@ zigzag(outdesign)
   \item{outdesign}{ output design}
 }
 \value{
-  \item{fieldbook}{restore field book}
+  \item{fieldbook}{Remuneration of serpentine plots.}
 }
 \author{ Felipe de Mendiburu }
 \seealso{\code{\link{design.ab}}, \code{\link{design.alpha}},\code{\link{design.bib}}, 

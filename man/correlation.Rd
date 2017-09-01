@@ -23,7 +23,7 @@ correlation(x,y=NULL, method = c("pearson", "kendall", "spearman", "lin")
   Parameters equal to function cor()
 }
 \value{
-  \item{table }{Numeric}
+The correlation matrix with its probability
 }
 \references{Lin LI. A concordance correlation coefficient to evaluate reproducibility. 
 Biometrics. 1989; 45, 255-268.}

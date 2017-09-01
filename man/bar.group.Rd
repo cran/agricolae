@@ -20,10 +20,9 @@ bar.group(x, horiz = FALSE, ...)
 x: data frame formed by 5 columns: name of the bars, height and level of the bar.
 }
 \value{
-
-  \item{x }{Data frame}
-  \item{horiz }{Logical TRUE or FALSE}
-  ...
+A list with numeric vectors giving the coordinates of all the bar midpoints drawn.
+\item{x}{ eje-1 coordinate }
+\item{height}{ eje-2 coordinate by group}
 }
 
 \author{ Felipe de Meniburu }
@@ -31,6 +30,7 @@ x: data frame formed by 5 columns: name of the bars, height and level of the bar
 \seealso{
 \code{\link{LSD.test}}, \code{\link{HSD.test}}, \code{\link{kruskal}}
 , \code{\link{friedman}}, \code{\link{durbin.test}}, \code{\link{waller.test}} 
+, \code{\link{plot.group}}
 }
 
 \examples{

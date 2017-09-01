@@ -32,15 +32,11 @@ which roughly correspond for the two-level case to ALPHA levels of 0.1, 0.05,
 and 0.01. By default, the procedure uses the default value of 100. 
 }
 \value{
-
-  \item{y }{class (aov or lm) or vector numeric}
-  \item{trt }{constant (only y=model) or vector alfanumeric}
-  \item{DFerror }{Numeric}
-  \item{MSerror }{Numeric}
-  \item{Fc }{Numeric}
-  \item{K }{Numeric}
-  \item{group}{ Logic }  
-  \item{main }{Text}
+  \item{statistics}{Statistics of the model}
+  \item{parameters}{Design parameters}
+  \item{means}{Statistical summary of the study variable}
+  \item{comparison}{Comparison between treatments}
+  \item{groups}{Formation of treatment groups}
 }
 \references{ 
 Waller, R. A. and Duncan, D. B. (1969).
@@ -55,10 +51,13 @@ Steel & Torry & Dickey. Third Edition 1997
 Principles and procedures of statistics a biometrical approach
 }
 \author{ Felipe de Mendiburu}
-
-\seealso{\code{\link{HSD.test}}, \code{\link{LSD.test}},\code{\link{SNK.test} }, 
-\code{\link{bar.err}}, \code{\link{bar.group}},\code{\link{duncan.test} } }
-
+\seealso{
+  \code{\link{BIB.test}}, \code{\link{DAU.test}}, \code{\link{duncan.test}},
+  \code{\link{durbin.test}}, \code{\link{friedman}}, \code{\link{HSD.test}},
+  \code{\link{kruskal}}, \code{\link{LSD.test}}, \code{\link{Median.test}}, 
+  \code{\link{PBIB.test}}, \code{\link{REGW.test}}, \code{\link{scheffe.test}}, 
+  \code{\link{SNK.test}}, \code{\link{waerden.test}}, \code{\link{plot.group}}
+}
 \examples{
 library(agricolae)
 data(sweetpotato)
@@ -82,7 +81,7 @@ df<-df.residual(model)
 MSerror<-deviance(model)/df
 Fc<-anova(model)["virus",4]
 out <- with(sweetpotato,waller.test(yield, virus, df, MSerror, Fc, group=TRUE))
-print(out$mean)
+print(out)
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS
 

@@ -18,9 +18,7 @@ tapply.stat(y, x, stat = "mean")
 }
 
 \value{
-  \item{y}{ Numeric  }
-  \item{x}{ Numeric }
-  \item{stat}{method = "mean", ...  }
+Statistics of quantitative variables by categorical variables.
 }
 \author{ Felipe de Mendiburu }
 

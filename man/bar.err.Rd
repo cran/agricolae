@@ -9,11 +9,11 @@ comparison of means}
  HSD, Kruskal and Waller-Duncan. 
  }
 \usage{
-bar.err(x,variation=c("SE","SD","range"),horiz=FALSE, bar=TRUE,...)
+bar.err(x,variation=c("SE","SD","range","IQR"),horiz=FALSE, bar=TRUE,...)
 }
 \arguments{
   \item{x}{ object means of the comparisons the LSD.test, HSD.test,...,etc }
-  \item{variation}{ SE=standard error or range=Max-Min}
+  \item{variation}{ SE=standard error, range=Max-Min or IQR=interquartil range}
   \item{horiz}{ Horizontal or vertical bars }
   \item{bar}{paint bar}
   \item{\dots}{ Parameters of the function barplot()}
@@ -21,22 +21,16 @@ bar.err(x,variation=c("SE","SD","range"),horiz=FALSE, bar=TRUE,...)
 \details{
   x: data frame formed by 5 columns: name of the bars, height, level
   out: LSD.test, HSD, waller.test, scheffe.test, duncan.test, SNK.test, 
-  friedman, kruskal, waerden.test. 
-  x: out$means
+  friedman, kruskal, waerden.test and Median.test. 
 }
 \value{
-  \item{x}{ object  }
-  \item{variation}{ character std, SE or range }
-  \item{horiz}{ TRUE or FALSE }
-  \item{bar}{ TRUE or FALSE }
-  \item{\dots}{ Parameters of the function barplot()}
+A list with numeric vectors giving the coordinates of all the bar midpoints drawn.
+\item{x}{ eje-1 coordinate }
+\item{height}{ eje-2 coordinate by group}
 }
-
 \author{ Felipe de Mendiburu }
-
 \seealso{\code{\link{LSD.test}}, \code{\link{HSD.test}}, 
 \code{\link{waller.test}}, \code{\link{kruskal}}, \code{\link{bar.group}} }
-
 \examples{
 library(agricolae)
 data(sweetpotato)

@@ -16,6 +16,7 @@
   \item{\dots}{ other parameters of graphic}
 }
 \value{
+Frequency table.\cr
   \item{Lower }{Lower limit class}
   \item{Upper }{Upper limit class}
   \item{Main }{class point}

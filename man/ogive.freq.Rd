@@ -19,7 +19,7 @@ ogive.freq(histogram,type="",xlab="",ylab="",axes="",las=1,...)
   \item{\dots}{ Parameters of the plot() }
 }
 \value{
-  \item{table}{data.frame}
+  Ogive points.
 }
 
 \author{ Felipe de Mendiburu }
@@ -34,7 +34,7 @@ data(growth)
 h<-graph.freq(growth$height,plot=FALSE)
 points<-ogive.freq(h,col="red",frame=FALSE,
 xlab="Height", ylab="Accumulated relative frequency", main="ogive")
-print(points)
+plot(points,type="b",pch=16,las=1,bty="l")
 }
 \keyword{ aplot }% at least one, from doc/KEYWORDS
 
