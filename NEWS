@@ -1,5 +1,11 @@
 Changes in new version
 
+Version agricolae 1-2.8 (September 12, 2017)
+-------------------------------------------
+
+The order.group function  is again in agricolae. 
+It is equivalent to the orderPvalue function in functional terms.
+
 Version agricolae 1-2.7 (August 30, 2017)
 -------------------------------------------
 In the post.hoc tests, the grouping of treatments are formed according to 

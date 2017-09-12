@@ -1,6 +1,6 @@
-f9549ec38074f671b56e761c6ff414ef *DESCRIPTION
+4b22b54c6cbaf81efa1c49bd7bef129f *DESCRIPTION
 825c53770c16d25b1448c1c14fcb9e5b *NAMESPACE
-8ec0f09915835dc563350ca7344369ad *NEWS
+143146d2168f422b4ac64aa728eb616f *NEWS
 b58239bb9739e2cae28e6a301d7937a0 *R/AMMI.R
 fe71d1684201830f5b160901d583090c *R/AMMI.contour.R
 a890b0068791d00c176c34c0b5e7bf30 *R/BIB.test.R
@@ -58,6 +58,7 @@ e8b17602bfac3cc12c41d92be1bc94ce *R/lineXtester.R
 eb8375336afed2e574fa97c72296d5aa *R/nonadditivity.R
 336353d3bb734f0c9f86a3b6ab27a849 *R/normal.freq.R
 f8f4708ede58d5f95f8371fefd060dab *R/ogive.freq.R
+5a136dc62cf7d0e4d8c4f29672097162 *R/order.group.R
 8b77639bdcc56f52d7f4cdd4bdfc8eeb *R/orderPvalue.R
 13e5f65a8ddd684d715e70f5384fbc69 *R/path.analysis.R
 35521289c14b8ef430bc981b4c2af794 *R/plot.AMMI.R
@@ -124,7 +125,7 @@ a102c656619de7908dcc5201257fe505 *data/rice.rda
 48e66c5b173cb1d6cd758ae54079c46d *data/yacon.rda
 74570459618ba2b3567b09224899b82e *inst/doc/tutorial.R
 1eea9cb0932bd062764a1bf615b8327a *inst/doc/tutorial.Rnw
-b397c2bd5e7435bdc4bf8a9229840c75 *inst/doc/tutorial.pdf
+eeb25b32c23dcbf08aa40355fd81b1c7 *inst/doc/tutorial.pdf
 713de6ef7f46097878070bb67fa28ecb *inst/external/dataStb.csv
 8860533aaab5520cf3529100f55f6187 *inst/external/severity.csv
 1078c5cdf3613903381be9725f58fa43 *inst/external/ssp.csv
@@ -147,7 +148,7 @@ e09abb490eb8e60ce05f99657941bb22 *man/ComasOxapampa.Rd
 a68a55c00d3f4370868ff11827f9f451 *man/RioChillon.Rd
 c52a1bb38d74ea864730817e5db05d1d *man/SNK.test.Rd
 bf444a3f9d578670cac9dc2f6b261153 *man/VanderWarden.Rd
-37b70c3d9985652d94fa3cbfd85c33ca *man/agricolae-package.Rd
+ead63419ea8fb1ede0bc2c95b0404c6c *man/agricolae-package.Rd
 ab32db5615773f18ddb6d9ac3ec34d43 *man/audpc.Rd
 4b92df884d5a9b3c3f51ba6a5ae403c4 *man/audps.Rd
 a5b0e5eab24d2e84c89dfdceddcffb99 *man/bar.err.Rd
@@ -210,6 +211,7 @@ c9e24bc8c39bc7b9ddfc0300ad11f9db *man/natives.Rd
 313f7600ccba3950102bc866d3e90f47 *man/nonadditivity.Rd
 540ef8a64eaa426363b7fbed7810e636 *man/normal.freq.Rd
 91eb4cc2b68afa4b7c6ff02480710f3b *man/ogive.freq.Rd
+5fcf0c384205f1d90e383501d99ccbbf *man/order.group.Rd
 47e99314260098f0d039e861215caa63 *man/orderPvalue.Rd
 a20cc2ee6a10d07a551160e500e60163 *man/pamCIP.Rd
 2fa51c63ea06feb12882badb0ae7cf70 *man/paracsho.Rd
