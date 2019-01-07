@@ -1,5 +1,5 @@
 plot.group<-function(x,variation=c("range","IQR","SE","SD"), horiz=FALSE,
-                     col=NULL,xlim=NULL,ylim=NULL,main=NULL,...){
+                     col=NULL,xlim=NULL,ylim=NULL,main=NULL,cex=NULL,hy=0,...){
   
   if(class(x) != "group"){
     stop("'x' must be of class 'group'.")
@@ -66,15 +66,15 @@ plot.group<-function(x,variation=c("range","IQR","SE","SD"), horiz=FALSE,
     
   indice<-barplot(y,horiz=horiz,border=0,col=0,,main=main,xlim=xlim,ylim=ylim,...)
   
-  mas<-0.05*max(nivel1)
+  mas<-0.05*max(nivel1)+hy
   if (!horiz)  {
     points(indice,y,pch=19,cex=0.7,col=col)
-    text(indice,nivel1+mas,groups,col=col)
+    text(indice,nivel1+mas,groups,col=col,cex=cex)
     axis(1,as.numeric(indice),labels = FALSE)
   }
   else {
     points(y,indice,pch=19,cex=0.7,col=col)
-    text(nivel1+mas,indice,groups,col=col)
+    text(nivel1+mas,indice,groups,col=col,cex=cex)
     axis(2,as.numeric(indice),labels = FALSE)
   }
   for ( i in 1:n) {

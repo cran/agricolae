@@ -40,7 +40,7 @@ The following document was developed to facilitate the use of agricolae package 
 The package {\bf agricolae} \rm offers a broad functionality in the design of experiments, especially for experiments in agriculture and improvements of plants, which can also be used for other purposes. It contains the following designs: lattice, alpha, cyclic, balanced incomplete block designs, complete randomized blocks, Latin, Graeco-Latin, augmented block designs, split plot and strip plot. It also has several procedures of experimental data analysis, such as the comparisons of treatments of Waller-Duncan, Bonferroni, Duncan, Student-Newman-Keuls, Scheffe, Ryan, Einot and Gabriel and Welsch multiple range test or the classic LSD and Tukey; and non-parametric comparisons, such as Kruskal-Wallis, Friedman, Durbin, Median and Waerden, stability analysis, and other procedures applied in genetics, as well as procedures in biodiversity and descriptive statistics, \citet{Mend:2009}
 
 \subsection{Installation}
-The main program of \bf {R} \rm should be already installed in the platform of your computer \emph{(Windows, Linux or MAC)}. If it is not installed yet, you can download it from the R project \emph{(www.r-project.org)} of a repository CRAN, \citet{Rcore:2017}.
+The main program of \bf {R} \rm should be already installed in the platform of your computer \emph{(Windows, Linux or MAC)}. If it is not installed yet, you can download it from the R project \emph{(www.r-project.org)} of a repository CRAN, \citet{Rcore:2018}.
 
 \vspace{2mm}
 \texttt{> install.packages("agricolae")}
@@ -593,7 +593,7 @@ print(outLSD)
 @
 
 \subsection{holm, hommel, hochberg, bonferroni, BH, BY, fdr}
-With the function \emph{LSD.test} we can make adjustments to the probabilities found, as for example the adjustment by Bonferroni, holm and other options see Adjust P-values for Multiple Comparisons, function p.adjust(stats), \citet{Rcore:2017}.
+With the function \emph{LSD.test} we can make adjustments to the probabilities found, as for example the adjustment by Bonferroni, holm and other options see Adjust P-values for Multiple Comparisons, function p.adjust(stats), \citet{Rcore:2018}.
 
 <<>>=
 LSD.test(model, "virus", group=FALSE, p.adj= "bon",console=TRUE)
@@ -638,6 +638,30 @@ This studentized range test, created by Tukey in 1953, is known as the Tukey's H
 <<>>=
 outHSD<- HSD.test(model, "virus",console=TRUE)
 outHSD
+@
+
+\subsection{Tukey (HSD) for different repetition}
+
+Include the argument \bf{unbalanced = TRUE} \rm in the function. Valid for group = TRUE/FALSE
+
+<<>>=
+A<-sweetpotato[-c(4,5,7),]
+modelUnbalanced <- aov(yield ~ virus, data=A)
+outUn <-HSD.test(modelUnbalanced, "virus",group=FALSE, unbalanced = TRUE)
+print(outUn$comparison)
+outUn <-HSD.test(modelUnbalanced, "virus",group=TRUE, unbalanced = TRUE)
+print(outUn$groups)
+@
+
+If this argument is not included, the probabilities of significance will not be consistent with the choice of groups.
+
+Illustrative example of this inconsistency:
+
+<<>>=
+outUn <-HSD.test(modelUnbalanced, "virus",group=FALSE)
+print(outUn$comparison[,1:2])
+outUn <-HSD.test(modelUnbalanced, "virus",group=TRUE)
+print(outUn$groups)
 @
 
 \subsection{Waller-Duncan's Bayesian K-Ratio T-Test}
@@ -1731,7 +1755,7 @@ Purchase, J. L. (1997).
 \newblock Department of Agronomy, Faculty of Agriculture of the University of the Free State
 \newblock Bloemfontein, South Africa.
 
-\bibitem[\protect\citeauthoryear{R Core Team}{R Core Team}{2017}]{Rcore:2017} 
+\bibitem[\protect\citeauthoryear{R Core Team}{R Core Team}{2018}]{Rcore:2018} 
 R Core Team (2017).
 \newblock \emph {A language and environment for statistical computing}
 \newblock \emph {R Foundation for Statistical Computing}

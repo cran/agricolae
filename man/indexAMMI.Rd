@@ -16,7 +16,7 @@ index.AMMI(model)
 AMMI stability value (ASV) was calculated using the following formula,
 as suggested by Purchase (1997)
 
- ASV = sqrt(SSpc1/SSpc2 *(PC1i)^2+(PC2i)^2)
+ ASV = sqrt((SSpc1/SSpc2 * PC1i)^2+(PC2i)^2)
 
  YSI = RASV + RY
  
@@ -36,7 +36,7 @@ AND H. DEHGHANI. Journal of Agricultural Science (2008), 146, 571-581.
 f 2008 Cambridge University Press 571 doi:10.1017/S0021859608007831
 Printed in the United Kingdom
 
-Parametric analysis to describe genotyperenvironment interaction and yield
+Parametric analysis to describe genotype  x environment interaction and yield
 stability in winter wheat. PURCHASE, J. L. (1997).
 Ph.D. Thesis, Department of Agronomy, Faculty of Agriculture of the
 University of the Free State, Bloemfontein, South Africa.

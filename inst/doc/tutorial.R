@@ -506,7 +506,27 @@ outHSD
 
 
 ###################################################
-### code chunk number 59: tutorial.Rnw:647-650
+### code chunk number 59: tutorial.Rnw:647-653
+###################################################
+A<-sweetpotato[-c(4,5,7),]
+modelUnbalanced <- aov(yield ~ virus, data=A)
+outUn <-HSD.test(modelUnbalanced, "virus",group=FALSE, unbalanced = TRUE)
+print(outUn$comparison)
+outUn <-HSD.test(modelUnbalanced, "virus",group=TRUE, unbalanced = TRUE)
+print(outUn$groups)
+
+
+###################################################
+### code chunk number 60: tutorial.Rnw:660-664
+###################################################
+outUn <-HSD.test(modelUnbalanced, "virus",group=FALSE)
+print(outUn$comparison[,1:2])
+outUn <-HSD.test(modelUnbalanced, "virus",group=TRUE)
+print(outUn$groups)
+
+
+###################################################
+### code chunk number 61: tutorial.Rnw:671-674
 ###################################################
 # variance analysis:
 anova(model)
@@ -514,26 +534,26 @@ with(sweetpotato,waller.test(yield,virus,df,MSerror,Fc= 17.345, group=FALSE,cons
 
 
 ###################################################
-### code chunk number 60: tutorial.Rnw:654-655
+### code chunk number 62: tutorial.Rnw:678-679
 ###################################################
 outWaller <- waller.test(model, "virus", group=FALSE,console=FALSE)
 
 
 ###################################################
-### code chunk number 61: tutorial.Rnw:659-661
+### code chunk number 63: tutorial.Rnw:683-685
 ###################################################
 names(outWaller)
 print(outWaller$comparison)
 
 
 ###################################################
-### code chunk number 62: tutorial.Rnw:664-665
+### code chunk number 64: tutorial.Rnw:688-689
 ###################################################
 outWaller$statistics
 
 
 ###################################################
-### code chunk number 63: tutorial.Rnw:671-674
+### code chunk number 65: tutorial.Rnw:695-698
 ###################################################
 # analysis of variance: 
 scheffe.test(model,"virus", group=TRUE,console=TRUE,
@@ -541,20 +561,20 @@ main="Yield of sweetpotato\nDealt with different virus")
 
 
 ###################################################
-### code chunk number 64: tutorial.Rnw:678-679
+### code chunk number 66: tutorial.Rnw:702-703
 ###################################################
 outScheffe <- scheffe.test(model,"virus", group=FALSE, console=TRUE)
 
 
 ###################################################
-### code chunk number 65: tutorial.Rnw:685-687
+### code chunk number 67: tutorial.Rnw:709-711
 ###################################################
 # modelABC <-aov (y ~ A * B * C, data)
 # compare <-LSD.test (modelABC, c ("A", "B", "C"),console=TRUE)
 
 
 ###################################################
-### code chunk number 66: tutorial.Rnw:693-705
+### code chunk number 68: tutorial.Rnw:717-729
 ###################################################
 yield <-scan (text =
  "6 7 9 13 16 20 8 8 9
@@ -571,7 +591,7 @@ outAOV <-aov (yield ~ block + clone * nitrogen, data = A)
 
 
 ###################################################
-### code chunk number 67: tutorial.Rnw:708-711
+### code chunk number 69: tutorial.Rnw:732-735
 ###################################################
 anova (outAOV)
 outFactorial <-LSD.test (outAOV, c("clone", "nitrogen"), 
@@ -579,7 +599,7 @@ main = "Yield ~ block + nitrogen + clone + clone:nitrogen",console=TRUE)
 
 
 ###################################################
-### code chunk number 68: tutorial.Rnw:714-719 (eval = FALSE)
+### code chunk number 70: tutorial.Rnw:738-743 (eval = FALSE)
 ###################################################
 ## par(mar=c(3,3,2,0))
 ## pic1<-bar.err(outFactorial$means,variation="range",ylim=c(5,25), bar=FALSE,col=0,las=1)
@@ -589,7 +609,7 @@ main = "Yield ~ block + nitrogen + clone + clone:nitrogen",console=TRUE)
 
 
 ###################################################
-### code chunk number 69: tutorial.Rnw:726-735
+### code chunk number 71: tutorial.Rnw:750-759
 ###################################################
 # Example linear estimation and design of experiments. (Joshi)
 # Institute of Social Sciences Agra, India
@@ -603,7 +623,7 @@ BIB.test(block, variety, Y,console=TRUE)
 
 
 ###################################################
-### code chunk number 70: tutorial.Rnw:738-741
+### code chunk number 72: tutorial.Rnw:762-765
 ###################################################
 out <-BIB.test(block, trt=variety, Y, test="tukey", group=FALSE, console=TRUE)
 names(out)
@@ -611,7 +631,7 @@ rm(block,variety)
 
 
 ###################################################
-### code chunk number 71: tutorial.Rnw:754-759
+### code chunk number 73: tutorial.Rnw:778-783
 ###################################################
 # alpha design 
 Genotype<-paste("geno",1:30,sep="")
@@ -621,14 +641,14 @@ plan<-design.alpha(Genotype,k,r,seed=5)
 
 
 ###################################################
-### code chunk number 72: tutorial.Rnw:765-767
+### code chunk number 74: tutorial.Rnw:789-791
 ###################################################
 yield <-c(5,2,7,6,4,9,7,6,7,9,6,2,1,1,3,2,4,6,7,9,8,7,6,4,3,2,2,1,1, 
           2,1,1,2,4,5,6,7,8,6,5,4,3,1,1,2,5,4,2,7,6,6,5,6,4,5,7,6,5,5,4)
 
 
 ###################################################
-### code chunk number 73: tutorial.Rnw:770-773
+### code chunk number 75: tutorial.Rnw:794-797
 ###################################################
 data<-data.frame(plan$book,yield)
 # The analysis: 
@@ -636,7 +656,7 @@ modelPBIB <- with(data,PBIB.test(block, Genotype, replication, yield, k=3, group
 
 
 ###################################################
-### code chunk number 74: tutorial.Rnw:808-814
+### code chunk number 76: tutorial.Rnw:832-838
 ###################################################
 trt<-c(1,8,5,5,2,9,2,7,3,6,4,9,4,6,9,8,7,6,1,5,8,3,2,7,3,7,2,1,3,4,6,4,9,5,8,1)
 yield<-c(48.76,10.83,12.54,11.07,22,47.43,27.67,30,13.78,37,42.37,39,14.46,30.69,42.01,
@@ -647,7 +667,7 @@ modelLattice<-PBIB.test(block,trt,sqr,yield,k=3,console=TRUE, method="VC")
 
 
 ###################################################
-### code chunk number 75: tutorial.Rnw:829-834
+### code chunk number 77: tutorial.Rnw:853-858
 ###################################################
 block<-c(rep("I",7),rep("II",6),rep("III",7))
 trt<-c("A","B","C","D","g","k","l","A","B","C","D","e","i","A","B", "C",
@@ -657,19 +677,19 @@ head(data.frame(block, trt, yield))
 
 
 ###################################################
-### code chunk number 76: tutorial.Rnw:837-838
+### code chunk number 78: tutorial.Rnw:861-862
 ###################################################
 by(trt,block,as.character)
 
 
 ###################################################
-### code chunk number 77: tutorial.Rnw:841-842
+### code chunk number 79: tutorial.Rnw:865-866
 ###################################################
 by(yield,block,as.character)
 
 
 ###################################################
-### code chunk number 78: tutorial.Rnw:845-848
+### code chunk number 80: tutorial.Rnw:869-872
 ###################################################
 modelDAU<- DAU.test(block,trt,yield,method="lsd",console=TRUE)
 options(digits = 2)
@@ -677,33 +697,33 @@ modelDAU$means
 
 
 ###################################################
-### code chunk number 79: tutorial.Rnw:850-852
+### code chunk number 81: tutorial.Rnw:874-876
 ###################################################
 modelDAU<- DAU.test(block,trt,yield,method="lsd",group=FALSE,console=FALSE)
 head(modelDAU$comparison,8)
 
 
 ###################################################
-### code chunk number 80: tutorial.Rnw:874-876
+### code chunk number 82: tutorial.Rnw:898-900
 ###################################################
 data(corn)
 str(corn)
 
 
 ###################################################
-### code chunk number 81: tutorial.Rnw:881-882
+### code chunk number 83: tutorial.Rnw:905-906
 ###################################################
 str(kruskal)
 
 
 ###################################################
-### code chunk number 82: tutorial.Rnw:885-886
+### code chunk number 84: tutorial.Rnw:909-910
 ###################################################
 outKruskal<-with(corn,kruskal(observation,method,group=TRUE, main="corn", console=TRUE))
 
 
 ###################################################
-### code chunk number 83: tutorial.Rnw:893-897
+### code chunk number 85: tutorial.Rnw:917-921
 ###################################################
 out<-with(corn,kruskal(observation,method,group=TRUE, main="corn", p.adj="holm"))
 print(out$group)
@@ -712,13 +732,13 @@ print(out$comparison)
 
 
 ###################################################
-### code chunk number 84: tutorial.Rnw:902-903
+### code chunk number 86: tutorial.Rnw:926-927
 ###################################################
 str(friedman)
 
 
 ###################################################
-### code chunk number 85: tutorial.Rnw:906-909
+### code chunk number 87: tutorial.Rnw:930-933
 ###################################################
 data(grass)
 out<-with(grass,friedman(judge,trt, evaluation,alpha=0.05, group=FALSE,
@@ -726,44 +746,44 @@ main="Data of the book of Conover",console=TRUE))
 
 
 ###################################################
-### code chunk number 86: tutorial.Rnw:913-914
+### code chunk number 88: tutorial.Rnw:937-938
 ###################################################
 str(waerden.test)
 
 
 ###################################################
-### code chunk number 87: tutorial.Rnw:918-920
+### code chunk number 89: tutorial.Rnw:942-944
 ###################################################
 data(sweetpotato)
 outWaerden<-with(sweetpotato,waerden.test(yield,virus,alpha=0.01,group=TRUE,console=TRUE))
 
 
 ###################################################
-### code chunk number 88: tutorial.Rnw:923-924
+### code chunk number 90: tutorial.Rnw:947-948
 ###################################################
 names(outWaerden)
 
 
 ###################################################
-### code chunk number 89: tutorial.Rnw:927-928
+### code chunk number 91: tutorial.Rnw:951-952
 ###################################################
 out<-with(sweetpotato,waerden.test(yield,virus,group=FALSE,console=TRUE))
 
 
 ###################################################
-### code chunk number 90: tutorial.Rnw:936-937
+### code chunk number 92: tutorial.Rnw:960-961
 ###################################################
 str(Median.test)
 
 
 ###################################################
-### code chunk number 91: tutorial.Rnw:940-941
+### code chunk number 93: tutorial.Rnw:964-965
 ###################################################
 str(Median.test)
 
 
 ###################################################
-### code chunk number 92: tutorial.Rnw:946-951
+### code chunk number 94: tutorial.Rnw:970-975
 ###################################################
 data(sweetpotato)
 outMedian<-with(sweetpotato,Median.test(yield,virus,console=TRUE))
@@ -773,7 +793,7 @@ outMedian$medians
 
 
 ###################################################
-### code chunk number 93: f14
+### code chunk number 95: f14
 ###################################################
 par(mfrow=c(2,2),mar=c(3,3,1,1),cex=0.8)
 # Graphics
@@ -784,13 +804,13 @@ plot(outMedian,variation="IQR",horiz = TRUE)
 
 
 ###################################################
-### code chunk number 94: tutorial.Rnw:972-973
+### code chunk number 96: tutorial.Rnw:996-997
 ###################################################
 str(durbin.test)
 
 
 ###################################################
-### code chunk number 95: tutorial.Rnw:976-986
+### code chunk number 97: tutorial.Rnw:1000-1010
 ###################################################
 days <-gl(7,3)
 chemical<-c("A","B","D","A","C","E","C","D","G","A","F","G", "B","C","F", 
@@ -805,7 +825,7 @@ out$statistics
 
 
 ###################################################
-### code chunk number 96: tutorial.Rnw:998-1002
+### code chunk number 98: tutorial.Rnw:1022-1026
 ###################################################
 # model <-aov (yield ~ fertilizer, data = field) 
 # out <-LSD.test (model, "fertilizer", group = TRUE) 
@@ -814,7 +834,7 @@ str(bar.group)
 
 
 ###################################################
-### code chunk number 97: tutorial.Rnw:1009-1013
+### code chunk number 99: tutorial.Rnw:1033-1037
 ###################################################
 # model <-aov (yield ~ fertilizer, data = field) 
 # out <-LSD.test (model, "fertilizer", group = TRUE) 
@@ -823,7 +843,7 @@ str(bar.err)
 
 
 ###################################################
-### code chunk number 98: f4
+### code chunk number 100: f4
 ###################################################
 par(mfrow=c(2,2),mar=c(3,3,2,1),cex=0.7)
 c1<-colors()[480]; c2=colors()[65] 
@@ -834,7 +854,7 @@ plot(outHSD, horiz=TRUE, variation="SD",las=1)
 
 
 ###################################################
-### code chunk number 99: tutorial.Rnw:1037-1050 (eval = FALSE)
+### code chunk number 101: tutorial.Rnw:1061-1074 (eval = FALSE)
 ###################################################
 ## par(mfrow=c(2,2),cex=0.7,mar=c(3.5,1.5,3,1))
 ## C1<-bar.err(modelPBIB$means[1:7, ], ylim=c(0,9), col=0, main="C1", 
@@ -852,7 +872,7 @@ plot(outHSD, horiz=TRUE, variation="SD",las=1)
 
 
 ###################################################
-### code chunk number 100: f13
+### code chunk number 102: f13
 ###################################################
 # model : yield ~ virus
 # Important group=TRUE
@@ -863,7 +883,7 @@ plot(x,variation="IQR",horiz=TRUE,las=1)
 
 
 ###################################################
-### code chunk number 101: f5
+### code chunk number 103: f5
 ###################################################
 # function (x, main = NULL, color1 = "red", color2 = "blue", 
 #    color3 = "black", cex.axis = 0.8, las = 1, pch = 20, 
@@ -876,7 +896,7 @@ diffograph(x,cex.axis=0.9,xlab="Yield",ylab="Yield",cex=0.9)
 
 
 ###################################################
-### code chunk number 102: tutorial.Rnw:1099-1103
+### code chunk number 104: tutorial.Rnw:1123-1127
 ###################################################
 options(digit=2)
 f <- system.file("external/dataStb.csv", package="agricolae")
@@ -885,7 +905,7 @@ stability.par(dataStb, rep=4, MSerror=1.8, alpha=0.1, main="Genotype",console=TR
 
 
 ###################################################
-### code chunk number 103: tutorial.Rnw:1109-1112
+### code chunk number 105: tutorial.Rnw:1133-1136
 ###################################################
 output <- stability.par(dataStb, rep=4, MSerror=2)
 names(output)
@@ -893,7 +913,7 @@ print(output$stability)
 
 
 ###################################################
-### code chunk number 104: tutorial.Rnw:1117-1121
+### code chunk number 106: tutorial.Rnw:1141-1145
 ###################################################
 data5<-dataStb[,1:5]
 altitude<-c(1200, 1300, 800, 1600, 2400)
@@ -902,7 +922,7 @@ file.cov=altitude)
 
 
 ###################################################
-### code chunk number 105: tutorial.Rnw:1128-1132
+### code chunk number 107: tutorial.Rnw:1152-1156
 ###################################################
 data <- data.frame(name=row.names(dataStb), dataStb)
 output<-stability.nonpar(data, "YIELD", ranking=TRUE)
@@ -911,19 +931,19 @@ output$statistics
 
 
 ###################################################
-### code chunk number 106: tutorial.Rnw:1149-1150
+### code chunk number 108: tutorial.Rnw:1173-1174
 ###################################################
   str(AMMI)
 
 
 ###################################################
-### code chunk number 107: tutorial.Rnw:1153-1154
+### code chunk number 109: tutorial.Rnw:1177-1178
 ###################################################
   str(plot.AMMI)
 
 
 ###################################################
-### code chunk number 108: tutorial.Rnw:1157-1165
+### code chunk number 110: tutorial.Rnw:1181-1189
 ###################################################
 data(plrv)
 model<-with(plrv,AMMI(Locality, Genotype, Rep, Yield, console=FALSE))
@@ -936,21 +956,21 @@ pc123<-sum(pc[1:3])
 
 
 ###################################################
-### code chunk number 109: f6
+### code chunk number 111: f6
 ###################################################
 par(cex=0.4,mar=c(4,4,1,2))
 plot(model,type=1,las=1,xlim=c(-5,6))
 
 
 ###################################################
-### code chunk number 110: f15
+### code chunk number 112: f15
 ###################################################
 par(mar=c(4,4,1,2),cex=0.5)
 plot(model,type=3,number=TRUE,las=1,xlim=c(-5,6),bty="l")
 
 
 ###################################################
-### code chunk number 111: tutorial.Rnw:1201-1208
+### code chunk number 113: tutorial.Rnw:1225-1232
 ###################################################
 data(plrv)
 model<- with(plrv,AMMI(Locality, Genotype, Rep, Yield, console=FALSE))
@@ -962,7 +982,7 @@ print(index[order(index[,4]),])
 
 
 ###################################################
-### code chunk number 112: f7
+### code chunk number 114: f7
 ###################################################
 par(cex=0.6,mar=c(3,3,2,1))
 data(pamCIP)
@@ -971,7 +991,7 @@ output<-consensus(pamCIP,distance="binary", method="complete", nboot=5)
 
 
 ###################################################
-### code chunk number 113: f8
+### code chunk number 115: f8
 ###################################################
 par(cex=0.6,mar=c(3,3,1.5,1))
 out1<- hcut(output,h=0.4,group=8,type="t",edgePar = list(lty=1:2, col=colors()[c(42,84)]),
@@ -979,13 +999,13 @@ main="group 8" ,col.text="blue",cex.text=1,las=1)
 
 
 ###################################################
-### code chunk number 114: tutorial.Rnw:1244-1245
+### code chunk number 116: tutorial.Rnw:1268-1269
 ###################################################
 names(output)
 
 
 ###################################################
-### code chunk number 115: tutorial.Rnw:1251-1254
+### code chunk number 117: tutorial.Rnw:1275-1278
 ###################################################
 dend <- as.dendrogram(output$dendrogram)
 data <- output$table.dend
@@ -993,7 +1013,7 @@ head(output$table.dend)
 
 
 ###################################################
-### code chunk number 116: tutorial.Rnw:1256-1259 (eval = FALSE)
+### code chunk number 118: tutorial.Rnw:1280-1283 (eval = FALSE)
 ###################################################
 ## par(mar=c(3,3,1,1),cex=0.6)
 ## plot(dend,type="r",edgePar = list(lty=1:2, col=colors()[c(42,84)]) ,las=1)
@@ -1001,7 +1021,7 @@ head(output$table.dend)
 
 
 ###################################################
-### code chunk number 117: tutorial.Rnw:1266-1270
+### code chunk number 119: tutorial.Rnw:1290-1294
 ###################################################
 data(soil)
 # set.seed(9473)
@@ -1010,7 +1030,7 @@ h<-graph.freq(simulated,nclass=7,plot=FALSE)
 
 
 ###################################################
-### code chunk number 118: f9
+### code chunk number 120: f9
 ###################################################
 par(mar=c(2,0,2,1),cex=0.6)
 plot(density(soil$pH),axes=FALSE,main="pH density of the soil\ncon Ralstonia",xlab="",lwd=4)
@@ -1020,25 +1040,25 @@ legend("topright",c("Original","Simulated"),lty=c(1,4),col=c("black", "blue"), l
 
 
 ###################################################
-### code chunk number 119: tutorial.Rnw:1285-1286
+### code chunk number 121: tutorial.Rnw:1309-1310
 ###################################################
 round(table.freq(h),2)
 
 
 ###################################################
-### code chunk number 120: tutorial.Rnw:1289-1290
+### code chunk number 122: tutorial.Rnw:1313-1314
 ###################################################
 summary(soil$pH)
 
 
 ###################################################
-### code chunk number 121: tutorial.Rnw:1293-1294
+### code chunk number 123: tutorial.Rnw:1317-1318
 ###################################################
 summary(simulated)
 
 
 ###################################################
-### code chunk number 122: tutorial.Rnw:1300-1307
+### code chunk number 124: tutorial.Rnw:1324-1331
 ###################################################
 data(potato)
 potato[,1]<-as.factor(potato[,1])
@@ -1050,19 +1070,19 @@ print(Xsol,na.print = "")
 
 
 ###################################################
-### code chunk number 123: tutorial.Rnw:1316-1317
+### code chunk number 125: tutorial.Rnw:1340-1341
 ###################################################
 simModel <- simulation.model(model, potato, k=100,console=TRUE)
 
 
 ###################################################
-### code chunk number 124: tutorial.Rnw:1319-1320
+### code chunk number 126: tutorial.Rnw:1343-1344
 ###################################################
 ab<-simModel$simulation[3,3]
 
 
 ###################################################
-### code chunk number 125: tutorial.Rnw:1327-1333
+### code chunk number 127: tutorial.Rnw:1351-1357
 ###################################################
 corr.x<- matrix(c(1,0.5,0.5,1),c(2,2))
 corr.y<- rbind(0.6,0.7)
@@ -1073,13 +1093,13 @@ output<-path.analysis(corr.x,corr.y)
 
 
 ###################################################
-### code chunk number 126: tutorial.Rnw:1335-1336
+### code chunk number 128: tutorial.Rnw:1359-1360
 ###################################################
 output
 
 
 ###################################################
-### code chunk number 127: tutorial.Rnw:1370-1378
+### code chunk number 129: tutorial.Rnw:1394-1402
 ###################################################
 rm(list=ls())
 options(digits = 2)
@@ -1092,7 +1112,7 @@ options(digits = 7)
 
 
 ###################################################
-### code chunk number 128: f10
+### code chunk number 130: f10
 ###################################################
 par(mar=c(3,3,4,1),cex=0.7)
 data(rice)
@@ -1101,14 +1121,14 @@ table<-index.smith(rice, col="blue",
 
 
 ###################################################
-### code chunk number 129: tutorial.Rnw:1396-1398
+### code chunk number 131: tutorial.Rnw:1420-1422
 ###################################################
 uniformity <- data.frame(table$uniformity)
 head(uniformity)
 
 
 ###################################################
-### code chunk number 130: tutorial.Rnw:1406-1409
+### code chunk number 132: tutorial.Rnw:1430-1433
 ###################################################
 data(paracsho)
 species <- paracsho[79:87,4:6]
@@ -1116,13 +1136,13 @@ species
 
 
 ###################################################
-### code chunk number 131: tutorial.Rnw:1412-1413
+### code chunk number 133: tutorial.Rnw:1436-1437
 ###################################################
 output <- index.bio(species[,3],method="Shannon",level=95,nboot=200)
 
 
 ###################################################
-### code chunk number 132: tutorial.Rnw:1419-1422
+### code chunk number 134: tutorial.Rnw:1443-1446
 ###################################################
 data(soil)
 correlation(soil[,2:4],method="pearson")
@@ -1130,14 +1150,14 @@ with(soil,correlation(pH,soil[,3:4],method="pearson"))
 
 
 ###################################################
-### code chunk number 133: tutorial.Rnw:1433-1435
+### code chunk number 135: tutorial.Rnw:1457-1459
 ###################################################
 data(RioChillon)
 with(RioChillon$babies,tapply.stat(yield,farmer,function(x) max(x)-min(x)))
 
 
 ###################################################
-### code chunk number 134: tutorial.Rnw:1453-1456
+### code chunk number 136: tutorial.Rnw:1477-1480
 ###################################################
 data(sweetpotato)
 model <- model<-aov(yield ~ virus, data=sweetpotato)
@@ -1145,25 +1165,25 @@ cv.model(model)
 
 
 ###################################################
-### code chunk number 135: tutorial.Rnw:1463-1464
+### code chunk number 137: tutorial.Rnw:1487-1488
 ###################################################
 x<-c(3,4,5,2,3,4,5,6,4,NA,7)
 
 
 ###################################################
-### code chunk number 136: tutorial.Rnw:1467-1468
+### code chunk number 138: tutorial.Rnw:1491-1492
 ###################################################
 skewness(x)
 
 
 ###################################################
-### code chunk number 137: tutorial.Rnw:1471-1472
+### code chunk number 139: tutorial.Rnw:1495-1496
 ###################################################
 kurtosis(x)
 
 
 ###################################################
-### code chunk number 138: tutorial.Rnw:1478-1487
+### code chunk number 140: tutorial.Rnw:1502-1511
 ###################################################
 q<-5
 f<-15
@@ -1177,7 +1197,7 @@ for(i in 1:n) y[i,3]<-waller(K[i],q,f,Fc=8)
 
 
 ###################################################
-### code chunk number 139: tutorial.Rnw:1491-1498 (eval = FALSE)
+### code chunk number 141: tutorial.Rnw:1515-1522 (eval = FALSE)
 ###################################################
 ## par(mar=c(3,3,4,1),cex=0.7)
 ## plot(K,y[,1],type="l",col="blue",ylab="waller",bty="l")
@@ -1189,7 +1209,7 @@ for(i in 1:n) y[i,3]<-waller(K[i],q,f,Fc=8)
 
 
 ###################################################
-### code chunk number 140: tutorial.Rnw:1502-1518
+### code chunk number 142: tutorial.Rnw:1526-1542
 ###################################################
 K<-100
 Fc<-1.2
@@ -1210,7 +1230,7 @@ print(W.D)
 
 
 ###################################################
-### code chunk number 141: tutorial.Rnw:1524-1529
+### code chunk number 143: tutorial.Rnw:1548-1553
 ###################################################
 days<-c(7,14,21,28,35,42)
 evaluation<-data.frame(E1=10,E2=40,E3=50,E4=70,E5=80,E6=90)
@@ -1220,14 +1240,14 @@ relative1 <-round(audpc(evaluation,days,"relative"),2)
 
 
 ###################################################
-### code chunk number 142: tutorial.Rnw:1535-1537
+### code chunk number 144: tutorial.Rnw:1559-1561
 ###################################################
 absolute2 <-audps(evaluation,days)
 relative2 <-round(audps(evaluation,days,"relative"),2)
 
 
 ###################################################
-### code chunk number 143: f11
+### code chunk number 145: f11
 ###################################################
 par(mfrow=c(1,2),mar=c(3,3,1,1),cex=0.7)
 plot(days, evaluation,type="h",ylim=c(0,100),axes=FALSE,col= colors()[42],xlab="Days", ylab="Evaluation")
@@ -1251,7 +1271,7 @@ text(13,70,substitute(paste("Audps Rel.=",A2),list(A2=relative2)))
 
 
 ###################################################
-### code chunk number 144: tutorial.Rnw:1574-1580
+### code chunk number 146: tutorial.Rnw:1598-1604
 ###################################################
 data(potato)
 potato[,1]<-as.factor(potato[,1])
@@ -1262,7 +1282,7 @@ analysis<-with(potato,nonadditivity(cutting, date, variety, df, MSerror))
 
 
 ###################################################
-### code chunk number 145: tutorial.Rnw:1589-1616
+### code chunk number 147: tutorial.Rnw:1613-1640
 ###################################################
 options(digits=2)
 f <- system.file("external/weather.csv", package="agricolae")
@@ -1294,7 +1314,7 @@ main<-"Cultivar: NICOLA"
 
 
 ###################################################
-### code chunk number 146: f12
+### code chunk number 148: f12
 ###################################################
 par(mar=c(3,3,4,1),cex=0.7)
 #--------------------------
@@ -1304,7 +1324,7 @@ xlab="Time (days after emergence)", ylab="Severity (Percentage)")
 
 
 ###################################################
-### code chunk number 147: tutorial.Rnw:1631-1634
+### code chunk number 149: tutorial.Rnw:1655-1658
 ###################################################
 head(model$Gfile)
 str(model$Ofile)
@@ -1312,7 +1332,7 @@ head(model$Ofile[,1:7])
 
 
 ###################################################
-### code chunk number 148: tutorial.Rnw:1638-1644
+### code chunk number 150: tutorial.Rnw:1662-1668
 ###################################################
 x<- model$Ofile$nday
 y<- model$Ofile$SimSeverity
@@ -1323,7 +1343,7 @@ Max<-model$Gfile$MaxObs
 
 
 ###################################################
-### code chunk number 149: tutorial.Rnw:1646-1653 (eval = FALSE)
+### code chunk number 151: tutorial.Rnw:1670-1677 (eval = FALSE)
 ###################################################
 ## par(mar=c(3,2.5,1,1),cex=0.7)
 ## plot(x,y,type="l",xlim=c(65,95),lwd=1.5,xlab="Time (days after emergence)",

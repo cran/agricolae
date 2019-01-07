@@ -10,7 +10,7 @@
 }
 \usage{
 \method{plot}{group}(x,variation=c("range","IQR","SE","SD"), horiz=FALSE,
-                     col=NULL,xlim=NULL,ylim=NULL,main=NULL,...)
+                     col=NULL,xlim=NULL,ylim=NULL,main=NULL,cex=NULL,hy=0,...)
 }
 \arguments{
   \item{x}{ Object created by a test of comparison }
@@ -20,6 +20,8 @@
   \item{xlim}{optional, axis x limits}
   \item{ylim}{optional, axis y limits}
   \item{main}{optional, main title}
+  \item{cex}{optional, group label size}
+  \item{hy}{optional, default =0, sum group label position}
   \item{\dots}{ Parameters of the function barplot() }
 }
 \details{

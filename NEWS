@@ -1,5 +1,11 @@
 Changes in new version
 
+Version agricolae 1-2.9 (January 4, 2019)
+-------------------------------------------
+
+Plot.group function include argument label size with cex=NULL
+HSD.test include parameter unbalanced, equal TRUE is not equal replication
+
 Version agricolae 1-2.8 (September 12, 2017)
 -------------------------------------------
 
