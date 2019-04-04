@@ -77,8 +77,8 @@ if ( length(nr) == 1) statistics<-data.frame(statistics,Scheffe=Tprob,CriticalDi
 			sdtdif<-sqrt(MSerror * (1/means[i,4] + 1/means[j,4]))
 			pvalue[k]<- round(1-pf(abs(dif[k])^2/((ntr-1)*sdtdif^2),ntr-1,DFerror),4)
 			
-			LCL[k] <- dif[k] - sqrt(Tprob*(ntr-1))*sdtdif
-			UCL[k] <- dif[k] + sqrt(Tprob*(ntr-1))*sdtdif
+			LCL[k] <- dif[k] - Tprob*sdtdif
+			UCL[k] <- dif[k] + Tprob*sdtdif
 			sig[k]<-" "
 			if (pvalue[k] <= 0.001) sig[k]<-"***"
 			else  if (pvalue[k] <= 0.01) sig[k]<-"**"

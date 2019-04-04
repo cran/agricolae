@@ -25,7 +25,13 @@ LSD.test(y, trt, DFerror, MSerror, alpha = 0.05, p.adj=c("none","holm","hommel",
 \details{
   For equal or different repetition.\cr
   For the adjustment methods, see the function p.adjusted.\cr
-  p-adj ="none" is t-student.
+  p-adj ="none" is t-student.\cr
+  
+  It is necessary first makes a analysis of variance.\cr
+  if model=y, then to apply the instruction:\cr 
+LSD.test(model, "trt", alpha = 0.05, p.adj=c("none","holm","hommel", 
+"hochberg", "bonferroni", "BH", "BY", "fdr"), group=TRUE, main = NULL,console=FALSE)\cr
+  where the model class is aov or lm.
 }
 \value{
   \item{statistics}{Statistics of the model}

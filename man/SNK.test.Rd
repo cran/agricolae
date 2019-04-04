@@ -22,7 +22,12 @@ SNK.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL,console
   \item{console}{logical, print output }
 }
 \details{
-  It is necessary first makes a analysis of variance.
+  It is necessary first makes a analysis of variance.\cr
+  
+  if y = model, then to apply the instruction:\cr 
+  SNK.test (model, "trt", alpha = 0.05, group = TRUE, main = NULL, console = FALSE)\cr
+  where the model class is aov or lm.
+  
 }
 \value{
   \item{statistics}{Statistics of the model}

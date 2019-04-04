@@ -24,12 +24,16 @@ console=FALSE)
 }
 \details{
 
-It is necessary first makes a analysis of variance.
+It is necessary first makes a analysis of variance.\cr
 
 K-RATIO (K): value specifies the Type 1/Type 2 error seriousness ratio for 
 the Waller-Duncan test. Reasonable values for KRATIO are 50, 100, and 500,
 which roughly correspond for the two-level case to ALPHA levels of 0.1, 0.05,
-and 0.01. By default, the procedure uses the default value of 100. 
+and 0.01. By default, the procedure uses the default value of 100.\cr
+
+ if y = model, then to apply the instruction:\cr 
+ waller.test (model, "trt", alpha = 0.05, group = TRUE, main = NULL, console = FALSE)\cr
+ where the model class is aov or lm.
 }
 \value{
   \item{statistics}{Statistics of the model}
@@ -41,11 +45,11 @@ and 0.01. By default, the procedure uses the default value of 100.
 \references{ 
 Waller, R. A. and Duncan, D. B. (1969).
 A Bayes Rule for the Symmetric Multiple Comparison Problem,
-Journal of the American Statistical Association 64, pages 1484-1504. 
+Journal of the American Statistical Association 64, pages 1484-1504.\cr
 
 Waller, R. A. and Kemp, K. E. (1976)
 Computations of Bayesian t-Values for Multiple Comparisons,
-Journal of Statistical Computation and Simulation, 75, pages 169-172.
+Journal of Statistical Computation and Simulation, 75, pages 169-172.\cr
 
 Steel & Torry & Dickey. Third Edition 1997
 Principles and procedures of statistics a biometrical approach

@@ -20,7 +20,11 @@ REGW.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL,consol
   \item{console}{logical, print output }
 }
 \details{
-  It is necessary first makes a analysis of variance.
+  It is necessary first makes a analysis of variance.\cr
+  
+  if y = model, then to apply the instruction:\cr 
+  REGW.test (model, "trt", alpha = 0.05, group = TRUE, main = NULL, console = FALSE)\cr
+  where the model class is aov or lm.
 }
 \value{
   \item{statistics}{Statistics of the model}

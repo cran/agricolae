@@ -23,7 +23,12 @@ console=FALSE )
   \item{console}{logical, print output }
 }
 \details{
-It is necessary first makes a analysis of variance.
+  It is necessary first makes a analysis of variance.\cr
+  
+  if y = model, then to apply the instruction:\cr 
+  scheffe.test (model, "trt", alpha = 0.05, group = TRUE, main = NULL, console = FALSE)\cr
+  where the model class is aov or lm.
+
 }
 \value{
   \item{statistics}{Statistics of the model}
@@ -33,7 +38,7 @@ It is necessary first makes a analysis of variance.
   \item{groups}{Formation of treatment groups}
 }
 \references{ 
-Robert O. Kuehl. 2nd ed. Design of experiments. Duxbury, copyright 2000.
+Robert O. Kuehl. 2nd ed. Design of experiments. Duxbury, copyright 2000.\cr
 Steel, R.; Torri,J; Dickey, D.(1997) Principles and Procedures of Statistics
 A Biometrical Approach. pp189
 }

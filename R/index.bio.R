@@ -17,7 +17,7 @@ function (data, method = c("Margalef","Simpson.Dom", "Simpson.Div", "Berger.Park
         formula1 <- expression((sum(x) - sqrt(sum(x^2)))/(sum(x) - 
             sqrt(sum(x))))
     if (method == "Shannon") 
-        formula1 <- expression(-sum((x/sum(x)) * log((x/sum(x))^2)))
+        formula1 <- expression(-sum((x/sum(x)) * log((x/sum(x)),2)))
     index <- eval(formula1)
     n = length(x)
     estimador <- rep(0, n)

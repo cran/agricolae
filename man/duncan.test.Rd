@@ -20,7 +20,11 @@ duncan.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL,cons
   \item{console}{logical, print output }
 }
 \details{
-  It is necessary first makes a analysis of variance.
+  It is necessary first makes a analysis of variance.\cr
+  
+  if y = model, then to apply the instruction:\cr 
+  duncan.test(model, "trt", alpha = 0.05, group = TRUE, main = NULL, console = FALSE)\cr
+  where the model class is aov or lm.
 }
 \value{
   \item{statistics}{Statistics of the model}
@@ -32,9 +36,9 @@ duncan.test(y, trt, DFerror, MSerror, alpha = 0.05, group=TRUE, main = NULL,cons
 }
 \references{  
 1. Principles and procedures of statistics a biometrical approach
-   Steel & Torry & Dickey. Third Edition 1997
+   Steel & Torry & Dickey. Third Edition 1997\cr
 2. Multiple comparisons theory and methods. Departament of statistics 
-   the Ohio State University. USA, 1996. Jason C. Hsu. Chapman Hall/CRC.
+   the Ohio State University. USA, 1996. Jason C. Hsu. Chapman Hall/CRC.\cr
 }
 
 \author{ Felipe de Mendiburu }

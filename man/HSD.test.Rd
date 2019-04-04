@@ -23,7 +23,11 @@ unbalanced=FALSE,console=FALSE)
   \item{console}{logical, print output }
 }
 \details{
-  It is necessary first makes a analysis of variance.
+  It is necessary first makes a analysis of variance.\cr
+  
+  if y = model, then to apply the instruction:\cr 
+  HSD.test (model, "trt", alpha = 0.05, group = TRUE, main = NULL, unbalanced=FALSE, console=FALSE)\cr
+  where the model class is aov or lm.
 }
 \value{
   \item{statistics}{Statistics of the model}
@@ -34,7 +38,7 @@ unbalanced=FALSE,console=FALSE)
 }
 \references{  
 1. Principles and procedures of statistics a biometrical approach
-   Steel & Torry & Dickey. Third Edition 1997
+   Steel & Torry & Dickey. Third Edition 1997\cr
 2. Multiple comparisons theory and methods. Departament of statistics 
    the Ohio State University. USA, 1996. Jason C. Hsu. Chapman Hall/CRC.
 }

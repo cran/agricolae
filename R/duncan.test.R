@@ -82,7 +82,7 @@ print(DUNCAN)
 }
 if ( group & length(nr) != 1 & console) cat("\nGroups according to probability of means differences and alpha level(",alpha,")\n")
 if ( length(nr) != 1) duncan<-NULL    
-Omeans<-order(means[,1],decreasing = TRUE)
+Omeans<-order(means[,2],decreasing = TRUE) #correccion 2019, 1 abril.
 Ordindex<-order(Omeans)
 comb <-utils::combn(ntr,2)
 nn<-ncol(comb)
