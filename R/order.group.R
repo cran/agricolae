@@ -22,7 +22,8 @@ pDuncan<-as.numeric(pDuncan)
 }
 
 z<-data.frame(trt,means,N=N,std.err,replications)
-letras<-c(letters[1:26],LETTERS[1:26],1:9,c(".","+","-","*","/","#","$","%","&","^","[","]",":","@",";"))
+letras<-c(letters[1:26],LETTERS[1:26],1:9,c(".","+","-","*","/","#","$",
+"%","&","^","[","]",":","@",";","_","?","!","=","#",rep(" ",2000)))
 # ordena tratamientos
 w<-z[order(z[,2],decreasing = TRUE), ]
 M<-rep("",n)
@@ -127,5 +128,7 @@ for (i in 1:n) {
 	if(console)cat(rownames(output1)[i], "\t", output1[i,1], "\t", means1[i], "\n")
 }
 output <- data.frame(trt, means, M, N=replications, std.err)
+if(k>81)
+cat("\n",k,"groups are estimated.The number of groups exceeded the maximum of 81 labels. change to group=FALSE.\n")
 invisible(output)
 }

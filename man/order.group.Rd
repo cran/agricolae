@@ -34,6 +34,11 @@ Now the grouping in agricolae is with the probability of the treatments
 differences and alpha level.
 }
 
+\note{
+It is considered 81 labels as maximum for the formation of groups, 
+greater number will not have label.
+}
+
 \value{
 The output is data frame.
 

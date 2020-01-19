@@ -66,7 +66,6 @@ For a complete functionality, \textbf{agricolae} requires other packages
 \textbf{nlme:}  for the methods REML and LM in \emph{PBIB.test}\\
 \textbf{klaR:}  for the function \emph{triplot} used in the function \emph{AMMI}\\
 \textbf{Cluster:}  for the use of the function \emph{consensus}\\
-\textbf{spdep:}  for the between genotypes spatial relation in biplot of the function \emph{AMMI}\\
 \textbf{algDesign:}  for the balanced incomplete block design\emph{design.bib}
 
 \subsection{Use in \textbf{R} }
@@ -125,7 +124,7 @@ print(summary(weight))
 \begin{center}
 
 <<f1,fig=TRUE  ,width=6, height=2>>=
-par(mfrow=c(1,2),mar=c(4,4,0,1),cex=0.6)
+oldpar<-par(mfrow=c(1,2),mar=c(4,4,0,1),cex=0.6)
 h1<- graph.freq(weight,col=colors()[84],frequency=1,las=2,density=20,ylim=c(0,12),ylab="Frequency") 
 x<-h1$breaks
 h2<- plot(h1, frequency =2, axes= FALSE,ylim=c(0,0.4),xlab="weight",ylab="Relative (%)")
@@ -133,6 +132,7 @@ polygon.freq(h2, col=colors()[84], lwd=2, frequency =2)
 axis(1,x,cex=0.6,las=2)
 y<-seq(0,0.4,0.1)
 axis(2, y,y*100,cex=0.6,las=1) 
+par(oldpar)
 @
 \caption{Absolute and relative frequency with polygon.\label{fig:f1}} 
 \end{center}
@@ -177,13 +177,14 @@ print(summary(h3))
 \begin{figure}
 \begin{center}
 <<f2,fig=TRUE  ,width=6, height=2>>=
-par(mfrow=c(1,2),mar=c(4,4,0,1),cex=0.8)
+oldpar<-par(mfrow=c(1,2),mar=c(4,4,0,1),cex=0.8)
 plot(h3, frequency=2,col=colors()[84],ylim=c(0,0.6),axes=FALSE,xlab="weight",ylab="%",border=0)
 y<-seq(0,0.6,0.2)
 axis(2,y,y*100,las=2)
 axis(1,h3$breaks)
 normal.freq(h3,frequency=2,col=colors()[90])
 ogive.freq(h3,col=colors()[84],xlab="weight")
+par(oldpar)
 @
 \caption{Join frequency and relative frequency with normal and Ogive.\label{fig:f2}}
 \end{center}
@@ -203,7 +204,7 @@ The \emph{hist} and \emph{graph.freq} have the same characteristics, only f2 all
 \begin{figure}
 \begin{center}
 <<f3,fig=TRUE,  width=6, height=1.7>>=
-par(mfrow=c(1,2),mar=c(4,3,2,1),cex=0.6)
+oldpar<-par(mfrow=c(1,2),mar=c(4,3,2,1),cex=0.6)
 h4<-hist(weight,xlab="Classes (h4)")
 table.freq(h4)
 # this is possible
@@ -213,6 +214,7 @@ table.freq(h4)
 classes <- c(0, 10, 20, 30, 40, 50)
 freq <- c(3, 8, 15, 18, 6)
 h5 <- graph.freq(classes,counts=freq, xlab="Classes (h5)",main="Histogram grouped data")
+par(oldpar)
 @
 \caption{hist() function and histogram defined class\label{fig:f3}}
 \end{center}
@@ -788,11 +790,12 @@ main = "Yield ~ block + nitrogen + clone + clone:nitrogen",console=TRUE)
 @
 
 <<eval=FALSE>>=
-par(mar=c(3,3,2,0))
+oldpar<-par(mar=c(3,3,2,0))
 pic1<-bar.err(outFactorial$means,variation="range",ylim=c(5,25), bar=FALSE,col=0,las=1)
 points(pic1$index,pic1$means,pch=18,cex=1.5,col="blue")
 axis(1,pic1$index,labels=FALSE)
 title(main="average and range\nclon:nitrogen")
+par(oldpar)
 @
 
 \subsection {Analysis of Balanced Incomplete Blocks}
@@ -1056,12 +1059,13 @@ outMedian$medians
 \begin{center}
 
 <<f14, echo=TRUE, fig=TRUE, width=6, height=4>>=
-par(mfrow=c(2,2),mar=c(3,3,1,1),cex=0.8)
+oldpar<-par(mfrow=c(2,2),mar=c(3,3,1,1),cex=0.8)
 # Graphics
 bar.group(outMedian$groups,ylim=c(0,50))
 bar.group(outMedian$groups,xlim=c(0,50),horiz = TRUE)
 plot(outMedian)
 plot(outMedian,variation="IQR",horiz = TRUE)
+par(oldpar)
 @
 
 \caption{Grouping of treatments and its variation, Median method\label{fig:f14}}
@@ -1132,12 +1136,13 @@ range: max-min
 \begin{center}
 
 <<f4, fig=TRUE,width=6, height=4>>=
-par(mfrow=c(2,2),mar=c(3,3,2,1),cex=0.7)
+oldpar<-par(mfrow=c(2,2),mar=c(3,3,2,1),cex=0.7)
 c1<-colors()[480]; c2=colors()[65] 
 bar.err(outHSD$means, variation="range",ylim=c(0,50),col=c1,las=1)
 bar.err(outHSD$means, variation="IQR",horiz=TRUE, xlim=c(0,50),col=c2,las=1)
 plot(outHSD, variation="range",las=1)
 plot(outHSD, horiz=TRUE, variation="SD",las=1)
+par(oldpar)
 @
 
 \caption{Comparison between treatments\label{fig:f4}}
@@ -1145,7 +1150,7 @@ plot(outHSD, horiz=TRUE, variation="SD",las=1)
 \end{figure}
 
 <<eval=FALSE>>=
-par(mfrow=c(2,2),cex=0.7,mar=c(3.5,1.5,3,1))
+oldpar<-par(mfrow=c(2,2),cex=0.7,mar=c(3.5,1.5,3,1))
 C1<-bar.err(modelPBIB$means[1:7, ], ylim=c(0,9), col=0, main="C1", 
 variation="range",border=3,las=2)
 C2<-bar.err(modelPBIB$means[8:15,], ylim=c(0,9), col=0, main="C2", 
@@ -1156,8 +1161,10 @@ variation="range",border =2,las=2)
 C4<-bar.err(modelPBIB$means[23:30,], ylim=c(0,9), col=0, main="C4", 
 variation="range", border =6,las=2)
 # Lattice graphics
-par(mar=c(2.5,2.5,1,0),cex=0.6)
+par(oldpar)
+oldpar<-par(mar=c(2.5,2.5,1,0),cex=0.6)
 bar.group(modelLattice$group,ylim=c(0,55),density=10,las=1)
+par(oldpar)
 @
 
 \subsection{plot.group}
@@ -1170,10 +1177,11 @@ The function: plot.group() and their arguments are x (output of test),  variatio
 <<f13, echo=TRUE, fig=TRUE, width=8, height=3>>=
 # model : yield ~ virus
 # Important group=TRUE
-par(mfrow=c(1,2),mar=c(3,3,1,1),cex=0.8)
+oldpar<-par(mfrow=c(1,2),mar=c(3,3,1,1),cex=0.8)
 x<-duncan.test(model, "virus", group=TRUE)
 plot(x,las=1)
 plot(x,variation="IQR",horiz=TRUE,las=1)
+par(oldpar)
 @
 
 \caption{Grouping of treatments and its variation, Duncan method\label{fig:f13}}
@@ -1267,7 +1275,7 @@ For the application, we consider the data used in the example of parametric stab
 <<>>=
   str(plot.AMMI)
 @
-  \textbf{type: 1=biplot, 2= triplot 3=influence genotype} 
+  \textbf{type: 1=biplot, 2= triplot} 
 <<>>=
 data(plrv)
 model<-with(plrv,AMMI(Locality, Genotype, Rep, Yield, console=FALSE))
@@ -1282,8 +1290,9 @@ pc123<-sum(pc[1:3])
 \begin{figure}
 \begin{center}
 <<f6, fig=TRUE,width=3, height=2,results=hide>>=
-par(cex=0.4,mar=c(4,4,1,2))
+oldpar<-par(cex=0.4,mar=c(4,4,1,2))
 plot(model,type=1,las=1,xlim=c(-5,6))
+par(oldpar)
 @
 \caption{Biplot\label{fig:f6}}
 \end{center}
@@ -1293,21 +1302,6 @@ In this case, the interaction is significant. The first two components explain \
 \textbf{To triplot require klaR package. in R execute:}
 
 plot(model,type=2,las=1)
-
-\textbf{To Influence graphics genotype require spdep package, in R execute:}
-
-plot(model,type=3). See Figure \ref{fig:f15}.
-
-\begin{figure}
-\begin{center}
-
-<<f15, fig=TRUE,width=3, height=2,results=hide>>=
-par(mar=c(4,4,1,2),cex=0.5)
-plot(model,type=3,number=TRUE,las=1,xlim=c(-5,6),bty="l")
-@
-\caption{Influence genotype\label{fig:f15}}
-\end{center}
-\end{figure}
 
 \subsection {AMMI index and yield stability}
 Calculate AMMI stability value (ASV) and Yield stability index (YSI), \citet{SabaDehg:2008}; \citet{Purc:1997}.
@@ -1334,10 +1328,11 @@ The program identifies duplicates in the rows and can operate in both cases. The
 \begin{figure}
 \begin{center}
 <<f7, fig=TRUE,width=5, height=2>>=
-par(cex=0.6,mar=c(3,3,2,1))
+oldpar<-par(cex=0.6,mar=c(3,3,2,1))
 data(pamCIP)
 rownames(pamCIP)<-substr(rownames(pamCIP),1,6)
 output<-consensus(pamCIP,distance="binary", method="complete", nboot=5)
+par(oldpar)
 @
 \caption{Dendrogram, production by consensus\label{fig:f7}}
 \end{center}
@@ -1347,9 +1342,10 @@ When the dendrogram is complex, it is convenient to extract part of it with the 
 \begin{figure}
 \begin{center}
 <<f8, fig=TRUE,width=5, height=2>>=
-par(cex=0.6,mar=c(3,3,1.5,1))
+oldpar<-par(cex=0.6,mar=c(3,3,1.5,1))
 out1<- hcut(output,h=0.4,group=8,type="t",edgePar = list(lty=1:2, col=colors()[c(42,84)]),
 main="group 8" ,col.text="blue",cex.text=1,las=1)
+par(oldpar)
 @
 \caption{Dendrogram, production by hcut()\label{fig:f8}}
 \end{center}
@@ -1368,9 +1364,10 @@ data <- output$table.dend
 head(output$table.dend)
 @
 <<eval=FALSE>>=
-par(mar=c(3,3,1,1),cex=0.6)
+oldpar<-par(mar=c(3,3,1,1),cex=0.6)
 plot(dend,type="r",edgePar = list(lty=1:2, col=colors()[c(42,84)]) ,las=1)
 text(data[,3],data[,4],data[,5],col="blue",cex=1)
+par(oldpar)
 @
 
 \subsection {Montecarlo}
@@ -1386,11 +1383,12 @@ h<-graph.freq(simulated,nclass=7,plot=FALSE)
 \begin{figure}
 \begin{center}
 <<f9, fig=TRUE, width=4, height=1.5>>=
-par(mar=c(2,0,2,1),cex=0.6)
+oldpar<-par(mar=c(2,0,2,1),cex=0.6)
 plot(density(soil$pH),axes=FALSE,main="pH density of the soil\ncon Ralstonia",xlab="",lwd=4)
 lines(density(simulated), col="blue", lty=4,lwd=4)
 axis(1,0:12)
 legend("topright",c("Original","Simulated"),lty=c(1,4),col=c("black", "blue"), lwd=4)
+par(oldpar)
 @
 \caption{Distribution of the simulated and the original data\label{fig:f9}}
 \end{center}
@@ -1501,10 +1499,11 @@ For the test, we will use the rice file. The graphic is a result with the adjust
 \begin{figure}
 \begin{center}
 <<f10, fig=TRUE, width=4, height=2>>=
-par(mar=c(3,3,4,1),cex=0.7)
+oldpar<-par(mar=c(3,3,4,1),cex=0.7)
 data(rice)
 table<-index.smith(rice, col="blue",
  main="Interaction between the CV and the plot size",type="l",xlab="Size")
+par(oldpar)
 @
 
 \caption{Adjustment curve for the optimal size of plot\label{fig:f10}}
@@ -1620,13 +1619,14 @@ for(i in 1:n) y[i,3]<-waller(K[i],q,f,Fc=8)
 The next procedure illustrates the function for different values of K with freedom degrees of 5 for the numerator and 15 for the denominator, and values of calculated F, equal to 2, 4, and 8.
 
 <<eval=FALSE>>=
-par(mar=c(3,3,4,1),cex=0.7)
+oldpar<-par(mar=c(3,3,4,1),cex=0.7)
 plot(K,y[,1],type="l",col="blue",ylab="waller",bty="l")
 lines(K,y[,2],type="l",col="brown",lty=2,lwd=2)
 lines(K,y[,3],type="l",col="green",lty=4,lwd=2)
 legend("topleft",c("2","4","8"),col=c("blue","brown","green"),lty=c(1,8,20),
 lwd=2,title="Fc")
 title(main="Waller in function of K")
+par(oldpar)
 @
 
 \textbf{Generating table Waller-Duncan} 
@@ -1675,7 +1675,7 @@ relative2 <-round(audps(evaluation,days,"relative"),2)
 \begin{center}
 
 <<f11, echo=FALSE, fig=TRUE, width=8, height=2>>=
-par(mfrow=c(1,2),mar=c(3,3,1,1),cex=0.7)
+oldpar<-par(mfrow=c(1,2),mar=c(3,3,1,1),cex=0.7)
 plot(days, evaluation,type="h",ylim=c(0,100),axes=FALSE,col= colors()[42],xlab="Days", ylab="Evaluation")
 lines(days,evaluation,col= colors()[42])
 axis(1,days)
@@ -1757,11 +1757,12 @@ main<-"Cultivar: NICOLA"
 \begin{center}
 
 <<f12, fig=TRUE, width=4.5, height=2.5>>=
-par(mar=c(3,3,4,1),cex=0.7)
+oldpar<-par(mar=c(3,3,4,1),cex=0.7)
 #--------------------------
 model<-lateblight(WS, Cultivar,ApplSys, InocDate, LGR,IniSpor,SR,IE, 
 LP,MatTime='LATESEASON',InMicCol,main=main,type="l",xlim=c(65,95),lwd=1.5,
 xlab="Time (days after emergence)", ylab="Severity (Percentage)")
+par(oldpar)
 @
 
 \caption{lateblight: LATESEASON\label{fig:f12}}
@@ -1786,13 +1787,14 @@ Max<-model$Gfile$MaxObs
 @
 
 <<eval=FALSE>>=
-par(mar=c(3,2.5,1,1),cex=0.7)
+oldpar<-par(mar=c(3,2.5,1,1),cex=0.7)
 plot(x,y,type="l",xlim=c(65,95),lwd=1.5,xlab="Time (days after emergence)",
 ylab="Severity (Percentage)")
 points(w,z,col="red",cex=1,pch=19); npoints <- length(w)
 for ( i in 1:npoints)segments(w[i],Min[i],w[i],Max[i],lwd=1.5,col="red")
 legend("topleft",c("Disease progress curves","Weather-Severity"),
 title="Description",lty=1,pch=c(3,19),col=c("black","red"))
+par(oldpar)
 @
  
 \begin{thebibliography}{1}

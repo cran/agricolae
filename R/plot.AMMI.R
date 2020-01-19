@@ -1,6 +1,6 @@
 plot.AMMI <-
 function(x,first=1,second=2,third=3,type=1,number=FALSE,gcol=NULL,ecol=NULL,
-icol=NULL,angle=25,lwd=1.8,length=0.1,xlab=NULL,ylab=NULL,xlim=NULL,ylim=NULL,...)
+angle=25,lwd=1.8,length=0.1,xlab=NULL,ylab=NULL,xlim=NULL,ylim=NULL,...)
 {
 first<-first+2
 second<-second+2
@@ -17,7 +17,6 @@ if(is.null(xlim))xlim<-range(A[,first])
 if(is.null(ylim))ylim<-range(A[,second])
 if(is.null(gcol))gcol="blue"
 if(is.null(ecol))ecol="brown"
-if(is.null(icol))icol="green"
 gen<-subset(A,A[,1]=="GEN")
 env<-subset(A,A[,1]=="ENV")
 ngen<-rownames(gen)
@@ -64,22 +63,6 @@ suppressWarnings(warning(klaR::trilines(c(point2[i, 1], 1/3), c(point2[i, 2],
 }
 } else {
 return("Please install the package klaR to plot triplot")
-}
-}
-if(type==3){
-if (requireNamespace("spdep", quietly = TRUE)) {
-plot(A[,first],A[,second],type="p",cex=0,xlab=xlab,ylab=ylab,xlim=xlim,ylim=ylim,...)
-text(env[,first],env[,second],rownames(env),col=ecol)
-text(gen[,first],gen[,second],ngen,col=gcol)
-coords<-as.matrix(gen[,c(first,second)])
-tri<-spdep::tri2nb(coords)
-relative <- spdep::graph2nb(relativeneigh(coords), sym=TRUE)
-plot(relative, coords, add=TRUE,col=icol,cex=0.1)
-#relative <- spdep::graph2nb(spdep::soi.graph(tri,coords))
-#plot(relative,coords,add=TRUE,col=icol,cex=0.1)
-}
-else {
-return("Please install the package spdep to plot the spatial relationship")
 }
 }
 }

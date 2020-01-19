@@ -1,5 +1,12 @@
 Changes in new version
 
+Version agricolae 1-3.2 (January 18, 2020)
+-------------------------------------------
+
+- The examples were edited. 
+- A control is set on the label limit for the functions order.group and orderPvalue.
+- The plot.AMMI function uses only type = 1 and type = 2 options.
+
 Version agricolae 1-3.1 (April 4, 2019)
 -------------------------------------------
 

@@ -3,8 +3,8 @@ function (treatment, means, alpha, pvalue, console)
 {
   n <- length(means)
   z <- data.frame(treatment, means)
-  letras<-c(letters[1:26],LETTERS[1:26],1:9,
-  c(".","+","-","*","/","#","$","%","&","^","[","]",":","@",";"))
+  letras<-c(letters[1:26],LETTERS[1:26],1:9,c(".","+","-","*","/","#","$",
+"%","&","^","[","]",":","@",";","_","?","!","=","#",rep(" ",2000)))
   w <- z[order(z[, 2], decreasing = TRUE), ]
   M<-rep("",n)
   k<-1
@@ -48,5 +48,7 @@ function (treatment, means, alpha, pvalue, console)
   means <- as.numeric(w$means)
   output <- data.frame(means, groups=M)
   rownames(output)<-trt
-  invisible(output)
+  if(k>81) 
+    cat("\n",k,"groups are estimated.The number of groups exceeded the maximum of 81 labels. change to group=FALSE.\n")
+    invisible(output)
 }

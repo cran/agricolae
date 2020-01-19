@@ -18,9 +18,12 @@ orderPvalue(treatment, means, alpha, pvalue, console)
   \item{console}{logical, print output }
 }
 \value{
-The means and groups for treatments
+The means and groups for treatments.
 }
-
+\note{
+It is considered 81 labels as maximum for the formation of groups, 
+greater number will not have label.
+}
 \author{ Felipe de Mendiburu }
 
 \examples{

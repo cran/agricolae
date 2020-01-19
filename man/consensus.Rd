@@ -42,7 +42,6 @@ library(agricolae)
 data(pamCIP)
 # only code
 rownames(pamCIP)<-substr(rownames(pamCIP),1,6)
-# par(cex=0.8)
 output<-consensus( pamCIP,distance="binary", method="complete",nboot=5)
 # Order consensus
 Groups<-output$table.dend[,c(6,5)]

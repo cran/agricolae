@@ -7,7 +7,6 @@ import(klaR)
 import(cluster)
 import(MASS)
 import(nlme)
-import(spdep)
 import(AlgDesign)
 import(utils)
 importFrom("graphics", "layout", "abline", "arrows", "axis", "barplot", "legend",

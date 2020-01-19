@@ -68,7 +68,7 @@ data(sweetpotato)
 model<-aov(yield~virus, data=sweetpotato)
 out <- waller.test(model,"virus", group=TRUE)
 #startgraph
-par(mfrow=c(2,2))
+oldpar<-par(mfrow=c(2,2))
 # variation: SE is error standard
 # variation: range is Max - Min
 bar.err(out$means,variation="SD",horiz=TRUE,xlim=c(0,45),bar=FALSE,
@@ -86,6 +86,7 @@ MSerror<-deviance(model)/df
 Fc<-anova(model)["virus",4]
 out <- with(sweetpotato,waller.test(yield, virus, df, MSerror, Fc, group=TRUE))
 print(out)
+par(oldpar)
 }
 \keyword{ htest }% at least one, from doc/KEYWORDS
 
