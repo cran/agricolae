@@ -44,7 +44,7 @@ ssp<-read.csv(f)
 model<-with(ssp,ssp.plot(block,nitrogen,management,variety,yield))
 gla<-model$gl.a; glb<-model$gl.b; glc<-model$gl.c
 Ea<-model$Ea; Eb<-model$Eb; Ec<-model$Ec
-par(mfrow=c(1,3),cex=0.6)
+op<-par(mfrow=c(1,3),cex=0.6)
 out1<-with(ssp,LSD.test(yield,nitrogen,gla,Ea,console=TRUE))
 out2<-with(ssp,LSD.test(yield,management,glb,Eb,console=TRUE))
 out3<-with(ssp,LSD.test(yield,variety,glc,Ec,console=TRUE))
@@ -54,6 +54,7 @@ plot(out3,xlab="Variety",variation="IQR")
 # with aov
 AOV<-aov(yield ~  block + nitrogen*management*variety + Error(block/nitrogen/management),data=ssp)
 summary(AOV)
+par(op)
 }
 \keyword{ models }% at least one, from doc/KEYWORDS
 

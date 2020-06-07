@@ -15,7 +15,8 @@ plot.group<-function(x,variation=c("range","IQR","SE","SD"), horiz=FALSE,
   names(y)<-rownames(z)
   groups<-x$groups[,2]
   n<-length(y)
-  colores<-as.numeric(groups)
+  colores<-as.factor(groups)
+  colores<-as.numeric(colores)
   if(is.null(col)) {
     seqcol<-c(30,34,51,24,654,31,48,6,12,586,137,12,53,387,19,22,23,401, 
               430,115,413,417,420,423,425,428,450,453,455,459,460,465,471,474,477, 

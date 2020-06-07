@@ -1,5 +1,11 @@
 Changes in new version
 
+Version agricolae 1-3.3 (June 5, 2020)
+-------------------------------------------
+
+- New function design.mat. Generate the design matrix from the fieldbook. 
+- Update plot.group() by new version R-4.0
+
 Version agricolae 1-3.2 (January 18, 2020)
 -------------------------------------------
 

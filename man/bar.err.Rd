@@ -46,7 +46,8 @@ bar.err(out$means,variation="SE",horiz=TRUE,xlim=c(0,45),density=8,
  col="brown",main="Standard error")
 bar.err(out$means,variation="range",ylim=c(0,45),bar=FALSE,col="green",
  main="range")
-par(mfrow=c(1,2),cex=1)
+par(oldpar)
+oldpar<-par(mfrow=c(1,2),cex=1)
 bar.err(out$means,variation="range",ylim=c(0,45),bar=FALSE,col=0)
 abline(h=0)
 # horiz = TRUE
