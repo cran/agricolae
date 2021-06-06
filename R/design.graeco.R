@@ -48,8 +48,8 @@ if(randomization)t2 <- sample(trt2, r, replace = FALSE)
 t1 <- t1[c1]
 t2 <- t2[c2]
 C1 <- data.frame(C1[, 1:3], t1,t2)
-C1[, 4] <- trt1[C1[, 4]]
-C1[, 5] <- trt2[C1[, 5]]
+# C1[, 4] <- trt1[C1[, 4]] Se elima por la verion R 4.0.0
+# C1[, 5] <- trt2[C1[, 5]] Se elima por la verion R 4.0.0
 }
 else
 {
@@ -83,7 +83,7 @@ i <- i + 1
 }
 }
 }
-C1[, 5] <- trt2[C1[, 5]]
+# C1[, 5] <- trt2[C1[, 5]] Se elima por la verion R 4.0.0
 }
 C1[, 4] <- as.factor(C1[, 4])
 C1[, 5] <- as.factor(C1[, 5])

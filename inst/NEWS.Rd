@@ -1,5 +1,13 @@
 \name{NEWS}
-\title{News for Package \pkg{abgricolae}}
+\title{News for Package \pkg{agricolae}}
+
+\section{Changes in version 1-3.5 (Jun 5, 2021)}{
+  \itemize{
+    \item Improvements in the DAU.test function. controls can have different repetitions, at least two, do not use missing data.
+    \item Update design.graeco() by new version R-4.0 and higher
+    \item Improvements in the functions sp.plot, ssp.plot and strip.plot for the analysis of split plot and strip plot design, the mixed models with random blocks and fixed factors.
+  }
+}
 
 \section{Changes in version 1-3.3 (June 5, 2020)}{
   \itemize{

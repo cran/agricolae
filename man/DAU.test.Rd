@@ -23,6 +23,7 @@ DAU.test(block, trt, y, method = c("lsd","tukey"),alpha=0.05,group=TRUE,console=
 Method of comparison treatment. 
 lsd: Least significant difference.
 tukey: Honestly significant differente.
+The controls can have different repetitions, at least two, do not use missing data.
 }
 \value{
   \item{means}{Statistical summary of the study variable}

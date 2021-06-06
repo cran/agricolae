@@ -17,9 +17,7 @@ sp.plot(block, pplot, splot, Y)
   \item{Y}{ Variable, response }
 }
 \details{
-  The split-plot design is specifically suited for a two-factor experiment
-  on of the factors is assigned to main plot (main-plot factor), the second 
-  factor, called the subplot factor, is assigned into subplots.
+  The split-plot design is specifically suited for a two-factor experiment on of the factors is assigned to main plot (main-plot factor), the second factor, called the subplot factor, is assigned into subplots.  The model is mixed, the blocks are random and the study factors are fixed applied according to the design.
 }
 \value{
 ANOVA: Splip plot analysis

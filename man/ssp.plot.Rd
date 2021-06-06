@@ -18,9 +18,7 @@ ssp.plot(block, pplot, splot, ssplot, Y)
   \item{Y}{ Variable, response }
 }
 \details{
-  The split-split-plot design is an extension of the split-plot design
-  to accommodate a third factor: one factor in main-plot, other in subplot 
-  and the third factor in sub-subplot
+  The split-split-plot design is an extension of the split-plot design to accommodate a third factor: one factor in main-plot, other in subplot and the third factor in sub-subplot. The model is mixed, the blocks are random and the study factors are fixed applied according to the design. 
 }
 \value{
 ANOVA: Splip Split plot analysis
@@ -52,12 +50,13 @@ plot(out1,xlab="Nitrogen",las=1,variation="IQR")
 plot(out2,xlab="Management",variation="IQR")
 plot(out3,xlab="Variety",variation="IQR")
 # with aov
+ssp$block<-factor(ssp$block)
+ssp$nitrogen<-factor(ssp$nitrogen)
+ssp$management<-factor(ssp$management)
+ssp$variety<-factor(ssp$variety)
 AOV<-aov(yield ~  block + nitrogen*management*variety + Error(block/nitrogen/management),data=ssp)
 summary(AOV)
 par(op)
 }
 \keyword{ models }% at least one, from doc/KEYWORDS
-
-
-
 

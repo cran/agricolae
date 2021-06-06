@@ -32,7 +32,7 @@ library(agricolae)
 detach(package:agricolae) # detach package agricole
 library(agricolae) # Load the package to the memory
 designs<-apropos("design")
-print(designs[substr(designs,1,6)=="design"], row.names=FALSE)
+designs[substr(designs,1,6)=="design"]
 
 
 ###################################################

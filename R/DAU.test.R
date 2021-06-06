@@ -37,7 +37,7 @@ DAU.test <-
     #mean.block<- data.frame(mean.block,ri=mean.block[,2]-mean.y )
     r.trt<-tapply.stat( y, trt, length)
     names(r.trt)[2]="N"
-    r.trt<-data.frame(r.trt,control=r.trt[,2]==b,means=Means[,2],mean.adj =Means[,2], 
+    r.trt<-data.frame(r.trt,control=r.trt[,2]>1,means=Means[,2],mean.adj =Means[,2], 
                       block="",std.err=sqrt(MSerror/r.trt[,2]))
     r.trt[,6]<-as.character(r.trt[,6])
     estado <- NULL 
@@ -161,36 +161,36 @@ DAU.test <-
     if(console){cat("\nCritical Differences (Between)\n")
       print(SE.dif)
       cat("\n")}   
-
-      #	Omeans<-order(mean.adj,decreasing = TRUE)
-      #	Ordindex<-order(Omeans)
-      comb <- utils::combn(ntr, 2)
-      nn <- ncol(comb)
-      dif <- rep(0, nn)
-      sig <- rep(" ",nn)
-      pvalue <- dif
-      odif<-dif
-      for (k in 1:nn) {
-        i <- comb[1, k]
-        j <- comb[2, k]
-        dif[k] <- r.trt[i, 5] - r.trt[j, 5]
-        tc <- abs(dif[k])/sqrt(V[i,j])
-        if (method == "lsd")
-          pvalue[k] <- 2 * round(1 - pt(tc, glerror), 4)
-        if (method == "tukey")
-          pvalue[k] <- round(1 - ptukey(tc*sqrt(2), ntr, glerror), 4)
-        sig[k]<-" "
-        if (pvalue[k] <= 0.001) sig[k]<-"***"
-        else  if (pvalue[k] <= 0.01) sig[k]<-"**"
-        else  if (pvalue[k] <= 0.05) sig[k]<-"*"
-        else  if (pvalue[k] <= 0.1) sig[k]<-"."
-      }
-      groups <- NULL
-      tr.i <- nameTrt[comb[1, ]]
-      tr.j <- nameTrt[comb[2, ]]
-      comparison<-data.frame("Difference" = dif, pvalue=pvalue,"sig."=sig)
-      rownames(comparison)<-paste(tr.i,tr.j,sep=" - ")
- 
+    
+    #	Omeans<-order(mean.adj,decreasing = TRUE)
+    #	Ordindex<-order(Omeans)
+    comb <- utils::combn(ntr, 2)
+    nn <- ncol(comb)
+    dif <- rep(0, nn)
+    sig <- rep(" ",nn)
+    pvalue <- dif
+    odif<-dif
+    for (k in 1:nn) {
+      i <- comb[1, k]
+      j <- comb[2, k]
+      dif[k] <- r.trt[i, 5] - r.trt[j, 5]
+      tc <- abs(dif[k])/sqrt(V[i,j])
+      if (method == "lsd")
+        pvalue[k] <- 2 * round(1 - pt(tc, glerror), 4)
+      if (method == "tukey")
+        pvalue[k] <- round(1 - ptukey(tc*sqrt(2), ntr, glerror), 4)
+      sig[k]<-" "
+      if (pvalue[k] <= 0.001) sig[k]<-"***"
+      else  if (pvalue[k] <= 0.01) sig[k]<-"**"
+      else  if (pvalue[k] <= 0.05) sig[k]<-"*"
+      else  if (pvalue[k] <= 0.1) sig[k]<-"."
+    }
+    groups <- NULL
+    tr.i <- nameTrt[comb[1, ]]
+    tr.j <- nameTrt[comb[2, ]]
+    comparison<-data.frame("Difference" = dif, pvalue=pvalue,"sig."=sig)
+    rownames(comparison)<-paste(tr.i,tr.j,sep=" - ")
+    
     if (group) {
       # Matriz de probabilidades para segmentar grupos
       Q<-matrix(1,ncol=ntr,nrow=ntr)
@@ -206,8 +206,8 @@ DAU.test <-
       groups <- orderPvalue(r.trt[,1], r.trt[,5],alpha, Q,console)
       names(groups)[1]<-name.y
       if(console) {
-      cat("\nTreatments with the same letter are not significantly different.\n\n")
-      print(groups)
+        cat("\nTreatments with the same letter are not significantly different.\n\n")
+        print(groups)
       } 
       comparison<-NULL
     }     
@@ -227,3 +227,4 @@ DAU.test <-
     class(output)<-"group"
     invisible(output)
   }
+
