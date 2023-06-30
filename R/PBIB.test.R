@@ -44,6 +44,7 @@ PBIB.test <-
       return()
     }
     modelo <- formula(paste(name.y, "~ replication + trt.adj+ block.adj%in%replication"))
+    assign(name.y,y) # contributed by Nelson Nazzicari (Bioinformatician-CREA)
     model <- lm(modelo)
     glerror <- df.residual(model)
     ANOVA<-anova(model)

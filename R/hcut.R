@@ -1,7 +1,7 @@
 hcut <-
 function(consensus,h,group,col.text="blue",cex.text=1,...) {
 dend <- consensus$dendrogram
-if(class(dend)=="hclust") dend <- as.dendrogram(dend)
+if(inherits(dend, "hclust")) dend <- as.dendrogram(dend)
 # cut for height
 frame<-consensus$table.dend[consensus$table.dend[,4]<=h,]
 cut2 <-cut(dend,h)$lower

@@ -1,4 +1,4 @@
-intervals.freq <-
+inter.freq <-
 function(x){
 if(class(x)[1]=="graph.freq" | class(x)[1]=="histogram")breaks<-x$breaks
 if(class(x)[1]=="numeric" | class(x)[1]=="integer"  )breaks<-x

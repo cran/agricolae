@@ -9,12 +9,13 @@
  value over each bar in a bar chart.
 }
 \usage{
-\method{plot}{group}(x,variation=c("range","IQR","SE","SD"), horiz=FALSE,
-                     col=NULL,xlim=NULL,ylim=NULL,main=NULL,cex=NULL,hy=0,...)
+\method{plot}{group}(x,variation=c("range","IQR","SE","SD"), decreasing = TRUE,
+              horiz=FALSE,col=NULL,xlim=NULL,ylim=NULL,main=NULL,cex=NULL,hy=0,...)
 }
 \arguments{
   \item{x}{ Object created by a test of comparison }
   \item{variation}{ in lines by range, IQR, standard deviation or error }
+  \item{decreasing}{ Logical, decreasing order of the mean }
   \item{horiz}{ Horizontal or vertical image }  
   \item{col}{line colors}
   \item{xlim}{optional, axis x limits}

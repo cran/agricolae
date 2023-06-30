@@ -1,12 +1,12 @@
-\name{intervals.freq}
-\alias{intervals.freq}
+\name{inter.freq}
+\alias{inter.freq}
 %- intervals.freq.
 \title{ Class intervals }
 \description{
   List class intervals.
 }
 \usage{
-intervals.freq(x)
+inter.freq(x)
 }
 
 \arguments{
@@ -25,11 +25,11 @@ library(agricolae)
 # example 1
 data(growth)
 h<-hist(growth$height,plot=FALSE)
-intervals.freq(h)
+inter.freq(h)
 # example 2
 x<-seq(10,40,5)
 y<-c(2,6,8,7,3,4)
-intervals.freq(x)
+inter.freq(x)
 histogram <- graph.freq(x,counts=y)
 }
 \keyword{ univar }% at least one, from doc/KEYWORDS

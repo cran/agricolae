@@ -9,14 +9,9 @@ if (n!=k) {
 cat("Error:\nThe number of dates of evaluation \nmust agree with the number of evaluations\n")
 return()
 }
-d1<-(dates[2]-dates[1])/2
-d2<-(dates[n]-dates[n-1])/2
-d<-d1+d2+dates[n]-dates[1]
-audps<-0
-for (i in 1:(n-1)) {
-audps<- audps + evaluation[,i]*(dates[i+1]-dates[i])
-}
-audps<- audps + evaluation[,n]*(dates[n]-dates[n-1])
+d<-(dates[n]-dates[1])
+area<-audpc(evaluation, dates)
+audps<-area+(evaluation[1]+evaluation[n])/2*d/(n-1)
 if (type =="relative" ) audps <-audps/(d*100)
 if (type =="absolute" | type =="relative" ) {
 return(audps)

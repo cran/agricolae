@@ -9,12 +9,13 @@
  value over each bar in a bar chart.
 }
 \usage{
-bar.group(x, horiz = FALSE, ...)
+bar.group(x,horiz=FALSE, decreasing=TRUE, ...)
 }
 \arguments{
   \item{x}{ Object created by a test of comparison }
   \item{horiz}{ Horizontal or vertical bars }
-  \item{\dots}{ Parameters of the function barplot() }
+  \item{decreasing}{Logical, decreasing order of the mean}
+  \item{\dots}{ Parameters of the function barplot() } 
 }
 \details{
 x: data frame formed by 5 columns: name of the bars, height and level of the bar.

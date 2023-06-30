@@ -1,5 +1,16 @@
 Changes in new version
 
+Version agricolae 1-3.6 (Jun 30, 2023)
+-------------------------------------------
+
+- CRAN checks (status NOTE), change name in documentation object ‘intervals.freq’ with ‘inter.freq’.
+- Improvements in the DAU.test function. Update the standard error.
+- Improvements in the audps function, includes when dates are not equidistant.
+- Improvements in the bar.err and group.plot functions, Update the standard error.
+- Improvements in the group.plot function, includes the 'decreasing' option for the decreasing order of the mean.
+- Improvements in the sp.plot and ssp.plot functions, include the p-value in the random factor block.
+- update PBIB.test when PBIB.test() is called from another function.
+
 Version agricolae 1-3.5 (Jun 5, 2021)
 -------------------------------------------
 

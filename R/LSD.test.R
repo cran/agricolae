@@ -46,7 +46,7 @@ LSD.test <-
     Tprob <- qt(1 - alpha/2, DFerror)
     LCL <- means[, 2] - Tprob * std.err
     UCL <- means[, 2] + Tprob * std.err
-    means <- data.frame(means, std=sds[,2], r = nn[, 2],
+    means <- data.frame(means, std=sds[,2], r = nn[, 2], se=std.err,
                         LCL, UCL,medians)
     names(means)[1:2] <- c(name.t, name.y)
     ntr <- nrow(means)
@@ -75,7 +75,7 @@ LSD.test <-
       cat("\nMean Square Error: ", MSerror, "\n\n")
       cat(paste(name.t, ",", sep = ""), " means and individual (",
           (1 - alpha) * 100, "%) CI\n\n")
-      print(data.frame(row.names = means[, 1], means[, 2:8]))
+      print(data.frame(row.names = means[,1], means[,-1]))
       cat("\nAlpha:", alpha, "; DF Error:", DFerror)
       cat("\nCritical Value of t:", Tprob, "\n")
     }

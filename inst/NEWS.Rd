@@ -1,6 +1,18 @@
 \name{NEWS}
 \title{News for Package \pkg{agricolae}}
 
+\section{Changes in version 1-3.6 (Jun 30, 2023)}{
+  \itemize{
+    \item CRAN checks (status NOTE), change name in documentation object ‘intervals.freq’ with ‘inter.freq’.
+    \item Improvements in the DAU.test function. Update the standard error.
+    \item Improvements in the audps function, includes when dates are not equidistant.
+    \item Improvements in the bar.err and group.plot functions, Update the standard error.
+    \item Improvements in the group.plot function, includes the 'decreasing' option for the decreasing order of the mean.
+    \item Improvements in the sp.plot and ssp.plot functions, include the p-value in the random factor block.
+    \item update PBIB.test when PBIB.test() is called from another function.
+  }
+}
+
 \section{Changes in version 1-3.5 (Jun 5, 2021)}{
   \itemize{
     \item Improvements in the DAU.test function. controls can have different repetitions, at least two, do not use missing data.

@@ -19,7 +19,7 @@ polygon.freq(histogram, frequency=1, ...)
 \author{ Felipe de Mendiburu Delgado }
 
 \seealso{\code{\link{polygon.freq}}, \code{\link{table.freq}}, \code{\link{stat.freq}},
-\code{\link{intervals.freq}}, \code{\link{sturges.freq}}, \code{\link{join.freq}},
+\code{\link{inter.freq}}, \code{\link{sturges.freq}}, \code{\link{join.freq}},
 \code{\link{graph.freq}}, \code{\link{normal.freq} } }
 
 \examples{

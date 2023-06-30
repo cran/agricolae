@@ -1,16 +1,19 @@
-plot.group<-function(x,variation=c("range","IQR","SE","SD"), horiz=FALSE,
+plot.group<-function(x,variation=c("range","IQR","SE","SD"), decreasing = TRUE, horiz=FALSE, 
                      col=NULL,xlim=NULL,ylim=NULL,main=NULL,cex=NULL,hy=0,...){
   
-  if(class(x) != "group"){
+  if(!(inherits(x, "group"))){
     stop("'x' must be of class 'group'.")
   }
-   variation<-match.arg(variation)
+  x$groups<-x$groups[order(x$groups[,1],decreasing=decreasing),]
+  namesMeans<-names(x$means)
+  variation<-match.arg(variation)
+
   if("means" %in% names(x)) z<-x$means
   else z<-x$medians
   z<-z[rownames(x$groups),]
   if("SE" %in% names(z)){
   cat("\nWarning  values plot is not adjusted\n") 
- }
+  }
   y<-z[,1]
   names(y)<-rownames(z)
   groups<-x$groups[,2]
@@ -45,15 +48,15 @@ plot.group<-function(x,variation=c("range","IQR","SE","SD"), horiz=FALSE,
     }
     else return("For variation use IQR or range")
   }  
-  if( variation=="SE" ) {
-  	if("std" %in% names(z)){
-        std.err<-z$"std"/sqrt(z$"r") 
-        nivel0<-y-std.err
-  	nivel1<-y+std.err
-  	title<-"Standard error"
-  	}
-  	else return("For variation use IQR or range")
-  }	
+   if( variation=="SE" ) {
+  if("se" %in% names(z)){
+    nivel0<-y-z$"se"
+    nivel1<-y+z$"se"
+    title<-"Standard error"
+    }
+    else return("For variation use IQR or range")
+  }  
+  	
   if(is.null(main))main=paste("Groups and",title)
   
   top<-1.2*max(nivel1)

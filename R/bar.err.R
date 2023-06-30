@@ -4,21 +4,20 @@ variation<-match.arg(variation)
 y<-x[,1]
 names(y)<-rownames(x)
 if( variation=="SE" ) {
-if( "std"%in%names(x) & variation != "IQR") {
-std.err<-x$"std"/sqrt(x$"r")
-nivel0<-y-std.err
-nivel1<-y+std.err
+if( "se"%in%names(x) ) {
+nivel0<-y-x$"se"
+nivel1<-y+x$"se"
 }
 else return("For variation use IQR or range")
 }
-if( variation=="SD" ) {
+if( variation=="SD") {
 if("std" %in% names(x)){
 nivel0<-y-x$"std"
 nivel1<-y+x$"std"
 }
 else return("For variation use IQR or range")
 }
-if( variation=="range" ) {
+if( variation=="range") {
 nivel0<-x$"Min"
 nivel1<-x$"Max"
 }

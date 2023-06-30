@@ -18,7 +18,7 @@ stat.freq(histogram)
 \author{ Felipe de mendiburu }
 
 \seealso{\code{\link{polygon.freq}}, \code{\link{table.freq}}, \code{\link{graph.freq}},
-\code{\link{intervals.freq}}, \code{\link{sturges.freq}}, \code{\link{join.freq}},
+\code{\link{inter.freq}}, \code{\link{sturges.freq}}, \code{\link{join.freq}},
 \code{\link{ogive.freq}}, \code{\link{normal.freq} } }
 
 \examples{

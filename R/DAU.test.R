@@ -134,7 +134,7 @@ DAU.test <-
             if(r.trt[i,6]==r.trt[j,6] ) V[i,j]<- 2
             else  V[i,j]<- 2*(1+1/comunes)
           }
-          if (r.trt[i,3] != r.trt[j,3]) V[i,j]<- 1+1/b+1/comunes-1/(b*comunes)
+          if (r.trt[i,3] != r.trt[j,3]) V[i,j]<- 1+1/b+1/comunes+1/(b*comunes)
           
         }}}
     V<-MSerror*V

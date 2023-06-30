@@ -24,12 +24,13 @@ test = c("lsd","tukey"), alpha=0.05, console=FALSE, group=TRUE)
 }
 \details{
 Method of comparison treatment. 
-lsd: least significant difference.
-tukey: Honestly significant difference.
-Estimate: specifies the estimation method for the covariance parameters.
+lsd: least significant difference.\cr
+tukey: Honestly significant difference.\cr
+Estimate: specifies the estimation method for the covariance parameters.\cr
 The REML is the default method. The REML specification performs residual (restricted) maximum likelihood, and 
 The ML specification performs maximum likelihood, and 
-the VC specifications apply only to variance component models. 
+the VC specifications apply only to variance component models.\cr
+The PBIB.test() function can be called inside a function (improvement by Nelson Nazzicari, Ph.D. Bioinformatician)
 }
 \value{
   \item{ANOVA}{Analysis of variance }

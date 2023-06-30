@@ -37,7 +37,7 @@ nclass=NULL,xlab="",ylab="",axes = "",las=1,...)
 \author{ Felipe de Mendiburu }
 
 \seealso{\code{\link{polygon.freq}}, \code{\link{table.freq}}, 
-\code{\link{stat.freq}},\code{\link{intervals.freq}},\code{\link{sturges.freq}},
+\code{\link{stat.freq}},\code{\link{inter.freq}},\code{\link{sturges.freq}},
 \code{\link{join.freq}},\code{\link{ogive.freq}}, \code{\link{normal.freq} } }
 
 \examples{

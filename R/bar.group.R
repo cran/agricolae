@@ -1,5 +1,6 @@
 bar.group <-
-function(x,horiz=FALSE, ...) {
+function(x,horiz=FALSE, decreasing=TRUE,...) {
+x <- x[order(x[, 1], decreasing = decreasing),]
 y<-x[,1]
 names(y)<-rownames(x)
 nivel<-x[,2]

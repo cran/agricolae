@@ -167,10 +167,10 @@ print(summary(h1),row.names=FALSE)
 @
 \subsection {Histogram manipulation functions}
 
-You can extract information from a histogram such as class intervals \emph{intervals.freq}, attract new intervals with the \emph{sturges.freq} function or to join classes with \emph{join.freq} function. It is also possible to reproduce the graph with the same creator \emph{graph.freq} or function \emph{plot} and overlay normal function with \emph{normal.freq} be it a histogram in absolute scale, relative or density . The following examples illustrates these properties.
+You can extract information from a histogram such as class intervals \emph{inter.freq}, attract new intervals with the \emph{sturges.freq} function or to join classes with \emph{join.freq} function. It is also possible to reproduce the graph with the same creator \emph{graph.freq} or function \emph{plot} and overlay normal function with \emph{normal.freq} be it a histogram in absolute scale, relative or density . The following examples illustrates these properties.
 <<>>=
 sturges.freq(weight)
-intervals.freq(h1)
+inter.freq(h1)
 join.freq(h1,1:3) -> h3
 print(summary(h3))
 @

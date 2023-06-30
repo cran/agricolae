@@ -88,7 +88,7 @@ print(summary(h1),row.names=FALSE)
 ### code chunk number 12: tutorial.Rnw:171-175
 ###################################################
 sturges.freq(weight)
-intervals.freq(h1)
+inter.freq(h1)
 join.freq(h1,1:3) -> h3
 print(summary(h3))
 

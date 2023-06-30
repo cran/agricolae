@@ -42,7 +42,8 @@ waller.test <-
     means <- tapply.stat(junto[,1],junto[,2],stat="mean") # change                                   
     sds <-   tapply.stat(junto[,1],junto[,2],stat="sd")   # change                                   
     nn <-   tapply.stat(junto[,1],junto[,2],stat="length") # change                                  
-    means<-data.frame(means,std=sds[,2],r=nn[,2],medians)
+    std.err <- sqrt(MSerror)/sqrt(nn[, 2]) # change sds[,2]
+    means<-data.frame(means,std=sds[,2],r=nn[,2],se=std.err,medians)
     names(means)[1:2]<-c(name.t,name.y)                                                              
     ntr<-nrow(means)                                                                                 
     Tprob <- waller(K,ntr-1,DFerror,Fc)                                                              
@@ -62,7 +63,7 @@ waller.test <-
       {print(xtabla)                                                                                        
       cat("\n")                                                                                            
       cat(paste(name.t,",",sep="")," means\n\n")                                                           
-      print(data.frame(row.names = means[,1], means[,2:6]))
+      print(data.frame(row.names = means[,1], means[,-1]))
       }                                                 
     MSD <- Tprob * sqrt(2 * MSerror/nr)
     statistics<-data.frame(Mean=Mean,Df=DFerror,CV=CV,MSerror=MSerror,F.Value=Fc)    
