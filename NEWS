@@ -1,5 +1,10 @@
 Changes in new version
 
+Version agricolae 1-3.7 (Oct 22, 2023)
+-------------------------------------------
+
+- CRAN checks (status ERROR). Changes in AMMI plot function, only biplot is considered.
+
 Version agricolae 1-3.6 (Jun 30, 2023)
 -------------------------------------------
 

@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{News for Package \pkg{agricolae}}
 
+\section{Changes in version 1-3.7 (Oct 22, 2023)}{
+  \itemize{
+    \item CRAN checks (status ERROR). Changes in AMMI plot function, only biplot is considered.
+  }
+}
+
 \section{Changes in version 1-3.6 (Jun 30, 2023)}{
   \itemize{
     \item CRAN checks (status NOTE), change name in documentation object ‘intervals.freq’ with ‘inter.freq’.

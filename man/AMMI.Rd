@@ -48,8 +48,6 @@ model$ANOVA
 # see help(plot.AMMI)
 # biplot
 plot(model)
-# triplot PC 1,2,3 
-plot(model, type=2, number=TRUE)
 # biplot PC1 vs Yield 
 plot(model, first=0,second=1, number=TRUE)
 # Example 2
@@ -70,7 +68,7 @@ model<-with(sinRepAmmi,AMMI(ENV, GEN, REP, YLD, MSerror,PC=TRUE))
 # print anova
 print(model$ANOVA,na.print = "")
 # Biplot with the one restored observed.
-plot(model,0,1,type=1)
+plot(model,0,1)
 # with principal components model$PC is class "princomp" 
 pc<- model$PC
 pc$loadings

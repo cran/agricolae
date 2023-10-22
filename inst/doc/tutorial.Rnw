@@ -64,7 +64,6 @@ For a complete functionality, \textbf{agricolae} requires other packages
 
 \textbf{MASS:}  for the generalized inverse used in the function \emph{PBIB.test}\\
 \textbf{nlme:}  for the methods REML and LM in \emph{PBIB.test}\\
-\textbf{klaR:}  for the function \emph{triplot} used in the function \emph{AMMI}\\
 \textbf{Cluster:}  for the use of the function \emph{consensus}\\
 \textbf{algDesign:}  for the balanced incomplete block design\emph{design.bib}
 
@@ -1328,7 +1327,7 @@ For the application, we consider the data used in the example of parametric stab
 <<>>=
   str(plot.AMMI)
 @
-  \textbf{type: 1=biplot, 2= triplot} 
+
 <<>>=
 data(plrv)
 model<-with(plrv,AMMI(Locality, Genotype, Rep, Yield, console=FALSE))
@@ -1344,17 +1343,13 @@ pc123<-sum(pc[1:3])
 \begin{center}
 <<f6, fig=TRUE,width=3, height=2,results=hide>>=
 oldpar<-par(cex=0.4,mar=c(4,4,1,2))
-plot(model,type=1,las=1,xlim=c(-5,6))
+plot(model,las=1,xlim=c(-5,6))
 par(oldpar)
 @
 \caption{Biplot\label{fig:f6}}
 \end{center}
 \end{figure}
 In this case, the interaction is significant. The first two components explain \Sexpr{pc12} \%; then the biplot can provide information about the interaction genotype-environment. With the triplot, \Sexpr{pc123}\% would be explained.
-
-\textbf{To triplot require klaR package. in R execute:}
-
-plot(model,type=2,las=1)
 
 \subsection {AMMI index and yield stability}
 Calculate AMMI stability value (ASV) and Yield stability index (YSI), \citet{SabaDehg:2008}; \citet{Purc:1997}.

@@ -6,7 +6,7 @@
   Biplot AMMI.
 }
 \usage{
-\method{plot}{AMMI}(x,first=1,second=2,third=3,type=1,number=FALSE,gcol=NULL,ecol=NULL,
+\method{plot}{AMMI}(x,first=1,second=2,third=3,number=FALSE,gcol=NULL,ecol=NULL,
 angle=25,lwd=1.8,length=0.1,xlab=NULL,ylab=NULL,xlim=NULL,ylim=NULL,...)
 }
 \arguments{
@@ -14,7 +14,6 @@ angle=25,lwd=1.8,length=0.1,xlab=NULL,ylab=NULL,xlim=NULL,ylim=NULL,...)
   \item{first}{ position axis x, 0=Y-dependent, 1=PC1, 2=PC2, 3=PC3}
   \item{second}{ position axis y,0=Y-dependent, 1=PC1, 2=PC2, 3=PC3}
   \item{third}{ position axis z,0=Y-dependent, 1=PC1, 2=PC2, 3=PC3}
-  \item{type}{ 1=biplot, 2= triplot}
   \item{number}{ TRUE or FALSE names or number genotypes}
   \item{gcol}{ genotype color}
   \item{ecol}{ environment color }
@@ -29,8 +28,7 @@ angle=25,lwd=1.8,length=0.1,xlab=NULL,ylab=NULL,xlim=NULL,ylim=NULL,...)
 }
 
 \details{
-type=1 produce graphs biplot.
-type=2 produce graphs triplot, the components are normalizad in scale 0-1.
+Produce graphs biplot.
 }
 
 \author{ Felipe de Mendiburu }
@@ -45,9 +43,5 @@ model<- with(plrv,AMMI(Locality, Genotype, Rep, Yield))
 plot(model)
 ## plot PC1 vs Yield
 plot(model,0,1,gcol="blue",ecol="green")
-## triplot PC 2,3,4
-if (requireNamespace("klaR", quietly = TRUE)) {
-plot(model,first=2,second=3,third=4, type=2,number=TRUE)
-}
 }
 \keyword{ aplot }% at least one, from doc/KEYWORDS

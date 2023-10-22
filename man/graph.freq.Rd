@@ -22,7 +22,7 @@ xlab="",ylab="",axes = "",las=1,...)
   \item{nclass}{ number of classes }
   \item{xlab}{ x labels}
   \item{ylab}{ y labels}
-  \item{las}{ numeric in {0,1,2,3}; the style of axis labels. see plot()} 
+  \item{las}{ values 0,1,2 and 3 are the axis styles. see plot()} 
   \item{axes}{ TRUE or FALSE}    
   \item{\dots}{ other parameters of plot}
 }
